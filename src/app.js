@@ -41,6 +41,11 @@ let activeMode = "Enseignant";
 let currentExercise = 0;
 let currentQuiz = 0;
 let hintVisible = false;
+let activeTypeFilter = "Tous";
+let activePeriodFilter = "Tous";
+let activeNationalityFilter = "Tous";
+let activeDifficultyFilter = "Tous";
+let activeChipFilter = "Tous";
 
 function card(title, body, meta = "", action = "") {
   return `
@@ -59,6 +64,144 @@ function asSearchText(value) {
   return JSON.stringify(value).toLowerCase();
 }
 
+function normalize(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function optionList(values, label = "Tous") {
+  return [`<option value="Tous">${label}</option>`, ...values.map((value) => `<option value="${value}">${value}</option>`)].join("");
+}
+
+function fieldList(items) {
+  return items.filter(Boolean).map((item) => `<li>${item}</li>`).join("");
+}
+
+const searchIndex = [
+  ...entries.map((item) => ({
+    id: `entry:${item.title}`,
+    type: item.type,
+    title: item.title,
+    meta: item.meta,
+    text: item.text,
+    tags: item.tags,
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...mathematicians.map((item) => ({
+    id: `person:${item.id}`,
+    type: "Mathématicien",
+    title: item.name,
+    meta: `${item.period} · ${item.nationality} · ${item.domains.join(", ")}`,
+    text: item.biography,
+    tags: [...item.domains, item.nationality, item.period],
+    period: item.period,
+    nationality: item.nationality,
+    difficulty: "",
+    payload: item,
+  })),
+  ...theorems.map((item) => ({
+    id: `theorem:${item.name}`,
+    type: "Théorème",
+    title: item.name,
+    meta: `${item.discoverer} · ${item.applications}`,
+    text: item.intuition,
+    tags: [item.discoverer, item.history, ...item.variants],
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...formulas.map((item) => ({
+    id: `formula:${item.name}`,
+    type: "Formule",
+    title: item.name,
+    meta: item.category,
+    text: item.explanation,
+    tags: [item.category, ...item.uses],
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...domains.map((item) => ({
+    id: `domain:${item.name}`,
+    type: "Domaine",
+    title: item.name,
+    meta: item.people,
+    text: item.intro,
+    tags: [...item.concepts, ...item.theorems, item.applications],
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...objects.map((item) => ({
+    id: `object:${item.name}`,
+    type: "Objet",
+    title: item.name,
+    meta: item.applications,
+    text: item.description,
+    tags: [...item.properties, item.history],
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...exercises.map((item, index) => ({
+    id: `exercise:${index}`,
+    type: "Exercice",
+    title: item.prompt,
+    meta: `${item.domain} · ${item.level} · ${item.difficulty} · ${item.time}`,
+    text: item.solution,
+    tags: [item.domain, item.level, item.difficulty],
+    period: "",
+    nationality: "",
+    difficulty: item.difficulty,
+    payload: item,
+  })),
+  ...problems.map((item) => ({
+    id: `problem:${item.name}`,
+    type: "Problème",
+    title: item.name,
+    meta: item.status,
+    text: item.text,
+    tags: [item.history, item.current, item.advances, item.impact],
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...books.map((item) => ({
+    id: `book:${item.title}`,
+    type: "Livre",
+    title: item.title,
+    meta: `${item.author} · ${item.category} · ${item.level}`,
+    text: item.description,
+    tags: [item.author, item.category, item.level],
+    period: "",
+    nationality: "",
+    difficulty: item.level,
+    payload: item,
+  })),
+  ...glossary.map((item) => ({
+    id: `glossary:${item.term}`,
+    type: "Glossaire",
+    title: item.term,
+    meta: item.links.join(", "),
+    text: item.definition,
+    tags: item.links,
+    period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+].map((item) => ({ ...item, searchText: normalize(asSearchText(item)) }));
+
 function latex(value) {
   return `<span class="latex" data-latex="${value.replaceAll('"', "&quot;")}">${value}</span>`;
 }
@@ -68,6 +211,22 @@ function renderMath() {
   document.querySelectorAll("[data-latex]").forEach((node) => {
     window.katex.render(node.dataset.latex, node, { throwOnError: false, displayMode: false });
   });
+}
+
+function scoreEntry(entry, query) {
+  if (!query) return 1;
+  const terms = normalize(query).split(/\s+/).filter(Boolean);
+  if (!terms.length) return 1;
+  let score = 0;
+  const title = normalize(entry.title);
+  const meta = normalize(entry.meta);
+  for (const term of terms) {
+    if (title === term) score += 12;
+    if (title.includes(term)) score += 7;
+    if (meta.includes(term)) score += 4;
+    if (entry.searchText.includes(term)) score += 2;
+  }
+  return score;
 }
 
 function renderDaily() {
@@ -86,62 +245,75 @@ function renderDaily() {
 
 function renderSearch() {
   const filters = ["Tous", "Mathématicien", "Théorème", "Formule", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres", "Topologie"];
-  let activeFilter = "Tous";
   const input = $("#searchInput");
   const chips = $("#filterChips");
   const list = $("#resultList");
-  const searchable = [
-    ...entries,
-    ...mathematicians.map((item) => ({
-      type: "Fiche mathématicien",
-      title: item.name,
-      meta: `${item.period} · ${item.nationality} · ${item.domains.join(", ")}`,
-      text: item.biography,
-      tags: [...item.domains, item.nationality, item.period],
-      payload: item,
-    })),
-    ...theorems.map((item) => ({
-      type: "Théorème",
-      title: item.name,
-      meta: `${item.discoverer} · ${item.applications}`,
-      text: item.intuition,
-      tags: [item.discoverer, item.history, ...item.variants],
-      payload: item,
-    })),
-    ...formulas.map((item) => ({
-      type: "Formule",
-      title: item.name,
-      meta: item.category,
-      text: item.explanation,
-      tags: [item.category, ...item.uses],
-      payload: item,
-    })),
-  ];
+  const typeFilter = $("#typeFilter");
+  const periodFilter = $("#periodFilter");
+  const nationalityFilter = $("#nationalityFilter");
+  const difficultyFilter = $("#difficultyFilter");
+  typeFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.type))].sort());
+  periodFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.period).filter((value) => /siècle|Antiquité|Moyen|Renaissance/i.test(value)))].sort());
+  nationalityFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.nationality).filter(Boolean))].sort(), "Toutes");
+  difficultyFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.difficulty).filter(Boolean))].sort(), "Toutes");
+  typeFilter.value = activeTypeFilter;
+  periodFilter.value = activePeriodFilter;
+  nationalityFilter.value = activeNationalityFilter;
+  difficultyFilter.value = activeDifficultyFilter;
   const draw = () => {
-    const query = input.value.trim().toLowerCase();
-    const filter = activeFilter.toLowerCase();
-    const visible = searchable.filter((entry) => {
-      const haystack = asSearchText(entry);
-      return haystack.includes(query) && (activeFilter === "Tous" || haystack.includes(filter));
-    });
-    chips.innerHTML = filters.map((filter) => `<button class="${filter === activeFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
-    list.innerHTML = visible.map(({ type, title, meta, text }) => card(title, text, `${type} · ${meta}`, favoriteButton(title))).join("");
+    const query = input.value.trim();
+    const chip = normalize(activeChipFilter);
+    const visible = searchIndex
+      .map((entry) => ({ ...entry, score: scoreEntry(entry, query) }))
+      .filter((entry) => entry.score > 0)
+      .filter((entry) => activeChipFilter === "Tous" || entry.searchText.includes(chip) || normalize(entry.type).includes(chip))
+      .filter((entry) => activeTypeFilter === "Tous" || entry.type === activeTypeFilter)
+      .filter((entry) => activePeriodFilter === "Tous" || entry.period === activePeriodFilter)
+      .filter((entry) => activeNationalityFilter === "Tous" || entry.nationality === activeNationalityFilter)
+      .filter((entry) => activeDifficultyFilter === "Tous" || entry.difficulty === activeDifficultyFilter)
+      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, "fr"))
+      .slice(0, 40);
+    chips.innerHTML = filters.map((filter) => `<button class="${filter === activeChipFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
+    list.innerHTML = visible.map(({ id, type, title, meta, text }) => card(
+      title,
+      text,
+      `${type} · ${meta}`,
+      `<div class="card-actions"><button class="mini-button" type="button" data-open="${id}">Ouvrir</button>${favoriteButton(id, title)}</div>`
+    )).join("");
     chips.querySelectorAll("button").forEach((button) => {
       button.addEventListener("click", () => {
-        activeFilter = button.textContent;
+        activeChipFilter = button.textContent;
         draw();
       });
     });
     bindFavorites();
+    bindDetailButtons();
+    renderFavorites();
   };
   input.addEventListener("input", draw);
+  typeFilter.addEventListener("change", () => {
+    activeTypeFilter = typeFilter.value;
+    draw();
+  });
+  periodFilter.addEventListener("change", () => {
+    activePeriodFilter = periodFilter.value;
+    draw();
+  });
+  nationalityFilter.addEventListener("change", () => {
+    activeNationalityFilter = nationalityFilter.value;
+    draw();
+  });
+  difficultyFilter.addEventListener("change", () => {
+    activeDifficultyFilter = difficultyFilter.value;
+    draw();
+  });
   draw();
 }
 
-function favoriteButton(id) {
+function favoriteButton(id, label = id) {
   const favorites = store.get("mathemator:favorites", []);
   const active = favorites.includes(id);
-  return `<button class="mini-button favorite-button ${active ? "active" : ""}" type="button" data-favorite="${id}">${active ? "Favori" : "Ajouter aux favoris"}</button>`;
+  return `<button class="mini-button favorite-button ${active ? "active" : ""}" type="button" data-favorite="${id}" data-favorite-label="${label}">${active ? "Favori" : "Ajouter aux favoris"}</button>`;
 }
 
 function bindFavorites() {
@@ -153,8 +325,159 @@ function bindFavorites() {
       store.set("mathemator:favorites", next);
       renderSearch();
       renderProgress();
+      renderFavorites();
     });
   });
+}
+
+function bindDetailButtons() {
+  document.querySelectorAll("[data-open]").forEach((button) => {
+    button.addEventListener("click", () => openDetail(button.dataset.open));
+  });
+}
+
+function renderFavorites() {
+  const favorites = store.get("mathemator:favorites", []);
+  const list = $("#favoritesList");
+  const items = favorites.map((id) => searchIndex.find((entry) => entry.id === id) || { id, type: "Favori", title: id, meta: "", text: "Élément enregistré." });
+  list.innerHTML = items.length
+    ? items.map(({ id, type, title, meta, text }) => card(
+      title,
+      text,
+      `${type}${meta ? ` · ${meta}` : ""}`,
+      `<div class="card-actions"><button class="mini-button" type="button" data-open="${id}">Ouvrir</button>${favoriteButton(id, title)}</div>`
+    )).join("")
+    : card("Aucun favori", "Ajoute des mathématiciens, théorèmes, formules, exercices ou objets depuis les fiches et les résultats.", "Collection");
+  bindFavorites();
+  bindDetailButtons();
+}
+
+function detailList(label, items) {
+  if (!items?.length) return "";
+  return `<section><h3>${label}</h3><ul>${fieldList(items)}</ul></section>`;
+}
+
+function detailDefinition(label, value) {
+  if (!value) return "";
+  return `<section><h3>${label}</h3><p>${value}</p></section>`;
+}
+
+function detailFor(entry) {
+  const item = entry.payload;
+  if (entry.type === "Mathématicien") {
+    return `
+      <div class="detail-lead">
+        <div class="portrait" aria-hidden="true">${item.portrait}</div>
+        <p>${item.biography}</p>
+      </div>
+      ${detailList("Chronologie", item.timeline)}
+      ${detailList("Domaines", item.domains)}
+      ${detailList("Découvertes", item.discoveries)}
+      ${detailList("Publications", item.publications)}
+      ${detailList("Citations", item.quotes)}
+      ${detailList("Élèves", item.students)}
+      ${detailList("Professeurs", item.teachers)}
+      ${detailList("Collaborateurs", item.collaborators)}
+      ${detailList("Distinctions", item.distinctions)}
+      ${detailList("Objets nommés", item.namedObjects)}
+      ${detailList("Théorèmes associés", item.theorems)}
+      <section><h3>Équations</h3>${item.equations.map((equation) => `<p>${latex(equation)}</p>`).join("")}</section>
+      ${detailList("Anecdotes", item.anecdotes)}
+      ${detailList("Bibliographie", item.bibliography)}
+      ${detailList("Liens", item.links.map((link) => `<a href="${link}" target="_blank" rel="noreferrer">${link}</a>`))}
+    `;
+  }
+  if (entry.type === "Théorème") {
+    return `
+      <section><h3>Énoncé</h3><p>${latex(item.latex)}</p></section>
+      ${detailDefinition("Explication intuitive", item.intuition)}
+      ${detailDefinition("Démonstration", item.proof)}
+      ${detailList("Variantes", item.variants)}
+      ${detailDefinition("Généralisation", item.generalization)}
+      ${detailDefinition("Applications", item.applications)}
+      ${detailDefinition("Historique", item.history)}
+      ${detailDefinition("Découvreur", item.discoverer)}
+      ${detailList("Exercices", item.exercises)}
+      ${detailList("Références", item.references)}
+    `;
+  }
+  if (entry.type === "Formule") {
+    return `
+      <section><h3>Formule</h3><p>${latex(item.latex)}</p></section>
+      ${detailDefinition("Catégorie", item.category)}
+      ${detailDefinition("Explication", item.explanation)}
+      ${detailList("Exemples", item.examples)}
+      ${detailDefinition("Démonstration", item.proof)}
+      ${detailList("Cas d'utilisation", item.uses)}
+    `;
+  }
+  if (entry.type === "Domaine") {
+    return `
+      ${detailDefinition("Présentation", item.intro)}
+      ${detailDefinition("Historique", item.history)}
+      ${detailList("Concepts fondamentaux", item.concepts)}
+      ${detailList("Théorèmes majeurs", item.theorems)}
+      ${detailDefinition("Applications", item.applications)}
+      ${detailDefinition("Mathématiciens associés", item.people)}
+    `;
+  }
+  if (entry.type === "Objet") {
+    return `
+      ${detailDefinition("Description", item.description)}
+      ${detailDefinition("Histoire", item.history)}
+      ${detailList("Propriétés", item.properties)}
+      ${detailDefinition("Applications", item.applications)}
+      ${detailDefinition("Visualisation", `Module prévu : ${item.visualization}`)}
+    `;
+  }
+  if (entry.type === "Exercice") {
+    return `
+      ${detailDefinition("Énoncé", item.prompt)}
+      ${detailDefinition("Classement", `${item.level} · ${item.domain} · ${item.difficulty} · ${item.time}`)}
+      ${detailDefinition("Indice", item.hint)}
+      ${detailDefinition("Correction", item.solution)}
+      ${detailDefinition("Démonstration", item.proof)}
+    `;
+  }
+  if (entry.type === "Problème") {
+    return `
+      ${detailDefinition("Présentation", item.text)}
+      ${detailDefinition("Historique", item.history)}
+      ${detailDefinition("État actuel", item.current)}
+      ${detailDefinition("Avancées récentes", item.advances)}
+      ${detailDefinition("Impact", item.impact)}
+    `;
+  }
+  if (entry.type === "Livre") {
+    return `
+      ${detailDefinition("Auteur", item.author)}
+      ${detailDefinition("Catégorie", item.category)}
+      ${detailDefinition("Niveau", item.level)}
+      ${detailDefinition("Description", item.description)}
+    `;
+  }
+  if (entry.type === "Glossaire") {
+    return `
+      ${detailDefinition("Définition", item.definition)}
+      ${detailList("Renvois automatiques", item.links)}
+    `;
+  }
+  return detailDefinition("Résumé", entry.text);
+}
+
+function openDetail(id) {
+  const entry = searchIndex.find((item) => item.id === id);
+  if (!entry) return;
+  $("#detailType").textContent = entry.type;
+  $("#detailTitle").textContent = entry.title;
+  $("#detailBody").innerHTML = `
+    <div class="detail-actions">${favoriteButton(entry.id, entry.title)}</div>
+    ${detailFor(entry)}
+  `;
+  $("#detailPanel").hidden = false;
+  bindFavorites();
+  renderMath();
+  $("#detailPanel").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderTimeline() {
@@ -193,10 +516,14 @@ function renderMathematicians() {
         <dt>Anecdotes</dt><dd>${person.anecdotes.join(" ")}</dd>
         <dt>Bibliographie</dt><dd>${person.bibliography.join(", ")}</dd>
       </dl>
-      ${favoriteButton(person.name)}
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="person:${person.id}">Ouvrir</button>
+        ${favoriteButton(`person:${person.id}`, person.name)}
+      </div>
     </article>
   `).join("");
   bindFavorites();
+  bindDetailButtons();
   renderMath();
 }
 
@@ -238,8 +565,14 @@ function renderDomains() {
         <dt>Figures</dt><dd>${people}</dd>
         <dt>Applications</dt><dd>${applications}</dd>
       </dl>
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="domain:${name}">Ouvrir</button>
+        ${favoriteButton(`domain:${name}`, name)}
+      </div>
     </article>
   `).join("");
+  bindFavorites();
+  bindDetailButtons();
 }
 
 function renderReferences() {
@@ -251,16 +584,20 @@ function renderReferences() {
       return card(
         item.name,
         `${latex(item.latex)}<br>${item.intuition}<br><strong>Démonstration :</strong> ${item.proof}<br><strong>Généralisation :</strong> ${item.generalization}<br><em>${item.applications}</em>`,
-        `${item.discoverer} · ${item.history}`
+        `${item.discoverer} · ${item.history}`,
+        `<div class="card-actions"><button class="mini-button" type="button" data-open="theorem:${item.name}">Ouvrir</button>${favoriteButton(`theorem:${item.name}`, item.name)}</div>`
       );
     }
     return card(
       item.name,
       `${latex(item.latex)}<br>${item.explanation}<br><strong>Exemples :</strong> ${item.examples.join(", ")}<br><strong>Démonstration :</strong> ${item.proof}`,
-      `Formule · ${item.category}`
+      `Formule · ${item.category}`,
+      `<div class="card-actions"><button class="mini-button" type="button" data-open="formula:${item.name}">Ouvrir</button>${favoriteButton(`formula:${item.name}`, item.name)}</div>`
     );
   }).join("");
   renderMath();
+  bindFavorites();
+  bindDetailButtons();
   $("#referenceTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeReference = button.textContent;
@@ -278,8 +615,14 @@ function renderObjects() {
       <p><strong>Histoire :</strong> ${history}</p>
       <p><strong>Propriétés :</strong> ${properties.join(", ")}</p>
       <span>${applications}</span>
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="object:${name}">Ouvrir</button>
+        ${favoriteButton(`object:${name}`, name)}
+      </div>
     </article>
   `).join("");
+  bindFavorites();
+  bindDetailButtons();
 }
 
 function renderLearning() {
@@ -608,6 +951,7 @@ renderProblems();
 renderGraph();
 renderModes();
 renderModules();
+renderFavorites();
 drawHero();
 drawMandelbrot();
 drawSurface();
@@ -630,4 +974,8 @@ $("#resetProgressButton").addEventListener("click", () => {
   store.set("mathemator:favorites", []);
   renderProgress();
   renderSearch();
+  renderFavorites();
+});
+$("#detailCloseButton").addEventListener("click", () => {
+  $("#detailPanel").hidden = true;
 });

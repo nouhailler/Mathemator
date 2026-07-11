@@ -72,10 +72,55 @@
             <div class="search-panel">
               <label for="searchInput">Recherche avancée</label>
               <input id="searchInput" type="search" placeholder="Nom, domaine, siècle, concept..." />
+              <div class="advanced-filters" aria-label="Filtres avancés">
+                <label>
+                  Type
+                  <select id="typeFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Siècle
+                  <select id="periodFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Nationalité
+                  <select id="nationalityFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+                <label>
+                  Difficulté
+                  <select id="difficultyFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+              </div>
               <div class="chips" id="filterChips"></div>
             </div>
           </div>
           <div class="result-list" id="resultList"></div>
+        </section>
+
+        <aside class="detail-panel" id="detailPanel" aria-live="polite" aria-label="Détail de l'entrée sélectionnée" hidden>
+          <div class="detail-header">
+            <div>
+              <p class="eyebrow" id="detailType">Détail</p>
+              <h2 id="detailTitle">Sélection</h2>
+            </div>
+            <button class="icon-button" id="detailCloseButton" type="button" aria-label="Fermer">×</button>
+          </div>
+          <div class="detail-body" id="detailBody"></div>
+        </aside>
+
+        <section class="section" id="favoris">
+          <div class="section-heading">
+            <p class="eyebrow">Favoris</p>
+            <h2>Collection personnelle</h2>
+          </div>
+          <div class="result-list favorites-list" id="favoritesList"></div>
         </section>
 
         <section class="section" id="mathematiciens">
