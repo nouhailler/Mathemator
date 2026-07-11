@@ -1,140 +1,112 @@
-const dailyItems = [
-  {
-    label: "Mathématicienne du jour",
-    title: "Emmy Noether",
-    text: "Ses théorèmes relient symétries et lois de conservation, avec un impact durable en algèbre abstraite et en physique théorique.",
-  },
-  {
-    label: "Formule du jour",
-    title: "Identité d'Euler",
-    text: "e^(iπ) + 1 = 0 relie analyse, géométrie, algèbre et trigonométrie en une seule égalité.",
-  },
-  {
-    label: "Théorème du jour",
-    title: "Noether, isomorphismes",
-    text: "Les relations entre quotients, sous-structures et morphismes donnent une grammaire centrale aux structures algébriques.",
-  },
-  {
-    label: "Anecdote historique",
-    title: "Le pont de Königsberg",
-    text: "Euler transforme une promenade impossible en naissance de la théorie des graphes.",
-  },
-  {
-    label: "Anniversaires",
-    title: "Repères du 11 juillet",
-    text: "La page d'accueil peut être branchée sur une base calendairisée pour afficher naissances, publications et prix.",
-  },
-  {
-    label: "Découverte aléatoire",
-    title: "Bouteille de Klein",
-    text: "Surface non orientable sans bord, impossible à plonger dans l'espace 3D sans auto-intersection.",
-  },
-];
-
-const entries = [
-  {
-    type: "Mathématicien",
-    title: "Leonhard Euler",
-    meta: "XVIIIe siècle · Analyse · Graphes · Suisse",
-    text: "Fonctions, séries, théorie des graphes, mécanique analytique et notation moderne.",
-    tags: ["analyse", "graphes", "formules"],
-  },
-  {
-    type: "Mathématicienne",
-    title: "Emmy Noether",
-    meta: "XXe siècle · Algèbre · Allemagne",
-    text: "Anneaux, idéaux, invariants et symétries. Figure centrale de l'algèbre moderne.",
-    tags: ["algèbre", "physique", "théorèmes"],
-  },
-  {
-    type: "Théorème",
-    title: "Théorème spectral",
-    meta: "Algèbre linéaire · Analyse fonctionnelle",
-    text: "Décomposition des opérateurs auto-adjoints et lecture géométrique des transformations.",
-    tags: ["matrices", "opérateurs", "analyse"],
-  },
-  {
-    type: "Objet",
-    title: "Ensemble de Mandelbrot",
-    meta: "Fractales · Dynamique complexe",
-    text: "Carte globale de la stabilité de z -> z² + c, riche en autosimilarités.",
-    tags: ["fractales", "visualisation", "complexe"],
-  },
-  {
-    type: "Domaine",
-    title: "Théorie des catégories",
-    meta: "Structures · Foncteurs · Transformations naturelles",
-    text: "Langage transversal pour comparer les constructions et les passages de structure.",
-    tags: ["logique", "algèbre", "fondations"],
-  },
-  {
-    type: "Problème célèbre",
-    title: "Hypothèse de Riemann",
-    meta: "Nombres premiers · Analyse complexe",
-    text: "La distribution fine des nombres premiers passe par les zéros de la fonction zêta.",
-    tags: ["nombres", "millénaire", "complexe"],
-  },
-];
-
-const timelineItems = [
-  ["Antiquité", "Euclide formalise les Éléments, Archimède développe aire, volume et méthodes d'approximation."],
-  ["Moyen Âge", "Al-Khwârizmî structure l'algèbre, les savants arabes et indiens enrichissent calcul et astronomie."],
-  ["Renaissance", "Cardano, Viète et Descartes déplacent l'algèbre vers une écriture symbolique moderne."],
-  ["XVIIe siècle", "Newton, Leibniz, Fermat et Pascal accélèrent analyse, probabilités et géométrie."],
-  ["XVIIIe siècle", "Euler, Lagrange et Laplace donnent une puissance systématique à l'analyse."],
-  ["XIXe siècle", "Gauss, Galois, Riemann et Cantor redéfinissent structures, nombres et infini."],
-  ["XXe siècle", "Noether, Hilbert, Grothendieck, Turing et von Neumann transforment les fondations."],
-  ["XXIe siècle", "Preuves assistées, IA, topologie des données, cryptographie et nouveaux ponts interdisciplinaires."],
-];
-
-const modules = [
-  "Mathématiciens", "Domaines", "Théorèmes", "Formules", "Objets", "Carte du monde",
-  "Exercices", "Quiz", "Problèmes célèbres", "Citations", "Livres", "Glossaire",
-  "Mode enseignant", "Mode étudiant", "Favoris", "Progression",
-];
-
-const graphNodes = [
-  ["Euler", 120, 120], ["Graphes", 300, 90], ["Analyse", 340, 230], ["Noether", 560, 130],
-  ["Algèbre", 720, 110], ["Riemann", 570, 340], ["Zêta", 740, 350], ["Fractales", 230, 390],
-  ["Mandelbrot", 105, 330], ["Catégories", 430, 420],
-];
-const graphEdges = [[0, 1], [0, 2], [3, 4], [4, 9], [5, 6], [2, 5], [7, 8], [2, 7], [4, 2], [9, 3]];
+import {
+  books,
+  dailyItems,
+  domains,
+  entries,
+  exercises,
+  formulas,
+  glossary,
+  modeContent,
+  modules,
+  objects,
+  places,
+  problems,
+  quiz,
+  quotes,
+  theorems,
+  timelineItems,
+} from "./content.js";
 
 const $ = (selector) => document.querySelector(selector);
+const store = {
+  get(key, fallback) {
+    try {
+      return JSON.parse(localStorage.getItem(key)) ?? fallback;
+    } catch {
+      return fallback;
+    }
+  },
+  set(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+};
+
+let activeReference = "Théorèmes";
+let activeLibrary = "Citations";
+let activeMode = "Enseignant";
+let currentExercise = 0;
+let currentQuiz = 0;
+let hintVisible = false;
+
+function card(title, body, meta = "", action = "") {
+  return `
+    <article class="result-card">
+      <div>
+        ${meta ? `<span>${meta}</span>` : ""}
+        <h3>${title}</h3>
+      </div>
+      <p>${body}</p>
+      ${action}
+    </article>
+  `;
+}
 
 function renderDaily() {
   $("#dailyGrid").innerHTML = dailyItems
-    .map((item) => `
+    .map(([label, title, text]) => `
       <article class="daily-card">
-        <span>${item.label}</span>
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
+        <span>${label}</span>
+        <h3>${title}</h3>
+        <p>${text}</p>
       </article>
     `)
     .join("");
 }
 
 function renderSearch() {
-  const filters = ["Tous", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres"];
-  $("#filterChips").innerHTML = filters.map((filter, index) => `<button class="${index === 0 ? "active" : ""}" type="button">${filter}</button>`).join("");
+  const filters = ["Tous", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres", "Topologie"];
+  let activeFilter = "Tous";
   const input = $("#searchInput");
+  const chips = $("#filterChips");
   const list = $("#resultList");
   const draw = () => {
     const query = input.value.trim().toLowerCase();
-    const visible = entries.filter((entry) => `${entry.title} ${entry.meta} ${entry.text} ${entry.tags.join(" ")}`.toLowerCase().includes(query));
-    list.innerHTML = visible.map((entry) => `
-      <article class="result-card">
-        <div>
-          <span>${entry.type}</span>
-          <h3>${entry.title}</h3>
-          <p>${entry.meta}</p>
-        </div>
-        <p>${entry.text}</p>
-      </article>
-    `).join("");
+    const filter = activeFilter.toLowerCase();
+    const visible = entries.filter(([type, title, meta, text, tags]) => {
+      const haystack = `${type} ${title} ${meta} ${text} ${tags.join(" ")}`.toLowerCase();
+      return haystack.includes(query) && (activeFilter === "Tous" || haystack.includes(filter));
+    });
+    chips.innerHTML = filters.map((filter) => `<button class="${filter === activeFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
+    list.innerHTML = visible.map(([type, title, meta, text]) => card(title, text, `${type} · ${meta}`, favoriteButton(title))).join("");
+    chips.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.textContent;
+        draw();
+      });
+    });
+    bindFavorites();
   };
   input.addEventListener("input", draw);
   draw();
+}
+
+function favoriteButton(id) {
+  const favorites = store.get("mathemator:favorites", []);
+  const active = favorites.includes(id);
+  return `<button class="mini-button favorite-button ${active ? "active" : ""}" type="button" data-favorite="${id}">${active ? "Favori" : "Ajouter aux favoris"}</button>`;
+}
+
+function bindFavorites() {
+  document.querySelectorAll("[data-favorite]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.favorite;
+      const favorites = store.get("mathemator:favorites", []);
+      const next = favorites.includes(id) ? favorites.filter((item) => item !== id) : [...favorites, id];
+      store.set("mathemator:favorites", next);
+      renderSearch();
+      renderProgress();
+    });
+  });
 }
 
 function renderTimeline() {
@@ -146,6 +118,185 @@ function renderTimeline() {
   `).join("");
 }
 
+function renderMap() {
+  const input = $("#mapFilter");
+  const list = $("#mapList");
+  const stats = $("#mapStats");
+  const svg = $("#worldMap");
+  const draw = () => {
+    const query = input.value.trim().toLowerCase();
+    const visible = places.filter((place) => place.join(" ").toLowerCase().includes(query));
+    stats.innerHTML = `<strong>${visible.length}</strong><span>lieux affichés</span><strong>${new Set(visible.map((place) => place[1])).size}</strong><span>pays</span>`;
+    svg.innerHTML = `
+      <path class="land" d="M80 180 C170 90 260 120 330 165 C410 215 480 120 570 150 C675 185 780 130 840 220 C760 318 620 300 530 340 C430 386 345 300 250 335 C155 370 70 292 80 180Z"/>
+      <path class="land muted-land" d="M125 255 C205 220 295 240 356 285 C280 330 190 345 125 255Z"/>
+      ${visible.map(([city, country, people, note, x, y]) => `
+        <g class="map-pin" tabindex="0" transform="translate(${x} ${y})">
+          <circle r="11"></circle>
+          <text x="16" y="5">${city}</text>
+          <title>${city}, ${country} · ${people} · ${note}</title>
+        </g>
+      `).join("")}
+    `;
+    list.innerHTML = visible.map(([city, country, people, note]) => card(`${city}, ${country}`, note, people)).join("");
+  };
+  input.addEventListener("input", draw);
+  draw();
+}
+
+function renderDomains() {
+  $("#domainGrid").innerHTML = domains.map(([name, intro, people, uses]) => `
+    <article class="domain-card">
+      <h3>${name}</h3>
+      <p>${intro}</p>
+      <dl>
+        <dt>Figures</dt><dd>${people}</dd>
+        <dt>Applications</dt><dd>${uses}</dd>
+      </dl>
+    </article>
+  `).join("");
+}
+
+function renderReferences() {
+  const tabs = ["Théorèmes", "Formules"];
+  $("#referenceTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeReference ? "active" : ""}" type="button">${tab}</button>`).join("");
+  const data = activeReference === "Théorèmes" ? theorems : formulas;
+  $("#referencePanel").innerHTML = data.map((item) => {
+    if (activeReference === "Théorèmes") {
+      const [name, statement, intuition, applications] = item;
+      return card(name, `<strong>${statement}</strong><br>${intuition}<br><em>${applications}</em>`, "Énoncé · intuition · usages");
+    }
+    const [name, expression, explanation] = item;
+    return card(name, `<strong>${expression}</strong><br>${explanation}`, "Formule");
+  }).join("");
+  $("#referenceTabs").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeReference = button.textContent;
+      renderReferences();
+    });
+  });
+}
+
+function renderObjects() {
+  $("#objectGrid").innerHTML = objects.map(([name, description, uses], index) => `
+    <article class="object-card">
+      <div class="object-figure object-${index % 4}" aria-hidden="true"></div>
+      <h3>${name}</h3>
+      <p>${description}</p>
+      <span>${uses}</span>
+    </article>
+  `).join("");
+}
+
+function renderLearning() {
+  renderExercise();
+  renderQuiz();
+  renderProgress();
+}
+
+function renderExercise() {
+  const [domain, prompt, hint, solution] = exercises[currentExercise % exercises.length];
+  $("#exerciseBox").innerHTML = `
+    <span class="badge">${domain}</span>
+    <h3>${prompt}</h3>
+    ${hintVisible ? `<p><strong>Indice :</strong> ${hint}</p><p><strong>Solution :</strong> ${solution}</p>` : "<p>Utilise l'indice pour afficher la correction détaillée.</p>"}
+    <button class="mini-button" id="nextExerciseButton" type="button">Exercice suivant</button>
+  `;
+  $("#nextExerciseButton").addEventListener("click", () => {
+    currentExercise += 1;
+    hintVisible = false;
+    bumpProgress("exercises");
+    renderExercise();
+    renderProgress();
+  });
+}
+
+function renderQuiz() {
+  const [question, options, correct] = quiz[currentQuiz % quiz.length];
+  $("#quizBox").innerHTML = `
+    <h3>${question}</h3>
+    <div class="answer-grid">
+      ${options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
+    </div>
+    <p id="quizFeedback" class="muted">Sélectionne une réponse.</p>
+  `;
+  $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const ok = Number(button.dataset.answer) === correct;
+      $("#quizFeedback").textContent = ok ? "Réponse correcte." : `Réponse attendue : ${options[correct]}.`;
+      if (ok) bumpProgress("quiz");
+      renderProgress();
+    });
+  });
+}
+
+function bumpProgress(key) {
+  const progress = store.get("mathemator:progress", { exercises: 0, quiz: 0, minutes: 12 });
+  progress[key] = (progress[key] || 0) + 1;
+  progress.minutes = (progress.minutes || 0) + 3;
+  store.set("mathemator:progress", progress);
+}
+
+function renderProgress() {
+  const progress = store.get("mathemator:progress", { exercises: 0, quiz: 0, minutes: 12 });
+  const favorites = store.get("mathemator:favorites", []);
+  const mastery = Math.min(100, 18 + progress.exercises * 7 + progress.quiz * 5 + favorites.length * 4);
+  $("#progressBox").innerHTML = `
+    <div class="meter"><span style="width:${mastery}%"></span></div>
+    <div class="stats-row">
+      <strong>${progress.minutes}</strong><span>min</span>
+      <strong>${progress.exercises}</strong><span>exercices</span>
+      <strong>${progress.quiz}</strong><span>quiz</span>
+      <strong>${favorites.length}</strong><span>favoris</span>
+    </div>
+    <p class="muted">Maîtrise estimée : ${mastery}%</p>
+  `;
+}
+
+function renderLibrary() {
+  const tabs = ["Citations", "Livres", "Glossaire"];
+  $("#libraryTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeLibrary ? "active" : ""}" type="button">${tab}</button>`).join("");
+  const data = activeLibrary === "Citations" ? quotes : activeLibrary === "Livres" ? books : glossary;
+  $("#libraryPanel").innerHTML = data.map((item) => {
+    if (activeLibrary === "Citations") return card(`« ${item[1]} »`, item[2], item[0]);
+    if (activeLibrary === "Livres") return card(item[0], item[2], item[1]);
+    return card(item[0], item[1], "Définition");
+  }).join("");
+  $("#libraryTabs").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeLibrary = button.textContent;
+      renderLibrary();
+    });
+  });
+}
+
+function renderProblems() {
+  $("#problemList").innerHTML = problems.map(([name, status, text, impact]) => `
+    <article class="problem-card">
+      <span class="${status === "Ouvert" ? "status-open" : "status-solved"}">${status}</span>
+      <h3>${name}</h3>
+      <p>${text}</p>
+      <strong>${impact}</strong>
+    </article>
+  `).join("");
+}
+
+function renderModes() {
+  const tabs = Object.keys(modeContent);
+  $("#modeTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeMode ? "active" : ""}" type="button">${tab}</button>`).join("");
+  $("#modePanel").innerHTML = `
+    <div class="workflow">
+      ${modeContent[activeMode].map((item, index) => `<article><strong>${index + 1}</strong><span>${item}</span></article>`).join("")}
+    </div>
+  `;
+  $("#modeTabs").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeMode = button.textContent;
+      renderModes();
+    });
+  });
+}
+
 function renderModules() {
   $("#moduleGrid").innerHTML = modules.map((module, index) => `
     <article>
@@ -154,6 +305,12 @@ function renderModules() {
     </article>
   `).join("");
 }
+
+const graphNodes = [
+  ["Euler", 120, 120], ["Graphes", 300, 90], ["Analyse", 340, 230], ["Noether", 560, 130], ["Algèbre", 720, 110],
+  ["Riemann", 570, 340], ["Zêta", 740, 350], ["Fractales", 230, 390], ["Mandelbrot", 105, 330], ["Catégories", 430, 420],
+];
+const graphEdges = [[0, 1], [0, 2], [3, 4], [4, 9], [5, 6], [2, 5], [7, 8], [2, 7], [4, 2], [9, 3]];
 
 function drawHero() {
   const canvas = $("#heroCanvas");
@@ -171,7 +328,7 @@ function drawHero() {
     ctx.clearRect(0, 0, w, h);
     const gradient = ctx.createLinearGradient(0, 0, w, h);
     gradient.addColorStop(0, "#0f766e");
-    gradient.addColorStop(0.48, "#203a43");
+    gradient.addColorStop(0.5, "#203a43");
     gradient.addColorStop(1, "#7c2d12");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
@@ -185,7 +342,7 @@ function drawHero() {
       }
       ctx.stroke();
     }
-    ctx.fillStyle = "rgba(255,255,255,.8)";
+    ctx.fillStyle = "rgba(255,255,255,.78)";
     for (let i = 0; i < 80; i += 1) {
       const x = (Math.sin(i * 91.7 + t * 0.2) * 0.5 + 0.5) * w;
       const y = (Math.cos(i * 37.2 + t * 0.3) * 0.5 + 0.5) * h;
@@ -202,16 +359,15 @@ function drawHero() {
 function drawMandelbrot() {
   const canvas = $("#mandelbrotCanvas");
   const ctx = canvas.getContext("2d");
-  const w = canvas.width;
-  const h = canvas.height;
+  const { width: w, height: h } = canvas;
   const img = ctx.createImageData(w, h);
   const zoom = 1 + Math.random() * 0.35;
   const ox = -0.62 + (Math.random() - 0.5) * 0.18;
   const oy = (Math.random() - 0.5) * 0.12;
   for (let px = 0; px < w; px += 1) {
     for (let py = 0; py < h; py += 1) {
-      let x0 = (px / w - 0.5) * 3.35 / zoom + ox;
-      let y0 = (py / h - 0.5) * 2.25 / zoom + oy;
+      const x0 = (px / w - 0.5) * 3.35 / zoom + ox;
+      const y0 = (py / h - 0.5) * 2.25 / zoom + oy;
       let x = 0;
       let y = 0;
       let iter = 0;
@@ -235,8 +391,7 @@ function drawMandelbrot() {
 function drawSurface(rotation = 48) {
   const canvas = $("#surfaceCanvas");
   const ctx = canvas.getContext("2d");
-  const w = canvas.width;
-  const h = canvas.height;
+  const { width: w, height: h } = canvas;
   ctx.clearRect(0, 0, w, h);
   ctx.fillStyle = "#f8fafc";
   ctx.fillRect(0, 0, w, h);
@@ -247,25 +402,19 @@ function drawSurface(rotation = 48) {
     const scale = 86 / (2.9 + zr * 0.15);
     return [w / 2 + xr * scale, h / 2 + (y - z * 0.22) * scale];
   };
-  for (let u = -3; u <= 3; u += 0.18) {
-    ctx.beginPath();
-    for (let v = -3; v <= 3; v += 0.18) {
-      const z = Math.sin(u * u + v * v) * 0.7;
-      const [x, y] = project(u, v, z);
-      v === -3 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  for (let pass = 0; pass < 2; pass += 1) {
+    for (let a1 = -3; a1 <= 3; a1 += 0.18) {
+      ctx.beginPath();
+      for (let a2 = -3; a2 <= 3; a2 += 0.18) {
+        const u = pass ? a2 : a1;
+        const v = pass ? a1 : a2;
+        const z = Math.sin(u * u + v * v) * 0.7;
+        const [x, y] = project(u, v, z);
+        a2 === -3 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = pass ? "rgba(124,45,18,.22)" : "rgba(15,118,110,.34)";
+      ctx.stroke();
     }
-    ctx.strokeStyle = "rgba(15,118,110,.34)";
-    ctx.stroke();
-  }
-  for (let v = -3; v <= 3; v += 0.18) {
-    ctx.beginPath();
-    for (let u = -3; u <= 3; u += 0.18) {
-      const z = Math.sin(u * u + v * v) * 0.7;
-      const [x, y] = project(u, v, z);
-      u === -3 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = "rgba(124,45,18,.22)";
-    ctx.stroke();
   }
 }
 
@@ -281,13 +430,11 @@ function drawPlot() {
   } catch {
     return;
   }
-  const w = canvas.width;
-  const h = canvas.height;
+  const { width: w, height: h } = canvas;
   ctx.clearRect(0, 0, w, h);
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, w, h);
   ctx.strokeStyle = "#d8dee6";
-  ctx.lineWidth = 1;
   for (let i = 0; i <= 10; i += 1) {
     const x = (i / 10) * w;
     const y = (i / 10) * h;
@@ -312,17 +459,18 @@ function drawPlot() {
     }
   }
   ctx.stroke();
+  ctx.lineWidth = 1;
 }
 
 function renderGraph() {
   const svg = $("#knowledgeGraph");
   const edgeMarkup = graphEdges.map(([a, b]) => {
-    const [,, x1, y1] = [null, null, graphNodes[a][1], graphNodes[a][2]];
-    const [,, x2, y2] = [null, null, graphNodes[b][1], graphNodes[b][2]];
+    const [, x1, y1] = graphNodes[a];
+    const [, x2, y2] = graphNodes[b];
     return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`;
   }).join("");
-  const nodeMarkup = graphNodes.map(([label, x, y], index) => `
-    <g class="node" tabindex="0" style="--i:${index}" transform="translate(${x} ${y})">
+  const nodeMarkup = graphNodes.map(([label, x, y]) => `
+    <g class="node" tabindex="0" transform="translate(${x} ${y})">
       <circle r="${label.length > 8 ? 48 : 40}"></circle>
       <text text-anchor="middle" dominant-baseline="middle">${label}</text>
     </g>
@@ -331,9 +479,7 @@ function renderGraph() {
 }
 
 function registerPwa() {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js");
-  }
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/service-worker.js");
   let deferredPrompt;
   const button = $("#installButton");
   window.addEventListener("beforeinstallprompt", (event) => {
@@ -353,14 +499,36 @@ function registerPwa() {
 renderDaily();
 renderSearch();
 renderTimeline();
+renderMap();
+renderDomains();
+renderReferences();
+renderObjects();
+renderLearning();
+renderLibrary();
+renderProblems();
+renderGraph();
+renderModes();
 renderModules();
 drawHero();
 drawMandelbrot();
 drawSurface();
 drawPlot();
-renderGraph();
 registerPwa();
 
 $("#mandelbrotButton").addEventListener("click", drawMandelbrot);
 $("#surfaceSlider").addEventListener("input", (event) => drawSurface(Number(event.target.value)));
 $("#plotButton").addEventListener("click", drawPlot);
+$("#hintButton").addEventListener("click", () => {
+  hintVisible = !hintVisible;
+  renderExercise();
+});
+$("#nextQuestionButton").addEventListener("click", () => {
+  currentQuiz += 1;
+  renderQuiz();
+});
+$("#resetProgressButton").addEventListener("click", () => {
+  store.set("mathemator:progress", { exercises: 0, quiz: 0, minutes: 0 });
+  store.set("mathemator:favorites", []);
+  renderProgress();
+  renderSearch();
+});

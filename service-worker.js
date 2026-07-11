@@ -1,7 +1,8 @@
-const CACHE_NAME = "mathemator-v1";
+const CACHE_NAME = "mathemator-v2";
 const ASSETS = [
   "/",
   "/index.html",
+  "/src/content.js",
   "/src/styles.css",
   "/src/app.js",
   "/manifest.webmanifest",

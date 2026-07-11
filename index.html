@@ -9,6 +9,7 @@
     />
     <meta name="theme-color" content="#0f766e" />
     <title>Mathemator</title>
+    <link rel="icon" href="/assets/icon-192.svg" type="image/svg+xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/assets/icon-192.svg" />
     <link rel="stylesheet" href="/src/styles.css" />
@@ -45,8 +46,10 @@
         <nav class="tabbar" aria-label="Navigation principale">
           <a href="#daily">Accueil</a>
           <a href="#encyclopedie">Encyclopédie</a>
+          <a href="#carte">Carte</a>
           <a href="#visualisations">Visualisations</a>
           <a href="#laboratoire">Labo</a>
+          <a href="#apprendre">Apprendre</a>
           <a href="#reseau">Réseau</a>
         </nav>
 
@@ -79,6 +82,51 @@
             <h2>Repères historiques</h2>
           </div>
           <div class="timeline" id="timeline"></div>
+        </section>
+
+        <section class="section split" id="carte">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Carte du monde</p>
+              <h2>Lieux, écoles et institutions</h2>
+            </div>
+            <div class="search-panel">
+              <label for="mapFilter">Filtrer les lieux</label>
+              <input id="mapFilter" type="search" placeholder="Pays, ville, université, époque..." />
+              <div class="stats-row" id="mapStats"></div>
+            </div>
+          </div>
+          <div class="map-panel">
+            <svg id="worldMap" viewBox="0 0 900 460" role="img" aria-label="Carte schématique des lieux mathématiques"></svg>
+            <div class="map-list" id="mapList"></div>
+          </div>
+        </section>
+
+        <section class="section" id="domaines">
+          <div class="section-heading">
+            <p class="eyebrow">Encyclopédie des domaines</p>
+            <h2>Grandes disciplines</h2>
+          </div>
+          <div class="domain-grid" id="domainGrid"></div>
+        </section>
+
+        <section class="section split" id="theoremes">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Théorèmes et formules</p>
+              <h2>Référence démonstrative</h2>
+            </div>
+            <div class="segmented" id="referenceTabs"></div>
+          </div>
+          <div class="reference-panel" id="referencePanel"></div>
+        </section>
+
+        <section class="section" id="objets">
+          <div class="section-heading">
+            <p class="eyebrow">Objets mathématiques</p>
+            <h2>Galerie visuelle</h2>
+          </div>
+          <div class="object-grid" id="objectGrid"></div>
         </section>
 
         <section class="section" id="visualisations">
@@ -120,6 +168,58 @@
           <canvas id="plotCanvas" width="700" height="460" aria-label="Grapheur de fonction"></canvas>
         </section>
 
+        <section class="section" id="apprendre">
+          <div class="section-heading">
+            <p class="eyebrow">Exercices, quiz et progression</p>
+            <h2>Atelier d'apprentissage</h2>
+          </div>
+          <div class="learning-grid">
+            <article class="practice-panel">
+              <div class="stage-toolbar">
+                <strong>Exercice guidé</strong>
+                <button id="hintButton" type="button">Indice</button>
+              </div>
+              <div id="exerciseBox"></div>
+            </article>
+            <article class="practice-panel">
+              <div class="stage-toolbar">
+                <strong>Quiz rapide</strong>
+                <button id="nextQuestionButton" type="button">Question</button>
+              </div>
+              <div id="quizBox"></div>
+            </article>
+            <article class="practice-panel">
+              <div class="stage-toolbar">
+                <strong>Progression</strong>
+                <button id="resetProgressButton" type="button">Réinitialiser</button>
+              </div>
+              <div id="progressBox"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split" id="ressources">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Citations, livres, glossaire</p>
+              <h2>Bibliothèque filtrable</h2>
+            </div>
+            <div class="segmented" id="libraryTabs"></div>
+          </div>
+          <div class="library-panel" id="libraryPanel"></div>
+        </section>
+
+        <section class="section split" id="problemes">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Problèmes célèbres</p>
+              <h2>Défis ouverts et résolus</h2>
+            </div>
+            <p class="muted">Chaque fiche distingue contexte historique, état actuel, idées centrales et références à enrichir.</p>
+          </div>
+          <div class="problem-list" id="problemList"></div>
+        </section>
+
         <section class="section" id="reseau">
           <div class="section-heading">
             <p class="eyebrow">Réseau de connaissances</p>
@@ -128,6 +228,17 @@
           <div class="network-wrap">
             <svg id="knowledgeGraph" viewBox="0 0 900 520" role="img" aria-label="Réseau de concepts mathématiques"></svg>
           </div>
+        </section>
+
+        <section class="section split" id="modes">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Modes enseignant et étudiant</p>
+              <h2>Parcours personnalisés</h2>
+            </div>
+            <div class="segmented" id="modeTabs"></div>
+          </div>
+          <div class="mode-panel" id="modePanel"></div>
         </section>
 
         <section class="section feature-matrix">

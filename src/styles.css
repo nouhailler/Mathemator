@@ -88,7 +88,8 @@ input {
 
 .install-button,
 .stage-toolbar button,
-.formula-box button {
+.formula-box button,
+.mini-button {
   min-height: 42px;
   border: 0;
   border-radius: 8px;
@@ -206,7 +207,10 @@ input {
 
 .daily-grid,
 .visual-grid,
-.module-grid {
+.module-grid,
+.domain-grid,
+.object-grid,
+.learning-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 14px;
@@ -216,7 +220,15 @@ input {
 .result-card,
 .visual-stage,
 .module-grid article,
-.search-panel {
+.search-panel,
+.domain-card,
+.object-card,
+.practice-panel,
+.problem-card,
+.reference-panel,
+.library-panel,
+.mode-panel,
+.map-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -244,6 +256,9 @@ input {
 
 .daily-card p,
 .result-card p,
+.domain-card p,
+.object-card p,
+.problem-card p,
 .muted {
   margin: 0;
   color: var(--muted);
@@ -311,6 +326,17 @@ input {
   padding: 16px;
 }
 
+.mini-button {
+  width: fit-content;
+  min-height: 38px;
+  font-size: 0.9rem;
+}
+
+.mini-button.active,
+.favorite-button.active {
+  background: var(--rust);
+}
+
 .timeline {
   display: grid;
   gap: 12px;
@@ -361,12 +387,263 @@ input {
   border-bottom: 1px solid var(--line);
 }
 
+.stage-toolbar input {
+  max-width: 190px;
+}
+
 .visual-stage canvas,
 #plotCanvas {
   display: block;
   width: 100%;
   height: auto;
   background: white;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  justify-content: start;
+  gap: 7px 10px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.stats-row strong {
+  color: var(--ink);
+  font-size: 1.25rem;
+}
+
+.map-panel {
+  overflow: hidden;
+}
+
+#worldMap {
+  width: 100%;
+  min-height: 260px;
+  display: block;
+  background: linear-gradient(180deg, #ecfeff, #f8fafc);
+}
+
+.land {
+  fill: #dbeafe;
+  stroke: rgba(29, 78, 216, 0.24);
+  stroke-width: 2;
+}
+
+.muted-land {
+  fill: #ccfbf1;
+}
+
+.map-pin circle {
+  fill: var(--rust);
+  stroke: white;
+  stroke-width: 4;
+}
+
+.map-pin text {
+  fill: var(--ink);
+  font-size: 17px;
+  font-weight: 850;
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 5px;
+}
+
+.map-list,
+.reference-panel,
+.library-panel,
+.mode-panel,
+.problem-list {
+  display: grid;
+  gap: 12px;
+}
+
+.map-list {
+  max-height: 360px;
+  overflow: auto;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.domain-card,
+.object-card,
+.practice-panel,
+.problem-card {
+  padding: 16px;
+}
+
+.domain-card h3,
+.object-card h3,
+.problem-card h3,
+.practice-panel h3 {
+  margin: 0 0 10px;
+}
+
+.domain-card dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 7px 12px;
+  margin: 16px 0 0;
+}
+
+.domain-card dt {
+  color: var(--rust);
+  font-weight: 850;
+}
+
+.domain-card dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.segmented button,
+.answer-grid button {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 13px;
+  background: white;
+  color: var(--ink);
+  font-weight: 780;
+}
+
+.segmented .active {
+  border-color: var(--teal);
+  color: white;
+  background: var(--teal);
+}
+
+.object-card {
+  overflow: hidden;
+}
+
+.object-figure {
+  height: 126px;
+  margin: -16px -16px 14px;
+  background:
+    radial-gradient(circle at 35% 42%, rgba(255, 255, 255, 0.86) 0 8px, transparent 9px),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0 2px, transparent 2px 16px),
+    linear-gradient(135deg, var(--teal), var(--blue));
+}
+
+.object-1 {
+  background:
+    conic-gradient(from 90deg, #0f766e, #f59e0b, #9a3412, #0f766e);
+}
+
+.object-2 {
+  background:
+    radial-gradient(circle at 50% 50%, #07111f 0 10%, #0f766e 11% 18%, #f59e0b 19% 21%, #14213d 22% 100%);
+}
+
+.object-3 {
+  background:
+    linear-gradient(30deg, transparent 40%, rgba(255,255,255,.72) 41% 43%, transparent 44%),
+    linear-gradient(150deg, transparent 40%, rgba(255,255,255,.7) 41% 43%, transparent 44%),
+    linear-gradient(135deg, #7c2d12, #1d4ed8);
+}
+
+.object-card span,
+.badge {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 12px;
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: white;
+  background: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.practice-panel {
+  min-height: 265px;
+}
+
+.practice-panel .stage-toolbar {
+  margin: -16px -16px 16px;
+}
+
+.answer-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.answer-grid button {
+  text-align: left;
+}
+
+.meter {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+}
+
+.problem-card {
+  display: grid;
+  gap: 8px;
+}
+
+.problem-card strong {
+  color: var(--ink);
+}
+
+.status-open,
+.status-solved {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.status-open {
+  background: var(--rust);
+}
+
+.status-solved {
+  background: var(--teal);
+}
+
+.workflow {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.workflow article {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.workflow strong {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--teal);
 }
 
 .formula-box {
@@ -461,6 +738,10 @@ input {
 
   .formula-box {
     grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, auto);
   }
 
   .hero {
