@@ -46,6 +46,38 @@ let activePeriodFilter = "Tous";
 let activeNationalityFilter = "Tous";
 let activeDifficultyFilter = "Tous";
 let activeChipFilter = "Tous";
+let activeScreen = "home";
+
+const screenLabels = {
+  home: "Accueil",
+  search: "Recherche",
+  cards: "Fiches",
+  lab: "Labo",
+  learn: "Apprendre",
+  favorites: "Favoris",
+};
+
+function setScreen(screen, options = {}) {
+  activeScreen = screenLabels[screen] ? screen : "home";
+  document.body.classList.add("app-ready");
+  document.body.dataset.screen = activeScreen;
+  document.querySelectorAll(".screen-section").forEach((section) => {
+    section.classList.toggle("screen-active", section.dataset.screen === activeScreen);
+  });
+  document.querySelectorAll("[data-nav]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.nav === activeScreen);
+  });
+  if (activeScreen !== "search" && activeScreen !== "cards" && activeScreen !== "favorites") {
+    $("#detailPanel").hidden = true;
+  }
+  if (activeScreen === "home") {
+    requestAnimationFrame(() => dispatchEvent(new Event("resize")));
+  }
+  if (!options.silent) {
+    history.replaceState(null, "", `#${activeScreen}`);
+    scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
 
 function card(title, body, meta = "", action = "") {
   return `
@@ -952,6 +984,7 @@ renderGraph();
 renderModes();
 renderModules();
 renderFavorites();
+setScreen(location.hash?.replace("#", "") || "home", { silent: true });
 drawHero();
 drawMandelbrot();
 drawSurface();
@@ -978,4 +1011,10 @@ $("#resetProgressButton").addEventListener("click", () => {
 });
 $("#detailCloseButton").addEventListener("click", () => {
   $("#detailPanel").hidden = true;
+});
+document.querySelectorAll("[data-nav]").forEach((button) => {
+  button.addEventListener("click", () => setScreen(button.dataset.nav));
+});
+addEventListener("hashchange", () => {
+  setScreen(location.hash.replace("#", "") || "home", { silent: true });
 });

@@ -30,7 +30,7 @@
       </header>
 
       <main>
-        <section class="hero">
+        <section class="hero screen-section" data-screen="home">
           <canvas id="heroCanvas" aria-label="Animation mathématique abstraite"></canvas>
           <div class="hero-content">
             <p class="eyebrow">Référence visuelle pour mathématiciens</p>
@@ -39,23 +39,22 @@
               Personnes, théorèmes, objets, formules, domaines et expériences interactives sont reliés dans une interface mobile-first pensée pour apprendre, vérifier et découvrir.
             </p>
             <div class="hero-actions">
-              <a href="#daily">Découvrir aujourd'hui</a>
-              <a href="#laboratoire">Ouvrir le laboratoire</a>
+              <button type="button" data-nav="home">Découvrir aujourd'hui</button>
+              <button type="button" data-nav="lab">Ouvrir le laboratoire</button>
             </div>
           </div>
         </section>
 
-        <nav class="tabbar" aria-label="Navigation principale">
-          <a href="#daily">Accueil</a>
-          <a href="#encyclopedie">Encyclopédie</a>
-          <a href="#carte">Carte</a>
-          <a href="#visualisations">Visualisations</a>
-          <a href="#laboratoire">Labo</a>
-          <a href="#apprendre">Apprendre</a>
-          <a href="#reseau">Réseau</a>
+        <nav class="app-nav" aria-label="Navigation principale">
+          <button class="active" type="button" data-nav="home"><span>⌂</span>Accueil</button>
+          <button type="button" data-nav="search"><span>⌕</span>Recherche</button>
+          <button type="button" data-nav="cards"><span>□</span>Fiches</button>
+          <button type="button" data-nav="lab"><span>ƒ</span>Labo</button>
+          <button type="button" data-nav="learn"><span>✓</span>Apprendre</button>
+          <button type="button" data-nav="favorites"><span>★</span>Favoris</button>
         </nav>
 
-        <section class="section" id="daily">
+        <section class="section screen-section" data-screen="home" id="daily">
           <div class="section-heading">
             <p class="eyebrow">Accueil dynamique</p>
             <h2>Tableau du jour</h2>
@@ -63,7 +62,7 @@
           <div class="daily-grid" id="dailyGrid"></div>
         </section>
 
-        <section class="section split" id="encyclopedie">
+        <section class="section screen-section split" data-screen="search" id="encyclopedie">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Base documentaire</p>
@@ -115,7 +114,7 @@
           <div class="detail-body" id="detailBody"></div>
         </aside>
 
-        <section class="section" id="favoris">
+        <section class="section screen-section" data-screen="favorites" id="favoris">
           <div class="section-heading">
             <p class="eyebrow">Favoris</p>
             <h2>Collection personnelle</h2>
@@ -123,7 +122,7 @@
           <div class="result-list favorites-list" id="favoritesList"></div>
         </section>
 
-        <section class="section" id="mathematiciens">
+        <section class="section screen-section" data-screen="cards" id="mathematiciens">
           <div class="section-heading">
             <p class="eyebrow">Encyclopédie des mathématiciens</p>
             <h2>Fiches détaillées</h2>
@@ -131,7 +130,7 @@
           <div class="person-grid" id="personGrid"></div>
         </section>
 
-        <section class="section" id="chronologie">
+        <section class="section screen-section" data-screen="home" id="chronologie">
           <div class="section-heading">
             <p class="eyebrow">Chronologie interactive</p>
             <h2>Repères historiques</h2>
@@ -139,7 +138,7 @@
           <div class="timeline" id="timeline"></div>
         </section>
 
-        <section class="section split" id="carte">
+        <section class="section screen-section split" data-screen="home" id="carte">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Carte du monde</p>
@@ -157,7 +156,7 @@
           </div>
         </section>
 
-        <section class="section" id="domaines">
+        <section class="section screen-section" data-screen="cards" id="domaines">
           <div class="section-heading">
             <p class="eyebrow">Encyclopédie des domaines</p>
             <h2>Grandes disciplines</h2>
@@ -165,7 +164,7 @@
           <div class="domain-grid" id="domainGrid"></div>
         </section>
 
-        <section class="section split" id="theoremes">
+        <section class="section screen-section split" data-screen="cards" id="theoremes">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Théorèmes et formules</p>
@@ -176,7 +175,7 @@
           <div class="reference-panel" id="referencePanel"></div>
         </section>
 
-        <section class="section" id="objets">
+        <section class="section screen-section" data-screen="cards" id="objets">
           <div class="section-heading">
             <p class="eyebrow">Objets mathématiques</p>
             <h2>Galerie visuelle</h2>
@@ -184,7 +183,7 @@
           <div class="object-grid" id="objectGrid"></div>
         </section>
 
-        <section class="section" id="visualisations">
+        <section class="section screen-section" data-screen="lab" id="visualisations">
           <div class="section-heading">
             <p class="eyebrow">Figures manipulables</p>
             <h2>Objets mathématiques</h2>
@@ -207,7 +206,7 @@
           </div>
         </section>
 
-        <section class="section split" id="laboratoire">
+        <section class="section screen-section split" data-screen="lab" id="laboratoire">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Laboratoire</p>
@@ -223,7 +222,7 @@
           <canvas id="plotCanvas" width="700" height="460" aria-label="Grapheur de fonction"></canvas>
         </section>
 
-        <section class="section" id="apprendre">
+        <section class="section screen-section" data-screen="learn" id="apprendre">
           <div class="section-heading">
             <p class="eyebrow">Exercices, quiz et progression</p>
             <h2>Atelier d'apprentissage</h2>
@@ -253,7 +252,7 @@
           </div>
         </section>
 
-        <section class="section split" id="ressources">
+        <section class="section screen-section split" data-screen="cards" id="ressources">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Citations, livres, glossaire</p>
@@ -264,7 +263,7 @@
           <div class="library-panel" id="libraryPanel"></div>
         </section>
 
-        <section class="section split" id="problemes">
+        <section class="section screen-section split" data-screen="cards" id="problemes">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Problèmes célèbres</p>
@@ -275,7 +274,7 @@
           <div class="problem-list" id="problemList"></div>
         </section>
 
-        <section class="section" id="reseau">
+        <section class="section screen-section" data-screen="cards" id="reseau">
           <div class="section-heading">
             <p class="eyebrow">Réseau de connaissances</p>
             <h2>Navigation conceptuelle</h2>
@@ -285,7 +284,7 @@
           </div>
         </section>
 
-        <section class="section split" id="modes">
+        <section class="section screen-section split" data-screen="cards" id="modes">
           <div>
             <div class="section-heading">
               <p class="eyebrow">Modes enseignant et étudiant</p>
@@ -296,7 +295,7 @@
           <div class="mode-panel" id="modePanel"></div>
         </section>
 
-        <section class="section feature-matrix">
+        <section class="section screen-section feature-matrix" data-screen="home">
           <div class="section-heading">
             <p class="eyebrow">Feuille de route intégrée</p>
             <h2>Modules prévus</h2>

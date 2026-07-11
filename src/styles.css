@@ -24,6 +24,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
+  padding-bottom: 86px;
 }
 
 a {
@@ -157,7 +158,8 @@ select {
   margin-top: 28px;
 }
 
-.hero-actions a {
+.hero-actions a,
+.hero-actions button {
   min-height: 46px;
   display: inline-flex;
   align-items: center;
@@ -166,31 +168,68 @@ select {
   border-radius: 8px;
   padding: 0 16px;
   background: rgba(255, 255, 255, 0.14);
+  color: white;
   text-decoration: none;
   font-weight: 760;
 }
 
-.tabbar {
-  position: sticky;
-  top: 71px;
+.app-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 15;
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px clamp(16px, 4vw, 42px);
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.94);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+  padding: 8px max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-right));
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
 }
 
-.tabbar a {
-  flex: 0 0 auto;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 13px;
-  background: white;
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 760;
+.app-nav button {
+  min-width: 0;
+  min-height: 56px;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 2px;
+  color: var(--muted);
+  background: transparent;
+  font-size: clamp(0.55rem, 2.2vw, 0.78rem);
+  font-weight: 820;
+  line-height: 1.05;
+}
+
+.app-nav button.active {
+  color: white;
+  background: var(--teal);
+}
+
+.app-nav span {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.screen-section {
+  display: none !important;
+}
+
+body:not(.app-ready) .screen-section[data-screen="home"],
+.screen-section.screen-active {
+  display: block !important;
+}
+
+.hero.screen-active,
+body:not(.app-ready) .hero[data-screen="home"] {
+  display: grid !important;
+}
+
+.split.screen-active {
+  display: grid !important;
 }
 
 .section {
@@ -917,10 +956,6 @@ select {
 @media (max-width: 780px) {
   .app-shell {
     top: auto;
-  }
-
-  .tabbar {
-    top: 71px;
   }
 
   .split {
