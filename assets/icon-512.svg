@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Mathemator">
+  <rect width="512" height="512" rx="92" fill="#0f766e"/>
+  <path d="M96 122h310v66H202l116 74-116 74h210v66H96v-66l120-74-120-74V122z" fill="#fff"/>
+  <circle cx="386" cy="128" r="45" fill="#f59e0b"/>
+</svg>

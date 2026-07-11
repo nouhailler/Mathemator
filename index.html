@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mathemator, encyclopédie interactive des mathématiques pour explorer mathématiciens, théorèmes, formules, objets et visualisations."
+    />
+    <meta name="theme-color" content="#0f766e" />
+    <title>Mathemator</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/assets/icon-192.svg" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-shell">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">∑</div>
+          <div>
+            <p class="eyebrow">Encyclopédie interactive</p>
+            <h1>Mathemator</h1>
+          </div>
+        </div>
+        <button class="install-button" id="installButton" type="button" hidden>Installer</button>
+      </header>
+
+      <main>
+        <section class="hero">
+          <canvas id="heroCanvas" aria-label="Animation mathématique abstraite"></canvas>
+          <div class="hero-content">
+            <p class="eyebrow">Référence visuelle pour mathématiciens</p>
+            <h2>Explorer les mathématiques comme un réseau vivant.</h2>
+            <p>
+              Personnes, théorèmes, objets, formules, domaines et expériences interactives sont reliés dans une interface mobile-first pensée pour apprendre, vérifier et découvrir.
+            </p>
+            <div class="hero-actions">
+              <a href="#daily">Découvrir aujourd'hui</a>
+              <a href="#laboratoire">Ouvrir le laboratoire</a>
+            </div>
+          </div>
+        </section>
+
+        <nav class="tabbar" aria-label="Navigation principale">
+          <a href="#daily">Accueil</a>
+          <a href="#encyclopedie">Encyclopédie</a>
+          <a href="#visualisations">Visualisations</a>
+          <a href="#laboratoire">Labo</a>
+          <a href="#reseau">Réseau</a>
+        </nav>
+
+        <section class="section" id="daily">
+          <div class="section-heading">
+            <p class="eyebrow">Accueil dynamique</p>
+            <h2>Tableau du jour</h2>
+          </div>
+          <div class="daily-grid" id="dailyGrid"></div>
+        </section>
+
+        <section class="section split" id="encyclopedie">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Base documentaire</p>
+              <h2>Entrées reliées</h2>
+            </div>
+            <div class="search-panel">
+              <label for="searchInput">Recherche avancée</label>
+              <input id="searchInput" type="search" placeholder="Nom, domaine, siècle, concept..." />
+              <div class="chips" id="filterChips"></div>
+            </div>
+          </div>
+          <div class="result-list" id="resultList"></div>
+        </section>
+
+        <section class="section" id="chronologie">
+          <div class="section-heading">
+            <p class="eyebrow">Chronologie interactive</p>
+            <h2>Repères historiques</h2>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </section>
+
+        <section class="section" id="visualisations">
+          <div class="section-heading">
+            <p class="eyebrow">Figures manipulables</p>
+            <h2>Objets mathématiques</h2>
+          </div>
+          <div class="visual-grid">
+            <article class="visual-stage">
+              <div class="stage-toolbar">
+                <strong>Ensemble de Mandelbrot</strong>
+                <button id="mandelbrotButton" type="button">Régénérer</button>
+              </div>
+              <canvas id="mandelbrotCanvas" width="640" height="420" aria-label="Visualisation de l'ensemble de Mandelbrot"></canvas>
+            </article>
+            <article class="visual-stage">
+              <div class="stage-toolbar">
+                <strong>Surface paramétrique</strong>
+                <input id="surfaceSlider" type="range" min="0" max="100" value="48" aria-label="Rotation de surface" />
+              </div>
+              <canvas id="surfaceCanvas" width="640" height="420" aria-label="Surface paramétrique animée"></canvas>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split" id="laboratoire">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Laboratoire</p>
+              <h2>Grapheur rapide</h2>
+            </div>
+            <p class="muted">Fonctions prises en charge : sin, cos, tan, exp, log, sqrt, abs, pow. Variable : x.</p>
+            <div class="formula-box">
+              <label for="functionInput">f(x)</label>
+              <input id="functionInput" value="sin(x) + cos(2*x)/2" />
+              <button id="plotButton" type="button">Tracer</button>
+            </div>
+          </div>
+          <canvas id="plotCanvas" width="700" height="460" aria-label="Grapheur de fonction"></canvas>
+        </section>
+
+        <section class="section" id="reseau">
+          <div class="section-heading">
+            <p class="eyebrow">Réseau de connaissances</p>
+            <h2>Navigation conceptuelle</h2>
+          </div>
+          <div class="network-wrap">
+            <svg id="knowledgeGraph" viewBox="0 0 900 520" role="img" aria-label="Réseau de concepts mathématiques"></svg>
+          </div>
+        </section>
+
+        <section class="section feature-matrix">
+          <div class="section-heading">
+            <p class="eyebrow">Feuille de route intégrée</p>
+            <h2>Modules prévus</h2>
+          </div>
+          <div class="module-grid" id="moduleGrid"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
