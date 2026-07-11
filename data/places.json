@@ -1,0 +1,10 @@
+[
+  {"city":"Bâle","country":"Suisse","people":"Euler, Bernoulli","note":"Université, correspondances, calcul infinitésimal","x":466,"y":193,"kind":"Université"},
+  {"city":"Göttingen","country":"Allemagne","people":"Gauss, Riemann, Noether, Hilbert","note":"École centrale des XIXe et XXe siècles","x":487,"y":171,"kind":"Université"},
+  {"city":"Paris","country":"France","people":"Cauchy, Poincaré, Grothendieck","note":"Académie, ENS, Bourbaki, IHÉS","x":440,"y":200,"kind":"Académie"},
+  {"city":"Cambridge","country":"Royaume-Uni","people":"Newton, Hardy, Turing","note":"Analyse, logique, informatique théorique","x":407,"y":166,"kind":"Université"},
+  {"city":"Princeton","country":"États-Unis","people":"Einstein, von Neumann, Nash","note":"IAS, topologie, théorie des jeux","x":210,"y":190,"kind":"Centre de recherche"},
+  {"city":"Alexandrie","country":"Égypte","people":"Euclide, Hypatie","note":"Bibliothèque, géométrie antique","x":505,"y":282,"kind":"Bibliothèque"},
+  {"city":"Bagdad","country":"Irak","people":"Al-Khwârizmî","note":"Maison de la sagesse, algèbre","x":560,"y":253,"kind":"Bibliothèque"},
+  {"city":"Kyoto","country":"Japon","people":"Iwasawa, Mori","note":"Algèbre, géométrie algébrique","x":760,"y":230,"kind":"Université"}
+]

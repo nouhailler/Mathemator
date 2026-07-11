@@ -210,7 +210,8 @@ input {
 .module-grid,
 .domain-grid,
 .object-grid,
-.learning-grid {
+.learning-grid,
+.person-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 14px;
@@ -233,6 +234,80 @@ input {
   border-radius: 8px;
   background: var(--panel);
   box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.person-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+}
+
+.person-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.portrait {
+  display: grid;
+  width: 76px;
+  height: 92px;
+  place-items: center;
+  border-radius: 8px;
+  color: white;
+  background:
+    radial-gradient(circle at 52% 36%, rgba(255,255,255,.24), transparent 28%),
+    linear-gradient(135deg, var(--teal), var(--rust));
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.person-card span {
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.person-card h3 {
+  margin: 6px 0 8px;
+}
+
+.person-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.person-card dl {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px 12px;
+  margin: 0;
+}
+
+.person-card dt {
+  color: var(--rust);
+  font-weight: 850;
+}
+
+.person-card dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.person-card .mini-button {
+  grid-column: 1 / -1;
+}
+
+.formula-render {
+  margin: 8px 0;
+  color: var(--ink);
+  font-size: 1.12rem;
 }
 
 .daily-card {
@@ -737,6 +812,11 @@ input {
   }
 
   .formula-box {
+    grid-template-columns: 1fr;
+  }
+
+  .person-card,
+  .person-card dl {
     grid-template-columns: 1fr;
   }
 

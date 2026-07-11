@@ -1,4 +1,7 @@
-import {
+import { loadContent } from "./content.js";
+
+const content = await loadContent();
+const {
   books,
   dailyItems,
   domains,
@@ -6,6 +9,7 @@ import {
   exercises,
   formulas,
   glossary,
+  mathematicians,
   modeContent,
   modules,
   objects,
@@ -15,7 +19,7 @@ import {
   quotes,
   theorems,
   timelineItems,
-} from "./content.js";
+} = content;
 
 const $ = (selector) => document.querySelector(selector);
 const store = {
@@ -51,33 +55,77 @@ function card(title, body, meta = "", action = "") {
   `;
 }
 
+function asSearchText(value) {
+  return JSON.stringify(value).toLowerCase();
+}
+
+function latex(value) {
+  return `<span class="latex" data-latex="${value.replaceAll('"', "&quot;")}">${value}</span>`;
+}
+
+function renderMath() {
+  if (!window.katex) return;
+  document.querySelectorAll("[data-latex]").forEach((node) => {
+    window.katex.render(node.dataset.latex, node, { throwOnError: false, displayMode: false });
+  });
+}
+
 function renderDaily() {
   $("#dailyGrid").innerHTML = dailyItems
-    .map(([label, title, text]) => `
+    .map(({ label, title, text, latex: latexValue }) => `
       <article class="daily-card">
         <span>${label}</span>
         <h3>${title}</h3>
+        ${latexValue ? `<div class="formula-render">${latex(latexValue)}</div>` : ""}
         <p>${text}</p>
       </article>
     `)
     .join("");
+  renderMath();
 }
 
 function renderSearch() {
-  const filters = ["Tous", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres", "Topologie"];
+  const filters = ["Tous", "Mathématicien", "Théorème", "Formule", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres", "Topologie"];
   let activeFilter = "Tous";
   const input = $("#searchInput");
   const chips = $("#filterChips");
   const list = $("#resultList");
+  const searchable = [
+    ...entries,
+    ...mathematicians.map((item) => ({
+      type: "Fiche mathématicien",
+      title: item.name,
+      meta: `${item.period} · ${item.nationality} · ${item.domains.join(", ")}`,
+      text: item.biography,
+      tags: [...item.domains, item.nationality, item.period],
+      payload: item,
+    })),
+    ...theorems.map((item) => ({
+      type: "Théorème",
+      title: item.name,
+      meta: `${item.discoverer} · ${item.applications}`,
+      text: item.intuition,
+      tags: [item.discoverer, item.history, ...item.variants],
+      payload: item,
+    })),
+    ...formulas.map((item) => ({
+      type: "Formule",
+      title: item.name,
+      meta: item.category,
+      text: item.explanation,
+      tags: [item.category, ...item.uses],
+      payload: item,
+    })),
+  ];
   const draw = () => {
     const query = input.value.trim().toLowerCase();
     const filter = activeFilter.toLowerCase();
-    const visible = entries.filter(([type, title, meta, text, tags]) => {
-      const haystack = `${type} ${title} ${meta} ${text} ${tags.join(" ")}`.toLowerCase();
+    const visible = searchable.filter((entry) => {
+      const haystack = asSearchText(entry);
       return haystack.includes(query) && (activeFilter === "Tous" || haystack.includes(filter));
     });
     chips.innerHTML = filters.map((filter) => `<button class="${filter === activeFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
-    list.innerHTML = visible.map(([type, title, meta, text]) => card(title, text, `${type} · ${meta}`, favoriteButton(title))).join("");
+    list.innerHTML = visible.map(({ type, title, meta, text }) => card(title, text, `${type} · ${meta}`, favoriteButton(title))).join("");
     chips.querySelectorAll("button").forEach((button) => {
       button.addEventListener("click", () => {
         activeFilter = button.textContent;
@@ -110,12 +158,46 @@ function bindFavorites() {
 }
 
 function renderTimeline() {
-  $("#timeline").innerHTML = timelineItems.map(([period, text]) => `
+  $("#timeline").innerHTML = timelineItems.map(({ period, text, people, discoveries, publications, events }) => `
     <article>
       <time>${period}</time>
-      <p>${text}</p>
+      <div>
+        <p>${text}</p>
+        <small>${people.join(", ")} · ${discoveries.join(", ")} · ${publications.join(", ")} · ${events.join(", ")}</small>
+      </div>
     </article>
   `).join("");
+}
+
+function renderMathematicians() {
+  $("#personGrid").innerHTML = mathematicians.map((person) => `
+    <article class="person-card">
+      <div class="portrait" aria-hidden="true">${person.portrait}</div>
+      <div>
+        <span>${person.nationality} · ${person.period} · ${person.birth}-${person.death}</span>
+        <h3>${person.name}</h3>
+        <p>${person.biography}</p>
+      </div>
+      <dl>
+        <dt>Domaines</dt><dd>${person.domains.join(", ")}</dd>
+        <dt>Chronologie</dt><dd>${person.timeline.join(" · ")}</dd>
+        <dt>Découvertes</dt><dd>${person.discoveries.join(", ")}</dd>
+        <dt>Publications</dt><dd>${person.publications.join(", ")}</dd>
+        <dt>Élèves</dt><dd>${person.students.join(", ")}</dd>
+        <dt>Professeurs</dt><dd>${person.teachers.join(", ")}</dd>
+        <dt>Collaborateurs</dt><dd>${person.collaborators.join(", ")}</dd>
+        <dt>Distinctions</dt><dd>${person.distinctions.join(", ")}</dd>
+        <dt>Objets</dt><dd>${person.namedObjects.join(", ")}</dd>
+        <dt>Théorèmes</dt><dd>${person.theorems.join(", ")}</dd>
+        <dt>Équations</dt><dd>${person.equations.map(latex).join(", ")}</dd>
+        <dt>Anecdotes</dt><dd>${person.anecdotes.join(" ")}</dd>
+        <dt>Bibliographie</dt><dd>${person.bibliography.join(", ")}</dd>
+      </dl>
+      ${favoriteButton(person.name)}
+    </article>
+  `).join("");
+  bindFavorites();
+  renderMath();
 }
 
 function renderMap() {
@@ -125,33 +207,36 @@ function renderMap() {
   const svg = $("#worldMap");
   const draw = () => {
     const query = input.value.trim().toLowerCase();
-    const visible = places.filter((place) => place.join(" ").toLowerCase().includes(query));
-    stats.innerHTML = `<strong>${visible.length}</strong><span>lieux affichés</span><strong>${new Set(visible.map((place) => place[1])).size}</strong><span>pays</span>`;
+    const visible = places.filter((place) => asSearchText(place).includes(query));
+    stats.innerHTML = `<strong>${visible.length}</strong><span>lieux affichés</span><strong>${new Set(visible.map((place) => place.country)).size}</strong><span>pays</span>`;
     svg.innerHTML = `
       <path class="land" d="M80 180 C170 90 260 120 330 165 C410 215 480 120 570 150 C675 185 780 130 840 220 C760 318 620 300 530 340 C430 386 345 300 250 335 C155 370 70 292 80 180Z"/>
       <path class="land muted-land" d="M125 255 C205 220 295 240 356 285 C280 330 190 345 125 255Z"/>
-      ${visible.map(([city, country, people, note, x, y]) => `
+      ${visible.map(({ city, country, people, note, x, y, kind }) => `
         <g class="map-pin" tabindex="0" transform="translate(${x} ${y})">
           <circle r="11"></circle>
           <text x="16" y="5">${city}</text>
-          <title>${city}, ${country} · ${people} · ${note}</title>
+          <title>${kind} · ${city}, ${country} · ${people} · ${note}</title>
         </g>
       `).join("")}
     `;
-    list.innerHTML = visible.map(([city, country, people, note]) => card(`${city}, ${country}`, note, people)).join("");
+    list.innerHTML = visible.map(({ city, country, people, note, kind }) => card(`${city}, ${country}`, note, `${kind} · ${people}`)).join("");
   };
   input.addEventListener("input", draw);
   draw();
 }
 
 function renderDomains() {
-  $("#domainGrid").innerHTML = domains.map(([name, intro, people, uses]) => `
+  $("#domainGrid").innerHTML = domains.map(({ name, intro, history, concepts, theorems: domainTheorems, applications, people }) => `
     <article class="domain-card">
       <h3>${name}</h3>
       <p>${intro}</p>
       <dl>
+        <dt>Historique</dt><dd>${history}</dd>
+        <dt>Concepts</dt><dd>${concepts.join(", ")}</dd>
+        <dt>Théorèmes</dt><dd>${domainTheorems.join(", ")}</dd>
         <dt>Figures</dt><dd>${people}</dd>
-        <dt>Applications</dt><dd>${uses}</dd>
+        <dt>Applications</dt><dd>${applications}</dd>
       </dl>
     </article>
   `).join("");
@@ -163,12 +248,19 @@ function renderReferences() {
   const data = activeReference === "Théorèmes" ? theorems : formulas;
   $("#referencePanel").innerHTML = data.map((item) => {
     if (activeReference === "Théorèmes") {
-      const [name, statement, intuition, applications] = item;
-      return card(name, `<strong>${statement}</strong><br>${intuition}<br><em>${applications}</em>`, "Énoncé · intuition · usages");
+      return card(
+        item.name,
+        `${latex(item.latex)}<br>${item.intuition}<br><strong>Démonstration :</strong> ${item.proof}<br><strong>Généralisation :</strong> ${item.generalization}<br><em>${item.applications}</em>`,
+        `${item.discoverer} · ${item.history}`
+      );
     }
-    const [name, expression, explanation] = item;
-    return card(name, `<strong>${expression}</strong><br>${explanation}`, "Formule");
+    return card(
+      item.name,
+      `${latex(item.latex)}<br>${item.explanation}<br><strong>Exemples :</strong> ${item.examples.join(", ")}<br><strong>Démonstration :</strong> ${item.proof}`,
+      `Formule · ${item.category}`
+    );
   }).join("");
+  renderMath();
   $("#referenceTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeReference = button.textContent;
@@ -178,12 +270,14 @@ function renderReferences() {
 }
 
 function renderObjects() {
-  $("#objectGrid").innerHTML = objects.map(([name, description, uses], index) => `
+  $("#objectGrid").innerHTML = objects.map(({ name, description, history, properties, applications }, index) => `
     <article class="object-card">
       <div class="object-figure object-${index % 4}" aria-hidden="true"></div>
       <h3>${name}</h3>
       <p>${description}</p>
-      <span>${uses}</span>
+      <p><strong>Histoire :</strong> ${history}</p>
+      <p><strong>Propriétés :</strong> ${properties.join(", ")}</p>
+      <span>${applications}</span>
     </article>
   `).join("");
 }
@@ -195,11 +289,11 @@ function renderLearning() {
 }
 
 function renderExercise() {
-  const [domain, prompt, hint, solution] = exercises[currentExercise % exercises.length];
+  const exercise = exercises[currentExercise % exercises.length];
   $("#exerciseBox").innerHTML = `
-    <span class="badge">${domain}</span>
-    <h3>${prompt}</h3>
-    ${hintVisible ? `<p><strong>Indice :</strong> ${hint}</p><p><strong>Solution :</strong> ${solution}</p>` : "<p>Utilise l'indice pour afficher la correction détaillée.</p>"}
+    <span class="badge">${exercise.domain} · ${exercise.level} · ${exercise.difficulty} · ${exercise.time}</span>
+    <h3>${exercise.prompt}</h3>
+    ${hintVisible ? `<p><strong>Indice :</strong> ${exercise.hint}</p><p><strong>Solution :</strong> ${exercise.solution}</p><p><strong>Démonstration :</strong> ${exercise.proof}</p>` : "<p>Utilise l'indice pour afficher la correction détaillée.</p>"}
     <button class="mini-button" id="nextExerciseButton" type="button">Exercice suivant</button>
   `;
   $("#nextExerciseButton").addEventListener("click", () => {
@@ -212,18 +306,19 @@ function renderExercise() {
 }
 
 function renderQuiz() {
-  const [question, options, correct] = quiz[currentQuiz % quiz.length];
+  const current = quiz[currentQuiz % quiz.length];
   $("#quizBox").innerHTML = `
-    <h3>${question}</h3>
+    <span class="badge">${current.mode}</span>
+    <h3>${current.question}</h3>
     <div class="answer-grid">
-      ${options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
+      ${current.options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
     </div>
     <p id="quizFeedback" class="muted">Sélectionne une réponse.</p>
   `;
   $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
     button.addEventListener("click", () => {
-      const ok = Number(button.dataset.answer) === correct;
-      $("#quizFeedback").textContent = ok ? "Réponse correcte." : `Réponse attendue : ${options[correct]}.`;
+      const ok = Number(button.dataset.answer) === current.correct;
+      $("#quizFeedback").textContent = ok ? "Réponse correcte." : `Réponse attendue : ${current.options[current.correct]}.`;
       if (ok) bumpProgress("quiz");
       renderProgress();
     });
@@ -258,9 +353,9 @@ function renderLibrary() {
   $("#libraryTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeLibrary ? "active" : ""}" type="button">${tab}</button>`).join("");
   const data = activeLibrary === "Citations" ? quotes : activeLibrary === "Livres" ? books : glossary;
   $("#libraryPanel").innerHTML = data.map((item) => {
-    if (activeLibrary === "Citations") return card(`« ${item[1]} »`, item[2], item[0]);
-    if (activeLibrary === "Livres") return card(item[0], item[2], item[1]);
-    return card(item[0], item[1], "Définition");
+    if (activeLibrary === "Citations") return card(`« ${item.text} »`, `${item.theme} · ${item.period}`, item.author);
+    if (activeLibrary === "Livres") return card(item.title, `${item.description}<br><strong>${item.category}</strong> · ${item.level}`, item.author);
+    return card(item.term, `${item.definition}<br><strong>Renvois :</strong> ${item.links.join(", ")}`, "Définition");
   }).join("");
   $("#libraryTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
@@ -271,11 +366,14 @@ function renderLibrary() {
 }
 
 function renderProblems() {
-  $("#problemList").innerHTML = problems.map(([name, status, text, impact]) => `
+  $("#problemList").innerHTML = problems.map(({ name, status, text, history, current, advances, impact }) => `
     <article class="problem-card">
       <span class="${status === "Ouvert" ? "status-open" : "status-solved"}">${status}</span>
       <h3>${name}</h3>
       <p>${text}</p>
+      <p><strong>Historique :</strong> ${history}</p>
+      <p><strong>État actuel :</strong> ${current}</p>
+      <p><strong>Avancées :</strong> ${advances}</p>
       <strong>${impact}</strong>
     </article>
   `).join("");
@@ -498,6 +596,7 @@ function registerPwa() {
 
 renderDaily();
 renderSearch();
+renderMathematicians();
 renderTimeline();
 renderMap();
 renderDomains();

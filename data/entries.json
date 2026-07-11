@@ -1,0 +1,11 @@
+[
+  {"type":"Mathématicien","title":"Leonhard Euler","meta":"XVIIIe siècle · Analyse · Graphes · Suisse","text":"Fonctions, séries, théorie des graphes, mécanique analytique et notation moderne.","tags":["analyse","graphes","formules","suisse"]},
+  {"type":"Mathématicienne","title":"Emmy Noether","meta":"XXe siècle · Algèbre · Allemagne","text":"Anneaux, idéaux, invariants et symétries. Figure centrale de l'algèbre moderne.","tags":["algèbre","physique","théorèmes","allemagne"]},
+  {"type":"Mathématicien","title":"Carl Friedrich Gauss","meta":"XIXe siècle · Nombres · Géométrie · Allemagne","text":"Arithmétique supérieure, moindres carrés, courbure et géométrie différentielle.","tags":["nombres","géométrie","statistiques","allemagne"]},
+  {"type":"Mathématicien","title":"Bernhard Riemann","meta":"XIXe siècle · Analyse complexe · Géométrie","text":"Variétés, surfaces de Riemann, intégration et hypothèse sur la fonction zêta.","tags":["complexe","géométrie","nombres"]},
+  {"type":"Mathématicien","title":"Alexandre Grothendieck","meta":"XXe siècle · Géométrie algébrique · France","text":"Schémas, topos, cohomologie et réorganisation profonde de la géométrie algébrique.","tags":["catégories","géométrie","algèbre","france"]},
+  {"type":"Théorème","title":"Théorème spectral","meta":"Algèbre linéaire · Analyse fonctionnelle","text":"Décomposition des opérateurs auto-adjoints et lecture géométrique des transformations.","tags":["matrices","opérateurs","analyse"]},
+  {"type":"Objet","title":"Ensemble de Mandelbrot","meta":"Fractales · Dynamique complexe","text":"Carte globale de la stabilité de z -> z² + c, riche en autosimilarités.","tags":["fractales","visualisation","complexe"]},
+  {"type":"Domaine","title":"Théorie des catégories","meta":"Structures · Foncteurs · Transformations naturelles","text":"Langage transversal pour comparer les constructions et les passages de structure.","tags":["logique","algèbre","fondations"]},
+  {"type":"Problème célèbre","title":"Hypothèse de Riemann","meta":"Nombres premiers · Analyse complexe","text":"La distribution fine des nombres premiers passe par les zéros de la fonction zêta.","tags":["nombres","millénaire","complexe"]}
+]

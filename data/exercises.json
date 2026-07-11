@@ -1,0 +1,5 @@
+[
+  {"domain":"Algèbre","level":"Licence","difficulty":"Moyen","time":"12 min","prompt":"Montrer que l'intersection de deux sous-espaces vectoriels est un sous-espace.","hint":"Vérifier stabilité par combinaison linéaire.","solution":"Si u et v appartiennent aux deux sous-espaces, alors au+bv appartient à chacun.","proof":"L'intersection hérite du zéro et de la stabilité de chaque sous-espace."},
+  {"domain":"Analyse","level":"Licence","difficulty":"Difficile","time":"18 min","prompt":"Étudier la convergence de la suite u_n=(1+1/n)^n.","hint":"Comparer le logarithme avec une somme de Riemann.","solution":"La suite converge vers e.","proof":"n log(1+1/n) tend vers 1, donc u_n tend vers exp(1)."},
+  {"domain":"Graphes","level":"Lycée avancé","difficulty":"Facile","time":"8 min","prompt":"Prouver que la somme des degrés d'un graphe fini vaut deux fois le nombre d'arêtes.","hint":"Compter chaque arête par ses extrémités.","solution":"Chaque arête contribue exactement 2 au total.","proof":"Double comptage de l'ensemble des incidences sommet-arête."}
+]

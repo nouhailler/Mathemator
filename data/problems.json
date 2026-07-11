@@ -1,0 +1,6 @@
+[
+  {"name":"Hypothèse de Riemann","status":"Ouvert","text":"Tous les zéros non triviaux de ζ(s) auraient partie réelle 1/2.","history":"Formulée par Riemann en 1859.","current":"Problème du prix du millénaire non résolu.","advances":"Vérifications numériques massives et résultats sur la droite critique.","impact":"Distribution fine des nombres premiers."},
+  {"name":"P versus NP","status":"Ouvert","text":"Demande si toute solution vérifiable rapidement est aussi trouvable rapidement.","history":"Formalisé dans les années 1970.","current":"Problème du prix du millénaire non résolu.","advances":"Barrières de relativisation, natural proofs et algébrisation.","impact":"Complexité, cryptographie, optimisation."},
+  {"name":"Conjecture de Goldbach","status":"Ouvert","text":"Tout entier pair supérieur à 2 serait somme de deux nombres premiers.","history":"Énoncée au XVIIIe siècle.","current":"Ouverte, vérifiée numériquement très loin.","advances":"Goldbach faible démontrée par Helfgott.","impact":"Théorie additive des nombres."},
+  {"name":"Dernier théorème de Fermat","status":"Résolu","text":"Aucune solution entière non nulle pour x^n+y^n=z^n avec n>2.","history":"Annoncé par Fermat, résolu au XXe siècle.","current":"Résolu par Andrew Wiles.","advances":"Lien courbes elliptiques et formes modulaires.","impact":"Problème historique résolu."}
+]

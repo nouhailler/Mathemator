@@ -1,0 +1,6 @@
+[
+  {"title":"Éléments","author":"Euclide","category":"Ouvrage historique","level":"Référence","description":"Géométrie antique et axiomatisation."},
+  {"title":"Disquisitiones Arithmeticae","author":"Gauss","category":"Ouvrage historique","level":"Avancé","description":"Texte fondateur de la théorie moderne des nombres."},
+  {"title":"Algebra","author":"Serge Lang","category":"Référence universitaire","level":"Avancé","description":"Référence dense en algèbre."},
+  {"title":"Visual Complex Analysis","author":"Tristan Needham","category":"Vulgarisation avancée","level":"Licence","description":"Lecture géométrique de l'analyse complexe."}
+]

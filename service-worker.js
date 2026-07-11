@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathemator-v2";
+const CACHE_NAME = "mathemator-v3";
 const ASSETS = [
   "/",
   "/index.html",
@@ -7,7 +7,24 @@ const ASSETS = [
   "/src/app.js",
   "/manifest.webmanifest",
   "/assets/icon-192.svg",
-  "/assets/icon-512.svg"
+  "/assets/icon-512.svg",
+  "/data/books.json",
+  "/data/daily.json",
+  "/data/domains.json",
+  "/data/entries.json",
+  "/data/exercises.json",
+  "/data/formulas.json",
+  "/data/glossary.json",
+  "/data/mathematicians.json",
+  "/data/modes.json",
+  "/data/modules.json",
+  "/data/objects.json",
+  "/data/places.json",
+  "/data/problems.json",
+  "/data/quiz.json",
+  "/data/quotes.json",
+  "/data/theorems.json",
+  "/data/timeline.json"
 ];
 
 self.addEventListener("install", (event) => {

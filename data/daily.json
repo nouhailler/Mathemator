@@ -1,0 +1,9 @@
+[
+  {"label":"Mathématicienne du jour","title":"Emmy Noether","text":"Ses théorèmes relient symétries et lois de conservation, avec un impact durable en algèbre abstraite et en physique théorique."},
+  {"label":"Formule du jour","title":"Identité d'Euler","text":"e^{i\\pi}+1=0 relie analyse, géométrie, algèbre et trigonométrie en une seule égalité.","latex":"e^{i\\pi}+1=0"},
+  {"label":"Théorème du jour","title":"Théorème spectral","text":"Les opérateurs auto-adjoints se lisent comme des directions propres, ce qui relie algèbre linéaire, analyse et mécanique quantique."},
+  {"label":"Anecdote historique","title":"Le pont de Königsberg","text":"Euler transforme une promenade impossible en naissance de la théorie des graphes."},
+  {"label":"Anniversaires","title":"Repères calendaires","text":"La structure est prête pour une base de naissances, décès, publications, prix et découvertes datées."},
+  {"label":"Découverte aléatoire","title":"Bouteille de Klein","text":"Surface non orientable sans bord, impossible à plonger dans l'espace 3D sans auto-intersection."},
+  {"label":"Nouveautés","title":"Modules étendus","text":"Carte, domaines, références, apprentissage, bibliothèque, favoris et progression sont maintenant branchés sur des données structurées."}
+]

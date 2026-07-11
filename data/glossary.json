@@ -1,0 +1,6 @@
+[
+  {"term":"Anneau","definition":"Ensemble muni de deux lois généralisant addition et multiplication.","links":["Algèbre","Idéal","Module"]},
+  {"term":"Foncteur","definition":"Application structurelle entre catégories préservant objets, morphismes et composition.","links":["Catégorie","Transformation naturelle"]},
+  {"term":"Homéomorphisme","definition":"Bijection continue dont l'inverse est continue.","links":["Topologie","Continuité"]},
+  {"term":"Valeur propre","definition":"Scalaire décrivant l'étirement d'un vecteur propre par un opérateur.","links":["Algèbre linéaire","Théorème spectral"]}
+]

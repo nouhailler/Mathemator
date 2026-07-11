@@ -1,0 +1,4 @@
+{
+  "Enseignant": ["Créer un parcours de notions", "Assembler exercices et théorèmes", "Créer un quiz", "Exporter une fiche PDF", "Préparer l'impression", "Lancer une présentation plein écran"],
+  "Étudiant": ["Plan de révision", "Fiches de synthèse", "Flashcards", "Historique des erreurs", "Objectifs personnalisés"]
+}
