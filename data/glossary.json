@@ -1,6 +1,2873 @@
 [
-  {"term":"Anneau","definition":"Ensemble muni de deux lois généralisant addition et multiplication.","links":["Algèbre","Idéal","Module"]},
-  {"term":"Foncteur","definition":"Application structurelle entre catégories préservant objets, morphismes et composition.","links":["Catégorie","Transformation naturelle"]},
-  {"term":"Homéomorphisme","definition":"Bijection continue dont l'inverse est continue.","links":["Topologie","Continuité"]},
-  {"term":"Valeur propre","definition":"Scalaire décrivant l'étirement d'un vecteur propre par un opérateur.","links":["Algèbre linéaire","Théorème spectral"]}
+  {
+    "term": "Anneau",
+    "definition": "Ensemble muni de deux lois généralisant addition et multiplication.",
+    "links": [
+      "Algèbre",
+      "Idéal",
+      "Module"
+    ]
+  },
+  {
+    "term": "Foncteur",
+    "definition": "Application structurelle entre catégories préservant objets, morphismes et composition.",
+    "links": [
+      "Catégorie",
+      "Transformation naturelle"
+    ]
+  },
+  {
+    "term": "Homéomorphisme",
+    "definition": "Bijection continue dont l'inverse est continue.",
+    "links": [
+      "Topologie",
+      "Continuité"
+    ]
+  },
+  {
+    "term": "Valeur propre",
+    "definition": "Scalaire décrivant l'étirement d'un vecteur propre par un opérateur.",
+    "links": [
+      "Algèbre linéaire",
+      "Vecteur propre"
+    ]
+  },
+  {
+    "term": "Mesure",
+    "definition": "Fonction qui attribue une taille cohérente à des ensembles mesurables.",
+    "links": [
+      "Intégrale",
+      "Lebesgue"
+    ]
+  },
+  {
+    "term": "Groupe",
+    "definition": "Ensemble avec loi associative, élément neutre et inverses.",
+    "links": [
+      "Algèbre",
+      "Symétrie"
+    ]
+  },
+  {
+    "term": "Corps",
+    "definition": "Anneau où tout élément non nul est inversible pour la multiplication.",
+    "links": [
+      "Algèbre",
+      "Polynôme"
+    ]
+  },
+  {
+    "term": "Compact",
+    "definition": "Espace où les recouvrements ouverts admettent des sous-recouvrements finis.",
+    "links": [
+      "Topologie",
+      "Suite"
+    ]
+  },
+  {
+    "term": "Convexe",
+    "definition": "Ensemble contenant les segments reliant deux de ses points.",
+    "links": [
+      "Optimisation",
+      "Géométrie"
+    ]
+  },
+  {
+    "term": "Martingale",
+    "definition": "Processus stochastique dont l'espérance conditionnelle future égale la valeur présente.",
+    "links": [
+      "Probabilités",
+      "Filtration"
+    ]
+  },
+  {
+    "term": "Abélien en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Forme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Générateur en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de générateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Générateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Graphe en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de graphe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Graphe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Homologie en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de homologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Homologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Idéal en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de idéal dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Idéal",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Image en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de image dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Image",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Invariant en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de invariant dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Invariant",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isométrie en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de isométrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Isométrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isomorphisme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de isomorphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Isomorphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Lemme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de lemme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Lemme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Limite en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de limite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Limite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Matrice en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de matrice dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Matrice",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Module en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de module dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Module",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Morphisme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de morphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Morphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Noyau en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de noyau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Noyau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Norme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de norme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Norme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Opérateur en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de opérateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Opérateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Partition en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de partition dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Partition",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Plongement en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de plongement dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Plongement",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Polynôme en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de polynôme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Polynôme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Produit en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de produit dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Produit",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Projection en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de projection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Projection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Rang en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de rang dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Rang",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Récurrence en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de récurrence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Récurrence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Représentation en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de représentation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Représentation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Suite en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de suite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Suite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Symétrie en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de symétrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Symétrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Tenseur en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de tenseur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Tenseur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Topologie en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de topologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Topologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Trace en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de trace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Trace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Transformation en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de transformation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Transformation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Variété en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de variété dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Variété",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Vecteur en Algèbre",
+    "definition": "Notion de Algèbre qui précise le rôle de vecteur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Algèbre",
+      "Vecteur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Abélien en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Forme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Générateur en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de générateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Générateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Graphe en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de graphe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Graphe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Homologie en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de homologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Homologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Idéal en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de idéal dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Idéal",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Image en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de image dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Image",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Invariant en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de invariant dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Invariant",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isométrie en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de isométrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Isométrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isomorphisme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de isomorphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Isomorphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Lemme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de lemme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Lemme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Limite en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de limite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Limite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Matrice en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de matrice dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Matrice",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Module en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de module dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Module",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Morphisme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de morphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Morphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Noyau en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de noyau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Noyau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Norme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de norme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Norme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Opérateur en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de opérateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Opérateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Partition en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de partition dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Partition",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Plongement en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de plongement dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Plongement",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Polynôme en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de polynôme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Polynôme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Produit en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de produit dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Produit",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Projection en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de projection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Projection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Rang en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de rang dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Rang",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Récurrence en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de récurrence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Récurrence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Représentation en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de représentation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Représentation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Suite en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de suite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Suite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Symétrie en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de symétrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Symétrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Tenseur en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de tenseur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Tenseur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Topologie en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de topologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Topologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Trace en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de trace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Trace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Transformation en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de transformation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Transformation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Variété en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de variété dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Variété",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Vecteur en Analyse",
+    "definition": "Notion de Analyse qui précise le rôle de vecteur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse",
+      "Vecteur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Abélien en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Forme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Générateur en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de générateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Générateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Graphe en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de graphe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Graphe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Homologie en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de homologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Homologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Idéal en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de idéal dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Idéal",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Image en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de image dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Image",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Invariant en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de invariant dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Invariant",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isométrie en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de isométrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Isométrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isomorphisme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de isomorphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Isomorphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Lemme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de lemme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Lemme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Limite en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de limite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Limite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Matrice en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de matrice dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Matrice",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Module en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de module dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Module",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Morphisme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de morphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Morphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Noyau en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de noyau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Noyau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Norme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de norme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Norme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Opérateur en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de opérateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Opérateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Partition en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de partition dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Partition",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Plongement en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de plongement dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Plongement",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Polynôme en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de polynôme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Polynôme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Produit en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de produit dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Produit",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Projection en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de projection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Projection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Rang en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de rang dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Rang",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Récurrence en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de récurrence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Récurrence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Représentation en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de représentation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Représentation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Suite en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de suite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Suite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Symétrie en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de symétrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Symétrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Tenseur en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de tenseur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Tenseur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Topologie en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de topologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Topologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Trace en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de trace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Trace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Transformation en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de transformation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Transformation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Variété en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de variété dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Variété",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Vecteur en Analyse complexe",
+    "definition": "Notion de Analyse complexe qui précise le rôle de vecteur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse complexe",
+      "Vecteur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Abélien en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Forme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Générateur en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de générateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Générateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Graphe en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de graphe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Graphe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Homologie en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de homologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Homologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Idéal en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de idéal dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Idéal",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Image en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de image dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Image",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Invariant en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de invariant dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Invariant",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isométrie en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de isométrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Isométrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isomorphisme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de isomorphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Isomorphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Lemme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de lemme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Lemme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Limite en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de limite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Limite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Matrice en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de matrice dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Matrice",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Module en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de module dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Module",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Morphisme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de morphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Morphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Noyau en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de noyau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Noyau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Norme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de norme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Norme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Opérateur en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de opérateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Opérateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Partition en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de partition dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Partition",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Plongement en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de plongement dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Plongement",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Polynôme en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de polynôme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Polynôme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Produit en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de produit dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Produit",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Projection en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de projection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Projection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Rang en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de rang dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Rang",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Récurrence en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de récurrence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Récurrence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Représentation en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de représentation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Représentation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Suite en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de suite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Suite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Symétrie en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de symétrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Symétrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Tenseur en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de tenseur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Tenseur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Topologie en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de topologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Topologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Trace en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de trace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Trace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Transformation en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de transformation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Transformation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Variété en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de variété dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Variété",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Vecteur en Analyse fonctionnelle",
+    "definition": "Notion de Analyse fonctionnelle qui précise le rôle de vecteur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse fonctionnelle",
+      "Vecteur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Abélien en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Forme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Générateur en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de générateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Générateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Graphe en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de graphe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Graphe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Homologie en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de homologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Homologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Idéal en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de idéal dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Idéal",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Image en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de image dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Image",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Invariant en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de invariant dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Invariant",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isométrie en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de isométrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Isométrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Isomorphisme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de isomorphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Isomorphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Lemme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de lemme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Lemme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Limite en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de limite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Limite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Matrice en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de matrice dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Matrice",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Module en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de module dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Module",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Morphisme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de morphisme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Morphisme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Noyau en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de noyau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Noyau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Norme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de norme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Norme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Opérateur en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de opérateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Opérateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Partition en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de partition dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Partition",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Plongement en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de plongement dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Plongement",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Polynôme en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de polynôme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Polynôme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Produit en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de produit dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Produit",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Projection en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de projection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Projection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Rang en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de rang dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Rang",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Récurrence en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de récurrence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Récurrence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Représentation en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de représentation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Représentation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Suite en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de suite dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Suite",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Symétrie en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de symétrie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Symétrie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Tenseur en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de tenseur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Tenseur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Topologie en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de topologie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Topologie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Trace en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de trace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Trace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Transformation en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de transformation dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Transformation",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Variété en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de variété dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Variété",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Vecteur en Analyse harmonique",
+    "definition": "Notion de Analyse harmonique qui précise le rôle de vecteur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Analyse harmonique",
+      "Vecteur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Abélien en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de abélien dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Abélien",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Adjoint en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de adjoint dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Adjoint",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Algorithme en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de algorithme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Algorithme",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Base en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de base dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Base",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Bijection en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de bijection dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Bijection",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Borne en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de borne dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Borne",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Catégorie en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de catégorie dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Catégorie",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Classe en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de classe dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Classe",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Clôture en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de clôture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Clôture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Complexité en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de complexité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Complexité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Conjecture en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de conjecture dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Conjecture",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Continuité en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de continuité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Continuité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Convergence en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de convergence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Convergence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Densité en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de densité dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Densité",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dérivée en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de dérivée dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Dérivée",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dimension en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de dimension dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Dimension",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Distribution en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de distribution dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Distribution",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Dual en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de dual dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Dual",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Équivalence en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de équivalence dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Équivalence",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Espace en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de espace dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Espace",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Estimateur en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de estimateur dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Estimateur",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Faisceau en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de faisceau dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Faisceau",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Filtration en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de filtration dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Filtration",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Fonction en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de fonction dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Fonction",
+      "Définition"
+    ]
+  },
+  {
+    "term": "Forme en Arithmétique",
+    "definition": "Notion de Arithmétique qui précise le rôle de forme dans les constructions, preuves et calculs du domaine.",
+    "links": [
+      "Arithmétique",
+      "Forme",
+      "Définition"
+    ]
+  }
 ]

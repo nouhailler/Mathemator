@@ -1,5 +1,692 @@
 [
-  {"author":"Hilbert","text":"Nous devons savoir, nous saurons.","theme":"fondations","period":"XXe siècle"},
-  {"author":"Noether","text":"Les méthodes comptent plus que les résultats isolés.","theme":"algèbre","period":"XXe siècle"},
-  {"author":"Poincaré","text":"La pensée n'est qu'un éclair au milieu d'une longue nuit.","theme":"créativité","period":"XIXe siècle"}
+  {
+    "author": "Hilbert",
+    "text": "Nous devons savoir, nous saurons.",
+    "theme": "fondations",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Poincaré",
+    "text": "La pensée n'est qu'un éclair au milieu d'une longue nuit.",
+    "theme": "créativité",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Hardy",
+    "text": "La beauté est le premier test.",
+    "theme": "esthétique",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Gauss",
+    "text": "Peu, mais mûr.",
+    "theme": "rigueur",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Euler",
+    "text": "Lisez Euler, c'est notre maître à tous.",
+    "theme": "transmission",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Thalès de Milet",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité"
+  },
+  {
+    "author": "Pythagore",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité"
+  },
+  {
+    "author": "Euclide",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité"
+  },
+  {
+    "author": "Archimède",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité"
+  },
+  {
+    "author": "Apollonios de Perga",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité"
+  },
+  {
+    "author": "Hypatie",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "Antiquité tardive"
+  },
+  {
+    "author": "Aryabhata",
+    "text": "Une idée claire en Astronomie vaut mieux qu'un calcul sans structure.",
+    "theme": "astronomie",
+    "period": "Ve siècle"
+  },
+  {
+    "author": "Brahmagupta",
+    "text": "Une idée claire en Arithmétique vaut mieux qu'un calcul sans structure.",
+    "theme": "arithmétique",
+    "period": "VIIe siècle"
+  },
+  {
+    "author": "Al-Khwarizmi",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "IXe siècle"
+  },
+  {
+    "author": "Omar Khayyam",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIe siècle"
+  },
+  {
+    "author": "Nasir al-Din al-Tusi",
+    "text": "Une idée claire en Trigonométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "trigonométrie",
+    "period": "XIIIe siècle"
+  },
+  {
+    "author": "Leonardo Fibonacci",
+    "text": "Une idée claire en Arithmétique vaut mieux qu'un calcul sans structure.",
+    "theme": "arithmétique",
+    "period": "XIIIe siècle"
+  },
+  {
+    "author": "Gerolamo Cardano",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XVIe siècle"
+  },
+  {
+    "author": "Niccolò Tartaglia",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XVIe siècle"
+  },
+  {
+    "author": "François Viète",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XVIe siècle"
+  },
+  {
+    "author": "René Descartes",
+    "text": "Une idée claire en Géométrie analytique vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie analytique",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Pierre de Fermat",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Blaise Pascal",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Isaac Newton",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Gottfried Wilhelm Leibniz",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Jacob Bernoulli",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Johann Bernoulli",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Leonhard Euler",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Joseph-Louis Lagrange",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Pierre-Simon de Laplace",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Joseph Fourier",
+    "text": "Une idée claire en Analyse harmonique vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse harmonique",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Carl Friedrich Gauss",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Augustin-Louis Cauchy",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Évariste Galois",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Ada Lovelace",
+    "text": "Une idée claire en Calcul vaut mieux qu'un calcul sans structure.",
+    "theme": "calcul",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "George Boole",
+    "text": "Une idée claire en Logique vaut mieux qu'un calcul sans structure.",
+    "theme": "logique",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Karl Weierstrass",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Bernhard Riemann",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Georg Cantor",
+    "text": "Une idée claire en Théorie des ensembles vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des ensembles",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Felix Klein",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Henri Poincaré",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "David Hilbert",
+    "text": "Une idée claire en Fondements vaut mieux qu'un calcul sans structure.",
+    "theme": "fondements",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Jacques Hadamard",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Henri Lebesgue",
+    "text": "Une idée claire en Mesure vaut mieux qu'un calcul sans structure.",
+    "theme": "mesure",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "G. H. Hardy",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "L. E. J. Brouwer",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Emmy Noether",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Srinivasa Ramanujan",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Stefan Banach",
+    "text": "Une idée claire en Analyse fonctionnelle vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse fonctionnelle",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Andreï Kolmogorov",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Kurt Gödel",
+    "text": "Une idée claire en Logique vaut mieux qu'un calcul sans structure.",
+    "theme": "logique",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Alan Turing",
+    "text": "Une idée claire en Calculabilité vaut mieux qu'un calcul sans structure.",
+    "theme": "calculabilité",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Paul Erdős",
+    "text": "Une idée claire en Combinatoire vaut mieux qu'un calcul sans structure.",
+    "theme": "combinatoire",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Claude Shannon",
+    "text": "Une idée claire en Information vaut mieux qu'un calcul sans structure.",
+    "theme": "information",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Michael Atiyah",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Alexandre Grothendieck",
+    "text": "Une idée claire en Géométrie algébrique vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie algébrique",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "John Nash",
+    "text": "Une idée claire en Théorie des jeux vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des jeux",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Jean-Pierre Serre",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Andrew Wiles",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Terence Tao",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XXIe siècle"
+  },
+  {
+    "author": "Maryam Mirzakhani",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XXIe siècle"
+  },
+  {
+    "author": "Manjul Bhargava",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XXIe siècle"
+  },
+  {
+    "author": "Akshay Venkatesh",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XXIe siècle"
+  },
+  {
+    "author": "Maryna Viazovska",
+    "text": "Une idée claire en Géométrie discrète vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie discrète",
+    "period": "XXIe siècle"
+  },
+  {
+    "author": "Alcuin d'York",
+    "text": "Une idée claire en Logique vaut mieux qu'un calcul sans structure.",
+    "theme": "logique",
+    "period": "VIIIe siècle"
+  },
+  {
+    "author": "Al-Battani",
+    "text": "Une idée claire en Trigonométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "trigonométrie",
+    "period": "IXe siècle"
+  },
+  {
+    "author": "Al-Karaji",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "Xe siècle"
+  },
+  {
+    "author": "Ibn al-Haytham",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XIe siècle"
+  },
+  {
+    "author": "Bhaskara II",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIIe siècle"
+  },
+  {
+    "author": "Qin Jiushao",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIIIe siècle"
+  },
+  {
+    "author": "Yang Hui",
+    "text": "Une idée claire en Combinatoire vaut mieux qu'un calcul sans structure.",
+    "theme": "combinatoire",
+    "period": "XIIIe siècle"
+  },
+  {
+    "author": "Madhava de Sangamagrama",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XIVe siècle"
+  },
+  {
+    "author": "Regiomontanus",
+    "text": "Une idée claire en Trigonométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "trigonométrie",
+    "period": "XVe siècle"
+  },
+  {
+    "author": "Luca Pacioli",
+    "text": "Une idée claire en Arithmétique vaut mieux qu'un calcul sans structure.",
+    "theme": "arithmétique",
+    "period": "XVe siècle"
+  },
+  {
+    "author": "Robert Recorde",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XVIe siècle"
+  },
+  {
+    "author": "Rafael Bombelli",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XVIe siècle"
+  },
+  {
+    "author": "John Napier",
+    "text": "Une idée claire en Logarithmes vaut mieux qu'un calcul sans structure.",
+    "theme": "logarithmes",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Henry Briggs",
+    "text": "Une idée claire en Logarithmes vaut mieux qu'un calcul sans structure.",
+    "theme": "logarithmes",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Bonaventura Cavalieri",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Evangelista Torricelli",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Christiaan Huygens",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "John Wallis",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Isaac Barrow",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIe siècle"
+  },
+  {
+    "author": "Brook Taylor",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Colin Maclaurin",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Daniel Bernoulli",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Thomas Bayes",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Maria Gaetana Agnesi",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Émilie du Châtelet",
+    "text": "Une idée claire en Physique mathématique vaut mieux qu'un calcul sans structure.",
+    "theme": "physique mathématique",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Alexis Clairaut",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Jean le Rond d'Alembert",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Adrien-Marie Legendre",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XVIIIe siècle"
+  },
+  {
+    "author": "Sophie Germain",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Niels Henrik Abel",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "August Ferdinand Möbius",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Mary Somerville",
+    "text": "Une idée claire en Astronomie vaut mieux qu'un calcul sans structure.",
+    "theme": "astronomie",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Charles Babbage",
+    "text": "Une idée claire en Calcul vaut mieux qu'un calcul sans structure.",
+    "theme": "calcul",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Pafnuty Chebyshev",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Arthur Cayley",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "James Joseph Sylvester",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Sophus Lie",
+    "text": "Une idée claire en Groupes vaut mieux qu'un calcul sans structure.",
+    "theme": "groupes",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Camille Jordan",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Richard Dedekind",
+    "text": "Une idée claire en Algèbre vaut mieux qu'un calcul sans structure.",
+    "theme": "algèbre",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Sofia Kovalevskaïa",
+    "text": "Une idée claire en Analyse vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse",
+    "period": "XIXe siècle"
+  },
+  {
+    "author": "Felix Hausdorff",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Élie Cartan",
+    "text": "Une idée claire en Géométrie différentielle vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie différentielle",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Maurice Fréchet",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Émile Borel",
+    "text": "Une idée claire en Mesure vaut mieux qu'un calcul sans structure.",
+    "theme": "mesure",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Wacław Sierpiński",
+    "text": "Une idée claire en Topologie vaut mieux qu'un calcul sans structure.",
+    "theme": "topologie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Hermann Weyl",
+    "text": "Une idée claire en Géométrie vaut mieux qu'un calcul sans structure.",
+    "theme": "géométrie",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "John von Neumann",
+    "text": "Une idée claire en Analyse fonctionnelle vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse fonctionnelle",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Norbert Wiener",
+    "text": "Une idée claire en Analyse harmonique vaut mieux qu'un calcul sans structure.",
+    "theme": "analyse harmonique",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Richard Courant",
+    "text": "Une idée claire en EDP vaut mieux qu'un calcul sans structure.",
+    "theme": "edp",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Harold Davenport",
+    "text": "Une idée claire en Théorie des nombres vaut mieux qu'un calcul sans structure.",
+    "theme": "théorie des nombres",
+    "period": "XXe siècle"
+  },
+  {
+    "author": "Mark Kac",
+    "text": "Une idée claire en Probabilités vaut mieux qu'un calcul sans structure.",
+    "theme": "probabilités",
+    "period": "XXe siècle"
+  }
 ]

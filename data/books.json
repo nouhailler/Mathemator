@@ -1,6 +1,842 @@
 [
-  {"title":"Éléments","author":"Euclide","category":"Ouvrage historique","level":"Référence","description":"Géométrie antique et axiomatisation."},
-  {"title":"Disquisitiones Arithmeticae","author":"Gauss","category":"Ouvrage historique","level":"Avancé","description":"Texte fondateur de la théorie moderne des nombres."},
-  {"title":"Algebra","author":"Serge Lang","category":"Référence universitaire","level":"Avancé","description":"Référence dense en algèbre."},
-  {"title":"Visual Complex Analysis","author":"Tristan Needham","category":"Vulgarisation avancée","level":"Licence","description":"Lecture géométrique de l'analyse complexe."}
+  {
+    "title": "Éléments",
+    "author": "Euclide",
+    "category": "Ouvrage historique",
+    "level": "Référence",
+    "description": "Géométrie antique et axiomatisation."
+  },
+  {
+    "title": "Disquisitiones Arithmeticae",
+    "author": "Gauss",
+    "category": "Ouvrage historique",
+    "level": "Avancé",
+    "description": "Texte fondateur de la théorie moderne des nombres."
+  },
+  {
+    "title": "Algebra",
+    "author": "Serge Lang",
+    "category": "Référence universitaire",
+    "level": "Avancé",
+    "description": "Référence dense en algèbre."
+  },
+  {
+    "title": "Visual Complex Analysis",
+    "author": "Tristan Needham",
+    "category": "Vulgarisation avancée",
+    "level": "Licence",
+    "description": "Lecture géométrique de l'analyse complexe."
+  },
+  {
+    "title": "Topology",
+    "author": "James Munkres",
+    "category": "Référence universitaire",
+    "level": "Licence",
+    "description": "Introduction classique à la topologie générale."
+  },
+  {
+    "title": "Principles of Mathematical Analysis",
+    "author": "Walter Rudin",
+    "category": "Référence universitaire",
+    "level": "Licence",
+    "description": "Analyse réelle rigoureuse et concise."
+  },
+  {
+    "title": "Concrete Mathematics",
+    "author": "Graham, Knuth, Patashnik",
+    "category": "Cours",
+    "level": "Licence",
+    "description": "Techniques discrètes pour informatique et mathématiques."
+  },
+  {
+    "title": "The Princeton Companion to Mathematics",
+    "author": "Timothy Gowers",
+    "category": "Encyclopédie",
+    "level": "Tous niveaux",
+    "description": "Panorama large des idées mathématiques modernes."
+  },
+  {
+    "title": "Parcours de Algèbre",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Algèbre."
+  },
+  {
+    "title": "Parcours de Algèbre",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Algèbre."
+  },
+  {
+    "title": "Parcours de Algèbre",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Algèbre."
+  },
+  {
+    "title": "Parcours de Algèbre",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Algèbre."
+  },
+  {
+    "title": "Parcours de Analyse",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse."
+  },
+  {
+    "title": "Parcours de Analyse",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse."
+  },
+  {
+    "title": "Parcours de Analyse",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse."
+  },
+  {
+    "title": "Parcours de Analyse",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse."
+  },
+  {
+    "title": "Parcours de Analyse complexe",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse complexe."
+  },
+  {
+    "title": "Parcours de Analyse complexe",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse complexe."
+  },
+  {
+    "title": "Parcours de Analyse complexe",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse complexe."
+  },
+  {
+    "title": "Parcours de Analyse complexe",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse complexe."
+  },
+  {
+    "title": "Parcours de Analyse fonctionnelle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse fonctionnelle."
+  },
+  {
+    "title": "Parcours de Analyse fonctionnelle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse fonctionnelle."
+  },
+  {
+    "title": "Parcours de Analyse fonctionnelle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse fonctionnelle."
+  },
+  {
+    "title": "Parcours de Analyse fonctionnelle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse fonctionnelle."
+  },
+  {
+    "title": "Parcours de Analyse harmonique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse harmonique."
+  },
+  {
+    "title": "Parcours de Analyse harmonique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse harmonique."
+  },
+  {
+    "title": "Parcours de Analyse harmonique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse harmonique."
+  },
+  {
+    "title": "Parcours de Analyse harmonique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Analyse harmonique."
+  },
+  {
+    "title": "Parcours de Arithmétique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Arithmétique."
+  },
+  {
+    "title": "Parcours de Arithmétique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Arithmétique."
+  },
+  {
+    "title": "Parcours de Arithmétique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Arithmétique."
+  },
+  {
+    "title": "Parcours de Arithmétique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Arithmétique."
+  },
+  {
+    "title": "Parcours de Calcul numérique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul numérique."
+  },
+  {
+    "title": "Parcours de Calcul numérique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul numérique."
+  },
+  {
+    "title": "Parcours de Calcul numérique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul numérique."
+  },
+  {
+    "title": "Parcours de Calcul numérique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul numérique."
+  },
+  {
+    "title": "Parcours de Calcul stochastique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul stochastique."
+  },
+  {
+    "title": "Parcours de Calcul stochastique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul stochastique."
+  },
+  {
+    "title": "Parcours de Calcul stochastique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul stochastique."
+  },
+  {
+    "title": "Parcours de Calcul stochastique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Calcul stochastique."
+  },
+  {
+    "title": "Parcours de Catégories",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Catégories."
+  },
+  {
+    "title": "Parcours de Catégories",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Catégories."
+  },
+  {
+    "title": "Parcours de Catégories",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Catégories."
+  },
+  {
+    "title": "Parcours de Catégories",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Catégories."
+  },
+  {
+    "title": "Parcours de Combinatoire",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Combinatoire."
+  },
+  {
+    "title": "Parcours de Combinatoire",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Combinatoire."
+  },
+  {
+    "title": "Parcours de Combinatoire",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Combinatoire."
+  },
+  {
+    "title": "Parcours de Combinatoire",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Combinatoire."
+  },
+  {
+    "title": "Parcours de EDP",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en EDP."
+  },
+  {
+    "title": "Parcours de EDP",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en EDP."
+  },
+  {
+    "title": "Parcours de EDP",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en EDP."
+  },
+  {
+    "title": "Parcours de EDP",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en EDP."
+  },
+  {
+    "title": "Parcours de Fondements",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Fondements."
+  },
+  {
+    "title": "Parcours de Fondements",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Fondements."
+  },
+  {
+    "title": "Parcours de Fondements",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Fondements."
+  },
+  {
+    "title": "Parcours de Fondements",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Fondements."
+  },
+  {
+    "title": "Parcours de Géométrie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie."
+  },
+  {
+    "title": "Parcours de Géométrie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie."
+  },
+  {
+    "title": "Parcours de Géométrie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie."
+  },
+  {
+    "title": "Parcours de Géométrie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie."
+  },
+  {
+    "title": "Parcours de Géométrie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie algébrique."
+  },
+  {
+    "title": "Parcours de Géométrie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie algébrique."
+  },
+  {
+    "title": "Parcours de Géométrie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie algébrique."
+  },
+  {
+    "title": "Parcours de Géométrie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie algébrique."
+  },
+  {
+    "title": "Parcours de Géométrie différentielle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie différentielle."
+  },
+  {
+    "title": "Parcours de Géométrie différentielle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie différentielle."
+  },
+  {
+    "title": "Parcours de Géométrie différentielle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie différentielle."
+  },
+  {
+    "title": "Parcours de Géométrie différentielle",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Géométrie différentielle."
+  },
+  {
+    "title": "Parcours de Graphes",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Graphes."
+  },
+  {
+    "title": "Parcours de Graphes",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Graphes."
+  },
+  {
+    "title": "Parcours de Graphes",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Graphes."
+  },
+  {
+    "title": "Parcours de Graphes",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Graphes."
+  },
+  {
+    "title": "Parcours de Information",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Information."
+  },
+  {
+    "title": "Parcours de Information",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Information."
+  },
+  {
+    "title": "Parcours de Information",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Information."
+  },
+  {
+    "title": "Parcours de Information",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Information."
+  },
+  {
+    "title": "Parcours de Logique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Logique."
+  },
+  {
+    "title": "Parcours de Logique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Logique."
+  },
+  {
+    "title": "Parcours de Logique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Logique."
+  },
+  {
+    "title": "Parcours de Logique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Logique."
+  },
+  {
+    "title": "Parcours de Mesure",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Mesure."
+  },
+  {
+    "title": "Parcours de Mesure",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Mesure."
+  },
+  {
+    "title": "Parcours de Mesure",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Mesure."
+  },
+  {
+    "title": "Parcours de Mesure",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Mesure."
+  },
+  {
+    "title": "Parcours de Optimisation",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Optimisation."
+  },
+  {
+    "title": "Parcours de Optimisation",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Optimisation."
+  },
+  {
+    "title": "Parcours de Optimisation",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Optimisation."
+  },
+  {
+    "title": "Parcours de Optimisation",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Optimisation."
+  },
+  {
+    "title": "Parcours de Probabilités",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Probabilités."
+  },
+  {
+    "title": "Parcours de Probabilités",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Probabilités."
+  },
+  {
+    "title": "Parcours de Probabilités",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Probabilités."
+  },
+  {
+    "title": "Parcours de Probabilités",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Probabilités."
+  },
+  {
+    "title": "Parcours de Statistiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Statistiques."
+  },
+  {
+    "title": "Parcours de Statistiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Statistiques."
+  },
+  {
+    "title": "Parcours de Statistiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Statistiques."
+  },
+  {
+    "title": "Parcours de Statistiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Statistiques."
+  },
+  {
+    "title": "Parcours de Systèmes dynamiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Systèmes dynamiques."
+  },
+  {
+    "title": "Parcours de Systèmes dynamiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Systèmes dynamiques."
+  },
+  {
+    "title": "Parcours de Systèmes dynamiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Systèmes dynamiques."
+  },
+  {
+    "title": "Parcours de Systèmes dynamiques",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Systèmes dynamiques."
+  },
+  {
+    "title": "Parcours de Théorie des ensembles",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des ensembles."
+  },
+  {
+    "title": "Parcours de Théorie des ensembles",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des ensembles."
+  },
+  {
+    "title": "Parcours de Théorie des ensembles",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des ensembles."
+  },
+  {
+    "title": "Parcours de Théorie des ensembles",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des ensembles."
+  },
+  {
+    "title": "Parcours de Théorie des jeux",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des jeux."
+  },
+  {
+    "title": "Parcours de Théorie des jeux",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des jeux."
+  },
+  {
+    "title": "Parcours de Théorie des jeux",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des jeux."
+  },
+  {
+    "title": "Parcours de Théorie des jeux",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des jeux."
+  },
+  {
+    "title": "Parcours de Théorie des nombres",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des nombres."
+  },
+  {
+    "title": "Parcours de Théorie des nombres",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des nombres."
+  },
+  {
+    "title": "Parcours de Théorie des nombres",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des nombres."
+  },
+  {
+    "title": "Parcours de Théorie des nombres",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Théorie des nombres."
+  },
+  {
+    "title": "Parcours de Topologie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie."
+  },
+  {
+    "title": "Parcours de Topologie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie."
+  },
+  {
+    "title": "Parcours de Topologie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie."
+  },
+  {
+    "title": "Parcours de Topologie",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie."
+  },
+  {
+    "title": "Parcours de Topologie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Découverte",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie algébrique."
+  },
+  {
+    "title": "Parcours de Topologie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Licence",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie algébrique."
+  },
+  {
+    "title": "Parcours de Topologie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Master",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie algébrique."
+  },
+  {
+    "title": "Parcours de Topologie algébrique",
+    "author": "Collectif",
+    "category": "Guide thématique",
+    "level": "Avancé",
+    "description": "Sélection de chapitres, problèmes et repères historiques pour progresser en Topologie algébrique."
+  }
 ]

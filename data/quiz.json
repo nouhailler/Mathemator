@@ -1,5 +1,1922 @@
 [
-  {"question":"Quel concept généralise la notion de symétrie ?","options":["Groupe","Limite","Intégrale"],"correct":0,"mode":"Libre"},
-  {"question":"Quel objet est non orientable ?","options":["Ruban de Möbius","Cube","Tore"],"correct":0,"mode":"Défi quotidien"},
-  {"question":"La fonction zêta est centrale pour quelle hypothèse ?","options":["Riemann","Goldbach","P vs NP"],"correct":0,"mode":"Chronométré"}
+  {
+    "id": "quiz-001",
+    "question": "Quel outil donne quotient et reste ?",
+    "options": [
+      "Division euclidienne",
+      "Intégrale",
+      "Homotopie"
+    ],
+    "correct": 0,
+    "explanation": "La division euclidienne écrit a=bq+r avec un reste contrôlé.",
+    "mode": "Libre",
+    "domain": "Arithmétique",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-002",
+    "question": "Que mesure le pgcd ?",
+    "options": [
+      "Le plus grand diviseur commun",
+      "La moyenne",
+      "Une aire"
+    ],
+    "correct": 0,
+    "explanation": "Le pgcd capture le plus grand diviseur partagé par deux entiers.",
+    "mode": "Chronométré",
+    "domain": "Arithmétique",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-003",
+    "question": "Quel outil donne quotient et reste ?",
+    "options": [
+      "Division euclidienne",
+      "Intégrale",
+      "Homotopie"
+    ],
+    "correct": 0,
+    "explanation": "La division euclidienne écrit a=bq+r avec un reste contrôlé.",
+    "mode": "Championnat",
+    "domain": "Arithmétique",
+    "difficulty": "Difficile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-004",
+    "question": "Que mesure le pgcd ?",
+    "options": [
+      "Le plus grand diviseur commun",
+      "La moyenne",
+      "Une aire"
+    ],
+    "correct": 0,
+    "explanation": "Le pgcd capture le plus grand diviseur partagé par deux entiers.",
+    "mode": "Défis quotidiens",
+    "domain": "Arithmétique",
+    "difficulty": "Expert",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-005",
+    "question": "Quel outil donne quotient et reste ?",
+    "options": [
+      "Division euclidienne",
+      "Intégrale",
+      "Homotopie"
+    ],
+    "correct": 0,
+    "explanation": "La division euclidienne écrit a=bq+r avec un reste contrôlé.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Arithmétique",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-006",
+    "question": "Que mesure le pgcd ?",
+    "options": [
+      "Le plus grand diviseur commun",
+      "La moyenne",
+      "Une aire"
+    ],
+    "correct": 0,
+    "explanation": "Le pgcd capture le plus grand diviseur partagé par deux entiers.",
+    "mode": "Libre",
+    "domain": "Arithmétique",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-007",
+    "question": "Quel concept généralise la symétrie ?",
+    "options": [
+      "Groupe",
+      "Limite",
+      "Intégrale"
+    ],
+    "correct": 0,
+    "explanation": "Un groupe formalise des transformations composables avec inverse.",
+    "mode": "Chronométré",
+    "domain": "Algèbre",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-008",
+    "question": "Une matrice inversible a un déterminant...",
+    "options": [
+      "non nul",
+      "toujours nul",
+      "négatif"
+    ],
+    "correct": 0,
+    "explanation": "Le déterminant non nul caractérise l inversibilité en dimension finie.",
+    "mode": "Championnat",
+    "domain": "Algèbre",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-009",
+    "question": "Quel concept généralise la symétrie ?",
+    "options": [
+      "Groupe",
+      "Limite",
+      "Intégrale"
+    ],
+    "correct": 0,
+    "explanation": "Un groupe formalise des transformations composables avec inverse.",
+    "mode": "Défis quotidiens",
+    "domain": "Algèbre",
+    "difficulty": "Expert",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-010",
+    "question": "Une matrice inversible a un déterminant...",
+    "options": [
+      "non nul",
+      "toujours nul",
+      "négatif"
+    ],
+    "correct": 0,
+    "explanation": "Le déterminant non nul caractérise l inversibilité en dimension finie.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Algèbre",
+    "difficulty": "Facile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-011",
+    "question": "Quel concept généralise la symétrie ?",
+    "options": [
+      "Groupe",
+      "Limite",
+      "Intégrale"
+    ],
+    "correct": 0,
+    "explanation": "Un groupe formalise des transformations composables avec inverse.",
+    "mode": "Libre",
+    "domain": "Algèbre",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-012",
+    "question": "Une matrice inversible a un déterminant...",
+    "options": [
+      "non nul",
+      "toujours nul",
+      "négatif"
+    ],
+    "correct": 0,
+    "explanation": "Le déterminant non nul caractérise l inversibilité en dimension finie.",
+    "mode": "Chronométré",
+    "domain": "Algèbre",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-013",
+    "question": "Dans un triangle rectangle, quel théorème relie les côtés ?",
+    "options": [
+      "Pythagore",
+      "Bayes",
+      "Noether"
+    ],
+    "correct": 0,
+    "explanation": "Le théorème de Pythagore relie hypoténuse et côtés de l angle droit.",
+    "mode": "Championnat",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-014",
+    "question": "Deux triangles de mêmes angles sont...",
+    "options": [
+      "semblables",
+      "premiers",
+      "ouverts"
+    ],
+    "correct": 0,
+    "explanation": "L égalité des angles donne une similitude de triangles.",
+    "mode": "Défis quotidiens",
+    "domain": "Géométrie",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-015",
+    "question": "Dans un triangle rectangle, quel théorème relie les côtés ?",
+    "options": [
+      "Pythagore",
+      "Bayes",
+      "Noether"
+    ],
+    "correct": 0,
+    "explanation": "Le théorème de Pythagore relie hypoténuse et côtés de l angle droit.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Géométrie",
+    "difficulty": "Facile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-016",
+    "question": "Deux triangles de mêmes angles sont...",
+    "options": [
+      "semblables",
+      "premiers",
+      "ouverts"
+    ],
+    "correct": 0,
+    "explanation": "L égalité des angles donne une similitude de triangles.",
+    "mode": "Libre",
+    "domain": "Géométrie",
+    "difficulty": "Moyen",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-017",
+    "question": "Dans un triangle rectangle, quel théorème relie les côtés ?",
+    "options": [
+      "Pythagore",
+      "Bayes",
+      "Noether"
+    ],
+    "correct": 0,
+    "explanation": "Le théorème de Pythagore relie hypoténuse et côtés de l angle droit.",
+    "mode": "Chronométré",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-018",
+    "question": "Deux triangles de mêmes angles sont...",
+    "options": [
+      "semblables",
+      "premiers",
+      "ouverts"
+    ],
+    "correct": 0,
+    "explanation": "L égalité des angles donne une similitude de triangles.",
+    "mode": "Championnat",
+    "domain": "Géométrie",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-019",
+    "question": "La dérivée mesure principalement...",
+    "options": [
+      "un taux de variation",
+      "un cardinal",
+      "une couleur"
+    ],
+    "correct": 0,
+    "explanation": "La dérivée décrit la variation locale d une fonction.",
+    "mode": "Défis quotidiens",
+    "domain": "Analyse",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-020",
+    "question": "Une suite convergente possède...",
+    "options": [
+      "une limite",
+      "un diamètre",
+      "un genre"
+    ],
+    "correct": 0,
+    "explanation": "La convergence signifie que les termes se rapprochent d une limite.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Analyse",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-021",
+    "question": "La dérivée mesure principalement...",
+    "options": [
+      "un taux de variation",
+      "un cardinal",
+      "une couleur"
+    ],
+    "correct": 0,
+    "explanation": "La dérivée décrit la variation locale d une fonction.",
+    "mode": "Libre",
+    "domain": "Analyse",
+    "difficulty": "Moyen",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-022",
+    "question": "Une suite convergente possède...",
+    "options": [
+      "une limite",
+      "un diamètre",
+      "un genre"
+    ],
+    "correct": 0,
+    "explanation": "La convergence signifie que les termes se rapprochent d une limite.",
+    "mode": "Chronométré",
+    "domain": "Analyse",
+    "difficulty": "Difficile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-023",
+    "question": "La dérivée mesure principalement...",
+    "options": [
+      "un taux de variation",
+      "un cardinal",
+      "une couleur"
+    ],
+    "correct": 0,
+    "explanation": "La dérivée décrit la variation locale d une fonction.",
+    "mode": "Championnat",
+    "domain": "Analyse",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-024",
+    "question": "Une suite convergente possède...",
+    "options": [
+      "une limite",
+      "un diamètre",
+      "un genre"
+    ],
+    "correct": 0,
+    "explanation": "La convergence signifie que les termes se rapprochent d une limite.",
+    "mode": "Défis quotidiens",
+    "domain": "Analyse",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-025",
+    "question": "Une réunion quelconque d ouverts est...",
+    "options": [
+      "ouverte",
+      "fermée seulement",
+      "vide"
+    ],
+    "correct": 0,
+    "explanation": "Les ouverts sont stables par réunion arbitraire.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Topologie",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-026",
+    "question": "Un homéomorphisme préserve...",
+    "options": [
+      "la structure topologique",
+      "la longueur exacte",
+      "la couleur"
+    ],
+    "correct": 0,
+    "explanation": "Il préserve les propriétés topologiques par continuité bicontinue.",
+    "mode": "Libre",
+    "domain": "Topologie",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-027",
+    "question": "Une réunion quelconque d ouverts est...",
+    "options": [
+      "ouverte",
+      "fermée seulement",
+      "vide"
+    ],
+    "correct": 0,
+    "explanation": "Les ouverts sont stables par réunion arbitraire.",
+    "mode": "Chronométré",
+    "domain": "Topologie",
+    "difficulty": "Difficile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-028",
+    "question": "Un homéomorphisme préserve...",
+    "options": [
+      "la structure topologique",
+      "la longueur exacte",
+      "la couleur"
+    ],
+    "correct": 0,
+    "explanation": "Il préserve les propriétés topologiques par continuité bicontinue.",
+    "mode": "Championnat",
+    "domain": "Topologie",
+    "difficulty": "Expert",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-029",
+    "question": "Une réunion quelconque d ouverts est...",
+    "options": [
+      "ouverte",
+      "fermée seulement",
+      "vide"
+    ],
+    "correct": 0,
+    "explanation": "Les ouverts sont stables par réunion arbitraire.",
+    "mode": "Défis quotidiens",
+    "domain": "Topologie",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-030",
+    "question": "Un homéomorphisme préserve...",
+    "options": [
+      "la structure topologique",
+      "la longueur exacte",
+      "la couleur"
+    ],
+    "correct": 0,
+    "explanation": "Il préserve les propriétés topologiques par continuité bicontinue.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Topologie",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-031",
+    "question": "La contraposée de P⇒Q est...",
+    "options": [
+      "non Q⇒non P",
+      "Q⇒P",
+      "P et Q"
+    ],
+    "correct": 0,
+    "explanation": "Une implication et sa contraposée sont équivalentes.",
+    "mode": "Libre",
+    "domain": "Logique",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-032",
+    "question": "Un quantificateur universel signifie...",
+    "options": [
+      "pour tout",
+      "il existe",
+      "peut-être"
+    ],
+    "correct": 0,
+    "explanation": "Le symbole universel affirme une propriété pour tous les cas.",
+    "mode": "Chronométré",
+    "domain": "Logique",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-033",
+    "question": "La contraposée de P⇒Q est...",
+    "options": [
+      "non Q⇒non P",
+      "Q⇒P",
+      "P et Q"
+    ],
+    "correct": 0,
+    "explanation": "Une implication et sa contraposée sont équivalentes.",
+    "mode": "Championnat",
+    "domain": "Logique",
+    "difficulty": "Expert",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-034",
+    "question": "Un quantificateur universel signifie...",
+    "options": [
+      "pour tout",
+      "il existe",
+      "peut-être"
+    ],
+    "correct": 0,
+    "explanation": "Le symbole universel affirme une propriété pour tous les cas.",
+    "mode": "Défis quotidiens",
+    "domain": "Logique",
+    "difficulty": "Facile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-035",
+    "question": "La contraposée de P⇒Q est...",
+    "options": [
+      "non Q⇒non P",
+      "Q⇒P",
+      "P et Q"
+    ],
+    "correct": 0,
+    "explanation": "Une implication et sa contraposée sont équivalentes.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Logique",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-036",
+    "question": "Un quantificateur universel signifie...",
+    "options": [
+      "pour tout",
+      "il existe",
+      "peut-être"
+    ],
+    "correct": 0,
+    "explanation": "Le symbole universel affirme une propriété pour tous les cas.",
+    "mode": "Libre",
+    "domain": "Logique",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-037",
+    "question": "La fonction zêta est centrale pour quelle hypothèse ?",
+    "options": [
+      "Riemann",
+      "Goldbach",
+      "P vs NP"
+    ],
+    "correct": 0,
+    "explanation": "L hypothèse de Riemann concerne les zéros de la fonction zêta.",
+    "mode": "Chronométré",
+    "domain": "Théorie des nombres",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-038",
+    "question": "Deux nombres premiers entre eux ont un pgcd égal à...",
+    "options": [
+      "1",
+      "0",
+      "leur somme"
+    ],
+    "correct": 0,
+    "explanation": "Être premiers entre eux signifie avoir 1 comme seul diviseur commun positif.",
+    "mode": "Championnat",
+    "domain": "Théorie des nombres",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-039",
+    "question": "La fonction zêta est centrale pour quelle hypothèse ?",
+    "options": [
+      "Riemann",
+      "Goldbach",
+      "P vs NP"
+    ],
+    "correct": 0,
+    "explanation": "L hypothèse de Riemann concerne les zéros de la fonction zêta.",
+    "mode": "Défis quotidiens",
+    "domain": "Théorie des nombres",
+    "difficulty": "Facile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-040",
+    "question": "Deux nombres premiers entre eux ont un pgcd égal à...",
+    "options": [
+      "1",
+      "0",
+      "leur somme"
+    ],
+    "correct": 0,
+    "explanation": "Être premiers entre eux signifie avoir 1 comme seul diviseur commun positif.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Théorie des nombres",
+    "difficulty": "Moyen",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-041",
+    "question": "La fonction zêta est centrale pour quelle hypothèse ?",
+    "options": [
+      "Riemann",
+      "Goldbach",
+      "P vs NP"
+    ],
+    "correct": 0,
+    "explanation": "L hypothèse de Riemann concerne les zéros de la fonction zêta.",
+    "mode": "Libre",
+    "domain": "Théorie des nombres",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-042",
+    "question": "Deux nombres premiers entre eux ont un pgcd égal à...",
+    "options": [
+      "1",
+      "0",
+      "leur somme"
+    ],
+    "correct": 0,
+    "explanation": "Être premiers entre eux signifie avoir 1 comme seul diviseur commun positif.",
+    "mode": "Chronométré",
+    "domain": "Théorie des nombres",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-043",
+    "question": "La somme des degrés vaut...",
+    "options": [
+      "deux fois le nombre d arêtes",
+      "le nombre de sommets",
+      "toujours zéro"
+    ],
+    "correct": 0,
+    "explanation": "Chaque arête contribue à deux degrés.",
+    "mode": "Championnat",
+    "domain": "Théorie des graphes",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-044",
+    "question": "Un chemin eulérien utilise...",
+    "options": [
+      "chaque arête une fois",
+      "chaque sommet deux fois",
+      "aucune arête"
+    ],
+    "correct": 0,
+    "explanation": "Le critère eulérien porte sur le passage par toutes les arêtes.",
+    "mode": "Défis quotidiens",
+    "domain": "Théorie des graphes",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-045",
+    "question": "La somme des degrés vaut...",
+    "options": [
+      "deux fois le nombre d arêtes",
+      "le nombre de sommets",
+      "toujours zéro"
+    ],
+    "correct": 0,
+    "explanation": "Chaque arête contribue à deux degrés.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Théorie des graphes",
+    "difficulty": "Moyen",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-046",
+    "question": "Un chemin eulérien utilise...",
+    "options": [
+      "chaque arête une fois",
+      "chaque sommet deux fois",
+      "aucune arête"
+    ],
+    "correct": 0,
+    "explanation": "Le critère eulérien porte sur le passage par toutes les arêtes.",
+    "mode": "Libre",
+    "domain": "Théorie des graphes",
+    "difficulty": "Difficile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-047",
+    "question": "La somme des degrés vaut...",
+    "options": [
+      "deux fois le nombre d arêtes",
+      "le nombre de sommets",
+      "toujours zéro"
+    ],
+    "correct": 0,
+    "explanation": "Chaque arête contribue à deux degrés.",
+    "mode": "Chronométré",
+    "domain": "Théorie des graphes",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-048",
+    "question": "Un chemin eulérien utilise...",
+    "options": [
+      "chaque arête une fois",
+      "chaque sommet deux fois",
+      "aucune arête"
+    ],
+    "correct": 0,
+    "explanation": "Le critère eulérien porte sur le passage par toutes les arêtes.",
+    "mode": "Championnat",
+    "domain": "Théorie des graphes",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-049",
+    "question": "La formule de Bayes sert à...",
+    "options": [
+      "inverser une probabilité conditionnelle",
+      "calculer une dérivée",
+      "factoriser un polynôme"
+    ],
+    "correct": 0,
+    "explanation": "Bayes relie P(A|B) à P(B|A).",
+    "mode": "Défis quotidiens",
+    "domain": "Probabilités",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-050",
+    "question": "Une loi binomiale modélise...",
+    "options": [
+      "des essais indépendants succès/échec",
+      "une surface",
+      "une matrice"
+    ],
+    "correct": 0,
+    "explanation": "Elle compte les succès dans n essais de Bernoulli indépendants.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Probabilités",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-051",
+    "question": "La formule de Bayes sert à...",
+    "options": [
+      "inverser une probabilité conditionnelle",
+      "calculer une dérivée",
+      "factoriser un polynôme"
+    ],
+    "correct": 0,
+    "explanation": "Bayes relie P(A|B) à P(B|A).",
+    "mode": "Libre",
+    "domain": "Probabilités",
+    "difficulty": "Difficile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-052",
+    "question": "Une loi binomiale modélise...",
+    "options": [
+      "des essais indépendants succès/échec",
+      "une surface",
+      "une matrice"
+    ],
+    "correct": 0,
+    "explanation": "Elle compte les succès dans n essais de Bernoulli indépendants.",
+    "mode": "Chronométré",
+    "domain": "Probabilités",
+    "difficulty": "Expert",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-053",
+    "question": "La formule de Bayes sert à...",
+    "options": [
+      "inverser une probabilité conditionnelle",
+      "calculer une dérivée",
+      "factoriser un polynôme"
+    ],
+    "correct": 0,
+    "explanation": "Bayes relie P(A|B) à P(B|A).",
+    "mode": "Championnat",
+    "domain": "Probabilités",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-054",
+    "question": "Une loi binomiale modélise...",
+    "options": [
+      "des essais indépendants succès/échec",
+      "une surface",
+      "une matrice"
+    ],
+    "correct": 0,
+    "explanation": "Elle compte les succès dans n essais de Bernoulli indépendants.",
+    "mode": "Défis quotidiens",
+    "domain": "Probabilités",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-055",
+    "question": "La médiane coupe une série ordonnée en...",
+    "options": [
+      "deux moitiés",
+      "trois angles",
+      "un graphe"
+    ],
+    "correct": 0,
+    "explanation": "La médiane sépare les observations en deux groupes équilibrés.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Statistiques",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-056",
+    "question": "La variance mesure...",
+    "options": [
+      "la dispersion",
+      "la divisibilité",
+      "la continuité"
+    ],
+    "correct": 0,
+    "explanation": "La variance moyenne les écarts quadratiques à la moyenne.",
+    "mode": "Libre",
+    "domain": "Statistiques",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-057",
+    "question": "La médiane coupe une série ordonnée en...",
+    "options": [
+      "deux moitiés",
+      "trois angles",
+      "un graphe"
+    ],
+    "correct": 0,
+    "explanation": "La médiane sépare les observations en deux groupes équilibrés.",
+    "mode": "Chronométré",
+    "domain": "Statistiques",
+    "difficulty": "Expert",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-058",
+    "question": "La variance mesure...",
+    "options": [
+      "la dispersion",
+      "la divisibilité",
+      "la continuité"
+    ],
+    "correct": 0,
+    "explanation": "La variance moyenne les écarts quadratiques à la moyenne.",
+    "mode": "Championnat",
+    "domain": "Statistiques",
+    "difficulty": "Facile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-059",
+    "question": "La médiane coupe une série ordonnée en...",
+    "options": [
+      "deux moitiés",
+      "trois angles",
+      "un graphe"
+    ],
+    "correct": 0,
+    "explanation": "La médiane sépare les observations en deux groupes équilibrés.",
+    "mode": "Défis quotidiens",
+    "domain": "Statistiques",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-060",
+    "question": "La variance mesure...",
+    "options": [
+      "la dispersion",
+      "la divisibilité",
+      "la continuité"
+    ],
+    "correct": 0,
+    "explanation": "La variance moyenne les écarts quadratiques à la moyenne.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Statistiques",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-061",
+    "question": "La dichotomie suppose souvent...",
+    "options": [
+      "un changement de signe",
+      "une matrice carrée",
+      "un graphe complet"
+    ],
+    "correct": 0,
+    "explanation": "Le changement de signe encadre une racine pour une fonction continue.",
+    "mode": "Libre",
+    "domain": "Calcul numérique",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-062",
+    "question": "L erreur relative compare l erreur à...",
+    "options": [
+      "la grandeur de référence",
+      "pi",
+      "un nombre premier"
+    ],
+    "correct": 0,
+    "explanation": "Elle normalise l erreur par rapport à la valeur de référence.",
+    "mode": "Chronométré",
+    "domain": "Calcul numérique",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-063",
+    "question": "La dichotomie suppose souvent...",
+    "options": [
+      "un changement de signe",
+      "une matrice carrée",
+      "un graphe complet"
+    ],
+    "correct": 0,
+    "explanation": "Le changement de signe encadre une racine pour une fonction continue.",
+    "mode": "Championnat",
+    "domain": "Calcul numérique",
+    "difficulty": "Facile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-064",
+    "question": "L erreur relative compare l erreur à...",
+    "options": [
+      "la grandeur de référence",
+      "pi",
+      "un nombre premier"
+    ],
+    "correct": 0,
+    "explanation": "Elle normalise l erreur par rapport à la valeur de référence.",
+    "mode": "Défis quotidiens",
+    "domain": "Calcul numérique",
+    "difficulty": "Moyen",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-065",
+    "question": "La dichotomie suppose souvent...",
+    "options": [
+      "un changement de signe",
+      "une matrice carrée",
+      "un graphe complet"
+    ],
+    "correct": 0,
+    "explanation": "Le changement de signe encadre une racine pour une fonction continue.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Calcul numérique",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-066",
+    "question": "L erreur relative compare l erreur à...",
+    "options": [
+      "la grandeur de référence",
+      "pi",
+      "un nombre premier"
+    ],
+    "correct": 0,
+    "explanation": "Elle normalise l erreur par rapport à la valeur de référence.",
+    "mode": "Libre",
+    "domain": "Calcul numérique",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-067",
+    "question": "Un minimum local vérifie souvent...",
+    "options": [
+      "une dérivée nulle",
+      "un pgcd nul",
+      "une face non orientable"
+    ],
+    "correct": 0,
+    "explanation": "Pour une fonction dérivable, un extremum intérieur impose f prime égale zéro.",
+    "mode": "Chronométré",
+    "domain": "Optimisation",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-068",
+    "question": "Une contrainte active est...",
+    "options": [
+      "saturée à l optimum",
+      "ignorée",
+      "toujours fausse"
+    ],
+    "correct": 0,
+    "explanation": "Elle est satisfaite avec égalité au point optimal.",
+    "mode": "Championnat",
+    "domain": "Optimisation",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-069",
+    "question": "Un minimum local vérifie souvent...",
+    "options": [
+      "une dérivée nulle",
+      "un pgcd nul",
+      "une face non orientable"
+    ],
+    "correct": 0,
+    "explanation": "Pour une fonction dérivable, un extremum intérieur impose f prime égale zéro.",
+    "mode": "Défis quotidiens",
+    "domain": "Optimisation",
+    "difficulty": "Moyen",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-070",
+    "question": "Une contrainte active est...",
+    "options": [
+      "saturée à l optimum",
+      "ignorée",
+      "toujours fausse"
+    ],
+    "correct": 0,
+    "explanation": "Elle est satisfaite avec égalité au point optimal.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Optimisation",
+    "difficulty": "Difficile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-071",
+    "question": "Un minimum local vérifie souvent...",
+    "options": [
+      "une dérivée nulle",
+      "un pgcd nul",
+      "une face non orientable"
+    ],
+    "correct": 0,
+    "explanation": "Pour une fonction dérivable, un extremum intérieur impose f prime égale zéro.",
+    "mode": "Libre",
+    "domain": "Optimisation",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-072",
+    "question": "Une contrainte active est...",
+    "options": [
+      "saturée à l optimum",
+      "ignorée",
+      "toujours fausse"
+    ],
+    "correct": 0,
+    "explanation": "Elle est satisfaite avec égalité au point optimal.",
+    "mode": "Chronométré",
+    "domain": "Optimisation",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-073",
+    "question": "Le chiffrement de César est...",
+    "options": [
+      "un décalage de lettres",
+      "une intégrale",
+      "un fractal"
+    ],
+    "correct": 0,
+    "explanation": "Il remplace chaque lettre par une lettre décalée.",
+    "mode": "Championnat",
+    "domain": "Cryptographie",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-074",
+    "question": "Une clé publique sert à...",
+    "options": [
+      "chiffrer ou vérifier",
+      "diviser seulement",
+      "mesurer une aire"
+    ],
+    "correct": 0,
+    "explanation": "La cryptographie asymétrique sépare clé publique et clé privée.",
+    "mode": "Défis quotidiens",
+    "domain": "Cryptographie",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-075",
+    "question": "Le chiffrement de César est...",
+    "options": [
+      "un décalage de lettres",
+      "une intégrale",
+      "un fractal"
+    ],
+    "correct": 0,
+    "explanation": "Il remplace chaque lettre par une lettre décalée.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Cryptographie",
+    "difficulty": "Difficile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-076",
+    "question": "Une clé publique sert à...",
+    "options": [
+      "chiffrer ou vérifier",
+      "diviser seulement",
+      "mesurer une aire"
+    ],
+    "correct": 0,
+    "explanation": "La cryptographie asymétrique sépare clé publique et clé privée.",
+    "mode": "Libre",
+    "domain": "Cryptographie",
+    "difficulty": "Expert",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-077",
+    "question": "Le chiffrement de César est...",
+    "options": [
+      "un décalage de lettres",
+      "une intégrale",
+      "un fractal"
+    ],
+    "correct": 0,
+    "explanation": "Il remplace chaque lettre par une lettre décalée.",
+    "mode": "Chronométré",
+    "domain": "Cryptographie",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-078",
+    "question": "Une clé publique sert à...",
+    "options": [
+      "chiffrer ou vérifier",
+      "diviser seulement",
+      "mesurer une aire"
+    ],
+    "correct": 0,
+    "explanation": "La cryptographie asymétrique sépare clé publique et clé privée.",
+    "mode": "Championnat",
+    "domain": "Cryptographie",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-079",
+    "question": "Une géodésique généralise...",
+    "options": [
+      "une ligne droite",
+      "un nombre premier",
+      "un histogramme"
+    ],
+    "correct": 0,
+    "explanation": "Sur une surface, elle joue le rôle de plus droit chemin local.",
+    "mode": "Défis quotidiens",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-080",
+    "question": "La courbure mesure...",
+    "options": [
+      "la variation de direction",
+      "une probabilité",
+      "un score"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie à quel point une courbe s éloigne d une droite.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-081",
+    "question": "Une géodésique généralise...",
+    "options": [
+      "une ligne droite",
+      "un nombre premier",
+      "un histogramme"
+    ],
+    "correct": 0,
+    "explanation": "Sur une surface, elle joue le rôle de plus droit chemin local.",
+    "mode": "Libre",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Expert",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-082",
+    "question": "La courbure mesure...",
+    "options": [
+      "la variation de direction",
+      "une probabilité",
+      "un score"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie à quel point une courbe s éloigne d une droite.",
+    "mode": "Chronométré",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Facile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-083",
+    "question": "Une géodésique généralise...",
+    "options": [
+      "une ligne droite",
+      "un nombre premier",
+      "un histogramme"
+    ],
+    "correct": 0,
+    "explanation": "Sur une surface, elle joue le rôle de plus droit chemin local.",
+    "mode": "Championnat",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-084",
+    "question": "La courbure mesure...",
+    "options": [
+      "la variation de direction",
+      "une probabilité",
+      "un score"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie à quel point une courbe s éloigne d une droite.",
+    "mode": "Défis quotidiens",
+    "domain": "Géométrie différentielle",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-085",
+    "question": "Une fonction holomorphe est dérivable...",
+    "options": [
+      "au sens complexe",
+      "seulement entière",
+      "jamais"
+    ],
+    "correct": 0,
+    "explanation": "La dérivabilité complexe impose une forte rigidité.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Analyse complexe",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-086",
+    "question": "Le module de z mesure...",
+    "options": [
+      "sa distance à l origine",
+      "son angle seulement",
+      "son degré"
+    ],
+    "correct": 0,
+    "explanation": "Le module est la norme du nombre complexe.",
+    "mode": "Libre",
+    "domain": "Analyse complexe",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-087",
+    "question": "Une fonction holomorphe est dérivable...",
+    "options": [
+      "au sens complexe",
+      "seulement entière",
+      "jamais"
+    ],
+    "correct": 0,
+    "explanation": "La dérivabilité complexe impose une forte rigidité.",
+    "mode": "Chronométré",
+    "domain": "Analyse complexe",
+    "difficulty": "Facile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-088",
+    "question": "Le module de z mesure...",
+    "options": [
+      "sa distance à l origine",
+      "son angle seulement",
+      "son degré"
+    ],
+    "correct": 0,
+    "explanation": "Le module est la norme du nombre complexe.",
+    "mode": "Championnat",
+    "domain": "Analyse complexe",
+    "difficulty": "Moyen",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-089",
+    "question": "Une fonction holomorphe est dérivable...",
+    "options": [
+      "au sens complexe",
+      "seulement entière",
+      "jamais"
+    ],
+    "correct": 0,
+    "explanation": "La dérivabilité complexe impose une forte rigidité.",
+    "mode": "Défis quotidiens",
+    "domain": "Analyse complexe",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-090",
+    "question": "Le module de z mesure...",
+    "options": [
+      "sa distance à l origine",
+      "son angle seulement",
+      "son degré"
+    ],
+    "correct": 0,
+    "explanation": "Le module est la norme du nombre complexe.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Analyse complexe",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-091",
+    "question": "Une catégorie contient objets et...",
+    "options": [
+      "morphismes",
+      "médianes",
+      "pixels"
+    ],
+    "correct": 0,
+    "explanation": "Les morphismes relient les objets et se composent.",
+    "mode": "Libre",
+    "domain": "Théorie des catégories",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-092",
+    "question": "Un foncteur préserve...",
+    "options": [
+      "composition et identités",
+      "les longueurs exactes",
+      "les couleurs"
+    ],
+    "correct": 0,
+    "explanation": "Un foncteur transporte la structure catégorique.",
+    "mode": "Chronométré",
+    "domain": "Théorie des catégories",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-093",
+    "question": "Une catégorie contient objets et...",
+    "options": [
+      "morphismes",
+      "médianes",
+      "pixels"
+    ],
+    "correct": 0,
+    "explanation": "Les morphismes relient les objets et se composent.",
+    "mode": "Championnat",
+    "domain": "Théorie des catégories",
+    "difficulty": "Moyen",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-094",
+    "question": "Un foncteur préserve...",
+    "options": [
+      "composition et identités",
+      "les longueurs exactes",
+      "les couleurs"
+    ],
+    "correct": 0,
+    "explanation": "Un foncteur transporte la structure catégorique.",
+    "mode": "Défis quotidiens",
+    "domain": "Théorie des catégories",
+    "difficulty": "Difficile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-095",
+    "question": "Une catégorie contient objets et...",
+    "options": [
+      "morphismes",
+      "médianes",
+      "pixels"
+    ],
+    "correct": 0,
+    "explanation": "Les morphismes relient les objets et se composent.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Théorie des catégories",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-096",
+    "question": "Un foncteur préserve...",
+    "options": [
+      "composition et identités",
+      "les longueurs exactes",
+      "les couleurs"
+    ],
+    "correct": 0,
+    "explanation": "Un foncteur transporte la structure catégorique.",
+    "mode": "Libre",
+    "domain": "Théorie des catégories",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-097",
+    "question": "Un objet autosimilaire ressemble à...",
+    "options": [
+      "ses propres parties",
+      "un entier pair",
+      "une matrice nulle"
+    ],
+    "correct": 0,
+    "explanation": "L autosimilarité répète une forme à plusieurs échelles.",
+    "mode": "Chronométré",
+    "domain": "Fractales",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-098",
+    "question": "L ensemble de Mandelbrot vient d itérer...",
+    "options": [
+      "z²+c",
+      "ax+b seulement",
+      "n!"
+    ],
+    "correct": 0,
+    "explanation": "On étudie la stabilité de l itération z↦z²+c.",
+    "mode": "Championnat",
+    "domain": "Fractales",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-099",
+    "question": "Un objet autosimilaire ressemble à...",
+    "options": [
+      "ses propres parties",
+      "un entier pair",
+      "une matrice nulle"
+    ],
+    "correct": 0,
+    "explanation": "L autosimilarité répète une forme à plusieurs échelles.",
+    "mode": "Défis quotidiens",
+    "domain": "Fractales",
+    "difficulty": "Difficile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-100",
+    "question": "L ensemble de Mandelbrot vient d itérer...",
+    "options": [
+      "z²+c",
+      "ax+b seulement",
+      "n!"
+    ],
+    "correct": 0,
+    "explanation": "On étudie la stabilité de l itération z↦z²+c.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Fractales",
+    "difficulty": "Expert",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-101",
+    "question": "Un objet autosimilaire ressemble à...",
+    "options": [
+      "ses propres parties",
+      "un entier pair",
+      "une matrice nulle"
+    ],
+    "correct": 0,
+    "explanation": "L autosimilarité répète une forme à plusieurs échelles.",
+    "mode": "Libre",
+    "domain": "Fractales",
+    "difficulty": "Facile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-102",
+    "question": "L ensemble de Mandelbrot vient d itérer...",
+    "options": [
+      "z²+c",
+      "ax+b seulement",
+      "n!"
+    ],
+    "correct": 0,
+    "explanation": "On étudie la stabilité de l itération z↦z²+c.",
+    "mode": "Chronométré",
+    "domain": "Fractales",
+    "difficulty": "Moyen",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-103",
+    "question": "Un point fixe vérifie...",
+    "options": [
+      "f(x)=x",
+      "f(x)=0 toujours",
+      "x<0"
+    ],
+    "correct": 0,
+    "explanation": "Il reste inchangé par l application.",
+    "mode": "Championnat",
+    "domain": "Dynamique",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-104",
+    "question": "Une orbite est...",
+    "options": [
+      "la suite des itérations",
+      "un angle droit",
+      "une preuve"
+    ],
+    "correct": 0,
+    "explanation": "Elle liste les positions successives sous itération.",
+    "mode": "Défis quotidiens",
+    "domain": "Dynamique",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-105",
+    "question": "Un point fixe vérifie...",
+    "options": [
+      "f(x)=x",
+      "f(x)=0 toujours",
+      "x<0"
+    ],
+    "correct": 0,
+    "explanation": "Il reste inchangé par l application.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Dynamique",
+    "difficulty": "Expert",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-106",
+    "question": "Une orbite est...",
+    "options": [
+      "la suite des itérations",
+      "un angle droit",
+      "une preuve"
+    ],
+    "correct": 0,
+    "explanation": "Elle liste les positions successives sous itération.",
+    "mode": "Libre",
+    "domain": "Dynamique",
+    "difficulty": "Facile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-107",
+    "question": "Un point fixe vérifie...",
+    "options": [
+      "f(x)=x",
+      "f(x)=0 toujours",
+      "x<0"
+    ],
+    "correct": 0,
+    "explanation": "Il reste inchangé par l application.",
+    "mode": "Chronométré",
+    "domain": "Dynamique",
+    "difficulty": "Moyen",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-108",
+    "question": "Une orbite est...",
+    "options": [
+      "la suite des itérations",
+      "un angle droit",
+      "une preuve"
+    ],
+    "correct": 0,
+    "explanation": "Elle liste les positions successives sous itération.",
+    "mode": "Championnat",
+    "domain": "Dynamique",
+    "difficulty": "Difficile",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-109",
+    "question": "Une fonction de perte mesure...",
+    "options": [
+      "l erreur d un modèle",
+      "une surface",
+      "un pgcd"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie l écart entre prédiction et cible.",
+    "mode": "Défis quotidiens",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-110",
+    "question": "Un classifieur linéaire utilise...",
+    "options": [
+      "une frontière affine",
+      "une bouteille de Klein",
+      "une intégrale impropre"
+    ],
+    "correct": 0,
+    "explanation": "Il sépare l espace par une droite, un plan ou un hyperplan.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-111",
+    "question": "Une fonction de perte mesure...",
+    "options": [
+      "l erreur d un modèle",
+      "une surface",
+      "un pgcd"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie l écart entre prédiction et cible.",
+    "mode": "Libre",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Facile",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-112",
+    "question": "Un classifieur linéaire utilise...",
+    "options": [
+      "une frontière affine",
+      "une bouteille de Klein",
+      "une intégrale impropre"
+    ],
+    "correct": 0,
+    "explanation": "Il sépare l espace par une droite, un plan ou un hyperplan.",
+    "mode": "Chronométré",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Moyen",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-113",
+    "question": "Une fonction de perte mesure...",
+    "options": [
+      "l erreur d un modèle",
+      "une surface",
+      "un pgcd"
+    ],
+    "correct": 0,
+    "explanation": "Elle quantifie l écart entre prédiction et cible.",
+    "mode": "Championnat",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Difficile",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-114",
+    "question": "Un classifieur linéaire utilise...",
+    "options": [
+      "une frontière affine",
+      "une bouteille de Klein",
+      "une intégrale impropre"
+    ],
+    "correct": 0,
+    "explanation": "Il sépare l espace par une droite, un plan ou un hyperplan.",
+    "mode": "Défis quotidiens",
+    "domain": "Intelligence artificielle",
+    "difficulty": "Expert",
+    "points": 15,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-115",
+    "question": "La valeur actuelle dépend...",
+    "options": [
+      "du taux d actualisation",
+      "du pgcd",
+      "du nombre de sommets"
+    ],
+    "correct": 0,
+    "explanation": "Actualiser ramène une valeur future au présent.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Mathématiques financières",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-116",
+    "question": "Les intérêts composés réinvestissent...",
+    "options": [
+      "les intérêts acquis",
+      "les angles",
+      "les arêtes"
+    ],
+    "correct": 0,
+    "explanation": "Chaque période calcule l intérêt sur le capital augmenté.",
+    "mode": "Libre",
+    "domain": "Mathématiques financières",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-117",
+    "question": "La valeur actuelle dépend...",
+    "options": [
+      "du taux d actualisation",
+      "du pgcd",
+      "du nombre de sommets"
+    ],
+    "correct": 0,
+    "explanation": "Actualiser ramène une valeur future au présent.",
+    "mode": "Chronométré",
+    "domain": "Mathématiques financières",
+    "difficulty": "Moyen",
+    "points": 20,
+    "timeLimit": 40
+  },
+  {
+    "id": "quiz-118",
+    "question": "Les intérêts composés réinvestissent...",
+    "options": [
+      "les intérêts acquis",
+      "les angles",
+      "les arêtes"
+    ],
+    "correct": 0,
+    "explanation": "Chaque période calcule l intérêt sur le capital augmenté.",
+    "mode": "Championnat",
+    "domain": "Mathématiques financières",
+    "difficulty": "Difficile",
+    "points": 25,
+    "timeLimit": 20
+  },
+  {
+    "id": "quiz-119",
+    "question": "La valeur actuelle dépend...",
+    "options": [
+      "du taux d actualisation",
+      "du pgcd",
+      "du nombre de sommets"
+    ],
+    "correct": 0,
+    "explanation": "Actualiser ramène une valeur future au présent.",
+    "mode": "Défis quotidiens",
+    "domain": "Mathématiques financières",
+    "difficulty": "Expert",
+    "points": 10,
+    "timeLimit": 30
+  },
+  {
+    "id": "quiz-120",
+    "question": "Les intérêts composés réinvestissent...",
+    "options": [
+      "les intérêts acquis",
+      "les angles",
+      "les arêtes"
+    ],
+    "correct": 0,
+    "explanation": "Chaque période calcule l intérêt sur le capital augmenté.",
+    "mode": "Multijoueur (à envisager)",
+    "domain": "Mathématiques financières",
+    "difficulty": "Facile",
+    "points": 15,
+    "timeLimit": 40
+  }
 ]

@@ -40,6 +40,12 @@ let activeLibrary = "Citations";
 let activeMode = "Enseignant";
 let currentExercise = 0;
 let currentQuiz = 0;
+let activeQuizMode = "Libre";
+let quizScore = 0;
+let quizStreak = 0;
+let quizAnswered = false;
+let quizTimeLeft = 0;
+let quizTimer = null;
 let hintVisible = false;
 let activeTypeFilter = "Tous";
 let activePeriodFilter = "Tous";
@@ -47,6 +53,25 @@ let activeNationalityFilter = "Tous";
 let activeDifficultyFilter = "Tous";
 let activeChipFilter = "Tous";
 let activeScreen = "home";
+let activeTimelinePeriod = "Toutes";
+let activeMapKind = "Tous";
+let activeMapCountry = "Tous";
+let activeMapPlace = "";
+let activeDomainFamily = "Tous";
+let activeTheoremDomain = "Tous";
+let activeTheoremDiscoverer = "Tous";
+let activeFormulaCategory = "Tous";
+let activeFormulaUse = "Tous";
+let activeObjectCategory = "Tous";
+let activeObjectDimension = "Tous";
+let activeExerciseLevel = "Tous";
+let activeExerciseDomain = "Tous";
+let activeExerciseDifficulty = "Tous";
+let activeExerciseTime = "Tous";
+let activeExerciseId = exercises[0]?.id || "";
+let activeProblemCategory = "Tous";
+let activeProblemStatus = "Tous";
+let activeProblemDomain = "Tous";
 
 const screenLabels = {
   home: "Accueil",
@@ -164,9 +189,9 @@ const searchIndex = [
     id: `domain:${item.name}`,
     type: "Domaine",
     title: item.name,
-    meta: item.people,
+    meta: `${item.family} · ${item.people}`,
     text: item.intro,
-    tags: [...item.concepts, ...item.theorems, item.applications],
+    tags: [item.family, ...item.concepts, ...item.theorems, ...(item.methods || []), ...(item.subdomains || []), ...(item.related || []), item.applications],
     period: "",
     nationality: "",
     difficulty: "",
@@ -176,9 +201,9 @@ const searchIndex = [
     id: `object:${item.name}`,
     type: "Objet",
     title: item.name,
-    meta: item.applications,
+    meta: `${item.category || "Objet"} · ${item.dimension || ""} · ${item.applications}`,
     text: item.description,
-    tags: [...item.properties, item.history],
+    tags: [item.category, item.dimension, ...item.properties, ...(item.related || []), item.history, item.interactive, item.formula],
     period: "",
     nationality: "",
     difficulty: "",
@@ -449,6 +474,9 @@ function detailFor(entry) {
       ${detailDefinition("Historique", item.history)}
       ${detailList("Concepts fondamentaux", item.concepts)}
       ${detailList("Théorèmes majeurs", item.theorems)}
+      ${detailList("Méthodes", item.methods)}
+      ${detailList("Sous-domaines", item.subdomains)}
+      ${detailList("Domaines liés", item.related)}
       ${detailDefinition("Applications", item.applications)}
       ${detailDefinition("Mathématiciens associés", item.people)}
     `;
@@ -457,9 +485,14 @@ function detailFor(entry) {
     return `
       ${detailDefinition("Description", item.description)}
       ${detailDefinition("Histoire", item.history)}
+      ${detailDefinition("Catégorie", item.category)}
+      ${detailDefinition("Dimension", item.dimension)}
       ${detailList("Propriétés", item.properties)}
       ${detailDefinition("Applications", item.applications)}
       ${detailDefinition("Visualisation", `Module prévu : ${item.visualization}`)}
+      ${detailDefinition("Interaction", item.interactive)}
+      ${detailDefinition("Formule ou modèle", item.formula)}
+      ${detailList("Objets liés", item.related)}
     `;
   }
   if (entry.type === "Exercice") {
@@ -513,15 +546,80 @@ function openDetail(id) {
 }
 
 function renderTimeline() {
-  $("#timeline").innerHTML = timelineItems.map(({ period, text, people, discoveries, publications, events }) => `
-    <article>
-      <time>${period}</time>
-      <div>
+  const timeline = $("#timeline");
+  const periodButtons = ["Toutes", ...timelineItems.map(({ period }) => period)];
+  const draw = () => {
+    const rawQuery = $("#timelineSearch")?.value ?? "";
+    const query = normalize(rawQuery);
+    const visible = timelineItems
+      .filter((item) => activeTimelinePeriod === "Toutes" || item.period === activeTimelinePeriod)
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    const totals = visible.reduce((acc, item) => {
+      acc.people += item.people.length;
+      acc.discoveries += item.discoveries.length;
+      acc.publications += item.publications.length;
+      acc.events += item.events.length;
+      return acc;
+    }, { people: 0, discoveries: 0, publications: 0, events: 0 });
+    timeline.innerHTML = `
+      <div class="timeline-controls">
+        <label for="timelineSearch">Explorer la frise</label>
+        <input id="timelineSearch" type="search" placeholder="Période, mathématicien, découverte, publication...">
+        <div class="timeline-periods">
+          ${periodButtons.map((period) => `<button class="${period === activeTimelinePeriod ? "active" : ""}" type="button" data-timeline-period="${period}">${period}</button>`).join("")}
+        </div>
+      </div>
+      <div class="timeline-stats" aria-label="Statistiques de la chronologie">
+        <span><strong>${visible.length}</strong> périodes</span>
+        <span><strong>${totals.people}</strong> mathématiciens</span>
+        <span><strong>${totals.discoveries}</strong> découvertes</span>
+        <span><strong>${totals.publications}</strong> publications</span>
+        <span><strong>${totals.events}</strong> événements</span>
+      </div>
+      <div class="timeline-track">
+        ${visible.map((item) => timelineCard(item)).join("") || card("Aucun résultat", "Aucune période ne correspond à cette recherche.", "Chronologie")}
+      </div>
+    `;
+    const search = $("#timelineSearch");
+    search.value = rawQuery;
+    search.addEventListener("input", draw);
+    document.querySelectorAll("[data-timeline-period]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeTimelinePeriod = button.dataset.timelinePeriod;
+        draw();
+      });
+    });
+  };
+  draw();
+}
+
+function timelineList(title, items) {
+  return `
+    <section class="timeline-list">
+      <h3>${title}</h3>
+      <ul>${fieldList(items)}</ul>
+    </section>
+  `;
+}
+
+function timelineCard({ period, range, text, people, discoveries, publications, events }) {
+  return `
+    <article class="timeline-card">
+      <div class="timeline-marker">
+        <time>${period}</time>
+        <span>${range}</span>
+      </div>
+      <div class="timeline-content">
         <p>${text}</p>
-        <small>${people.join(", ")} · ${discoveries.join(", ")} · ${publications.join(", ")} · ${events.join(", ")}</small>
+        <div class="timeline-columns">
+          ${timelineList("Mathématiciens", people)}
+          ${timelineList("Découvertes", discoveries)}
+          ${timelineList("Publications importantes", publications)}
+          ${timelineList("Événements scientifiques", events)}
+        </div>
       </div>
     </article>
-  `).join("");
+  `;
 }
 
 function renderMathematicians() {
@@ -561,75 +659,315 @@ function renderMathematicians() {
 
 function renderMap() {
   const input = $("#mapFilter");
+  const kindFilter = $("#mapKindFilter");
+  const countryFilter = $("#mapCountryFilter");
   const list = $("#mapList");
   const stats = $("#mapStats");
   const svg = $("#worldMap");
+  const detail = $("#mapDetail");
+  const mapKinds = [...new Set(places.flatMap((place) => place.types || [place.kind]))].sort();
+  const mapCountries = [...new Set(places.map((place) => place.country))].sort((a, b) => a.localeCompare(b, "fr"));
+  kindFilter.innerHTML = optionList(mapKinds);
+  countryFilter.innerHTML = optionList(mapCountries);
   const draw = () => {
-    const query = input.value.trim().toLowerCase();
-    const visible = places.filter((place) => asSearchText(place).includes(query));
-    stats.innerHTML = `<strong>${visible.length}</strong><span>lieux affichés</span><strong>${new Set(visible.map((place) => place.country)).size}</strong><span>pays</span>`;
+    const query = normalize(input.value.trim());
+    const visible = places
+      .filter((place) => !query || normalize(asSearchText(place)).includes(query))
+      .filter((place) => activeMapKind === "Tous" || (place.types || [place.kind]).includes(activeMapKind))
+      .filter((place) => activeMapCountry === "Tous" || place.country === activeMapCountry);
+    if (!visible.some((place) => mapPlaceId(place) === activeMapPlace)) {
+      activeMapPlace = visible[0] ? mapPlaceId(visible[0]) : "";
+    }
+    const selected = visible.find((place) => mapPlaceId(place) === activeMapPlace);
+    kindFilter.value = activeMapKind;
+    countryFilter.value = activeMapCountry;
+    stats.innerHTML = `
+      <strong>${visible.length}</strong><span>lieux</span>
+      <strong>${new Set(visible.map((place) => place.country)).size}</strong><span>pays</span>
+      <strong>${new Set(visible.flatMap((place) => place.institutions || [])).size}</strong><span>institutions</span>
+      <strong>${visible.filter((place) => place.births?.length).length}</strong><span>naissances</span>
+    `;
     svg.innerHTML = `
       <path class="land" d="M80 180 C170 90 260 120 330 165 C410 215 480 120 570 150 C675 185 780 130 840 220 C760 318 620 300 530 340 C430 386 345 300 250 335 C155 370 70 292 80 180Z"/>
       <path class="land muted-land" d="M125 255 C205 220 295 240 356 285 C280 330 190 345 125 255Z"/>
-      ${visible.map(({ city, country, people, note, x, y, kind }) => `
-        <g class="map-pin" tabindex="0" transform="translate(${x} ${y})">
+      <path class="land muted-land" d="M610 245 C660 210 735 210 790 242 C750 288 666 300 610 245Z"/>
+      <path class="land muted-land" d="M720 350 C785 335 830 365 815 405 C755 420 705 395 720 350Z"/>
+      ${visible.map((place) => `
+        <g class="map-pin ${mapPlaceId(place) === activeMapPlace ? "active" : ""}" tabindex="0" role="button" data-map-place="${mapPlaceId(place)}" transform="translate(${place.x} ${place.y})">
           <circle r="11"></circle>
-          <text x="16" y="5">${city}</text>
-          <title>${kind} · ${city}, ${country} · ${people} · ${note}</title>
+          <text x="16" y="5">${place.city}</text>
+          <title>${place.kind} · ${place.city}, ${place.country} · ${place.people} · ${place.note}</title>
         </g>
       `).join("")}
     `;
-    list.innerHTML = visible.map(({ city, country, people, note, kind }) => card(`${city}, ${country}`, note, `${kind} · ${people}`)).join("");
+    detail.innerHTML = selected ? mapDetail(selected) : card("Aucun lieu", "Aucun lieu ne correspond aux filtres actifs.", "Carte");
+    list.innerHTML = visible.map((place) => `
+      <button class="map-list-item ${mapPlaceId(place) === activeMapPlace ? "active" : ""}" type="button" data-map-place="${mapPlaceId(place)}">
+        <span>${place.kind} · ${place.country}</span>
+        <strong>${place.city}</strong>
+        <small>${place.people}</small>
+      </button>
+    `).join("");
+    document.querySelectorAll("[data-map-place]").forEach((node) => {
+      node.addEventListener("click", () => {
+        activeMapPlace = node.dataset.mapPlace;
+        draw();
+      });
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activeMapPlace = node.dataset.mapPlace;
+          draw();
+        }
+      });
+    });
   };
   input.addEventListener("input", draw);
+  kindFilter.addEventListener("change", () => {
+    activeMapKind = kindFilter.value;
+    draw();
+  });
+  countryFilter.addEventListener("change", () => {
+    activeMapCountry = countryFilter.value;
+    draw();
+  });
   draw();
 }
 
+function mapPlaceId({ city, country }) {
+  return `${city}:${country}`;
+}
+
+function mapDetail(place) {
+  const meta = `${place.kind} · ${place.city}, ${place.country}`;
+  return `
+    <article>
+      <span>${meta}</span>
+      <h3>${place.city}</h3>
+      <p>${place.note}</p>
+      <dl>
+        <dt>Mathématiciens</dt><dd>${place.people}</dd>
+        <dt>Institutions</dt><dd>${(place.institutions || []).join(", ") || "Non renseigné"}</dd>
+        <dt>Types</dt><dd>${(place.types || [place.kind]).join(", ")}</dd>
+        <dt>Naissances</dt><dd>${(place.births || []).join(", ") || "Non renseigné"}</dd>
+        <dt>Décès</dt><dd>${(place.deaths || []).join(", ") || "Non renseigné"}</dd>
+        <dt>Périodes</dt><dd>${(place.periods || []).join(", ") || "Non renseigné"}</dd>
+      </dl>
+    </article>
+  `;
+}
+
 function renderDomains() {
-  $("#domainGrid").innerHTML = domains.map(({ name, intro, history, concepts, theorems: domainTheorems, applications, people }) => `
+  const grid = $("#domainGrid");
+  const search = $("#domainSearch");
+  const familyFilter = $("#domainFamilyFilter");
+  const stats = $("#domainStats");
+  const families = [...new Set(domains.map((domain) => domain.family).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  familyFilter.innerHTML = optionList(families, "Toutes");
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = domains
+      .filter((domain) => activeDomainFamily === "Tous" || domain.family === activeDomainFamily)
+      .filter((domain) => !query || normalize(asSearchText(domain)).includes(query));
+    familyFilter.value = activeDomainFamily;
+    stats.innerHTML = `
+      <strong>${visible.length}</strong><span>domaines</span>
+      <strong>${new Set(visible.map((domain) => domain.family)).size}</strong><span>familles</span>
+      <strong>${visible.reduce((sum, domain) => sum + domain.concepts.length, 0)}</strong><span>concepts</span>
+      <strong>${visible.reduce((sum, domain) => sum + domain.theorems.length, 0)}</strong><span>théorèmes</span>
+    `;
+    grid.innerHTML = visible.map((domain) => domainCard(domain)).join("") || card("Aucun domaine", "Aucune discipline ne correspond aux filtres actifs.", "Encyclopédie");
+    bindFavorites();
+    bindDetailButtons();
+  };
+  search.addEventListener("input", draw);
+  familyFilter.addEventListener("change", () => {
+    activeDomainFamily = familyFilter.value;
+    draw();
+  });
+  draw();
+}
+
+function domainCard({ name, family, intro, history, concepts, theorems: domainTheorems, applications, people, methods, subdomains, related }) {
+  return `
     <article class="domain-card">
-      <h3>${name}</h3>
+      <div class="domain-card-header">
+        <span>${family}</span>
+        <h3>${name}</h3>
+      </div>
       <p>${intro}</p>
       <dl>
         <dt>Historique</dt><dd>${history}</dd>
         <dt>Concepts</dt><dd>${concepts.join(", ")}</dd>
         <dt>Théorèmes</dt><dd>${domainTheorems.join(", ")}</dd>
-        <dt>Figures</dt><dd>${people}</dd>
+        <dt>Méthodes</dt><dd>${(methods || []).join(", ")}</dd>
+        <dt>Sous-domaines</dt><dd>${(subdomains || []).join(", ")}</dd>
         <dt>Applications</dt><dd>${applications}</dd>
+        <dt>Figures</dt><dd>${people}</dd>
+        <dt>Liens</dt><dd>${(related || []).join(", ")}</dd>
       </dl>
       <div class="card-actions">
         <button class="mini-button" type="button" data-open="domain:${name}">Ouvrir</button>
         ${favoriteButton(`domain:${name}`, name)}
       </div>
     </article>
-  `).join("");
-  bindFavorites();
-  bindDetailButtons();
+  `;
 }
 
 function renderReferences() {
   const tabs = ["Théorèmes", "Formules"];
   $("#referenceTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeReference ? "active" : ""}" type="button">${tab}</button>`).join("");
-  const data = activeReference === "Théorèmes" ? theorems : formulas;
-  $("#referencePanel").innerHTML = data.map((item) => {
-    if (activeReference === "Théorèmes") {
-      return card(
-        item.name,
-        `${latex(item.latex)}<br>${item.intuition}<br><strong>Démonstration :</strong> ${item.proof}<br><strong>Généralisation :</strong> ${item.generalization}<br><em>${item.applications}</em>`,
-        `${item.discoverer} · ${item.history}`,
-        `<div class="card-actions"><button class="mini-button" type="button" data-open="theorem:${item.name}">Ouvrir</button>${favoriteButton(`theorem:${item.name}`, item.name)}</div>`
-      );
-    }
-    return card(
-      item.name,
-      `${latex(item.latex)}<br>${item.explanation}<br><strong>Exemples :</strong> ${item.examples.join(", ")}<br><strong>Démonstration :</strong> ${item.proof}`,
-      `Formule · ${item.category}`,
-      `<div class="card-actions"><button class="mini-button" type="button" data-open="formula:${item.name}">Ouvrir</button>${favoriteButton(`formula:${item.name}`, item.name)}</div>`
-    );
-  }).join("");
+  const theoremTools = $("#theoremTools");
+  const formulaTools = $("#formulaTools");
+  theoremTools.hidden = activeReference !== "Théorèmes";
+  formulaTools.hidden = activeReference !== "Formules";
+  if (activeReference === "Théorèmes") {
+    renderTheoremReference();
+  } else {
+    renderFormulaReference();
+  }
+  bindReferenceTabs();
+}
+
+function renderTheoremReference() {
+  const search = $("#theoremSearch");
+  const domainFilter = $("#theoremDomainFilter");
+  const discovererFilter = $("#theoremDiscovererFilter");
+  const stats = $("#theoremStats");
+  const panel = $("#referencePanel");
+  const theoremDomains = [...new Set(theorems.map(theoremDomain))].sort((a, b) => a.localeCompare(b, "fr"));
+  const theoremDiscoverers = [...new Set(theorems.map((item) => item.discoverer))].sort((a, b) => a.localeCompare(b, "fr"));
+  domainFilter.innerHTML = optionList(theoremDomains);
+  discovererFilter.innerHTML = optionList(theoremDiscoverers);
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = theorems
+      .filter((item) => activeTheoremDomain === "Tous" || theoremDomain(item) === activeTheoremDomain)
+      .filter((item) => activeTheoremDiscoverer === "Tous" || item.discoverer === activeTheoremDiscoverer)
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    domainFilter.value = activeTheoremDomain;
+    discovererFilter.value = activeTheoremDiscoverer;
+    stats.innerHTML = `
+      <strong>${visible.length}</strong><span>théorèmes</span>
+      <strong>${new Set(visible.map(theoremDomain)).size}</strong><span>domaines</span>
+      <strong>${new Set(visible.map((item) => item.discoverer)).size}</strong><span>découvreurs</span>
+      <strong>${visible.reduce((sum, item) => sum + item.exercises.length, 0)}</strong><span>exercices</span>
+    `;
+    panel.innerHTML = visible.map(theoremCard).join("") || card("Aucun théorème", "Aucun résultat ne correspond aux filtres actifs.", "Référence");
+    renderMath();
+    bindFavorites();
+    bindDetailButtons();
+  };
+  search.oninput = draw;
+  domainFilter.onchange = () => {
+    activeTheoremDomain = domainFilter.value;
+    draw();
+  };
+  discovererFilter.onchange = () => {
+    activeTheoremDiscoverer = discovererFilter.value;
+    draw();
+  };
+  draw();
+}
+
+function theoremDomain(item) {
+  return item.applications.split(",")[0]?.trim() || "Général";
+}
+
+function theoremCard(item) {
+  return `
+    <article class="theorem-card">
+      <div class="theorem-card-header">
+        <span>${theoremDomain(item)}</span>
+        <h3>${item.name}</h3>
+      </div>
+      <div class="formula-render">${latex(item.latex)}</div>
+      <p>${item.intuition}</p>
+      <dl>
+        <dt>Énoncé</dt><dd>${item.statement}</dd>
+        <dt>Démonstration</dt><dd>${item.proof}</dd>
+        <dt>Variantes</dt><dd>${item.variants.join(", ")}</dd>
+        <dt>Généralisation</dt><dd>${item.generalization}</dd>
+        <dt>Applications</dt><dd>${item.applications}</dd>
+        <dt>Historique</dt><dd>${item.history}</dd>
+        <dt>Découvreur</dt><dd>${item.discoverer}</dd>
+        <dt>Exercices</dt><dd>${item.exercises.join(", ")}</dd>
+        <dt>Références</dt><dd>${item.references.join(", ")}</dd>
+      </dl>
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="theorem:${item.name}">Ouvrir</button>
+        ${favoriteButton(`theorem:${item.name}`, item.name)}
+      </div>
+    </article>
+  `;
+}
+
+function renderFormulaReference() {
+  const search = $("#formulaSearch");
+  const categoryFilter = $("#formulaCategoryFilter");
+  const useFilter = $("#formulaUseFilter");
+  const stats = $("#formulaStats");
+  const panel = $("#referencePanel");
+  const categories = [...new Set(formulas.map((item) => item.category))].sort((a, b) => a.localeCompare(b, "fr"));
+  const uses = [...new Set(formulas.flatMap((item) => item.uses))].sort((a, b) => a.localeCompare(b, "fr"));
+  categoryFilter.innerHTML = optionList(categories);
+  useFilter.innerHTML = optionList(uses);
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = formulas
+      .filter((item) => activeFormulaCategory === "Tous" || item.category === activeFormulaCategory)
+      .filter((item) => activeFormulaUse === "Tous" || item.uses.includes(activeFormulaUse))
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    categoryFilter.value = activeFormulaCategory;
+    useFilter.value = activeFormulaUse;
+    stats.innerHTML = `
+      <strong>${visible.length}</strong><span>formules</span>
+      <strong>${new Set(visible.map((item) => item.category)).size}</strong><span>catégories</span>
+      <strong>${new Set(visible.flatMap((item) => item.uses)).size}</strong><span>usages</span>
+      <strong>${visible.reduce((sum, item) => sum + item.examples.length, 0)}</strong><span>exemples</span>
+    `;
+    panel.innerHTML = visible.map(formulaCard).join("") || card("Aucune formule", "Aucune formule ne correspond aux filtres actifs.", "Référence");
+    renderMath();
+    bindFavorites();
+    bindDetailButtons();
+  };
+  search.oninput = draw;
+  categoryFilter.onchange = () => {
+    activeFormulaCategory = categoryFilter.value;
+    draw();
+  };
+  useFilter.onchange = () => {
+    activeFormulaUse = useFilter.value;
+    draw();
+  };
+  draw();
+}
+
+function formulaCard(item) {
+  return `
+    <article class="formula-card">
+      <div class="formula-card-header">
+        <span>${item.category}</span>
+        <h3>${item.name}</h3>
+      </div>
+      <div class="formula-render">${latex(item.latex)}</div>
+      <p>${item.explanation}</p>
+      <dl>
+        <dt>Expression</dt><dd>${item.expression}</dd>
+        <dt>Exemples</dt><dd>${item.examples.join(", ")}</dd>
+        <dt>Démonstration</dt><dd>${item.proof}</dd>
+        <dt>Cas d'utilisation</dt><dd>${item.uses.join(", ")}</dd>
+      </dl>
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="formula:${item.name}">Ouvrir</button>
+        ${favoriteButton(`formula:${item.name}`, item.name)}
+      </div>
+    </article>
+  `;
+}
+
+function bindReferenceTabs() {
   renderMath();
-  bindFavorites();
-  bindDetailButtons();
   $("#referenceTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeReference = button.textContent;
@@ -639,22 +977,84 @@ function renderReferences() {
 }
 
 function renderObjects() {
-  $("#objectGrid").innerHTML = objects.map(({ name, description, history, properties, applications }, index) => `
+  const grid = $("#objectGrid");
+  const search = $("#objectSearch");
+  const categoryFilter = $("#objectCategoryFilter");
+  const dimensionFilter = $("#objectDimensionFilter");
+  const stats = $("#objectStats");
+  const categories = [...new Set(objects.map((item) => item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  const dimensions = [...new Set(objects.map((item) => item.dimension).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  categoryFilter.innerHTML = optionList(categories);
+  dimensionFilter.innerHTML = optionList(dimensions);
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = objects
+      .filter((item) => activeObjectCategory === "Tous" || item.category === activeObjectCategory)
+      .filter((item) => activeObjectDimension === "Tous" || item.dimension === activeObjectDimension)
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    categoryFilter.value = activeObjectCategory;
+    dimensionFilter.value = activeObjectDimension;
+    stats.innerHTML = `
+      <strong>${visible.length}</strong><span>objets</span>
+      <strong>${new Set(visible.map((item) => item.category)).size}</strong><span>catégories</span>
+      <strong>${new Set(visible.map((item) => item.dimension)).size}</strong><span>dimensions</span>
+      <strong>${visible.reduce((sum, item) => sum + item.properties.length, 0)}</strong><span>propriétés</span>
+    `;
+    grid.innerHTML = visible.map(objectCard).join("") || card("Aucun objet", "Aucun objet ne correspond aux filtres actifs.", "Galerie");
+    bindFavorites();
+    bindDetailButtons();
+  };
+  search.addEventListener("input", draw);
+  categoryFilter.addEventListener("change", () => {
+    activeObjectCategory = categoryFilter.value;
+    draw();
+  });
+  dimensionFilter.addEventListener("change", () => {
+    activeObjectDimension = dimensionFilter.value;
+    draw();
+  });
+  draw();
+}
+
+function objectCard({ name, category, dimension, description, history, properties, applications, visualization, interactive }, index) {
+  return `
     <article class="object-card">
-      <div class="object-figure object-${index % 4}" aria-hidden="true"></div>
-      <h3>${name}</h3>
+      <div class="object-figure object-${visualization}" aria-hidden="true">${objectGlyph(visualization)}</div>
+      <div class="object-card-header">
+        <span>${category} · ${dimension}</span>
+        <h3>${name}</h3>
+      </div>
       <p>${description}</p>
-      <p><strong>Histoire :</strong> ${history}</p>
-      <p><strong>Propriétés :</strong> ${properties.join(", ")}</p>
-      <span>${applications}</span>
+      <dl>
+        <dt>Histoire</dt><dd>${history}</dd>
+        <dt>Propriétés</dt><dd>${properties.join(", ")}</dd>
+        <dt>Applications</dt><dd>${applications}</dd>
+        <dt>Interaction</dt><dd>${interactive}</dd>
+      </dl>
       <div class="card-actions">
         <button class="mini-button" type="button" data-open="object:${name}">Ouvrir</button>
         ${favoriteButton(`object:${name}`, name)}
       </div>
     </article>
-  `).join("");
-  bindFavorites();
-  bindDetailButtons();
+  `;
+}
+
+function objectGlyph(type) {
+  const glyphs = {
+    twist: "∞",
+    surface: "∿",
+    mandelbrot: "M",
+    julia: "J",
+    sierpinski: "△",
+    menger: "▦",
+    koch: "⌁",
+    polyhedra: "⬡",
+    tiling: "▧",
+    minimal: "H=0",
+    platonic: "◇",
+    archimedean: "◈"
+  };
+  return glyphs[type] || "∗";
 }
 
 function renderLearning() {
@@ -664,40 +1064,255 @@ function renderLearning() {
 }
 
 function renderExercise() {
-  const exercise = exercises[currentExercise % exercises.length];
-  $("#exerciseBox").innerHTML = `
-    <span class="badge">${exercise.domain} · ${exercise.level} · ${exercise.difficulty} · ${exercise.time}</span>
-    <h3>${exercise.prompt}</h3>
-    ${hintVisible ? `<p><strong>Indice :</strong> ${exercise.hint}</p><p><strong>Solution :</strong> ${exercise.solution}</p><p><strong>Démonstration :</strong> ${exercise.proof}</p>` : "<p>Utilise l'indice pour afficher la correction détaillée.</p>"}
-    <button class="mini-button" id="nextExerciseButton" type="button">Exercice suivant</button>
+  const search = $("#exerciseSearch");
+  const levelFilter = $("#exerciseLevelFilter");
+  const domainFilter = $("#exerciseDomainFilter");
+  const difficultyFilter = $("#exerciseDifficultyFilter");
+  const timeFilter = $("#exerciseTimeFilter");
+  levelFilter.innerHTML = optionList([...new Set(exercises.map((item) => item.level))].sort((a, b) => a.localeCompare(b, "fr")));
+  domainFilter.innerHTML = optionList([...new Set(exercises.map((item) => item.domain))].sort((a, b) => a.localeCompare(b, "fr")));
+  difficultyFilter.innerHTML = optionList([...new Set(exercises.map((item) => item.difficulty))], "Toutes");
+  timeFilter.innerHTML = optionList(["Moins de 10 min", "10 à 15 min", "16 à 20 min", "Plus de 20 min"]);
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = exercises
+      .filter((item) => activeExerciseLevel === "Tous" || item.level === activeExerciseLevel)
+      .filter((item) => activeExerciseDomain === "Tous" || item.domain === activeExerciseDomain)
+      .filter((item) => activeExerciseDifficulty === "Tous" || item.difficulty === activeExerciseDifficulty)
+      .filter((item) => activeExerciseTime === "Tous" || exerciseTimeBucket(item.estimatedMinutes) === activeExerciseTime)
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    if (!visible.some((item) => item.id === activeExerciseId)) {
+      activeExerciseId = visible[0]?.id || "";
+      hintVisible = false;
+    }
+    const selected = visible.find((item) => item.id === activeExerciseId);
+    levelFilter.value = activeExerciseLevel;
+    domainFilter.value = activeExerciseDomain;
+    difficultyFilter.value = activeExerciseDifficulty;
+    timeFilter.value = activeExerciseTime;
+    $("#exerciseStats").innerHTML = `
+      <strong>${visible.length}</strong><span>exercices</span>
+      <strong>${new Set(visible.map((item) => item.domain)).size}</strong><span>domaines</span>
+      <strong>${new Set(visible.map((item) => item.level)).size}</strong><span>niveaux</span>
+      <strong>${Math.round(visible.reduce((sum, item) => sum + item.estimatedMinutes, 0) / Math.max(visible.length, 1))}</strong><span>min moy.</span>
+    `;
+    $("#exerciseBox").innerHTML = selected ? `
+      <div class="exercise-layout">
+        <div class="exercise-list">
+          ${visible.slice(0, 36).map((item) => `
+            <button class="${item.id === selected.id ? "active" : ""}" type="button" data-exercise-id="${item.id}">
+              <span>${item.domain} · ${item.level}</span>
+              <strong>${item.prompt}</strong>
+              <small>${item.difficulty} · ${item.time}</small>
+            </button>
+          `).join("")}
+        </div>
+        <article class="exercise-detail">
+          <span class="badge">${selected.domain} · ${selected.level} · ${selected.difficulty} · ${selected.time}</span>
+          <h3>${selected.prompt}</h3>
+          <dl>
+            <dt>Type</dt><dd>${selected.type}</dd>
+            <dt>Domaine</dt><dd>${selected.domain}</dd>
+            <dt>Niveau</dt><dd>${selected.level}</dd>
+            <dt>Temps estimé</dt><dd>${selected.time}</dd>
+          </dl>
+          ${hintVisible ? exerciseCorrection(selected) : `<p class="muted">Active l'indice pour afficher la correction, la solution détaillée et la démonstration.</p>`}
+          <div class="card-actions">
+            <button class="mini-button" id="completeExerciseButton" type="button">Marquer réalisé</button>
+            <button class="mini-button" id="nextExerciseButton" type="button">Exercice suivant</button>
+          </div>
+        </article>
+      </div>
+    ` : card("Aucun exercice", "Aucun exercice ne correspond aux filtres actifs.", "Exercices");
+    $("#exerciseBox").querySelectorAll("[data-exercise-id]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeExerciseId = button.dataset.exerciseId;
+        hintVisible = false;
+        draw();
+      });
+    });
+    $("#completeExerciseButton")?.addEventListener("click", () => {
+      bumpProgress("exercises");
+      renderProgress();
+    });
+    $("#nextExerciseButton")?.addEventListener("click", () => {
+      const index = visible.findIndex((item) => item.id === activeExerciseId);
+      activeExerciseId = visible[(index + 1) % visible.length]?.id || activeExerciseId;
+      currentExercise += 1;
+      hintVisible = false;
+      draw();
+    });
+  };
+  search.oninput = draw;
+  levelFilter.onchange = () => {
+    activeExerciseLevel = levelFilter.value;
+    draw();
+  };
+  domainFilter.onchange = () => {
+    activeExerciseDomain = domainFilter.value;
+    draw();
+  };
+  difficultyFilter.onchange = () => {
+    activeExerciseDifficulty = difficultyFilter.value;
+    draw();
+  };
+  timeFilter.onchange = () => {
+    activeExerciseTime = timeFilter.value;
+    draw();
+  };
+  draw();
+}
+
+function exerciseTimeBucket(minutes = 0) {
+  if (minutes < 10) return "Moins de 10 min";
+  if (minutes <= 15) return "10 à 15 min";
+  if (minutes <= 20) return "16 à 20 min";
+  return "Plus de 20 min";
+}
+
+function exerciseCorrection(exercise) {
+  return `
+    <section class="exercise-solution">
+      <h4>Indice</h4>
+      <p>${exercise.hint}</p>
+      <h4>Correction</h4>
+      <p>${exercise.correction || exercise.solution}</p>
+      <h4>Solution détaillée</h4>
+      <p>${exercise.detailedSolution || exercise.solution}</p>
+      <h4>Démonstration</h4>
+      <p>${exercise.proof}</p>
+      <h4>Références</h4>
+      <ul>${fieldList(exercise.references || [])}</ul>
+    </section>
   `;
-  $("#nextExerciseButton").addEventListener("click", () => {
-    currentExercise += 1;
-    hintVisible = false;
-    bumpProgress("exercises");
-    renderExercise();
-    renderProgress();
-  });
 }
 
 function renderQuiz() {
-  const current = quiz[currentQuiz % quiz.length];
+  clearQuizTimer();
+  const modeSelect = $("#quizModeSelect");
+  modeSelect.value = activeQuizMode;
+  const visible = quiz.filter((item) => item.mode === activeQuizMode);
+  const items = visible.length ? visible : quiz;
+  const current = activeQuizMode === "Défis quotidiens" ? dailyQuiz(items) : items[currentQuiz % items.length];
+  quizAnswered = false;
+  const modeLabel = activeQuizMode === "Multijoueur (à envisager)" ? "Multijoueur à envisager" : activeQuizMode;
   $("#quizBox").innerHTML = `
-    <span class="badge">${current.mode}</span>
-    <h3>${current.question}</h3>
-    <div class="answer-grid">
-      ${current.options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
+    <div class="quiz-head">
+      <span class="badge">${modeLabel}</span>
+      <div class="quiz-score">
+        <span><strong>${quizScore}</strong> pts</span>
+        <span><strong>${quizStreak}</strong> série</span>
+        <span><strong>${items.length}</strong> questions</span>
+      </div>
     </div>
-    <p id="quizFeedback" class="muted">Sélectionne une réponse.</p>
+    ${activeQuizMode === "Multijoueur (à envisager)" ? multiplayerPreview(items) : quizQuestionMarkup(current)}
   `;
-  $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const ok = Number(button.dataset.answer) === current.correct;
-      $("#quizFeedback").textContent = ok ? "Réponse correcte." : `Réponse attendue : ${current.options[current.correct]}.`;
-      if (ok) bumpProgress("quiz");
-      renderProgress();
+  if (activeQuizMode !== "Multijoueur (à envisager)") {
+    $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
+      button.addEventListener("click", () => answerQuiz(current, Number(button.dataset.answer)));
     });
+    if (activeQuizMode === "Chronométré") startQuizTimer(current);
+  }
+}
+
+function quizQuestionMarkup(current) {
+  return `
+    <article class="quiz-question">
+      <span>${current.domain} · ${current.difficulty} · ${current.points} points</span>
+      <h3>${current.question}</h3>
+      ${activeQuizMode === "Chronométré" ? `<div class="quiz-timer"><span id="quizTimerBar"></span></div><p id="quizTimerText" class="muted">${current.timeLimit}s restantes</p>` : ""}
+      <div class="answer-grid">
+        ${current.options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
+      </div>
+      <p id="quizFeedback" class="muted">${quizModePrompt()}</p>
+    </article>
+  `;
+}
+
+function quizModePrompt() {
+  if (activeQuizMode === "Chronométré") return "Réponds avant la fin du compte à rebours.";
+  if (activeQuizMode === "Championnat") return "Enchaîne les bonnes réponses pour augmenter la série.";
+  if (activeQuizMode === "Défis quotidiens") return "Question du jour, stable pour la date courante.";
+  return "Sélectionne une réponse.";
+}
+
+function answerQuiz(current, answer) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  clearQuizTimer();
+  const ok = answer === current.correct;
+  const feedback = $("#quizFeedback");
+  const buttons = $("#quizBox").querySelectorAll("[data-answer]");
+  buttons.forEach((button) => {
+    const index = Number(button.dataset.answer);
+    button.disabled = true;
+    button.classList.toggle("correct", index === current.correct);
+    button.classList.toggle("wrong", index === answer && !ok);
   });
+  if (ok) {
+    quizStreak += 1;
+    const bonus = activeQuizMode === "Championnat" ? Math.min(quizStreak * 2, 20) : 0;
+    quizScore += current.points + bonus;
+    bumpProgress("quiz");
+  } else {
+    quizStreak = 0;
+  }
+  feedback.innerHTML = `
+    <strong>${ok ? "Réponse correcte." : `Réponse attendue : ${current.options[current.correct]}.`}</strong>
+    <span>${current.explanation || ""}</span>
+  `;
+  renderProgress();
+}
+
+function dailyQuiz(items) {
+  const day = Math.floor(Date.now() / 86400000);
+  return items[day % items.length];
+}
+
+function multiplayerPreview(items) {
+  const domains = [...new Set(items.map((item) => item.domain))].slice(0, 6);
+  return `
+    <article class="quiz-question">
+      <h3>Mode multijoueur à envisager</h3>
+      <p class="muted">Structure prête pour salons, manches synchronisées, score partagé et défis entre joueurs.</p>
+      <div class="quiz-lobby">
+        <span><strong>2-4</strong> joueurs</span>
+        <span><strong>${items.length}</strong> questions disponibles</span>
+        <span><strong>${domains.join(", ")}</strong></span>
+      </div>
+    </article>
+  `;
+}
+
+function startQuizTimer(current) {
+  quizTimeLeft = current.timeLimit || 30;
+  updateQuizTimer(current);
+  quizTimer = setInterval(() => {
+    quizTimeLeft -= 1;
+    updateQuizTimer(current);
+    if (quizTimeLeft <= 0) {
+      clearQuizTimer();
+      if (!quizAnswered) {
+        quizAnswered = true;
+        quizStreak = 0;
+        $("#quizFeedback").innerHTML = `<strong>Temps écoulé.</strong><span>Réponse attendue : ${current.options[current.correct]}. ${current.explanation || ""}</span>`;
+        $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
+          button.disabled = true;
+          button.classList.toggle("correct", Number(button.dataset.answer) === current.correct);
+        });
+      }
+    }
+  }, 1000);
+}
+
+function updateQuizTimer(current) {
+  $("#quizTimerText").textContent = `${Math.max(quizTimeLeft, 0)}s restantes`;
+  $("#quizTimerBar").style.width = `${Math.max(0, (quizTimeLeft / (current.timeLimit || 30)) * 100)}%`;
+}
+
+function clearQuizTimer() {
+  if (quizTimer) clearInterval(quizTimer);
+  quizTimer = null;
 }
 
 function bumpProgress(key) {
@@ -741,17 +1356,69 @@ function renderLibrary() {
 }
 
 function renderProblems() {
-  $("#problemList").innerHTML = problems.map(({ name, status, text, history, current, advances, impact }) => `
+  const search = $("#problemSearch");
+  const categoryFilter = $("#problemCategoryFilter");
+  const statusFilter = $("#problemStatusFilter");
+  const domainFilter = $("#problemDomainFilter");
+  categoryFilter.innerHTML = optionList([...new Set(problems.map((item) => item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")), "Toutes");
+  statusFilter.innerHTML = optionList([...new Set(problems.map((item) => item.status).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  domainFilter.innerHTML = optionList([...new Set(problems.map((item) => item.domain).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  const draw = () => {
+    const query = normalize(search.value.trim());
+    const visible = problems
+      .filter((item) => activeProblemCategory === "Tous" || item.category === activeProblemCategory)
+      .filter((item) => activeProblemStatus === "Tous" || item.status === activeProblemStatus)
+      .filter((item) => activeProblemDomain === "Tous" || item.domain === activeProblemDomain)
+      .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+    categoryFilter.value = activeProblemCategory;
+    statusFilter.value = activeProblemStatus;
+    domainFilter.value = activeProblemDomain;
+    $("#problemStats").innerHTML = `
+      <strong>${visible.length}</strong><span>problèmes</span>
+      <strong>${visible.filter((item) => item.status === "Ouvert").length}</strong><span>ouverts</span>
+      <strong>${visible.filter((item) => item.status === "Résolu").length}</strong><span>résolus</span>
+      <strong>${new Set(visible.map((item) => item.domain)).size}</strong><span>domaines</span>
+    `;
+    $("#problemList").innerHTML = visible.map(problemCard).join("") || card("Aucun problème", "Aucun problème ne correspond aux filtres actifs.", "Problèmes célèbres");
+  };
+  search.addEventListener("input", draw);
+  categoryFilter.addEventListener("change", () => {
+    activeProblemCategory = categoryFilter.value;
+    draw();
+  });
+  statusFilter.addEventListener("change", () => {
+    activeProblemStatus = statusFilter.value;
+    draw();
+  });
+  domainFilter.addEventListener("change", () => {
+    activeProblemDomain = domainFilter.value;
+    draw();
+  });
+  draw();
+}
+
+function problemCard({ name, status, category, domain, difficulty, period, text, history, current, accessible, advances, recent, impact, references = [] }) {
+  return `
     <article class="problem-card">
-      <span class="${status === "Ouvert" ? "status-open" : "status-solved"}">${status}</span>
+      <div class="problem-card-header">
+        <span class="${status === "Ouvert" ? "status-open" : status === "Résolu" ? "status-solved" : "status-active"}">${status}</span>
+        <small>${category || "Problème"} · ${domain || "Mathématiques"} · ${difficulty || "Avancé"} · ${period || "Moderne"}</small>
+      </div>
       <h3>${name}</h3>
       <p>${text}</p>
-      <p><strong>Historique :</strong> ${history}</p>
-      <p><strong>État actuel :</strong> ${current}</p>
-      <p><strong>Avancées :</strong> ${advances}</p>
-      <strong>${impact}</strong>
+      <dl>
+        <dt>Historique</dt><dd>${history}</dd>
+        <dt>État actuel</dt><dd>${current}</dd>
+        <dt>Explication accessible</dt><dd>${accessible || text}</dd>
+        <dt>Avancées récentes</dt><dd>${recent || advances}</dd>
+        <dt>Impact</dt><dd>${impact}</dd>
+      </dl>
+      <section class="problem-references">
+        <strong>Références</strong>
+        <ul>${fieldList(references)}</ul>
+      </section>
     </article>
-  `).join("");
+  `;
 }
 
 function renderModes() {
@@ -891,14 +1558,233 @@ function drawSurface(rotation = 48) {
   }
 }
 
+function drawGrid(ctx, w, h, step = 42) {
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = "#e5e7eb";
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= w; x += step) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
+    ctx.stroke();
+  }
+  for (let y = 0; y <= h; y += step) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+    ctx.stroke();
+  }
+  ctx.strokeStyle = "#1f2937";
+  ctx.beginPath();
+  ctx.moveTo(0, h / 2);
+  ctx.lineTo(w, h / 2);
+  ctx.moveTo(w / 2, 0);
+  ctx.lineTo(w / 2, h);
+  ctx.stroke();
+}
+
+function drawCurveVisualization(mode = $("#curveMode").value) {
+  const canvas = $("#curveCanvas");
+  const ctx = canvas.getContext("2d");
+  const { width: w, height: h } = canvas;
+  const scale = 92;
+  const px = (x) => w / 2 + x * scale;
+  const py = (y) => h / 2 - y * scale;
+  drawGrid(ctx, w, h);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#0f766e";
+  ctx.beginPath();
+  let started = false;
+  if (mode === "parametric") {
+    for (let i = 0; i <= 720; i += 1) {
+      const t = (i / 720) * Math.PI * 2;
+      const x = Math.sin(3 * t + Math.PI / 6) * 2.05;
+      const y = Math.cos(2 * t) * 1.45;
+      started ? ctx.lineTo(px(x), py(y)) : ctx.moveTo(px(x), py(y));
+      started = true;
+    }
+  } else if (mode === "polar") {
+    for (let i = 0; i <= 900; i += 1) {
+      const t = (i / 900) * Math.PI * 2;
+      const r = 1.35 + 0.55 * Math.cos(5 * t);
+      const x = r * Math.cos(t);
+      const y = r * Math.sin(t);
+      started ? ctx.lineTo(px(x), py(y)) : ctx.moveTo(px(x), py(y));
+      started = true;
+    }
+  } else {
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#7c2d12";
+    for (let level = -2; level <= 2; level += 1) {
+      ctx.beginPath();
+      started = false;
+      for (let i = -260; i <= 260; i += 1) {
+        const x = i / 72;
+        const y = Math.sin(x * x + level * 0.7) + level * 0.42;
+        started ? ctx.lineTo(px(x), py(y)) : ctx.moveTo(px(x), py(y));
+        started = true;
+      }
+      ctx.stroke();
+    }
+    ctx.strokeStyle = "#0f766e";
+    ctx.beginPath();
+    started = false;
+    for (let i = -220; i <= 220; i += 1) {
+      const y = i / 84;
+      const x = Math.sqrt(1 + y * y);
+      started ? ctx.lineTo(px(x), py(y)) : ctx.moveTo(px(x), py(y));
+      started = true;
+    }
+    for (let i = 220; i >= -220; i -= 1) {
+      const y = i / 84;
+      const x = -Math.sqrt(1 + y * y);
+      ctx.lineTo(px(x), py(y));
+    }
+  }
+  ctx.stroke();
+  ctx.fillStyle = "#334155";
+  ctx.font = "600 18px system-ui";
+  const labels = {
+    parametric: "x = sin(3t), y = cos(2t)",
+    polar: "r = 1.35 + 0.55 cos(5θ)",
+    implicit: "Contours et hyperbole x² - y² = 1",
+  };
+  ctx.fillText(labels[mode], 18, 30);
+}
+
+function drawArrow(ctx, x1, y1, x2, y2, color = "#0f766e") {
+  const angle = Math.atan2(y2 - y1, x2 - x1);
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - Math.cos(angle - 0.45) * 9, y2 - Math.sin(angle - 0.45) * 9);
+  ctx.lineTo(x2 - Math.cos(angle + 0.45) * 9, y2 - Math.sin(angle + 0.45) * 9);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawVectorVisualization(angle = Number($("#matrixSlider").value)) {
+  const canvas = $("#vectorCanvas");
+  const ctx = canvas.getContext("2d");
+  const { width: w, height: h } = canvas;
+  drawGrid(ctx, w, h, 40);
+  const cx = w / 2;
+  const cy = h / 2;
+  const scale = 34;
+  for (let gx = -7; gx <= 7; gx += 1) {
+    for (let gy = -4; gy <= 4; gy += 1) {
+      const len = Math.hypot(gx, gy) || 1;
+      const vx = -gy / len;
+      const vy = gx / len;
+      const x = cx + gx * scale;
+      const y = cy - gy * scale;
+      drawArrow(ctx, x, y, x + vx * 18, y - vy * 18, "rgba(15,118,110,.5)");
+    }
+  }
+  const a = (angle / 180) * Math.PI;
+  const shear = 0.35;
+  const transform = ([x, y]) => [
+    Math.cos(a) * x - Math.sin(a) * y + shear * y,
+    Math.sin(a) * x + Math.cos(a) * y,
+  ];
+  const basis = [[2.2, 0], [0, 2.2], [1.6, 1.2], [-1.2, 1.5]];
+  basis.forEach((vector, index) => {
+    const [tx, ty] = transform(vector);
+    drawArrow(ctx, cx, cy, cx + vector[0] * 54, cy - vector[1] * 54, "rgba(51,65,85,.38)");
+    drawArrow(ctx, cx, cy, cx + tx * 54, cy - ty * 54, index < 2 ? "#7c2d12" : "#0f766e");
+  });
+  ctx.fillStyle = "#334155";
+  ctx.font = "600 18px system-ui";
+  ctx.fillText(`Champ rotationnel · matrice angle ${angle}°`, 18, 30);
+}
+
+function drawNetworkVisualization(mode = $("#networkMode").value) {
+  const canvas = $("#networkCanvas");
+  const ctx = canvas.getContext("2d");
+  const { width: w, height: h } = canvas;
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "#f8fafc";
+  ctx.fillRect(0, 0, w, h);
+  if (mode === "network") {
+    const nodes = [
+      ["Algèbre", 120, 100], ["Groupes", 280, 74], ["Matrices", 460, 115], ["Graphes", 530, 260],
+      ["Topologie", 340, 330], ["Analyse", 155, 300], ["Probabilités", 315, 210],
+    ];
+    const edges = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [2, 6], [6, 5], [6, 3], [1, 6]];
+    ctx.strokeStyle = "rgba(15,118,110,.35)";
+    ctx.lineWidth = 3;
+    edges.forEach(([a, b]) => {
+      ctx.beginPath();
+      ctx.moveTo(nodes[a][1], nodes[a][2]);
+      ctx.lineTo(nodes[b][1], nodes[b][2]);
+      ctx.stroke();
+    });
+    nodes.forEach(([label, x, y], index) => {
+      ctx.fillStyle = index === 0 ? "#0f766e" : "#ffffff";
+      ctx.strokeStyle = index === 0 ? "#0f766e" : "#cbd5e1";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(x, y, label.length > 9 ? 44 : 36, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = index === 0 ? "#ffffff" : "#1f2937";
+      ctx.font = "700 14px system-ui";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(label, x, y);
+    });
+  } else {
+    const angle = (Date.now() / 1800) % (Math.PI * 2);
+    const vertices = [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]];
+    const edges = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+    const project = ([x, y, z]) => {
+      const xr = x * Math.cos(angle) - z * Math.sin(angle);
+      const zr = x * Math.sin(angle) + z * Math.cos(angle);
+      const yr = y * Math.cos(angle * 0.62) - zr * Math.sin(angle * 0.62);
+      const zz = y * Math.sin(angle * 0.62) + zr * Math.cos(angle * 0.62);
+      const s = 118 / (3.2 + zz);
+      return [w / 2 + xr * s, h / 2 + yr * s];
+    };
+    const points = vertices.map(project);
+    ctx.strokeStyle = "#0f766e";
+    ctx.lineWidth = 4;
+    edges.forEach(([a, b]) => {
+      ctx.beginPath();
+      ctx.moveTo(points[a][0], points[a][1]);
+      ctx.lineTo(points[b][0], points[b][1]);
+      ctx.stroke();
+    });
+    points.forEach(([x, y]) => {
+      ctx.fillStyle = "#7c2d12";
+      ctx.beginPath();
+      ctx.arc(x, y, 7, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.fillStyle = "#334155";
+    ctx.font = "600 18px system-ui";
+    ctx.fillText("Polyèdre 3D manipulable", 18, 30);
+  }
+}
+
+function animateNetworkStage() {
+  if ($("#networkMode").value === "polyhedron") drawNetworkVisualization("polyhedron");
+  requestAnimationFrame(animateNetworkStage);
+}
+
 function drawPlot() {
   const canvas = $("#plotCanvas");
   const ctx = canvas.getContext("2d");
   const expr = $("#functionInput").value;
-  const safe = expr.replace(/\b(sin|cos|tan|exp|log|sqrt|abs|pow|PI|E)\b/g, "Math.$1");
   let fn;
   try {
-    fn = new Function("x", `"use strict"; return ${safe};`);
+    fn = createMathFunction(expr, ["x"]);
     fn(1);
   } catch {
     return;
@@ -933,6 +1819,236 @@ function drawPlot() {
   }
   ctx.stroke();
   ctx.lineWidth = 1;
+}
+
+function normalizeMathExpression(expr) {
+  const names = "sin|cos|tan|asin|acos|atan|exp|log|sqrt|abs|pow|min|max|floor|ceil|round|PI|E";
+  return expr
+    .replace(/\^/g, "**")
+    .replace(new RegExp(`(^|[^\\w.])(${names})\\b`, "g"), "$1Math.$2");
+}
+
+function createMathFunction(expr, variables = []) {
+  const safe = normalizeMathExpression(expr);
+  return new Function(...variables, `"use strict"; return ${safe};`);
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(value)) return "non défini";
+  return Math.abs(value) >= 100000 || Math.abs(value) < 0.0001 && value !== 0
+    ? value.toExponential(5)
+    : value.toFixed(6).replace(/\.?0+$/, "");
+}
+
+function calculateScientific() {
+  try {
+    const fn = createMathFunction($("#scientificInput").value);
+    $("#scientificResult").textContent = formatNumber(Number(fn()));
+  } catch {
+    $("#scientificResult").textContent = "Expression invalide.";
+  }
+}
+
+function parseMatrix(value) {
+  const rows = value.trim().split(";").map((row) => row.trim().split(/[\s,]+/).filter(Boolean).map(Number));
+  if (!rows.length || rows.some((row) => !row.length || row.some((cell) => !Number.isFinite(cell)))) throw new Error("Matrice invalide");
+  if (new Set(rows.map((row) => row.length)).size !== 1) throw new Error("Dimensions incohérentes");
+  return rows;
+}
+
+function matrixProduct(a, b) {
+  if (a[0].length !== b.length) throw new Error("Dimensions incompatibles");
+  return a.map((row) => b[0].map((_, col) => row.reduce((sum, value, index) => sum + value * b[index][col], 0)));
+}
+
+function matrixDet2(m) {
+  if (m.length !== 2 || m[0].length !== 2) return null;
+  return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+}
+
+function matrixInverse2(m) {
+  const det = matrixDet2(m);
+  if (det === null || Math.abs(det) < 1e-12) return null;
+  return [[m[1][1] / det, -m[0][1] / det], [-m[1][0] / det, m[0][0] / det]];
+}
+
+function renderMatrix(matrix) {
+  return matrix.map((row) => `[${row.map(formatNumber).join("  ")}]`).join(" ");
+}
+
+function calculateMatrix() {
+  try {
+    const a = parseMatrix($("#matrixA").value);
+    const b = parseMatrix($("#matrixB").value);
+    const product = matrixProduct(a, b);
+    const detA = matrixDet2(a);
+    const inverseA = matrixInverse2(a);
+    $("#matrixResult").innerHTML = `
+      <span>A × B = ${renderMatrix(product)}</span>
+      <span>det(A) = ${detA === null ? "hors 2x2" : formatNumber(detA)}</span>
+      <span>A⁻¹ = ${inverseA ? renderMatrix(inverseA) : "non disponible"}</span>
+    `;
+  } catch (error) {
+    $("#matrixResult").textContent = error.message;
+  }
+}
+
+function symbolicDerivative(expr) {
+  const compact = expr.replace(/\s+/g, "");
+  if (compact === "x") return "1";
+  if (/^-?\d+(\.\d+)?$/.test(compact)) return "0";
+  const power = compact.match(/^([+-]?\d*\.?\d*)\*?x\^([+-]?\d+)$/);
+  if (power) {
+    const coefficient = power[1] === "" || power[1] === "+" ? 1 : power[1] === "-" ? -1 : Number(power[1]);
+    const exponent = Number(power[2]);
+    return `${formatNumber(coefficient * exponent)}x^${exponent - 1}`;
+  }
+  const linear = compact.match(/^([+-]?\d*\.?\d*)\*?x$/);
+  if (linear) return formatNumber(linear[1] === "" || linear[1] === "+" ? 1 : linear[1] === "-" ? -1 : Number(linear[1]));
+  if (compact === "sin(x)") return "cos(x)";
+  if (compact === "cos(x)") return "-sin(x)";
+  if (compact === "exp(x)") return "exp(x)";
+  return "forme symbolique non reconnue";
+}
+
+function simpsonIntegral(fn, a, b, steps = 240) {
+  const n = steps % 2 === 0 ? steps : steps + 1;
+  const h = (b - a) / n;
+  let sum = fn(a) + fn(b);
+  for (let i = 1; i < n; i += 1) sum += fn(a + i * h) * (i % 2 ? 4 : 2);
+  return (sum * h) / 3;
+}
+
+function calculateCalculus() {
+  try {
+    const expr = $("#calculusExpression").value;
+    const x = Number($("#calculusPoint").value);
+    const fn = createMathFunction(expr, ["x"]);
+    const h = 1e-4;
+    const derivative = (fn(x + h) - fn(x - h)) / (2 * h);
+    const integral = simpsonIntegral(fn, 0, x);
+    $("#calculusResult").innerHTML = `
+      <span>f(${formatNumber(x)}) = ${formatNumber(fn(x))}</span>
+      <span>f'(${formatNumber(x)}) ≈ ${formatNumber(derivative)}</span>
+      <span>∫₀^${formatNumber(x)} f(x) dx ≈ ${formatNumber(integral)}</span>
+      <span>Dérivée symbolique simple : ${symbolicDerivative(expr)}</span>
+    `;
+  } catch {
+    $("#calculusResult").textContent = "Expression invalide.";
+  }
+}
+
+function solveQuadratic() {
+  const a = Number($("#equationA").value);
+  const b = Number($("#equationB").value);
+  const c = Number($("#equationC").value);
+  if (![a, b, c].every(Number.isFinite)) {
+    $("#equationResult").textContent = "Coefficients invalides.";
+    return;
+  }
+  if (Math.abs(a) < 1e-12) {
+    $("#equationResult").textContent = Math.abs(b) < 1e-12 ? "Équation dégénérée." : `x = ${formatNumber(-c / b)}`;
+    return;
+  }
+  const delta = b * b - 4 * a * c;
+  if (delta < 0) {
+    const real = -b / (2 * a);
+    const imag = Math.sqrt(-delta) / (2 * a);
+    $("#equationResult").textContent = `Δ = ${formatNumber(delta)} · x = ${formatNumber(real)} ± ${formatNumber(imag)}i`;
+  } else {
+    const root = Math.sqrt(delta);
+    $("#equationResult").textContent = `Δ = ${formatNumber(delta)} · x₁ = ${formatNumber((-b - root) / (2 * a))}, x₂ = ${formatNumber((-b + root) / (2 * a))}`;
+  }
+}
+
+function generateSequence() {
+  try {
+    const fn = createMathFunction($("#sequenceExpression").value, ["n"]);
+    const count = Math.max(1, Math.min(30, Number($("#sequenceCount").value) || 8));
+    const values = Array.from({ length: count }, (_, index) => formatNumber(Number(fn(index))));
+    $("#sequenceResult").textContent = values.join(", ");
+  } catch {
+    $("#sequenceResult").textContent = "Expression de suite invalide.";
+  }
+}
+
+function calculateStats() {
+  const values = $("#statsInput").value.split(/[\s,;]+/).filter(Boolean).map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+  if (!values.length) {
+    $("#statsResult").textContent = "Aucune donnée valide.";
+    return;
+  }
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const median = values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
+  const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / values.length;
+  $("#statsResult").innerHTML = `
+    <span>n = ${values.length}</span>
+    <span>moyenne = ${formatNumber(mean)}</span>
+    <span>médiane = ${formatNumber(median)}</span>
+    <span>variance = ${formatNumber(variance)}</span>
+    <span>écart-type = ${formatNumber(Math.sqrt(variance))}</span>
+    <span>min/max = ${formatNumber(values[0])} / ${formatNumber(values.at(-1))}</span>
+  `;
+}
+
+function combination(n, k) {
+  if (k < 0 || k > n) return 0;
+  let result = 1;
+  for (let i = 1; i <= Math.min(k, n - k); i += 1) result = (result * (n - i + 1)) / i;
+  return result;
+}
+
+function calculateProbability() {
+  const n = Math.trunc(Number($("#probabilityN").value));
+  const k = Math.trunc(Number($("#probabilityK").value));
+  const p = Number($("#probabilityP").value);
+  if (n < 0 || k < 0 || k > n || p < 0 || p > 1) {
+    $("#probabilityResult").textContent = "Paramètres invalides.";
+    return;
+  }
+  const exact = combination(n, k) * p ** k * (1 - p) ** (n - k);
+  const cumulative = Array.from({ length: k + 1 }, (_, index) => combination(n, index) * p ** index * (1 - p) ** (n - index)).reduce((sum, value) => sum + value, 0);
+  $("#probabilityResult").innerHTML = `
+    <span>P(X = ${k}) = ${formatNumber(exact)}</span>
+    <span>P(X ≤ ${k}) = ${formatNumber(cumulative)}</span>
+    <span>E(X) = ${formatNumber(n * p)}</span>
+    <span>Var(X) = ${formatNumber(n * p * (1 - p))}</span>
+  `;
+}
+
+const unitTable = {
+  deg: { label: "degré", family: "angle", factor: Math.PI / 180 },
+  rad: { label: "radian", family: "angle", factor: 1 },
+  m: { label: "mètre", family: "length", factor: 1 },
+  km: { label: "kilomètre", family: "length", factor: 1000 },
+  cm: { label: "centimètre", family: "length", factor: 0.01 },
+  inch: { label: "pouce", family: "length", factor: 0.0254 },
+  kg: { label: "kilogramme", family: "mass", factor: 1 },
+  g: { label: "gramme", family: "mass", factor: 0.001 },
+  lb: { label: "livre", family: "mass", factor: 0.45359237 },
+};
+
+function convertUnit() {
+  const value = Number($("#converterValue").value);
+  const from = unitTable[$("#converterFrom").value];
+  const to = unitTable[$("#converterTo").value];
+  if (!Number.isFinite(value) || !from || !to || from.family !== to.family) {
+    $("#converterResult").textContent = "Unités incompatibles.";
+    return;
+  }
+  const converted = (value * from.factor) / to.factor;
+  $("#converterResult").textContent = `${formatNumber(value)} ${from.label} = ${formatNumber(converted)} ${to.label}`;
+}
+
+function renderLabTools() {
+  calculateScientific();
+  calculateMatrix();
+  calculateCalculus();
+  solveQuadratic();
+  generateSequence();
+  calculateStats();
+  calculateProbability();
+  convertUnit();
 }
 
 function renderGraph() {
@@ -988,15 +2104,38 @@ setScreen(location.hash?.replace("#", "") || "home", { silent: true });
 drawHero();
 drawMandelbrot();
 drawSurface();
+drawCurveVisualization();
+drawVectorVisualization();
+drawNetworkVisualization();
+animateNetworkStage();
 drawPlot();
+renderLabTools();
 registerPwa();
 
 $("#mandelbrotButton").addEventListener("click", drawMandelbrot);
 $("#surfaceSlider").addEventListener("input", (event) => drawSurface(Number(event.target.value)));
+$("#curveMode").addEventListener("change", (event) => drawCurveVisualization(event.target.value));
+$("#matrixSlider").addEventListener("input", (event) => drawVectorVisualization(Number(event.target.value)));
+$("#networkMode").addEventListener("change", (event) => drawNetworkVisualization(event.target.value));
 $("#plotButton").addEventListener("click", drawPlot);
+$("#scientificButton").addEventListener("click", calculateScientific);
+$("#matrixButton").addEventListener("click", calculateMatrix);
+$("#calculusButton").addEventListener("click", calculateCalculus);
+$("#equationButton").addEventListener("click", solveQuadratic);
+$("#sequenceButton").addEventListener("click", generateSequence);
+$("#statsButton").addEventListener("click", calculateStats);
+$("#probabilityButton").addEventListener("click", calculateProbability);
+$("#converterButton").addEventListener("click", convertUnit);
 $("#hintButton").addEventListener("click", () => {
   hintVisible = !hintVisible;
   renderExercise();
+});
+$("#quizModeSelect").addEventListener("change", (event) => {
+  activeQuizMode = event.target.value;
+  currentQuiz = 0;
+  quizScore = 0;
+  quizStreak = 0;
+  renderQuiz();
 });
 $("#nextQuestionButton").addEventListener("click", () => {
   currentQuiz += 1;

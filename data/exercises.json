@@ -1,5 +1,3042 @@
 [
-  {"domain":"Algèbre","level":"Licence","difficulty":"Moyen","time":"12 min","prompt":"Montrer que l'intersection de deux sous-espaces vectoriels est un sous-espace.","hint":"Vérifier stabilité par combinaison linéaire.","solution":"Si u et v appartiennent aux deux sous-espaces, alors au+bv appartient à chacun.","proof":"L'intersection hérite du zéro et de la stabilité de chaque sous-espace."},
-  {"domain":"Analyse","level":"Licence","difficulty":"Difficile","time":"18 min","prompt":"Étudier la convergence de la suite u_n=(1+1/n)^n.","hint":"Comparer le logarithme avec une somme de Riemann.","solution":"La suite converge vers e.","proof":"n log(1+1/n) tend vers 1, donc u_n tend vers exp(1)."},
-  {"domain":"Graphes","level":"Lycée avancé","difficulty":"Facile","time":"8 min","prompt":"Prouver que la somme des degrés d'un graphe fini vaut deux fois le nombre d'arêtes.","hint":"Compter chaque arête par ses extrémités.","solution":"Chaque arête contribue exactement 2 au total.","proof":"Double comptage de l'ensemble des incidences sommet-arête."}
+  {
+    "id": "ex-001",
+    "domain": "Arithmétique",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "preuve",
+    "prompt": "Utiliser la division euclidienne pour déterminer un quotient et un reste.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Arithmétique.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Arithmétique.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Arithmétique.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-002",
+    "domain": "Arithmétique",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "calcul",
+    "prompt": "Prouver une propriété de divisibilité par congruences.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-003",
+    "domain": "Arithmétique",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Arithmétique.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-004",
+    "domain": "Arithmétique",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Arithmétique.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-005",
+    "domain": "Arithmétique",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Arithmétique sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-006",
+    "domain": "Arithmétique",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Arithmétique.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-007",
+    "domain": "Arithmétique",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Arithmétique.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-008",
+    "domain": "Arithmétique",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Arithmétique en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Arithmétique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Arithmétique - notions fondamentales",
+      "Arithmétique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-009",
+    "domain": "Algèbre",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "preuve",
+    "prompt": "Montrer que l intersection de deux sous-espaces vectoriels est un sous-espace.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Algèbre.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Algèbre.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Algèbre.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-010",
+    "domain": "Algèbre",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "calcul",
+    "prompt": "Diagonaliser une matrice 2x2 lorsque les valeurs propres sont distinctes.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-011",
+    "domain": "Algèbre",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Algèbre.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-012",
+    "domain": "Algèbre",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Algèbre.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-013",
+    "domain": "Algèbre",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Algèbre sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-014",
+    "domain": "Algèbre",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Algèbre.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-015",
+    "domain": "Algèbre",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Algèbre.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-016",
+    "domain": "Algèbre",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Algèbre en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Algèbre. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Algèbre - notions fondamentales",
+      "Algèbre - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-017",
+    "domain": "Géométrie",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "preuve",
+    "prompt": "Appliquer le théorème de Pythagore dans une figure composée.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Géométrie.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Géométrie.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Géométrie.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-018",
+    "domain": "Géométrie",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "calcul",
+    "prompt": "Justifier une similitude de triangles par les angles.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-019",
+    "domain": "Géométrie",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Géométrie.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-020",
+    "domain": "Géométrie",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Géométrie.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-021",
+    "domain": "Géométrie",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Géométrie sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-022",
+    "domain": "Géométrie",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Géométrie.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-023",
+    "domain": "Géométrie",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Géométrie.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-024",
+    "domain": "Géométrie",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Géométrie en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Géométrie - notions fondamentales",
+      "Géométrie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-025",
+    "domain": "Analyse",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "preuve",
+    "prompt": "Étudier la convergence de la suite u_n=(1+1/n)^n.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Analyse.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Analyse.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Analyse.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-026",
+    "domain": "Analyse",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "calcul",
+    "prompt": "Calculer une dérivée puis interpréter le signe.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-027",
+    "domain": "Analyse",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Analyse.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-028",
+    "domain": "Analyse",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Analyse.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-029",
+    "domain": "Analyse",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Analyse sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-030",
+    "domain": "Analyse",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Analyse.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-031",
+    "domain": "Analyse",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Analyse.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-032",
+    "domain": "Analyse",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Analyse en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Analyse - notions fondamentales",
+      "Analyse - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-033",
+    "domain": "Topologie",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "preuve",
+    "prompt": "Montrer qu une réunion quelconque d ouverts est ouverte.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Topologie.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Topologie.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Topologie.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-034",
+    "domain": "Topologie",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "calcul",
+    "prompt": "Comparer adhérence et intérieur sur un exemple.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-035",
+    "domain": "Topologie",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Topologie.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-036",
+    "domain": "Topologie",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Topologie.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-037",
+    "domain": "Topologie",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Topologie sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-038",
+    "domain": "Topologie",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Topologie.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-039",
+    "domain": "Topologie",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Topologie.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-040",
+    "domain": "Topologie",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Topologie en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Topologie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Topologie - notions fondamentales",
+      "Topologie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-041",
+    "domain": "Logique",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "preuve",
+    "prompt": "Écrire la contraposée d une implication et l utiliser.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Logique.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Logique.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Logique.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-042",
+    "domain": "Logique",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "calcul",
+    "prompt": "Construire une table de vérité complète.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-043",
+    "domain": "Logique",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Logique.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-044",
+    "domain": "Logique",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Logique.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-045",
+    "domain": "Logique",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Logique sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-046",
+    "domain": "Logique",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Logique.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-047",
+    "domain": "Logique",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Logique.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-048",
+    "domain": "Logique",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Logique en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Logique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Logique - notions fondamentales",
+      "Logique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-049",
+    "domain": "Théorie des nombres",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "preuve",
+    "prompt": "Utiliser l algorithme d Euclide pour calculer un pgcd.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Théorie des nombres.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des nombres.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des nombres.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-050",
+    "domain": "Théorie des nombres",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "calcul",
+    "prompt": "Résoudre une congruence linéaire simple.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-051",
+    "domain": "Théorie des nombres",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Théorie des nombres.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-052",
+    "domain": "Théorie des nombres",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Théorie des nombres.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-053",
+    "domain": "Théorie des nombres",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Théorie des nombres sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-054",
+    "domain": "Théorie des nombres",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Théorie des nombres.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-055",
+    "domain": "Théorie des nombres",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Théorie des nombres.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-056",
+    "domain": "Théorie des nombres",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Théorie des nombres en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des nombres. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Théorie des nombres - notions fondamentales",
+      "Théorie des nombres - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-057",
+    "domain": "Théorie des graphes",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "preuve",
+    "prompt": "Prouver que la somme des degrés vaut deux fois le nombre d arêtes.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Théorie des graphes.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des graphes.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des graphes.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-058",
+    "domain": "Théorie des graphes",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "calcul",
+    "prompt": "Tester l existence d un chemin eulérien.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-059",
+    "domain": "Théorie des graphes",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Théorie des graphes.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-060",
+    "domain": "Théorie des graphes",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Théorie des graphes.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-061",
+    "domain": "Théorie des graphes",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Théorie des graphes sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-062",
+    "domain": "Théorie des graphes",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Théorie des graphes.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-063",
+    "domain": "Théorie des graphes",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Théorie des graphes.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-064",
+    "domain": "Théorie des graphes",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Théorie des graphes en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des graphes. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Théorie des graphes - notions fondamentales",
+      "Théorie des graphes - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-065",
+    "domain": "Probabilités",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "preuve",
+    "prompt": "Calculer une probabilité conditionnelle avec la formule de Bayes.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Probabilités.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Probabilités.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Probabilités.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-066",
+    "domain": "Probabilités",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "calcul",
+    "prompt": "Modéliser une répétition indépendante par une loi binomiale.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-067",
+    "domain": "Probabilités",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Probabilités.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-068",
+    "domain": "Probabilités",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Probabilités.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-069",
+    "domain": "Probabilités",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Probabilités sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-070",
+    "domain": "Probabilités",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Probabilités.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-071",
+    "domain": "Probabilités",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Probabilités.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-072",
+    "domain": "Probabilités",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Probabilités en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Probabilités. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Probabilités - notions fondamentales",
+      "Probabilités - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-073",
+    "domain": "Statistiques",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "preuve",
+    "prompt": "Calculer moyenne, médiane et écart-type d une série.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Statistiques.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Statistiques.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Statistiques.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-074",
+    "domain": "Statistiques",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "calcul",
+    "prompt": "Interpréter un nuage de points et une corrélation.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-075",
+    "domain": "Statistiques",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Statistiques.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-076",
+    "domain": "Statistiques",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Statistiques.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-077",
+    "domain": "Statistiques",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Statistiques sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-078",
+    "domain": "Statistiques",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Statistiques.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-079",
+    "domain": "Statistiques",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Statistiques.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-080",
+    "domain": "Statistiques",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Statistiques en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Statistiques. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Statistiques - notions fondamentales",
+      "Statistiques - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-081",
+    "domain": "Calcul numérique",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "preuve",
+    "prompt": "Approximer une racine par dichotomie.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Calcul numérique.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Calcul numérique.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Calcul numérique.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-082",
+    "domain": "Calcul numérique",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "calcul",
+    "prompt": "Comparer erreur absolue et erreur relative.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-083",
+    "domain": "Calcul numérique",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Calcul numérique.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-084",
+    "domain": "Calcul numérique",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Calcul numérique.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-085",
+    "domain": "Calcul numérique",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Calcul numérique sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-086",
+    "domain": "Calcul numérique",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Calcul numérique.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-087",
+    "domain": "Calcul numérique",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Calcul numérique.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-088",
+    "domain": "Calcul numérique",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Calcul numérique en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Calcul numérique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Calcul numérique - notions fondamentales",
+      "Calcul numérique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-089",
+    "domain": "Optimisation",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "preuve",
+    "prompt": "Chercher le minimum d une fonction quadratique.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Optimisation.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Optimisation.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Optimisation.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-090",
+    "domain": "Optimisation",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "calcul",
+    "prompt": "Interpréter une contrainte active dans un problème simple.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-091",
+    "domain": "Optimisation",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Optimisation.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-092",
+    "domain": "Optimisation",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Optimisation.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-093",
+    "domain": "Optimisation",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Optimisation sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-094",
+    "domain": "Optimisation",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Optimisation.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-095",
+    "domain": "Optimisation",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Optimisation.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-096",
+    "domain": "Optimisation",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Optimisation en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Optimisation. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Optimisation - notions fondamentales",
+      "Optimisation - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-097",
+    "domain": "Cryptographie",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "preuve",
+    "prompt": "Chiffrer un message court par un décalage de César.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Cryptographie.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Cryptographie.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Cryptographie.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-098",
+    "domain": "Cryptographie",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "calcul",
+    "prompt": "Expliquer le rôle d une clé publique.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-099",
+    "domain": "Cryptographie",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Cryptographie.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-100",
+    "domain": "Cryptographie",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Cryptographie.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-101",
+    "domain": "Cryptographie",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Cryptographie sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-102",
+    "domain": "Cryptographie",
+    "level": "Lycée avancé",
+    "difficulty": "Avancé",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Cryptographie.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-103",
+    "domain": "Cryptographie",
+    "level": "Licence",
+    "difficulty": "Facile",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Cryptographie.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-104",
+    "domain": "Cryptographie",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Cryptographie en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Cryptographie. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Cryptographie - notions fondamentales",
+      "Cryptographie - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-105",
+    "domain": "Géométrie différentielle",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "preuve",
+    "prompt": "Calculer une courbure sur une courbe plane simple.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Géométrie différentielle.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Géométrie différentielle.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Géométrie différentielle.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-106",
+    "domain": "Géométrie différentielle",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "calcul",
+    "prompt": "Interpréter une géodésique sur une surface.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-107",
+    "domain": "Géométrie différentielle",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Géométrie différentielle.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-108",
+    "domain": "Géométrie différentielle",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Géométrie différentielle.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-109",
+    "domain": "Géométrie différentielle",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Géométrie différentielle sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-110",
+    "domain": "Géométrie différentielle",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Géométrie différentielle.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-111",
+    "domain": "Géométrie différentielle",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Géométrie différentielle.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-112",
+    "domain": "Géométrie différentielle",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Géométrie différentielle en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Géométrie différentielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Géométrie différentielle - notions fondamentales",
+      "Géométrie différentielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-113",
+    "domain": "Analyse complexe",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "preuve",
+    "prompt": "Vérifier les équations de Cauchy-Riemann pour une fonction simple.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Analyse complexe.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Analyse complexe.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Analyse complexe.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-114",
+    "domain": "Analyse complexe",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "calcul",
+    "prompt": "Calculer un module et un argument.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-115",
+    "domain": "Analyse complexe",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Analyse complexe.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-116",
+    "domain": "Analyse complexe",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Analyse complexe.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-117",
+    "domain": "Analyse complexe",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Analyse complexe sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-118",
+    "domain": "Analyse complexe",
+    "level": "Master",
+    "difficulty": "Facile",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Analyse complexe.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-119",
+    "domain": "Analyse complexe",
+    "level": "Collège",
+    "difficulty": "Moyen",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Analyse complexe.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-120",
+    "domain": "Analyse complexe",
+    "level": "Lycée",
+    "difficulty": "Difficile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Analyse complexe en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Analyse complexe. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Analyse complexe - notions fondamentales",
+      "Analyse complexe - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-121",
+    "domain": "Théorie des catégories",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "preuve",
+    "prompt": "Identifier objets et morphismes dans une catégorie simple.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Théorie des catégories.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des catégories.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Théorie des catégories.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-122",
+    "domain": "Théorie des catégories",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "calcul",
+    "prompt": "Vérifier une propriété universelle élémentaire.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-123",
+    "domain": "Théorie des catégories",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Théorie des catégories.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-124",
+    "domain": "Théorie des catégories",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Théorie des catégories.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-125",
+    "domain": "Théorie des catégories",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Théorie des catégories sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-126",
+    "domain": "Théorie des catégories",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Théorie des catégories.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-127",
+    "domain": "Théorie des catégories",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Théorie des catégories.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-128",
+    "domain": "Théorie des catégories",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Théorie des catégories en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Théorie des catégories. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Théorie des catégories - notions fondamentales",
+      "Théorie des catégories - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-129",
+    "domain": "Fractales",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "preuve",
+    "prompt": "Calculer une dimension de similarité.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Fractales.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Fractales.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Fractales.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-130",
+    "domain": "Fractales",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "calcul",
+    "prompt": "Décrire les premières étapes d une construction autosimilaire.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-131",
+    "domain": "Fractales",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Fractales.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-132",
+    "domain": "Fractales",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Fractales.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-133",
+    "domain": "Fractales",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Fractales sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-134",
+    "domain": "Fractales",
+    "level": "Lycée",
+    "difficulty": "Moyen",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Fractales.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-135",
+    "domain": "Fractales",
+    "level": "Lycée avancé",
+    "difficulty": "Difficile",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Fractales.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-136",
+    "domain": "Fractales",
+    "level": "Licence",
+    "difficulty": "Avancé",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Fractales en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Fractales. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Fractales - notions fondamentales",
+      "Fractales - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-137",
+    "domain": "Dynamique",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "preuve",
+    "prompt": "Étudier les points fixes d une application itérée.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Dynamique.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Dynamique.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Dynamique.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-138",
+    "domain": "Dynamique",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "calcul",
+    "prompt": "Classifier un équilibre par le signe d une dérivée.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-139",
+    "domain": "Dynamique",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "13 min",
+    "estimatedMinutes": 13,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Dynamique.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-140",
+    "domain": "Dynamique",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "16 min",
+    "estimatedMinutes": 16,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Dynamique.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-141",
+    "domain": "Dynamique",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "19 min",
+    "estimatedMinutes": 19,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Dynamique sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-142",
+    "domain": "Dynamique",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "22 min",
+    "estimatedMinutes": 22,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Dynamique.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-143",
+    "domain": "Dynamique",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "25 min",
+    "estimatedMinutes": 25,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Dynamique.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-144",
+    "domain": "Dynamique",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "10 min",
+    "estimatedMinutes": 10,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Dynamique en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Dynamique. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Dynamique - notions fondamentales",
+      "Dynamique - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-145",
+    "domain": "Intelligence artificielle",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "preuve",
+    "prompt": "Calculer une perte quadratique sur un petit jeu de données.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Intelligence artificielle.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Intelligence artificielle.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Intelligence artificielle.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-146",
+    "domain": "Intelligence artificielle",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "calcul",
+    "prompt": "Interpréter une frontière de décision linéaire.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-147",
+    "domain": "Intelligence artificielle",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "14 min",
+    "estimatedMinutes": 14,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Intelligence artificielle.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-148",
+    "domain": "Intelligence artificielle",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "17 min",
+    "estimatedMinutes": 17,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Intelligence artificielle.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-149",
+    "domain": "Intelligence artificielle",
+    "level": "Lycée avancé",
+    "difficulty": "Moyen",
+    "time": "20 min",
+    "estimatedMinutes": 20,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Intelligence artificielle sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-150",
+    "domain": "Intelligence artificielle",
+    "level": "Licence",
+    "difficulty": "Difficile",
+    "time": "23 min",
+    "estimatedMinutes": 23,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Intelligence artificielle.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-151",
+    "domain": "Intelligence artificielle",
+    "level": "Master",
+    "difficulty": "Avancé",
+    "time": "8 min",
+    "estimatedMinutes": 8,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Intelligence artificielle.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-152",
+    "domain": "Intelligence artificielle",
+    "level": "Collège",
+    "difficulty": "Facile",
+    "time": "11 min",
+    "estimatedMinutes": 11,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Intelligence artificielle en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Intelligence artificielle. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Intelligence artificielle - notions fondamentales",
+      "Intelligence artificielle - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-153",
+    "domain": "Mathématiques financières",
+    "level": "Master",
+    "difficulty": "Moyen",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "preuve",
+    "prompt": "Calculer une valeur actuelle avec un taux composé.",
+    "hint": "Identifier les hypothèses minimales et écrire les définitions de Mathématiques financières.",
+    "correction": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Mathématiques financières.",
+    "solution": "La preuve consiste à transformer chaque hypothèse en propriété directement vérifiable dans le cadre de Mathématiques financières.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode preuve. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "On fixe un objet arbitraire, on applique les définitions, puis on conclut par généralité. Cette méthode établit le résultat sans supposer de cas particulier.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-154",
+    "domain": "Mathématiques financières",
+    "level": "Collège",
+    "difficulty": "Difficile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "calcul",
+    "prompt": "Comparer rendement simple et rendement composé.",
+    "hint": "Commencer par simplifier les expressions et isoler les quantités invariantes.",
+    "correction": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "solution": "Le calcul donne une valeur cohérente avec les contraintes du problème et confirme l intuition attendue.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode calcul. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque transformation utilisée conserve l égalité ou l équivalence. La chaîne de calculs justifie donc le résultat final.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-155",
+    "domain": "Mathématiques financières",
+    "level": "Lycée",
+    "difficulty": "Avancé",
+    "time": "15 min",
+    "estimatedMinutes": 15,
+    "type": "application",
+    "prompt": "Résoudre un problème appliqué mobilisant les outils de Mathématiques financières.",
+    "hint": "Choisir un modèle simple, nommer les variables et vérifier les unités ou contraintes.",
+    "correction": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "solution": "Le modèle réduit le problème à une relation standard, puis la résolution fournit la quantité cherchée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode application. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La validité repose sur l adéquation du modèle, la résolution algébrique et le contrôle des contraintes finales.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-156",
+    "domain": "Mathématiques financières",
+    "level": "Lycée avancé",
+    "difficulty": "Facile",
+    "time": "18 min",
+    "estimatedMinutes": 18,
+    "type": "contre-exemple",
+    "prompt": "Construire un contre-exemple montrant la limite d un énoncé naïf en Mathématiques financières.",
+    "hint": "Chercher un cas extrême où une hypothèse implicite disparaît.",
+    "correction": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "solution": "Un objet limite vérifie les premières conditions mais contredit la conclusion proposée.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode contre-exemple. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Il suffit de vérifier séparément les hypothèses conservées et la conclusion fausse pour invalider l énoncé général.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-157",
+    "domain": "Mathématiques financières",
+    "level": "Licence",
+    "difficulty": "Moyen",
+    "time": "21 min",
+    "estimatedMinutes": 21,
+    "type": "synthèse",
+    "prompt": "Comparer deux méthodes classiques de Mathématiques financières sur un même problème.",
+    "hint": "Évaluer les hypothèses, la complexité et la lisibilité de chaque méthode.",
+    "correction": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "solution": "La première méthode est plus directe, tandis que la seconde révèle mieux la structure du problème.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode synthèse. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Les deux approches aboutissent au même invariant ou au même résultat numérique, ce qui confirme leur équivalence sur ce cas.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-158",
+    "domain": "Mathématiques financières",
+    "level": "Master",
+    "difficulty": "Difficile",
+    "time": "24 min",
+    "estimatedMinutes": 24,
+    "type": "modélisation",
+    "prompt": "Formaliser une situation concrète avec le langage de Mathématiques financières.",
+    "hint": "Repérer les objets, les relations et les contraintes avant de calculer.",
+    "correction": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "solution": "La formalisation remplace la situation par des objets mathématiques manipulables et contrôlables.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode modélisation. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "Chaque élément concret reçoit une traduction mathématique, et les relations initiales sont préservées dans le modèle.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-159",
+    "domain": "Mathématiques financières",
+    "level": "Collège",
+    "difficulty": "Avancé",
+    "time": "9 min",
+    "estimatedMinutes": 9,
+    "type": "algorithme",
+    "prompt": "Décrire un algorithme simple pour traiter un problème de Mathématiques financières.",
+    "hint": "Préciser les entrées, les sorties et le critère d arrêt.",
+    "correction": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "solution": "L algorithme parcourt les cas utiles, met à jour un état et renvoie la réponse lorsque le critère est satisfait.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode algorithme. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La terminaison vient de la décroissance d une mesure entière ou d un nombre fini d étapes. La correction suit de l invariant maintenu.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  },
+  {
+    "id": "ex-160",
+    "domain": "Mathématiques financières",
+    "level": "Lycée",
+    "difficulty": "Facile",
+    "time": "12 min",
+    "estimatedMinutes": 12,
+    "type": "démonstration guidée",
+    "prompt": "Compléter une démonstration guidée en Mathématiques financières en justifiant chaque implication.",
+    "hint": "Numéroter les implications et vérifier quelle définition est utilisée à chaque étape.",
+    "correction": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "solution": "Les implications se chaînent après substitution des définitions et simplification des conditions.",
+    "detailedSolution": "1. Reformuler la question dans le langage de Mathématiques financières. 2. Identifier les hypothèses utiles. 3. Appliquer la méthode démonstration guidée. 4. Vérifier que le résultat répond exactement à la question.",
+    "proof": "La démonstration est complète car chaque ligne dépend seulement d une ligne précédente ou d une hypothèse explicitement donnée.",
+    "references": [
+      "Mathématiques financières - notions fondamentales",
+      "Mathématiques financières - exercices guidés"
+    ]
+  }
 ]

@@ -1,6 +1,3096 @@
 [
-  {"name":"Euler","category":"Analyse complexe","expression":"e^{i\\theta}=\\cos\\theta+i\\sin\\theta","latex":"e^{i\\theta}=\\cos\\theta+i\\sin\\theta","explanation":"Pont entre exponentielle complexe et rotations du plan.","examples":["theta=pi donne e^{i\\pi}+1=0"],"proof":"Comparer les séries entières de l'exponentielle, du sinus et du cosinus.","uses":["Rotations","Fourier","Équations différentielles"]},
-  {"name":"Bayes","category":"Probabilités","expression":"P(A|B)=P(B|A)P(A)/P(B)","latex":"P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}","explanation":"Mise à jour d'une croyance à partir d'une observation.","examples":["Diagnostic médical","Filtrage bayésien"],"proof":"Réécrire P(A∩B) de deux façons.","uses":["Statistiques","IA","Décision"]},
-  {"name":"Gaussienne","category":"Statistiques","expression":"phi(x)=1/(sigma sqrt(2pi)) exp(-(x-mu)^2/(2sigma^2))","latex":"\\varphi(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}","explanation":"Distribution normale et approximation universelle.","examples":["Erreurs de mesure"],"proof":"Normalisation via l'intégrale de Gauss.","uses":["Inférence","Signal","Physique"]},
-  {"name":"Gradient","category":"Analyse","expression":"nabla f=(df/dx_1,...,df/dx_n)","latex":"\\nabla f=\\left(\\frac{\\partial f}{\\partial x_1},\\ldots,\\frac{\\partial f}{\\partial x_n}\\right)","explanation":"Direction locale de plus forte croissance.","examples":["Descente de gradient"],"proof":"Découle de la différentielle et du produit scalaire.","uses":["Optimisation","IA","EDP"]}
+  {
+    "name": "Euler",
+    "category": "Analyse complexe",
+    "expression": "e^{i\\theta}=\\cos\\theta+i\\sin\\theta",
+    "latex": "e^{i\\theta}=\\cos\\theta+i\\sin\\theta",
+    "explanation": "Pont entre exponentielle complexe et rotations du plan.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Bayes",
+    "category": "Probabilités",
+    "expression": "P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}",
+    "latex": "P(A\\mid B)=\\frac{P(B\\mid A)P(A)}{P(B)}",
+    "explanation": "Mise à jour d'une probabilité conditionnelle à partir d'une observation.",
+    "examples": [
+      "Exemple guidé en Probabilités",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Probabilités",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Gaussienne",
+    "category": "Statistiques",
+    "expression": "\\varphi(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}",
+    "latex": "\\varphi(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}",
+    "explanation": "Densité normale utilisée pour erreurs, bruit et approximations.",
+    "examples": [
+      "Exemple guidé en Statistiques",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Statistiques",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Gradient",
+    "category": "Analyse",
+    "expression": "\\nabla f=\\left(\\frac{\\partial f}{\\partial x_1},\\ldots,\\frac{\\partial f}{\\partial x_n}\\right)",
+    "latex": "\\nabla f=\\left(\\frac{\\partial f}{\\partial x_1},\\ldots,\\frac{\\partial f}{\\partial x_n}\\right)",
+    "explanation": "Direction locale de plus forte croissance.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Divergence",
+    "category": "Analyse vectorielle",
+    "expression": "\\nabla\\cdot F=\\sum_i \\partial_i F_i",
+    "latex": "\\nabla\\cdot F=\\sum_i \\partial_i F_i",
+    "explanation": "Mesure locale d'une source ou d'un puits.",
+    "examples": [
+      "Exemple guidé en Analyse vectorielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse vectorielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Rotationnel",
+    "category": "Analyse vectorielle",
+    "expression": "\\nabla\\times F",
+    "latex": "\\nabla\\times F",
+    "explanation": "Mesure locale de circulation.",
+    "examples": [
+      "Exemple guidé en Analyse vectorielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse vectorielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Laplacien",
+    "category": "EDP",
+    "expression": "\\Delta f=\\sum_i \\partial_{ii}f",
+    "latex": "\\Delta f=\\sum_i \\partial_{ii}f",
+    "explanation": "Opérateur central pour diffusion, potentiel et ondes.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Transformée de Fourier",
+    "category": "Analyse harmonique",
+    "expression": "\\hat f(\\xi)=\\int f(x)e^{-2\\pi ix\\xi}\\,dx",
+    "latex": "\\hat f(\\xi)=\\int f(x)e^{-2\\pi ix\\xi}\\,dx",
+    "explanation": "Décomposition fréquentielle d'un signal ou d'une fonction.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Entropie",
+    "category": "Information",
+    "expression": "H(X)=-\\sum_x p(x)\\log p(x)",
+    "latex": "H(X)=-\\sum_x p(x)\\log p(x)",
+    "explanation": "Quantité moyenne d'information.",
+    "examples": [
+      "Exemple guidé en Information",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Information",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Distance euclidienne",
+    "category": "Géométrie",
+    "expression": "d(x,y)=\\sqrt{\\sum_i(x_i-y_i)^2}",
+    "latex": "d(x,y)=\\sqrt{\\sum_i(x_i-y_i)^2}",
+    "explanation": "Distance naturelle dans un espace euclidien.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Algèbre",
+    "category": "Algèbre",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Algèbre utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Algèbre",
+    "category": "Algèbre",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Algèbre utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Algèbre utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Algèbre utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Algèbre utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Algèbre",
+    "category": "Algèbre",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Algèbre utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Algèbre",
+    "category": "Algèbre",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Algèbre utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Algèbre utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Algèbre utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Algèbre",
+    "category": "Algèbre",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Algèbre utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Algèbre",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Algèbre",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Analyse",
+    "category": "Analyse",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Analyse utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Analyse",
+    "category": "Analyse",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Analyse utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Analyse",
+    "category": "Analyse",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Analyse utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Analyse",
+    "category": "Analyse",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Analyse utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Analyse",
+    "category": "Analyse",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Analyse utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Analyse",
+    "category": "Analyse",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Analyse utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Analyse",
+    "category": "Analyse",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Analyse utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Analyse",
+    "category": "Analyse",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Analyse utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Analyse",
+    "category": "Analyse",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Analyse utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Analyse",
+    "category": "Analyse",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Analyse utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Analyse",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Analyse complexe utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Analyse complexe utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Analyse complexe utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Analyse complexe utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Analyse complexe utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Analyse complexe utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Analyse complexe utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Analyse complexe utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Analyse complexe utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Analyse complexe",
+    "category": "Analyse complexe",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Analyse complexe utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Analyse complexe",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse complexe",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Analyse fonctionnelle",
+    "category": "Analyse fonctionnelle",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Analyse fonctionnelle utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Analyse fonctionnelle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse fonctionnelle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Analyse harmonique utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Analyse harmonique utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Analyse harmonique utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Analyse harmonique utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Analyse harmonique utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Analyse harmonique utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Analyse harmonique utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Analyse harmonique utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Analyse harmonique utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Analyse harmonique",
+    "category": "Analyse harmonique",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Analyse harmonique utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Analyse harmonique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Analyse harmonique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Arithmétique utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Arithmétique utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Arithmétique utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Arithmétique utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Arithmétique utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Arithmétique utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Arithmétique utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Arithmétique utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Arithmétique utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Arithmétique",
+    "category": "Arithmétique",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Arithmétique utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Arithmétique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Arithmétique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Calcul numérique utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Calcul numérique utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Calcul numérique utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Calcul numérique utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Calcul numérique utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Calcul numérique utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Calcul numérique utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Calcul numérique utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Calcul numérique utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Calcul numérique",
+    "category": "Calcul numérique",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Calcul numérique utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Calcul numérique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul numérique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Calcul stochastique utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Calcul stochastique utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Calcul stochastique utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Calcul stochastique utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Calcul stochastique utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Calcul stochastique utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Calcul stochastique utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Calcul stochastique utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Calcul stochastique utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Calcul stochastique",
+    "category": "Calcul stochastique",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Calcul stochastique utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Calcul stochastique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Calcul stochastique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Catégories",
+    "category": "Catégories",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Catégories utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Catégories",
+    "category": "Catégories",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Catégories utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Catégories",
+    "category": "Catégories",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Catégories utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Catégories",
+    "category": "Catégories",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Catégories utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Catégories",
+    "category": "Catégories",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Catégories utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Catégories",
+    "category": "Catégories",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Catégories utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Catégories",
+    "category": "Catégories",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Catégories utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Catégories",
+    "category": "Catégories",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Catégories utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Catégories",
+    "category": "Catégories",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Catégories utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Catégories",
+    "category": "Catégories",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Catégories utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Catégories",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Catégories",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Combinatoire utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Combinatoire utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Combinatoire utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Combinatoire utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Combinatoire utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Combinatoire utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Combinatoire utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Combinatoire utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Combinatoire utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Combinatoire",
+    "category": "Combinatoire",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Combinatoire utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Combinatoire",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Combinatoire",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de EDP",
+    "category": "EDP",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de EDP utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de EDP",
+    "category": "EDP",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de EDP utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de EDP",
+    "category": "EDP",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de EDP utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de EDP",
+    "category": "EDP",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de EDP utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de EDP",
+    "category": "EDP",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de EDP utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de EDP",
+    "category": "EDP",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de EDP utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de EDP",
+    "category": "EDP",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de EDP utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de EDP",
+    "category": "EDP",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de EDP utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de EDP",
+    "category": "EDP",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de EDP utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de EDP",
+    "category": "EDP",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de EDP utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en EDP",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "EDP",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Fondements",
+    "category": "Fondements",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Fondements utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Fondements",
+    "category": "Fondements",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Fondements utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Fondements",
+    "category": "Fondements",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Fondements utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Fondements",
+    "category": "Fondements",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Fondements utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Fondements",
+    "category": "Fondements",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Fondements utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Fondements",
+    "category": "Fondements",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Fondements utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Fondements",
+    "category": "Fondements",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Fondements utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Fondements",
+    "category": "Fondements",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Fondements utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Fondements",
+    "category": "Fondements",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Fondements utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Fondements",
+    "category": "Fondements",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Fondements utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Fondements",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Fondements",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Géométrie",
+    "category": "Géométrie",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Géométrie utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Géométrie",
+    "category": "Géométrie",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Géométrie utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Géométrie utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Géométrie utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Géométrie utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Géométrie",
+    "category": "Géométrie",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Géométrie utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Géométrie",
+    "category": "Géométrie",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Géométrie utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Géométrie utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Géométrie utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Géométrie",
+    "category": "Géométrie",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Géométrie utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Géométrie",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Géométrie algébrique utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Géométrie algébrique utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Géométrie algébrique utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Géométrie algébrique utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Géométrie algébrique utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Géométrie algébrique utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Géométrie algébrique utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Géométrie algébrique utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Géométrie algébrique utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Géométrie algébrique",
+    "category": "Géométrie algébrique",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Géométrie algébrique utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Géométrie algébrique",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie algébrique",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Géométrie différentielle utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Géométrie différentielle utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Géométrie différentielle utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Géométrie différentielle utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Géométrie différentielle utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Géométrie différentielle utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Géométrie différentielle utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Géométrie différentielle utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Géométrie différentielle utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Géométrie différentielle",
+    "category": "Géométrie différentielle",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Géométrie différentielle utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Géométrie différentielle",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Géométrie différentielle",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Identité de Graphes",
+    "category": "Graphes",
+    "expression": "A=B",
+    "latex": "A=B",
+    "explanation": "Formule de Graphes utilisée comme égalité structurelle utile.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Inégalité de Graphes",
+    "category": "Graphes",
+    "expression": "A\\le B",
+    "latex": "A\\le B",
+    "explanation": "Formule de Graphes utilisée comme contrôle quantitatif.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Somme de Graphes",
+    "category": "Graphes",
+    "expression": "\\sum_{k=1}^n a_k",
+    "latex": "\\sum_{k=1}^n a_k",
+    "explanation": "Formule de Graphes utilisée comme agrégation discrète.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Intégrale de Graphes",
+    "category": "Graphes",
+    "expression": "\\int_a^b f(x)\\,dx",
+    "latex": "\\int_a^b f(x)\\,dx",
+    "explanation": "Formule de Graphes utilisée comme accumulation continue.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Norme de Graphes",
+    "category": "Graphes",
+    "expression": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "latex": "\\|x\\|=\\sqrt{\\langle x,x\\rangle}",
+    "explanation": "Formule de Graphes utilisée comme taille ou énergie.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Projection de Graphes",
+    "category": "Graphes",
+    "expression": "P^2=P",
+    "latex": "P^2=P",
+    "explanation": "Formule de Graphes utilisée comme décomposition sur un sous-espace.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Récurrence de Graphes",
+    "category": "Graphes",
+    "expression": "u_{n+1}=F(u_n)",
+    "latex": "u_{n+1}=F(u_n)",
+    "explanation": "Formule de Graphes utilisée comme évolution itérative.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Optimisation de Graphes",
+    "category": "Graphes",
+    "expression": "\\nabla f(x^*)=0",
+    "latex": "\\nabla f(x^*)=0",
+    "explanation": "Formule de Graphes utilisée comme condition critique.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Probabilité de Graphes",
+    "category": "Graphes",
+    "expression": "\\mathbb E[X]=\\sum_x xp(x)",
+    "latex": "\\mathbb E[X]=\\sum_x xp(x)",
+    "explanation": "Formule de Graphes utilisée comme moyenne pondérée.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Matrice de Graphes",
+    "category": "Graphes",
+    "expression": "\\det(AB)=\\det(A)\\det(B)",
+    "latex": "\\det(AB)=\\det(A)\\det(B)",
+    "explanation": "Formule de Graphes utilisée comme invariant multiplicatif.",
+    "examples": [
+      "Exemple guidé en Graphes",
+      "Cas particulier calculable à la main"
+    ],
+    "proof": "On part des définitions, on simplifie les termes pertinents, puis on vérifie les hypothèses d'application.",
+    "uses": [
+      "Graphes",
+      "Calcul",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Sinus cosinus",
+    "category": "Trigonométrie",
+    "expression": "sin^2 x+cos^2 x=1",
+    "latex": "sin^2 x+cos^2 x=1",
+    "explanation": "Identité fondamentale reliant les deux coordonnées trigonométriques du cercle unité.",
+    "examples": [
+      "x=0 donne 0+1=1",
+      "Permet de simplifier les expressions trigonométriques"
+    ],
+    "proof": "Elle découle de l’équation du cercle unité x^2+y^2=1 avec x=cos t et y=sin t.",
+    "uses": [
+      "Trigonométrie",
+      "Géométrie",
+      "Analyse"
+    ]
+  },
+  {
+    "name": "Addition du sinus",
+    "category": "Trigonométrie",
+    "expression": "sin(a+b)=sin acos b+cos asin b",
+    "latex": "sin(a+b)=sin acos b+cos asin b",
+    "explanation": "Formule de composition des angles pour le sinus.",
+    "examples": [
+      "Développer sin(2x)",
+      "Calculer une rotation composée"
+    ],
+    "proof": "On compare les coordonnées obtenues par composition de deux rotations du plan.",
+    "uses": [
+      "Trigonométrie",
+      "Rotations",
+      "Fourier"
+    ]
+  },
+  {
+    "name": "Addition du cosinus",
+    "category": "Trigonométrie",
+    "expression": "cos(a+b)=cos acos b-sin asin b",
+    "latex": "cos(a+b)=cos acos b-sin asin b",
+    "explanation": "Formule de composition des angles pour le cosinus.",
+    "examples": [
+      "Déduire cos(2x)",
+      "Étudier des oscillations couplées"
+    ],
+    "proof": "On multiplie les matrices de rotation associées aux angles a et b.",
+    "uses": [
+      "Trigonométrie",
+      "Géométrie",
+      "Signal"
+    ]
+  },
+  {
+    "name": "Loi des cosinus",
+    "category": "Trigonométrie",
+    "expression": "c^2=a^2+b^2-2abcosgamma",
+    "latex": "c^2=a^2+b^2-2abcosgamma",
+    "explanation": "Généralisation du théorème de Pythagore aux triangles quelconques.",
+    "examples": [
+      "Retrouver Pythagore si gamma=pi/2",
+      "Calculer un côté inconnu"
+    ],
+    "proof": "Elle vient du produit scalaire entre deux vecteurs formant l’angle gamma.",
+    "uses": [
+      "Trigonométrie",
+      "Géométrie",
+      "Mesures"
+    ]
+  },
+  {
+    "name": "Énergie cinétique",
+    "category": "Physique",
+    "expression": "E_c=\frac12 mv^2",
+    "latex": "E_c=\frac12 mv^2",
+    "explanation": "Énergie associée au mouvement d’un corps de masse m et de vitesse v.",
+    "examples": [
+      "Doubler la vitesse multiplie l’énergie par quatre",
+      "Comparer deux masses à vitesse égale"
+    ],
+    "proof": "Elle se déduit du travail de la force lors d’une accélération classique.",
+    "uses": [
+      "Physique",
+      "Mécanique",
+      "Énergie"
+    ]
+  },
+  {
+    "name": "Deuxième loi de Newton",
+    "category": "Physique",
+    "expression": "sum F=m a",
+    "latex": "sum F=m a",
+    "explanation": "Relation fondamentale entre force résultante, masse et accélération.",
+    "examples": [
+      "Chute verticale sans frottement",
+      "Mouvement rectiligne uniformément accéléré"
+    ],
+    "proof": "Elle formalise la proportionnalité entre variation de quantité de mouvement et force appliquée.",
+    "uses": [
+      "Physique",
+      "Mécanique",
+      "Modélisation"
+    ]
+  },
+  {
+    "name": "Onde harmonique",
+    "category": "Physique",
+    "expression": "u(x,t)=Acos(kx-omega t+\u000barphi)",
+    "latex": "u(x,t)=Acos(kx-omega t+\u000barphi)",
+    "explanation": "Modèle d’une onde sinusoïdale se propageant dans l’espace et le temps.",
+    "examples": [
+      "Onde sonore idéale",
+      "Onde lumineuse monochromatique"
+    ],
+    "proof": "On cherche des solutions périodiques de l’équation d’onde linéaire.",
+    "uses": [
+      "Physique",
+      "Analyse",
+      "Signal"
+    ]
+  },
+  {
+    "name": "Équation de Schrödinger",
+    "category": "Physique",
+    "expression": "ihbar\frac{partialpsi}{partial t}=hat Hpsi",
+    "latex": "ihbar\frac{partialpsi}{partial t}=hat Hpsi",
+    "explanation": "Équation d’évolution d’un état quantique.",
+    "examples": [
+      "Particule dans une boîte",
+      "Oscillateur harmonique quantique"
+    ],
+    "proof": "Elle postule une évolution unitaire générée par l’hamiltonien du système.",
+    "uses": [
+      "Physique",
+      "Analyse fonctionnelle",
+      "Quantique"
+    ]
+  },
+  {
+    "name": "Complexité temporelle",
+    "category": "Informatique",
+    "expression": "T(n)=O(f(n))",
+    "latex": "T(n)=O(f(n))",
+    "explanation": "Notation asymptotique pour borner le coût d’un algorithme.",
+    "examples": [
+      "Recherche linéaire O(n)",
+      "Tri efficace O(nlog n)"
+    ],
+    "proof": "On borne T(n) par une constante multipliée par f(n) au-delà d’un certain rang.",
+    "uses": [
+      "Informatique",
+      "Algorithmique",
+      "Complexité"
+    ]
+  },
+  {
+    "name": "Récurrence maître",
+    "category": "Informatique",
+    "expression": "T(n)=aT(n/b)+f(n)",
+    "latex": "T(n)=aT(n/b)+f(n)",
+    "explanation": "Schéma de coût pour les algorithmes diviser-pour-régner.",
+    "examples": [
+      "Tri fusion",
+      "Recherche dichotomique généralisée"
+    ],
+    "proof": "On compare le coût du niveau courant à la somme des sous-problèmes récursifs.",
+    "uses": [
+      "Informatique",
+      "Algorithmique",
+      "Récurrences"
+    ]
+  },
+  {
+    "name": "Entropie de Shannon",
+    "category": "Informatique",
+    "expression": "H(X)=-sum_x p(x)log_2 p(x)",
+    "latex": "H(X)=-sum_x p(x)log_2 p(x)",
+    "explanation": "Mesure de l’information moyenne d’une source discrète.",
+    "examples": [
+      "Source binaire équilibrée",
+      "Compression sans perte"
+    ],
+    "proof": "Elle est caractérisée par additivité, continuité et maximalité pour la loi uniforme.",
+    "uses": [
+      "Informatique",
+      "Information",
+      "Probabilités"
+    ]
+  },
+  {
+    "name": "Produit scalaire vectoriel",
+    "category": "Informatique",
+    "expression": "xcdot y=sum_i x_i y_i",
+    "latex": "xcdot y=sum_i x_i y_i",
+    "explanation": "Mesure algébrique de similarité entre vecteurs numériques.",
+    "examples": [
+      "Similarité cosinus",
+      "Score d’un modèle linéaire"
+    ],
+    "proof": "La formule résulte de la bilinéarité et du choix d’une base orthonormée.",
+    "uses": [
+      "Informatique",
+      "IA",
+      "Algèbre linéaire"
+    ]
+  }
 ]

@@ -1,6 +1,1970 @@
 [
-  {"name":"Hypothèse de Riemann","status":"Ouvert","text":"Tous les zéros non triviaux de ζ(s) auraient partie réelle 1/2.","history":"Formulée par Riemann en 1859.","current":"Problème du prix du millénaire non résolu.","advances":"Vérifications numériques massives et résultats sur la droite critique.","impact":"Distribution fine des nombres premiers."},
-  {"name":"P versus NP","status":"Ouvert","text":"Demande si toute solution vérifiable rapidement est aussi trouvable rapidement.","history":"Formalisé dans les années 1970.","current":"Problème du prix du millénaire non résolu.","advances":"Barrières de relativisation, natural proofs et algébrisation.","impact":"Complexité, cryptographie, optimisation."},
-  {"name":"Conjecture de Goldbach","status":"Ouvert","text":"Tout entier pair supérieur à 2 serait somme de deux nombres premiers.","history":"Énoncée au XVIIIe siècle.","current":"Ouverte, vérifiée numériquement très loin.","advances":"Goldbach faible démontrée par Helfgott.","impact":"Théorie additive des nombres."},
-  {"name":"Dernier théorème de Fermat","status":"Résolu","text":"Aucune solution entière non nulle pour x^n+y^n=z^n avec n>2.","history":"Annoncé par Fermat, résolu au XXe siècle.","current":"Résolu par Andrew Wiles.","advances":"Lien courbes elliptiques et formes modulaires.","impact":"Problème historique résolu."}
+  {
+    "name": "Hypothèse de Riemann",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Théorie des nombres",
+    "difficulty": "Expert",
+    "period": "XIXe siècle",
+    "text": "Tous les zéros non triviaux de la fonction zêta de Riemann auraient une partie réelle égale à 1/2.",
+    "history": "Formulée par Bernhard Riemann en 1859 dans son mémoire sur la distribution des nombres premiers.",
+    "current": "Problème du prix du millénaire non résolu.",
+    "accessible": "La question cherche à expliquer la régularité cachée dans l apparition des nombres premiers.",
+    "advances": "Vérifications numériques massives, théorèmes sur la droite critique et liens profonds avec l analyse harmonique et les matrices aléatoires.",
+    "impact": "Distribution fine des nombres premiers, cryptographie, analyse complexe.",
+    "recent": "Les avancées restent partielles : elles améliorent la compréhension statistique des zéros sans résoudre l hypothèse.",
+    "references": [
+      "Riemann 1859",
+      "Clay Mathematics Institute",
+      "Titchmarsh - The Theory of the Riemann Zeta-function"
+    ]
+  },
+  {
+    "name": "P versus NP",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Informatique théorique",
+    "difficulty": "Expert",
+    "period": "XXe siècle",
+    "text": "Demande si tout problème dont une solution se vérifie rapidement peut aussi se résoudre rapidement.",
+    "history": "Formalisé au début des années 1970 par Cook, Levin et Karp.",
+    "current": "Problème du prix du millénaire non résolu.",
+    "accessible": "Il compare trouver une solution et vérifier une solution déjà proposée.",
+    "advances": "Barrières de relativisation, preuves naturelles, algébrisation, complexité fine et résultats conditionnels.",
+    "impact": "Cryptographie, optimisation, algorithmique, intelligence artificielle.",
+    "recent": "La plupart des spécialistes pensent que P est différent de NP, mais aucune preuve acceptée n existe.",
+    "references": [
+      "Cook 1971",
+      "Karp 1972",
+      "Clay Mathematics Institute"
+    ]
+  },
+  {
+    "name": "Conjecture de Goldbach",
+    "status": "Ouvert",
+    "category": "Conjectures classiques",
+    "domain": "Théorie des nombres",
+    "difficulty": "Difficile",
+    "period": "XVIIIe siècle",
+    "text": "Tout entier pair supérieur à 2 serait la somme de deux nombres premiers.",
+    "history": "Énoncée dans une lettre de Goldbach à Euler en 1742.",
+    "current": "Toujours ouverte, mais vérifiée numériquement sur de très grands intervalles.",
+    "accessible": "Elle affirme que les nombres premiers suffisent à composer tous les nombres pairs à partir de 4.",
+    "advances": "La conjecture faible a été démontrée par Harald Helfgott ; le théorème de Chen donne des résultats proches.",
+    "impact": "Théorie additive des nombres et méthodes du cercle.",
+    "recent": "Les progrès concernent surtout les variantes faibles, les bornes effectives et les vérifications numériques.",
+    "references": [
+      "Euler-Goldbach correspondence",
+      "Helfgott 2013",
+      "Chen 1973"
+    ]
+  },
+  {
+    "name": "Conjecture des nombres premiers jumeaux",
+    "status": "Ouvert",
+    "category": "Conjectures classiques",
+    "domain": "Théorie des nombres",
+    "difficulty": "Difficile",
+    "period": "Antiquité / moderne",
+    "text": "Il existerait une infinité de paires de nombres premiers séparés par 2, comme 11 et 13.",
+    "history": "Question ancienne devenue centrale dans la théorie analytique des nombres.",
+    "current": "Ouverte ; on sait prouver l existence d une infinité de paires de nombres premiers à écart borné.",
+    "accessible": "Elle demande si les nombres premiers continuent parfois à apparaître presque côte à côte indéfiniment.",
+    "advances": "Travaux de Zhang, Maynard, Tao et du projet Polymath sur les écarts bornés entre nombres premiers.",
+    "impact": "Compréhension de la distribution locale des nombres premiers.",
+    "recent": "Les bornes sur les écarts admissibles ont été spectaculairement réduites, sans atteindre l écart 2.",
+    "references": [
+      "Zhang 2013",
+      "Maynard 2015",
+      "Polymath8"
+    ]
+  },
+  {
+    "name": "Conjecture de Hodge",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Géométrie algébrique",
+    "difficulty": "Expert",
+    "period": "XXe siècle",
+    "text": "Certaines classes de cohomologie sur les variétés projectives complexes devraient provenir de cycles algébriques.",
+    "history": "Formulée par W. V. D. Hodge dans le contexte de la géométrie algébrique et de la topologie.",
+    "current": "Problème du prix du millénaire non résolu.",
+    "accessible": "Elle demande quand une information topologique peut être représentée par des sous-variétés définies par des équations polynomiales.",
+    "advances": "Cas particuliers connus, variantes motiviques et interactions avec la théorie de Hodge moderne.",
+    "impact": "Géométrie algébrique, topologie, cycles algébriques.",
+    "recent": "Les progrès sont surtout structurels et portent sur des familles particulières de variétés.",
+    "references": [
+      "Hodge theory",
+      "Clay Mathematics Institute",
+      "Voisin - Hodge Theory"
+    ]
+  },
+  {
+    "name": "Conjecture de Birch et Swinnerton-Dyer",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Théorie des nombres",
+    "difficulty": "Expert",
+    "period": "XXe siècle",
+    "text": "Elle relie le rang d une courbe elliptique au comportement de sa fonction L en s=1.",
+    "history": "Formulée dans les années 1960 à partir de calculs numériques sur courbes elliptiques.",
+    "current": "Problème du prix du millénaire non résolu en général.",
+    "accessible": "Elle cherche à prévoir combien de solutions rationnelles indépendantes possède une équation elliptique.",
+    "advances": "Résultats majeurs de Gross-Zagier, Kolyvagin et preuves dans plusieurs cas de rang faible.",
+    "impact": "Courbes elliptiques, cryptographie, géométrie arithmétique.",
+    "recent": "Des cas importants sont connus, mais la conjecture complète reste ouverte.",
+    "references": [
+      "Birch and Swinnerton-Dyer",
+      "Gross-Zagier",
+      "Clay Mathematics Institute"
+    ]
+  },
+  {
+    "name": "Existence et régularité de Navier-Stokes",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Analyse / EDP",
+    "difficulty": "Expert",
+    "period": "XIXe-XXe siècle",
+    "text": "Établir existence globale et régularité des solutions 3D des équations de Navier-Stokes incompressibles.",
+    "history": "Les équations modélisent les fluides visqueux depuis Navier et Stokes.",
+    "current": "Problème du prix du millénaire non résolu en dimension 3.",
+    "accessible": "Il s agit de savoir si un fluide mathématique peut développer une singularité en temps fini.",
+    "advances": "Résultats en dimension 2, solutions faibles de Leray, critères de régularité conditionnels.",
+    "impact": "Mécanique des fluides, EDP, simulation numérique.",
+    "recent": "Les travaux modernes affinent les critères de régularité et les scénarios possibles de singularité.",
+    "references": [
+      "Leray 1934",
+      "Clay Mathematics Institute",
+      "Constantin-Foias"
+    ]
+  },
+  {
+    "name": "Yang-Mills et gap de masse",
+    "status": "Ouvert",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Physique mathématique",
+    "difficulty": "Expert",
+    "period": "XXe siècle",
+    "text": "Construire rigoureusement une théorie de Yang-Mills quantique non abélienne en dimension 4 avec un gap de masse positif.",
+    "history": "Issue des théories de jauge utilisées en physique des particules.",
+    "current": "Problème du prix du millénaire non résolu.",
+    "accessible": "La question demande une fondation mathématique solide pour une théorie physique très utilisée.",
+    "advances": "Résultats en théorie constructive dans des dimensions plus basses et progrès en géométrie de jauge.",
+    "impact": "Physique quantique, géométrie, analyse fonctionnelle.",
+    "recent": "Les ponts entre physique, topologie et analyse restent actifs, sans résolution complète.",
+    "references": [
+      "Yang-Mills theory",
+      "Clay Mathematics Institute",
+      "Gauge theory"
+    ]
+  },
+  {
+    "name": "Conjecture de Poincaré",
+    "status": "Résolu",
+    "category": "Problèmes du prix du millénaire",
+    "domain": "Topologie",
+    "difficulty": "Expert",
+    "period": "XXe siècle",
+    "text": "Toute variété compacte simplement connexe de dimension 3 est homéomorphe à la sphère 3D.",
+    "history": "Posée par Henri Poincaré en 1904.",
+    "current": "Résolue par Grigori Perelman au début des années 2000 via le flot de Ricci.",
+    "accessible": "Elle caractérise la sphère tridimensionnelle par une propriété de connexité des lacets.",
+    "advances": "Hamilton développe le flot de Ricci ; Perelman introduit entropie, chirurgie et estimations décisives.",
+    "impact": "Topologie géométrique, géométrie différentielle.",
+    "recent": "Le problème est résolu ; ses méthodes continuent d influencer la géométrie.",
+    "references": [
+      "Poincaré 1904",
+      "Hamilton Ricci flow",
+      "Perelman 2002-2003"
+    ]
+  },
+  {
+    "name": "Dernier théorème de Fermat",
+    "status": "Résolu",
+    "category": "Problèmes historiques résolus",
+    "domain": "Théorie des nombres",
+    "difficulty": "Expert",
+    "period": "XVIIe-XXe siècle",
+    "text": "Aucune solution entière non nulle pour x^n + y^n = z^n lorsque n > 2.",
+    "history": "Annoncé par Fermat au XVIIe siècle dans une marge de l Arithmetica.",
+    "current": "Résolu par Andrew Wiles, avec Richard Taylor, dans les années 1990.",
+    "accessible": "C est une généralisation impossible de l équation de Pythagore aux puissances supérieures.",
+    "advances": "La preuve passe par modularité, courbes elliptiques et représentations galoisiennes.",
+    "impact": "Géométrie arithmétique et programme de modularité.",
+    "recent": "Résolu ; ses techniques structurent encore la théorie moderne des nombres.",
+    "references": [
+      "Wiles 1995",
+      "Taylor-Wiles",
+      "Fermat"
+    ]
+  },
+  {
+    "name": "Problème des quatre couleurs",
+    "status": "Résolu",
+    "category": "Problèmes historiques résolus",
+    "domain": "Théorie des graphes",
+    "difficulty": "Difficile",
+    "period": "XIXe-XXe siècle",
+    "text": "Toute carte plane peut être coloriée avec quatre couleurs de sorte que deux régions adjacentes aient des couleurs différentes.",
+    "history": "Proposé au XIXe siècle après des observations cartographiques.",
+    "current": "Résolu par Appel et Haken en 1976 avec assistance informatique, puis simplifié et vérifié formellement.",
+    "accessible": "Il affirme que quatre couleurs suffisent toujours pour colorier une carte sans conflit de voisinage.",
+    "advances": "Première preuve célèbre reposant massivement sur un calcul informatique.",
+    "impact": "Graphes planaires, preuve assistée par ordinateur, combinatoire.",
+    "recent": "La formalisation en assistants de preuve a renforcé la confiance dans le résultat.",
+    "references": [
+      "Appel-Haken 1976",
+      "Robertson et al.",
+      "Gonthier formal proof"
+    ]
+  },
+  {
+    "name": "Problème de Kepler",
+    "status": "Résolu",
+    "category": "Problèmes historiques résolus",
+    "domain": "Géométrie discrète",
+    "difficulty": "Difficile",
+    "period": "XVIIe-XXIe siècle",
+    "text": "L empilement de sphères le plus dense dans l espace ordinaire est l empilement cubique à faces centrées.",
+    "history": "Conjecturé par Kepler en 1611.",
+    "current": "Résolu par Thomas Hales, puis formalisé dans le projet Flyspeck.",
+    "accessible": "Il demande comment ranger des sphères identiques en occupant le plus d espace possible.",
+    "advances": "Preuve combinant géométrie, optimisation et vérification informatique.",
+    "impact": "Géométrie discrète, optimisation, cristallographie.",
+    "recent": "La formalisation Flyspeck a produit une vérification machine complète.",
+    "references": [
+      "Hales 1998",
+      "Flyspeck project",
+      "Kepler 1611"
+    ]
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Algèbre",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Algèbre.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Algèbre",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Algèbre.",
+    "history": "Question issue des développements modernes de Algèbre.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Algèbre, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Algèbre",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Algèbre.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Algèbre",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Algèbre.",
+    "history": "Question issue des développements modernes de Algèbre.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Algèbre, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Algèbre",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Algèbre.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Algèbre",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Algèbre.",
+    "history": "Question issue des développements modernes de Algèbre.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Algèbre, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Algèbre",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Algèbre.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Algèbre",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Algèbre.",
+    "history": "Question issue des développements modernes de Algèbre.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Algèbre, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Analyse.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Analyse",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Analyse.",
+    "history": "Question issue des développements modernes de Analyse.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Analyse",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse.",
+    "history": "Question issue des développements modernes de Analyse.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Analyse",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse.",
+    "history": "Question issue des développements modernes de Analyse.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Analyse",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse.",
+    "history": "Question issue des développements modernes de Analyse.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse complexe",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Analyse complexe.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Analyse complexe",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Analyse complexe.",
+    "history": "Question issue des développements modernes de Analyse complexe.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse complexe, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse complexe",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse complexe.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Analyse complexe",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse complexe.",
+    "history": "Question issue des développements modernes de Analyse complexe.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse complexe, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse complexe",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse complexe.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Analyse complexe",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse complexe.",
+    "history": "Question issue des développements modernes de Analyse complexe.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse complexe, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse complexe",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse complexe.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Analyse complexe",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse complexe.",
+    "history": "Question issue des développements modernes de Analyse complexe.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse complexe, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Analyse fonctionnelle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Analyse fonctionnelle",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Analyse fonctionnelle.",
+    "history": "Question issue des développements modernes de Analyse fonctionnelle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse fonctionnelle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse fonctionnelle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Analyse fonctionnelle",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse fonctionnelle.",
+    "history": "Question issue des développements modernes de Analyse fonctionnelle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse fonctionnelle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse fonctionnelle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Analyse fonctionnelle",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse fonctionnelle.",
+    "history": "Question issue des développements modernes de Analyse fonctionnelle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse fonctionnelle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse fonctionnelle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Analyse fonctionnelle",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse fonctionnelle.",
+    "history": "Question issue des développements modernes de Analyse fonctionnelle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse fonctionnelle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Analyse harmonique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Analyse harmonique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Analyse harmonique.",
+    "history": "Question issue des développements modernes de Analyse harmonique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse harmonique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse harmonique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Analyse harmonique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Analyse harmonique.",
+    "history": "Question issue des développements modernes de Analyse harmonique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse harmonique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse harmonique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Analyse harmonique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Analyse harmonique.",
+    "history": "Question issue des développements modernes de Analyse harmonique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse harmonique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Analyse",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse harmonique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Analyse harmonique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Analyse harmonique.",
+    "history": "Question issue des développements modernes de Analyse harmonique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Analyse harmonique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Arithmétique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Arithmétique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Arithmétique.",
+    "history": "Question issue des développements modernes de Arithmétique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Arithmétique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Arithmétique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Arithmétique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Arithmétique.",
+    "history": "Question issue des développements modernes de Arithmétique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Arithmétique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Arithmétique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Arithmétique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Arithmétique.",
+    "history": "Question issue des développements modernes de Arithmétique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Arithmétique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Arithmétique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Arithmétique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Arithmétique.",
+    "history": "Question issue des développements modernes de Arithmétique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Arithmétique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Calcul numérique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Calcul numérique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Calcul numérique.",
+    "history": "Question issue des développements modernes de Calcul numérique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul numérique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Calcul numérique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Calcul numérique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Calcul numérique.",
+    "history": "Question issue des développements modernes de Calcul numérique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul numérique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Calcul numérique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Calcul numérique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Calcul numérique.",
+    "history": "Question issue des développements modernes de Calcul numérique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul numérique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Calcul numérique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Calcul numérique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Calcul numérique.",
+    "history": "Question issue des développements modernes de Calcul numérique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul numérique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Calcul stochastique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Calcul stochastique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Calcul stochastique.",
+    "history": "Question issue des développements modernes de Calcul stochastique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul stochastique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Calcul stochastique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Calcul stochastique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Calcul stochastique.",
+    "history": "Question issue des développements modernes de Calcul stochastique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul stochastique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Calcul stochastique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Calcul stochastique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Calcul stochastique.",
+    "history": "Question issue des développements modernes de Calcul stochastique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul stochastique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Calcul stochastique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Calcul stochastique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Calcul stochastique.",
+    "history": "Question issue des développements modernes de Calcul stochastique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Calcul stochastique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Catégories.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Catégories",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Catégories.",
+    "history": "Question issue des développements modernes de Catégories.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Catégories, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Catégories.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Catégories",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Catégories.",
+    "history": "Question issue des développements modernes de Catégories.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Catégories, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Catégories.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Catégories",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Catégories.",
+    "history": "Question issue des développements modernes de Catégories.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Catégories, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Catégories.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Catégories",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Catégories.",
+    "history": "Question issue des développements modernes de Catégories.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Catégories, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Combinatoire.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Combinatoire",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Combinatoire.",
+    "history": "Question issue des développements modernes de Combinatoire.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Combinatoire, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Combinatoire.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Combinatoire",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Combinatoire.",
+    "history": "Question issue des développements modernes de Combinatoire.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Combinatoire, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Combinatoire.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Combinatoire",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Combinatoire.",
+    "history": "Question issue des développements modernes de Combinatoire.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Combinatoire, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Combinatoire.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Combinatoire",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Combinatoire.",
+    "history": "Question issue des développements modernes de Combinatoire.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Combinatoire, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de EDP.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en EDP",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de EDP.",
+    "history": "Question issue des développements modernes de EDP.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur EDP, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de EDP.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en EDP",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de EDP.",
+    "history": "Question issue des développements modernes de EDP.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur EDP, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de EDP.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en EDP",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de EDP.",
+    "history": "Question issue des développements modernes de EDP.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur EDP, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de EDP.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en EDP",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de EDP.",
+    "history": "Question issue des développements modernes de EDP.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur EDP, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Fondements.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Fondements",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Fondements.",
+    "history": "Question issue des développements modernes de Fondements.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Fondements, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Fondements.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Fondements",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Fondements.",
+    "history": "Question issue des développements modernes de Fondements.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Fondements, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Fondements.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Fondements",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Fondements.",
+    "history": "Question issue des développements modernes de Fondements.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Fondements, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Fondements.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Fondements",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Fondements.",
+    "history": "Question issue des développements modernes de Fondements.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Fondements, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Géométrie",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie.",
+    "history": "Question issue des développements modernes de Géométrie.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Géométrie",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie.",
+    "history": "Question issue des développements modernes de Géométrie.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Géométrie",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie.",
+    "history": "Question issue des développements modernes de Géométrie.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Géométrie",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie.",
+    "history": "Question issue des développements modernes de Géométrie.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie algébrique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Géométrie algébrique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie algébrique.",
+    "history": "Question issue des développements modernes de Géométrie algébrique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie algébrique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie algébrique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Géométrie algébrique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie algébrique.",
+    "history": "Question issue des développements modernes de Géométrie algébrique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie algébrique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie algébrique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Géométrie algébrique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie algébrique.",
+    "history": "Question issue des développements modernes de Géométrie algébrique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie algébrique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie algébrique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Géométrie algébrique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie algébrique.",
+    "history": "Question issue des développements modernes de Géométrie algébrique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie algébrique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie différentielle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Géométrie différentielle",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Géométrie différentielle.",
+    "history": "Question issue des développements modernes de Géométrie différentielle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie différentielle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie différentielle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Géométrie différentielle",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Géométrie différentielle.",
+    "history": "Question issue des développements modernes de Géométrie différentielle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie différentielle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie différentielle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Géométrie différentielle",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Géométrie différentielle.",
+    "history": "Question issue des développements modernes de Géométrie différentielle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie différentielle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Géométrie",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie différentielle.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Géométrie différentielle",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Géométrie différentielle.",
+    "history": "Question issue des développements modernes de Géométrie différentielle.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Géométrie différentielle, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Graphes.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Graphes",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Graphes.",
+    "history": "Question issue des développements modernes de Graphes.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Graphes, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Graphes.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Graphes",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Graphes.",
+    "history": "Question issue des développements modernes de Graphes.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Graphes, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Graphes.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Graphes",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Graphes.",
+    "history": "Question issue des développements modernes de Graphes.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Graphes, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Graphes.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Graphes",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Graphes.",
+    "history": "Question issue des développements modernes de Graphes.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Graphes, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Information.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Information",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Information.",
+    "history": "Question issue des développements modernes de Information.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Information, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Information.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Information",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Information.",
+    "history": "Question issue des développements modernes de Information.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Information, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Information.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Information",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Information.",
+    "history": "Question issue des développements modernes de Information.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Information, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Information.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Information",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Information.",
+    "history": "Question issue des développements modernes de Information.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Information, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Logique",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Logique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Logique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Logique.",
+    "history": "Question issue des développements modernes de Logique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Logique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Logique",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Logique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Logique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Logique.",
+    "history": "Question issue des développements modernes de Logique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Logique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Logique",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Logique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Logique",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Logique.",
+    "history": "Question issue des développements modernes de Logique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Logique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Logique",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Logique.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Logique",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Logique.",
+    "history": "Question issue des développements modernes de Logique.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Logique, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Mesure.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Mesure",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Mesure.",
+    "history": "Question issue des développements modernes de Mesure.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Mesure, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Mesure.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Mesure",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Mesure.",
+    "history": "Question issue des développements modernes de Mesure.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Mesure, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Mesure.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Mesure",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Mesure.",
+    "history": "Question issue des développements modernes de Mesure.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Mesure, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Mesure.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Mesure",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Mesure.",
+    "history": "Question issue des développements modernes de Mesure.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Mesure, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Optimisation",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Optimisation.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Optimisation",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Optimisation.",
+    "history": "Question issue des développements modernes de Optimisation.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Optimisation, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Optimisation",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Optimisation.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Optimisation",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Optimisation.",
+    "history": "Question issue des développements modernes de Optimisation.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Optimisation, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Optimisation",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Optimisation.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Optimisation",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Optimisation.",
+    "history": "Question issue des développements modernes de Optimisation.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Optimisation, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Optimisation",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Optimisation.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Optimisation",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Optimisation.",
+    "history": "Question issue des développements modernes de Optimisation.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Optimisation, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Probabilités",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Probabilités.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Probabilités",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Probabilités.",
+    "history": "Question issue des développements modernes de Probabilités.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Probabilités, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Probabilités",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Probabilités.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Probabilités",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Probabilités.",
+    "history": "Question issue des développements modernes de Probabilités.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Probabilités, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Probabilités",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Probabilités.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Probabilités",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Probabilités.",
+    "history": "Question issue des développements modernes de Probabilités.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Probabilités, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Probabilités",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Probabilités.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Probabilités",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Probabilités.",
+    "history": "Question issue des développements modernes de Probabilités.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Probabilités, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Statistiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Statistiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Statistiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Statistiques.",
+    "history": "Question issue des développements modernes de Statistiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Statistiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Statistiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Statistiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Statistiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Statistiques.",
+    "history": "Question issue des développements modernes de Statistiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Statistiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Statistiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Statistiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Statistiques",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Statistiques.",
+    "history": "Question issue des développements modernes de Statistiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Statistiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Statistiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Statistiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Statistiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Statistiques.",
+    "history": "Question issue des développements modernes de Statistiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Statistiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Systèmes dynamiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Systèmes dynamiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Systèmes dynamiques.",
+    "history": "Question issue des développements modernes de Systèmes dynamiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Systèmes dynamiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Systèmes dynamiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Systèmes dynamiques",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Systèmes dynamiques.",
+    "history": "Question issue des développements modernes de Systèmes dynamiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Systèmes dynamiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Systèmes dynamiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Systèmes dynamiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Systèmes dynamiques.",
+    "history": "Question issue des développements modernes de Systèmes dynamiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Systèmes dynamiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Systèmes dynamiques.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Systèmes dynamiques",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Systèmes dynamiques.",
+    "history": "Question issue des développements modernes de Systèmes dynamiques.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Systèmes dynamiques, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de classification dans les structures de Théorie des ensembles.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de classification en Théorie des ensembles",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de classification dans les structures de Théorie des ensembles.",
+    "history": "Question issue des développements modernes de Théorie des ensembles.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Théorie des ensembles, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de existence effective dans les structures de Théorie des ensembles.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de existence effective en Théorie des ensembles",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de existence effective dans les structures de Théorie des ensembles.",
+    "history": "Question issue des développements modernes de Théorie des ensembles.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Théorie des ensembles, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Avancé",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de borne optimale dans les structures de Théorie des ensembles.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de borne optimale en Théorie des ensembles",
+    "status": "Actif",
+    "text": "Déterminer une réponse générale au problème de borne optimale dans les structures de Théorie des ensembles.",
+    "history": "Question issue des développements modernes de Théorie des ensembles.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Théorie des ensembles, l'enseignement avancé et les applications connexes."
+  },
+  {
+    "category": "Problèmes de recherche",
+    "domain": "Mathématiques",
+    "difficulty": "Difficile",
+    "period": "Moderne",
+    "accessible": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Théorie des ensembles.",
+    "recent": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "references": [
+      "Base Mathemator"
+    ],
+    "name": "Problème de algorithme rapide en Théorie des ensembles",
+    "status": "Ouvert",
+    "text": "Déterminer une réponse générale au problème de algorithme rapide dans les structures de Théorie des ensembles.",
+    "history": "Question issue des développements modernes de Théorie des ensembles.",
+    "current": "Sujet de recherche avec résultats partiels et cas particuliers.",
+    "advances": "Méthodes connues : exemples extrêmes, invariants, calcul symbolique et approches probabilistes.",
+    "impact": "Impact potentiel sur Théorie des ensembles, l'enseignement avancé et les applications connexes."
+  }
 ]

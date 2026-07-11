@@ -574,20 +574,86 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .timeline {
   display: grid;
+  gap: 16px;
+}
+
+.timeline-controls {
+  display: grid;
   gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.timeline-controls label {
+  font-weight: 850;
+}
+
+.timeline-controls input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.timeline-periods,
+.timeline-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-periods button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 11px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 780;
+  cursor: pointer;
+}
+
+.timeline-periods button.active {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: white;
+}
+
+.timeline-stats span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: var(--card);
+  color: var(--muted);
+}
+
+.timeline-stats strong {
+  color: var(--ink);
+}
+
+.timeline-track {
+  display: grid;
+  gap: 14px;
   border-left: 3px solid var(--teal);
   padding-left: 18px;
 }
 
-.timeline article {
+.timeline-card {
   position: relative;
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 16px;
-  padding: 14px 0;
+  padding: 14px 0 18px;
 }
 
-.timeline article::before {
+.timeline-card::before {
   position: absolute;
   left: -27px;
   top: 19px;
@@ -598,8 +664,19 @@ body:not(.app-ready) .hero[data-screen="home"] {
   background: var(--rust);
 }
 
+.timeline-marker {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+}
+
 .timeline time {
   font-weight: 850;
+}
+
+.timeline-marker span {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .timeline p {
@@ -608,12 +685,48 @@ body:not(.app-ready) .hero[data-screen="home"] {
   line-height: 1.5;
 }
 
+.timeline-content {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.timeline-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.timeline-list {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--card);
+}
+
+.timeline-list h3 {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+}
+
+.timeline-list ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
 .visual-stage {
   overflow: hidden;
 }
 
 .stage-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -622,8 +735,19 @@ body:not(.app-ready) .hero[data-screen="home"] {
   border-bottom: 1px solid var(--line);
 }
 
-.stage-toolbar input {
+.stage-toolbar input,
+.stage-toolbar select {
   max-width: 190px;
+}
+
+.stage-toolbar select {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
 }
 
 .visual-stage canvas,
@@ -632,6 +756,80 @@ body:not(.app-ready) .hero[data-screen="home"] {
   width: 100%;
   height: auto;
   background: white;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+  gap: 14px;
+}
+
+.lab-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.lab-body {
+  display: grid;
+  gap: 9px;
+  padding: 14px;
+}
+
+.lab-body label {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.lab-body input,
+.lab-body textarea,
+.lab-body select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+.lab-body textarea {
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.lab-body output {
+  display: grid;
+  gap: 5px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.three-cols {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+}
+
+.three-cols output {
+  grid-column: 1 / -1;
+}
+
+.converter-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+}
+
+.converter-row output {
+  grid-column: 1 / -1;
 }
 
 .stats-row {
@@ -647,6 +845,30 @@ body:not(.app-ready) .hero[data-screen="home"] {
 .stats-row strong {
   color: var(--ink);
   font-size: 1.25rem;
+}
+
+.map-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.map-filters label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.map-filters select {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
 }
 
 .map-panel {
@@ -674,15 +896,72 @@ body:not(.app-ready) .hero[data-screen="home"] {
   fill: var(--rust);
   stroke: white;
   stroke-width: 4;
+  transition: r 0.18s ease, fill 0.18s ease;
 }
 
 .map-pin text {
   fill: var(--ink);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 850;
   paint-order: stroke;
   stroke: white;
   stroke-width: 5px;
+  pointer-events: none;
+}
+
+.map-pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.map-pin.active circle,
+.map-pin:focus-visible circle {
+  r: 15px;
+  fill: var(--teal);
+}
+
+.map-detail {
+  border-top: 1px solid var(--line);
+  padding: 14px;
+  background: var(--card);
+}
+
+.map-detail article {
+  display: grid;
+  gap: 10px;
+}
+
+.map-detail span,
+.map-list-item span,
+.map-list-item small {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.map-detail h3 {
+  margin: 0;
+}
+
+.map-detail p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.map-detail dl {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 8px 12px;
+  margin: 0;
+}
+
+.map-detail dt {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.map-detail dd {
+  margin: 0;
 }
 
 .map-list,
@@ -701,11 +980,196 @@ body:not(.app-ready) .hero[data-screen="home"] {
   border-top: 1px solid var(--line);
 }
 
+.map-list-item {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--card);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-list-item.active {
+  border-color: var(--teal);
+  box-shadow: inset 4px 0 0 var(--teal);
+}
+
 .domain-card,
 .object-card,
 .practice-panel,
 .problem-card {
   padding: 16px;
+}
+
+.domain-tools {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.theorem-tools {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.formula-tools {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.object-tools {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.exercise-tools {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.problem-tools {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.domain-tools > label,
+.domain-tool-row label,
+.theorem-tools > label,
+.theorem-tool-row label,
+.formula-tools > label,
+.formula-tool-row label,
+.object-tools > label,
+.object-tool-row label,
+.exercise-tools > label,
+.exercise-tool-row label,
+.problem-tools > label,
+.problem-tool-row label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.domain-tools input,
+.domain-tool-row select,
+.theorem-tools input,
+.theorem-tool-row select,
+.formula-tools input,
+.formula-tool-row select,
+.object-tools input,
+.object-tool-row select,
+.exercise-tools input,
+.exercise-tool-row select,
+.problem-tools input,
+.problem-tool-row select {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 11px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+.domain-tool-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 12px;
+  align-items: end;
+}
+
+.theorem-tool-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.formula-tool-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.object-tool-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.exercise-tool-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.problem-tool-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.domain-card {
+  display: grid;
+  gap: 12px;
+}
+
+.domain-card-header,
+.theorem-card-header,
+.formula-card-header {
+  display: grid;
+  gap: 5px;
+}
+
+.domain-card-header span,
+.theorem-card-header span,
+.formula-card-header span {
+  width: fit-content;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: var(--card);
+  color: var(--rust);
+  font-size: 0.82rem;
+  font-weight: 850;
 }
 
 .domain-card h3,
@@ -715,19 +1179,52 @@ body:not(.app-ready) .hero[data-screen="home"] {
   margin: 0 0 10px;
 }
 
-.domain-card dl {
+.domain-card h3 {
+  margin: 0;
+}
+
+.domain-card p,
+.theorem-card p,
+.formula-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.theorem-card,
+.formula-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--panel);
+}
+
+.theorem-card h3,
+.formula-card h3 {
+  margin: 0;
+}
+
+.domain-card dl,
+.theorem-card dl,
+.formula-card dl {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 7px 12px;
-  margin: 16px 0 0;
+  margin: 0;
 }
 
-.domain-card dt {
+.domain-card dt,
+.theorem-card dt,
+.formula-card dt {
   color: var(--rust);
   font-weight: 850;
 }
 
-.domain-card dd {
+.domain-card dd,
+.theorem-card dd,
+.formula-card dd {
   margin: 0;
   color: var(--muted);
 }
@@ -757,39 +1254,70 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .object-card {
   overflow: hidden;
+  display: grid;
+  gap: 12px;
 }
 
 .object-figure {
+  display: grid;
+  place-items: center;
   height: 126px;
   margin: -16px -16px 14px;
   background:
     radial-gradient(circle at 35% 42%, rgba(255, 255, 255, 0.86) 0 8px, transparent 9px),
     repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0 2px, transparent 2px 16px),
     linear-gradient(135deg, var(--teal), var(--blue));
+  color: white;
+  font-size: 2.6rem;
+  font-weight: 950;
+  letter-spacing: 0;
 }
 
-.object-1 {
+.object-twist,
+.object-surface {
   background:
     conic-gradient(from 90deg, #0f766e, #f59e0b, #9a3412, #0f766e);
 }
 
-.object-2 {
+.object-mandelbrot,
+.object-julia {
   background:
     radial-gradient(circle at 50% 50%, #07111f 0 10%, #0f766e 11% 18%, #f59e0b 19% 21%, #14213d 22% 100%);
 }
 
-.object-3 {
+.object-sierpinski,
+.object-koch,
+.object-menger {
   background:
     linear-gradient(30deg, transparent 40%, rgba(255,255,255,.72) 41% 43%, transparent 44%),
     linear-gradient(150deg, transparent 40%, rgba(255,255,255,.7) 41% 43%, transparent 44%),
     linear-gradient(135deg, #7c2d12, #1d4ed8);
 }
 
-.object-card span,
+.object-polyhedra,
+.object-tiling,
+.object-platonic,
+.object-archimedean {
+  background:
+    repeating-linear-gradient(60deg, rgba(255,255,255,.24) 0 2px, transparent 2px 18px),
+    linear-gradient(135deg, #1d4ed8, #0f766e);
+}
+
+.object-minimal {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,.7), transparent 22%),
+    linear-gradient(135deg, #0f766e, #14213d);
+}
+
+.object-card-header {
+  display: grid;
+  gap: 6px;
+}
+
+.object-card-header span,
 .badge {
   display: inline-flex;
   width: fit-content;
-  margin-top: 12px;
   border-radius: 999px;
   padding: 6px 9px;
   color: white;
@@ -798,12 +1326,123 @@ body:not(.app-ready) .hero[data-screen="home"] {
   font-weight: 850;
 }
 
+.object-card dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 7px 12px;
+  margin: 0;
+}
+
+.object-card dt {
+  color: var(--rust);
+  font-weight: 850;
+}
+
+.object-card dd {
+  margin: 0;
+  color: var(--muted);
+}
+
 .practice-panel {
   min-height: 265px;
 }
 
+.learning-grid .practice-panel:first-child {
+  grid-column: span 2;
+}
+
 .practice-panel .stage-toolbar {
   margin: -16px -16px 16px;
+}
+
+.exercise-layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.86fr) minmax(0, 1.14fr);
+  gap: 14px;
+}
+
+.exercise-list {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.exercise-list button {
+  display: grid;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--card);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.exercise-list button.active {
+  border-color: var(--teal);
+  box-shadow: inset 4px 0 0 var(--teal);
+}
+
+.exercise-list span,
+.exercise-list small {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.exercise-detail {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.exercise-detail h3 {
+  margin: 0;
+}
+
+.exercise-detail p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.exercise-detail dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 7px 12px;
+  margin: 0;
+}
+
+.exercise-detail dt {
+  color: var(--rust);
+  font-weight: 850;
+}
+
+.exercise-detail dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.exercise-solution {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.exercise-solution h4 {
+  margin: 0;
+}
+
+.exercise-solution ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
 }
 
 .answer-grid {
@@ -813,6 +1452,83 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .answer-grid button {
   text-align: left;
+}
+
+.quiz-head {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.quiz-score {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quiz-score span,
+.quiz-lobby span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  background: #ffffff;
+  color: var(--muted);
+}
+
+.quiz-score strong,
+.quiz-lobby strong {
+  color: var(--ink);
+}
+
+.quiz-question {
+  display: grid;
+  gap: 12px;
+}
+
+.quiz-question > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.quiz-question h3 {
+  margin: 0;
+}
+
+.quiz-question p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.quiz-timer {
+  overflow: hidden;
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.quiz-timer span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--teal);
+  transition: width 0.25s ease;
+}
+
+.answer-grid button.correct {
+  border-color: var(--teal);
+  background: #ccfbf1;
+}
+
+.answer-grid button.wrong {
+  border-color: var(--rust);
+  background: #ffedd5;
+}
+
+.quiz-lobby {
+  display: grid;
+  gap: 8px;
 }
 
 .meter {
@@ -831,15 +1547,28 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .problem-card {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .problem-card strong {
   color: var(--ink);
 }
 
+.problem-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.problem-card-header small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
 .status-open,
-.status-solved {
+.status-solved,
+.status-active {
   width: fit-content;
   border-radius: 999px;
   padding: 6px 9px;
@@ -854,6 +1583,53 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .status-solved {
   background: var(--teal);
+}
+
+.status-active {
+  background: #1d4ed8;
+}
+
+.problem-card dl {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 8px 12px;
+  margin: 0;
+}
+
+.problem-card dt {
+  color: var(--rust);
+  font-weight: 850;
+}
+
+.problem-card dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.problem-references {
+  display: grid;
+  gap: 7px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.problem-references ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.problem-references li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #ffffff;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .workflow {
@@ -962,9 +1738,17 @@ body:not(.app-ready) .hero[data-screen="home"] {
     grid-template-columns: 1fr;
   }
 
-  .timeline article {
+  .timeline-card {
     grid-template-columns: 1fr;
     gap: 5px;
+  }
+
+  .timeline-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-track {
+    padding-left: 14px;
   }
 
   .formula-box {
@@ -974,8 +1758,29 @@ body:not(.app-ready) .hero[data-screen="home"] {
   .person-card,
   .person-card dl,
   .advanced-filters,
-  .detail-lead {
+  .detail-lead,
+  .map-filters,
+  .map-detail dl,
+  .three-cols,
+  .converter-row,
+  .domain-tool-row,
+  .domain-card dl,
+  .theorem-tool-row,
+  .theorem-card dl,
+  .formula-tool-row,
+  .formula-card dl,
+  .object-tool-row,
+  .object-card dl,
+  .exercise-tool-row,
+  .exercise-layout,
+  .exercise-detail dl,
+  .problem-tool-row,
+  .problem-card dl {
     grid-template-columns: 1fr;
+  }
+
+  .learning-grid .practice-panel:first-child {
+    grid-column: auto;
   }
 
   .detail-panel {

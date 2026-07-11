@@ -147,11 +147,26 @@
             <div class="search-panel">
               <label for="mapFilter">Filtrer les lieux</label>
               <input id="mapFilter" type="search" placeholder="Pays, ville, université, époque..." />
+              <div class="map-filters">
+                <label>
+                  Type
+                  <select id="mapKindFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Pays
+                  <select id="mapCountryFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
               <div class="stats-row" id="mapStats"></div>
             </div>
           </div>
           <div class="map-panel">
             <svg id="worldMap" viewBox="0 0 900 460" role="img" aria-label="Carte schématique des lieux mathématiques"></svg>
+            <div class="map-detail" id="mapDetail"></div>
             <div class="map-list" id="mapList"></div>
           </div>
         </section>
@@ -160,6 +175,19 @@
           <div class="section-heading">
             <p class="eyebrow">Encyclopédie des domaines</p>
             <h2>Grandes disciplines</h2>
+          </div>
+          <div class="domain-tools">
+            <label for="domainSearch">Explorer les domaines</label>
+            <input id="domainSearch" type="search" placeholder="Domaine, concept, théorème, application..." />
+            <div class="domain-tool-row">
+              <label>
+                Famille
+                <select id="domainFamilyFilter">
+                  <option value="Toutes">Toutes</option>
+                </select>
+              </label>
+              <div class="stats-row" id="domainStats"></div>
+            </div>
           </div>
           <div class="domain-grid" id="domainGrid"></div>
         </section>
@@ -171,6 +199,44 @@
               <h2>Référence démonstrative</h2>
             </div>
             <div class="segmented" id="referenceTabs"></div>
+            <div class="theorem-tools" id="theoremTools">
+              <label for="theoremSearch">Explorer les théorèmes</label>
+              <input id="theoremSearch" type="search" placeholder="Nom, domaine, découvreur, application, référence..." />
+              <div class="theorem-tool-row">
+                <label>
+                  Domaine
+                  <select id="theoremDomainFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Découvreur
+                  <select id="theoremDiscovererFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="theoremStats"></div>
+            </div>
+            <div class="formula-tools" id="formulaTools" hidden>
+              <label for="formulaSearch">Explorer les formules</label>
+              <input id="formulaSearch" type="search" placeholder="Nom, catégorie, usage, exemple..." />
+              <div class="formula-tool-row">
+                <label>
+                  Catégorie
+                  <select id="formulaCategoryFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Usage
+                  <select id="formulaUseFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="formulaStats"></div>
+            </div>
           </div>
           <div class="reference-panel" id="referencePanel"></div>
         </section>
@@ -179,6 +245,25 @@
           <div class="section-heading">
             <p class="eyebrow">Objets mathématiques</p>
             <h2>Galerie visuelle</h2>
+          </div>
+          <div class="object-tools">
+            <label for="objectSearch">Explorer les objets</label>
+            <input id="objectSearch" type="search" placeholder="Objet, propriété, application, visualisation..." />
+            <div class="object-tool-row">
+              <label>
+                Catégorie
+                <select id="objectCategoryFilter">
+                  <option value="Tous">Tous</option>
+                </select>
+              </label>
+              <label>
+                Dimension
+                <select id="objectDimensionFilter">
+                  <option value="Tous">Tous</option>
+                </select>
+              </label>
+            </div>
+            <div class="stats-row" id="objectStats"></div>
           </div>
           <div class="object-grid" id="objectGrid"></div>
         </section>
@@ -203,6 +288,34 @@
               </div>
               <canvas id="surfaceCanvas" width="640" height="420" aria-label="Surface paramétrique animée"></canvas>
             </article>
+            <article class="visual-stage">
+              <div class="stage-toolbar">
+                <strong>Courbes et coordonnées</strong>
+                <select id="curveMode" aria-label="Mode de courbe">
+                  <option value="parametric">Paramétrique</option>
+                  <option value="polar">Polaire</option>
+                  <option value="implicit">Implicite</option>
+                </select>
+              </div>
+              <canvas id="curveCanvas" width="640" height="420" aria-label="Courbes paramétriques, polaires et implicites"></canvas>
+            </article>
+            <article class="visual-stage">
+              <div class="stage-toolbar">
+                <strong>Champs et matrices</strong>
+                <input id="matrixSlider" type="range" min="-90" max="90" value="35" aria-label="Angle de transformation matricielle" />
+              </div>
+              <canvas id="vectorCanvas" width="640" height="420" aria-label="Champ de vecteurs et transformation matricielle"></canvas>
+            </article>
+            <article class="visual-stage">
+              <div class="stage-toolbar">
+                <strong>Réseaux et polyèdres</strong>
+                <select id="networkMode" aria-label="Mode réseau ou polyèdre">
+                  <option value="network">Réseau</option>
+                  <option value="polyhedron">Polyèdre</option>
+                </select>
+              </div>
+              <canvas id="networkCanvas" width="640" height="420" aria-label="Réseau mathématique et polyèdre manipulable"></canvas>
+            </article>
           </div>
         </section>
 
@@ -222,22 +335,190 @@
           <canvas id="plotCanvas" width="700" height="460" aria-label="Grapheur de fonction"></canvas>
         </section>
 
+        <section class="section screen-section" data-screen="lab" id="outils-laboratoire">
+          <div class="section-heading">
+            <p class="eyebrow">Laboratoire</p>
+            <h2>Outils de calcul</h2>
+          </div>
+          <div class="lab-grid">
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Calculatrice scientifique</strong>
+                <button id="scientificButton" type="button">Calculer</button>
+              </div>
+              <div class="lab-body">
+                <label for="scientificInput">Expression</label>
+                <input id="scientificInput" value="sqrt(2)^2 + sin(PI/6)" />
+                <output id="scientificResult">Résultat en attente.</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Calcul matriciel</strong>
+                <button id="matrixButton" type="button">Multiplier</button>
+              </div>
+              <div class="lab-body">
+                <label for="matrixA">Matrice A</label>
+                <textarea id="matrixA" rows="3">1 2; 3 4</textarea>
+                <label for="matrixB">Matrice B</label>
+                <textarea id="matrixB" rows="3">2 0; 1 2</textarea>
+                <output id="matrixResult">Produit, déterminant et inverse 2x2.</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Calcul symbolique</strong>
+                <button id="calculusButton" type="button">Analyser</button>
+              </div>
+              <div class="lab-body">
+                <label for="calculusExpression">f(x)</label>
+                <input id="calculusExpression" value="x^3 - 2*x + 1" />
+                <label for="calculusPoint">Point x</label>
+                <input id="calculusPoint" type="number" value="2" step="0.1" />
+                <output id="calculusResult">Dérivée et intégrale numérique.</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Résolution d'équations</strong>
+                <button id="equationButton" type="button">Résoudre</button>
+              </div>
+              <div class="lab-body three-cols">
+                <label for="equationA">a<input id="equationA" type="number" value="1" step="0.1" /></label>
+                <label for="equationB">b<input id="equationB" type="number" value="-3" step="0.1" /></label>
+                <label for="equationC">c<input id="equationC" type="number" value="2" step="0.1" /></label>
+                <output id="equationResult">ax² + bx + c = 0</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Suites</strong>
+                <button id="sequenceButton" type="button">Générer</button>
+              </div>
+              <div class="lab-body">
+                <label for="sequenceExpression">u(n)</label>
+                <input id="sequenceExpression" value="n^2 + 1" />
+                <label for="sequenceCount">Nombre de termes</label>
+                <input id="sequenceCount" type="number" value="8" min="1" max="30" />
+                <output id="sequenceResult">Termes de la suite.</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Statistiques</strong>
+                <button id="statsButton" type="button">Analyser</button>
+              </div>
+              <div class="lab-body">
+                <label for="statsInput">Données</label>
+                <textarea id="statsInput" rows="3">4, 7, 7, 9, 12, 13</textarea>
+                <output id="statsResult">Moyenne, médiane, variance.</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Probabilités</strong>
+                <button id="probabilityButton" type="button">Calculer</button>
+              </div>
+              <div class="lab-body three-cols">
+                <label for="probabilityN">n<input id="probabilityN" type="number" value="10" min="0" /></label>
+                <label for="probabilityK">k<input id="probabilityK" type="number" value="3" min="0" /></label>
+                <label for="probabilityP">p<input id="probabilityP" type="number" value="0.5" min="0" max="1" step="0.01" /></label>
+                <output id="probabilityResult">Loi binomiale P(X = k).</output>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Convertisseurs</strong>
+                <button id="converterButton" type="button">Convertir</button>
+              </div>
+              <div class="lab-body converter-row">
+                <label for="converterValue">Valeur<input id="converterValue" type="number" value="180" step="0.01" /></label>
+                <label for="converterFrom">De
+                  <select id="converterFrom">
+                    <option value="deg">degré</option>
+                    <option value="rad">radian</option>
+                    <option value="m">mètre</option>
+                    <option value="km">kilomètre</option>
+                    <option value="cm">centimètre</option>
+                    <option value="inch">pouce</option>
+                    <option value="kg">kilogramme</option>
+                    <option value="g">gramme</option>
+                    <option value="lb">livre</option>
+                  </select>
+                </label>
+                <label for="converterTo">Vers
+                  <select id="converterTo">
+                    <option value="rad">radian</option>
+                    <option value="deg">degré</option>
+                    <option value="m">mètre</option>
+                    <option value="km">kilomètre</option>
+                    <option value="cm">centimètre</option>
+                    <option value="inch">pouce</option>
+                    <option value="kg">kilogramme</option>
+                    <option value="g">gramme</option>
+                    <option value="lb">livre</option>
+                  </select>
+                </label>
+                <output id="converterResult">Conversion prête.</output>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section class="section screen-section" data-screen="learn" id="apprendre">
           <div class="section-heading">
             <p class="eyebrow">Exercices, quiz et progression</p>
             <h2>Atelier d'apprentissage</h2>
           </div>
+          <div class="exercise-tools">
+            <label for="exerciseSearch">Rechercher un exercice</label>
+            <input id="exerciseSearch" type="search" placeholder="Domaine, niveau, consigne, méthode..." />
+            <div class="exercise-tool-row">
+              <label>
+                Niveau
+                <select id="exerciseLevelFilter">
+                  <option value="Tous">Tous</option>
+                </select>
+              </label>
+              <label>
+                Domaine
+                <select id="exerciseDomainFilter">
+                  <option value="Tous">Tous</option>
+                </select>
+              </label>
+              <label>
+                Difficulté
+                <select id="exerciseDifficultyFilter">
+                  <option value="Tous">Toutes</option>
+                </select>
+              </label>
+              <label>
+                Temps
+                <select id="exerciseTimeFilter">
+                  <option value="Tous">Tous</option>
+                </select>
+              </label>
+            </div>
+            <div class="stats-row" id="exerciseStats"></div>
+          </div>
           <div class="learning-grid">
             <article class="practice-panel">
               <div class="stage-toolbar">
-                <strong>Exercice guidé</strong>
+                <strong>Exercices guidés</strong>
                 <button id="hintButton" type="button">Indice</button>
               </div>
               <div id="exerciseBox"></div>
             </article>
             <article class="practice-panel">
               <div class="stage-toolbar">
-                <strong>Quiz rapide</strong>
+                <strong>Quiz</strong>
+                <select id="quizModeSelect" aria-label="Mode de quiz">
+                  <option value="Libre">Libre</option>
+                  <option value="Chronométré">Chronométré</option>
+                  <option value="Championnat">Championnat</option>
+                  <option value="Défis quotidiens">Défis quotidiens</option>
+                  <option value="Multijoueur (à envisager)">Multijoueur</option>
+                </select>
                 <button id="nextQuestionButton" type="button">Question</button>
               </div>
               <div id="quizBox"></div>
@@ -270,6 +551,31 @@
               <h2>Défis ouverts et résolus</h2>
             </div>
             <p class="muted">Chaque fiche distingue contexte historique, état actuel, idées centrales et références à enrichir.</p>
+            <div class="problem-tools">
+              <label for="problemSearch">Explorer les problèmes</label>
+              <input id="problemSearch" type="search" placeholder="Nom, domaine, statut, avancée, référence..." />
+              <div class="problem-tool-row">
+                <label>
+                  Catégorie
+                  <select id="problemCategoryFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+                <label>
+                  Statut
+                  <select id="problemStatusFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Domaine
+                  <select id="problemDomainFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="problemStats"></div>
+            </div>
           </div>
           <div class="problem-list" id="problemList"></div>
         </section>

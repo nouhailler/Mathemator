@@ -1,10 +1,74 @@
 [
-  {"period":"Antiquité","text":"Euclide formalise les Éléments, Archimède développe aire, volume et méthodes d'approximation.","people":["Euclide","Archimède","Hypatie"],"discoveries":["Axiomatisation","Méthode d'exhaustion"],"publications":["Éléments"],"events":["Bibliothèque d'Alexandrie"]},
-  {"period":"Moyen Âge","text":"Al-Khwârizmî structure l'algèbre, les savants arabes et indiens enrichissent calcul et astronomie.","people":["Al-Khwârizmî","Omar Khayyam"],"discoveries":["Algèbre","Numération positionnelle"],"publications":["Al-jabr"],"events":["Maison de la sagesse"]},
-  {"period":"Renaissance","text":"Cardano, Viète et Descartes déplacent l'algèbre vers une écriture symbolique moderne.","people":["Cardano","Viète","Descartes"],"discoveries":["Équations cubiques","Géométrie analytique"],"publications":["La Géométrie"],"events":["Diffusion imprimée des mathématiques"]},
-  {"period":"XVIIe siècle","text":"Newton, Leibniz, Fermat et Pascal accélèrent analyse, probabilités et géométrie.","people":["Newton","Leibniz","Fermat","Pascal"],"discoveries":["Calcul infinitésimal","Probabilités"],"publications":["Principia"],"events":["Naissance des académies scientifiques"]},
-  {"period":"XVIIIe siècle","text":"Euler, Lagrange et Laplace donnent une puissance systématique à l'analyse.","people":["Euler","Lagrange","Laplace"],"discoveries":["Analyse moderne","Mécanique analytique"],"publications":["Mécanique analytique"],"events":["Académies de Berlin et Saint-Pétersbourg"]},
-  {"period":"XIXe siècle","text":"Gauss, Galois, Riemann et Cantor redéfinissent structures, nombres et infini.","people":["Gauss","Galois","Riemann","Cantor"],"discoveries":["Groupes","Variétés","Théorie des ensembles"],"publications":["Disquisitiones Arithmeticae"],"events":["Professionnalisation universitaire"]},
-  {"period":"XXe siècle","text":"Noether, Hilbert, Grothendieck, Turing et von Neumann transforment les fondations.","people":["Noether","Hilbert","Grothendieck","Turing"],"discoveries":["Calculabilité","Schémas","Algèbre moderne"],"publications":["Éléments de géométrie algébrique"],"events":["Bourbaki, informatique théorique"]},
-  {"period":"XXIe siècle","text":"Preuves assistées, IA, topologie des données, cryptographie et nouveaux ponts interdisciplinaires.","people":["Voevodsky","Tao","Mirzakhani"],"discoveries":["Homotopy type theory","Topological data analysis"],"publications":["Formal proofs libraries"],"events":["Preuves assistées par ordinateur"]}
+  {
+    "period": "Antiquité",
+    "range": "vers -600 à 500",
+    "text": "La démonstration géométrique, les proportions, les coniques, les méthodes d'approximation et les premières traditions algorithmiques structurent les mathématiques anciennes.",
+    "people": ["Thalès", "Pythagore", "Eudoxe de Cnide", "Euclide", "Archimède", "Apollonios de Perga", "Diophante d'Alexandrie", "Pappus d'Alexandrie", "Hypatie", "Liu Hui", "Zu Chongzhi"],
+    "discoveries": ["Démonstration déductive", "Théorème de Pythagore", "Théorie des proportions", "Méthode d'exhaustion", "Coniques", "Approximation de pi", "Équations diophantiennes", "Géométrie d'Alexandrie"],
+    "publications": ["Éléments", "Les Coniques", "De la sphère et du cylindre", "Arithmetica", "Collection mathématique", "Les Neuf Chapitres sur l'art mathématique"],
+    "events": ["Écoles ionienne et pythagoricienne", "Bibliothèque d'Alexandrie", "Transmission grecque, indienne et chinoise", "Premiers corpus mathématiques organisés"]
+  },
+  {
+    "period": "Moyen Âge",
+    "range": "500 à 1450",
+    "text": "Le calcul indo-arabe, l'algèbre, la trigonométrie et les tables astronomiques circulent entre Inde, Chine, monde islamique et Europe médiévale.",
+    "people": ["Aryabhata", "Brahmagupta", "Al-Khwarizmi", "Al-Karaji", "Ibn al-Haytham", "Omar Khayyam", "Bhaskara II", "Al-Tusi", "Qin Jiushao", "Yang Hui", "Fibonacci", "Zhu Shijie"],
+    "discoveries": ["Zéro positionnel", "Algèbre systématique", "Équations quadratiques et cubiques", "Trigonométrie plane et sphérique", "Fractions continues", "Méthodes d'interpolation", "Triangle arithmétique"],
+    "publications": ["Al-jabr wa'l-muqabala", "Brahmasphutasiddhanta", "Aryabhatiya", "Liber Abaci", "Traité du quadrilatère complet", "Miroir précieux des quatre éléments"],
+    "events": ["Maison de la sagesse de Bagdad", "Traductions arabes et latines", "Diffusion européenne de la numération indo-arabe", "Écoles astronomiques persanes, indiennes et chinoises"]
+  },
+  {
+    "period": "Renaissance",
+    "range": "1450 à 1600",
+    "text": "L'imprimerie, l'algèbre symbolique et les méthodes de résolution des équations déplacent les mathématiques vers une pratique plus calculatoire et communicable.",
+    "people": ["Regiomontanus", "Luca Pacioli", "Niccolò Tartaglia", "Gerolamo Cardano", "Rafael Bombelli", "Robert Recorde", "François Viète", "John Napier"],
+    "discoveries": ["Résolution des cubiques", "Résolution des quartiques", "Nombres complexes", "Notation égalitaire", "Algèbre littérale", "Tables trigonométriques", "Logarithmes"],
+    "publications": ["Summa de arithmetica", "Ars Magna", "L'Algebra", "In artem analyticem isagoge", "Mirifici Logarithmorum Canonis Descriptio"],
+    "events": ["Imprimerie mathématique", "Concours publics d'algèbre", "Humanisme scientifique", "Standardisation progressive des notations"]
+  },
+  {
+    "period": "XVIIe siècle",
+    "range": "1600 à 1700",
+    "text": "La géométrie analytique, le calcul infinitésimal, les probabilités et la mécanique mathématique fondent une nouvelle puissance de modélisation.",
+    "people": ["René Descartes", "Pierre de Fermat", "Blaise Pascal", "Christiaan Huygens", "John Wallis", "Isaac Barrow", "Isaac Newton", "Gottfried Wilhelm Leibniz", "Jacob Bernoulli", "Seki Takakazu"],
+    "discoveries": ["Géométrie analytique", "Méthode des tangentes", "Calcul infinitésimal", "Probabilités", "Binôme généralisé", "Séries infinies", "Déterminants", "Mécanique céleste"],
+    "publications": ["La Géométrie", "Traité du triangle arithmétique", "De ratiociniis in ludo aleae", "Philosophiae Naturalis Principia Mathematica", "Acta Eruditorum"],
+    "events": ["Royal Society", "Académie royale des sciences", "Correspondances savantes européennes", "Débats Newton-Leibniz sur le calcul"]
+  },
+  {
+    "period": "XVIIIe siècle",
+    "range": "1700 à 1800",
+    "text": "L'analyse devient un langage central pour la mécanique, les probabilités, l'astronomie et les équations différentielles.",
+    "people": ["Brook Taylor", "Colin Maclaurin", "Daniel Bernoulli", "Thomas Bayes", "Maria Gaetana Agnesi", "Émilie du Châtelet", "Leonhard Euler", "Alexis Clairaut", "Jean le Rond d'Alembert", "Joseph-Louis Lagrange", "Pierre-Simon de Laplace", "Adrien-Marie Legendre"],
+    "discoveries": ["Séries de Taylor", "Calcul variationnel", "Formule d'Euler", "Graphes eulériens", "Probabilités bayésiennes", "Mécanique analytique", "Transformée de Laplace", "Méthode des moindres carrés"],
+    "publications": ["Introductio in analysin infinitorum", "Institutiones calculi differentialis", "Théorie analytique des probabilités", "Mécanique analytique", "Recherches sur différents points importants du système du monde"],
+    "events": ["Académie de Berlin", "Académie de Saint-Pétersbourg", "Prix académiques", "Formalisation des journaux scientifiques"]
+  },
+  {
+    "period": "XIXe siècle",
+    "range": "1800 à 1900",
+    "text": "La rigueur moderne, l'algèbre abstraite, les géométries non euclidiennes, la théorie des ensembles et les premières structures topologiques émergent.",
+    "people": ["Carl Friedrich Gauss", "Sophie Germain", "Niels Henrik Abel", "Augustin-Louis Cauchy", "Nikolai Lobachevsky", "János Bolyai", "Évariste Galois", "Ada Lovelace", "George Boole", "Arthur Cayley", "Karl Weierstrass", "Bernhard Riemann", "Sofia Kovalevskaïa", "Georg Cantor", "Felix Klein", "Henri Poincaré"],
+    "discoveries": ["Congruences", "Groupes de Galois", "Géométrie non euclidienne", "Analyse epsilon-delta", "Fonctions elliptiques", "Matrices", "Logique booléenne", "Variétés riemanniennes", "Théorie des ensembles", "Topologie naissante"],
+    "publications": ["Disquisitiones Arithmeticae", "Cours d'analyse", "Mémoire sur les conditions de résolubilité des équations par radicaux", "An Investigation of the Laws of Thought", "Habilitationsvortrag de Riemann", "Grundlagen einer allgemeinen Mannigfaltigkeitslehre", "Analysis Situs"],
+    "events": ["Professionnalisation universitaire", "Journaux spécialisés", "Programme d'Erlangen", "Développement des sociétés mathématiques nationales"]
+  },
+  {
+    "period": "XXe siècle",
+    "range": "1900 à 2000",
+    "text": "Les fondements, l'abstraction, la calculabilité, la géométrie algébrique, l'analyse fonctionnelle, les probabilités modernes et l'informatique théorique redessinent la discipline.",
+    "people": ["David Hilbert", "Henri Lebesgue", "L. E. J. Brouwer", "Emmy Noether", "Srinivasa Ramanujan", "Stefan Banach", "John von Neumann", "Kurt Gödel", "Alan Turing", "Andreï Kolmogorov", "Claude Shannon", "Laurent Schwartz", "Alexandre Grothendieck", "Michael Atiyah", "John Nash", "Karen Uhlenbeck", "Andrew Wiles"],
+    "discoveries": ["Problèmes de Hilbert", "Intégrale de Lebesgue", "Topologie algébrique", "Algèbre moderne", "Espaces de Banach", "Incomplétude", "Machine de Turing", "Axiomes des probabilités", "Théorie de l'information", "Distributions", "Schémas", "Théorème de l'indice", "Équilibre de Nash", "Dernier théorème de Fermat"],
+    "publications": ["Grundlagen der Geometrie", "Invariante Variationsprobleme", "Théorie des opérations linéaires", "On Computable Numbers", "Foundations of the Theory of Probability", "A Mathematical Theory of Communication", "Éléments de géométrie algébrique", "Sur les conjectures de Mordell"],
+    "events": ["Congrès international de Paris 1900", "Bourbaki", "Naissance de l'informatique", "Médailles Fields", "Programmes Langlands et géométrie algébrique moderne", "Preuves assistées par ordinateur"]
+  },
+  {
+    "period": "XXIe siècle",
+    "range": "2000 à aujourd'hui",
+    "text": "La recherche s'étend par preuves formelles, grands réseaux collaboratifs, géométrie arithmétique, probabilités critiques, topologie des données, cryptographie et intelligence artificielle.",
+    "people": ["Vladimir Voevodsky", "Terence Tao", "Maryam Mirzakhani", "Manjul Bhargava", "Akshay Venkatesh", "Cédric Villani", "Artur Avila", "Peter Scholze", "Maryna Viazovska", "June Huh", "Hugo Duminil-Copin", "Claire Voisin"],
+    "discoveries": ["Homotopy type theory", "Progressions arithmétiques dans les nombres premiers", "Transport optimal", "Espaces perfectoïdes", "Empilement de sphères en dimension 8", "Combinatoire algébrique", "Probabilités critiques", "Topological data analysis", "Bibliothèques de preuves formelles"],
+    "publications": ["Univalent Foundations Program", "Proof of the Kepler conjecture", "Perfectoid spaces", "The sphere packing problem in dimension 8", "Proof assistants and formal mathematics libraries"],
+    "events": ["Polymath projects", "Développement de Lean, Coq et Isabelle", "Prix Abel et Breakthrough Prize", "Mathématiques des données", "IA pour conjectures et recherche assistée"]
+  }
 ]
