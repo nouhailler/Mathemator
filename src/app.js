@@ -455,6 +455,20 @@ function renderDaily() {
   renderMath();
 }
 
+function renderHomeMedia() {
+  const featured = media.slice(0, 8);
+  $("#homeMediaGrid").innerHTML = featured.map((item) => `
+    <article class="home-media-card">
+      ${mediaVisual(item)}
+      <div>
+        <span>${item.type}</span>
+        <h3>${item.title}</h3>
+        <p>${item.source} · ${item.license}</p>
+      </div>
+    </article>
+  `).join("");
+}
+
 function renderSearch() {
   const filters = ["Tous", "Mathématicien", "Théorème", "Formule", "Algèbre", "Analyse", "Fractales", "Graphes", "Nombres", "Topologie"];
   const input = $("#searchInput");
@@ -765,6 +779,7 @@ function detailFor(entry) {
           <dt>Format</dt><dd>${item.format}</dd>
         </dl>
       </section>
+      ${item.sourceUrl ? detailDefinition("Page source", `<a href="${item.sourceUrl}" target="_blank" rel="noreferrer">${item.sourceUrl}</a>`) : ""}
       ${detailList("Liens conceptuels", item.links)}
     `;
   }
@@ -1687,6 +1702,14 @@ function mediaVisual(item, large = false) {
   const label = item.title.split(/\s+/).slice(0, 2).map((word) => word[0]).join("").toUpperCase();
   const sizeClass = large ? "large" : "";
   const visual = item.visual || "infographic";
+  if (item.assetUrl) {
+    return `
+      <figure class="media-visual media-asset ${sizeClass} accent-${item.accent}">
+        <img src="${item.assetUrl}" alt="${item.title}" loading="lazy" referrerpolicy="no-referrer" />
+        <figcaption>${item.source}</figcaption>
+      </figure>
+    `;
+  }
   if (visual === "portrait") {
     return `<div class="media-visual ${sizeClass} accent-${item.accent} media-portrait"><span>${label.slice(0, 2)}</span></div>`;
   }
@@ -1714,7 +1737,7 @@ function mediaVisual(item, large = false) {
       </div>
     `;
   }
-  if (visual === "graph" || visual === "tree") {
+  if (visual === "graph" || visual === "tree" || visual === "simulation") {
     return `
       <div class="media-visual ${sizeClass} accent-${item.accent} media-graph">
         <svg viewBox="0 0 120 90" aria-hidden="true">
@@ -1735,7 +1758,7 @@ function mediaVisual(item, large = false) {
       </div>
     `;
   }
-  if (visual === "wave" || visual === "conics") {
+  if (visual === "wave" || visual === "conics" || visual === "proof") {
     return `
       <div class="media-visual ${sizeClass} accent-${item.accent} media-wave">
         <svg viewBox="0 0 120 90" aria-hidden="true">
@@ -3119,6 +3142,7 @@ function registerPwa() {
 }
 
 renderDaily();
+renderHomeMedia();
 renderSearch();
 renderMathematicians();
 renderTimeline();
@@ -3179,6 +3203,12 @@ $("#glossaryInitialFilter").addEventListener("change", (event) => {
 $("#glossaryLinkFilter").addEventListener("change", (event) => {
   activeGlossaryLink = event.target.value;
   renderGlossary();
+});
+$("#openMediaLibraryButton").addEventListener("click", () => {
+  activeLibrary = "Médiathèque";
+  renderLibrary();
+  setScreen("cards");
+  $("#ressources").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 $("#mediaSearch").addEventListener("input", renderMedia);
 $("#mediaTypeFilter").addEventListener("change", (event) => {

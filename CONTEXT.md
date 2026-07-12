@@ -288,8 +288,10 @@ Statut : implemente.
 
 Livrables :
 
-- `data/media.json` ajoute une mediathèque unifiee : portraits, manuscrits, livres historiques, gravures, figures interactives, animations, fractales, polyedres 3D, graphes, chronologies, cartes, arbres de connaissances et infographies.
-- Onglet `Mediatheque` dans la bibliotheque filtrable.
+- `data/media.json` ajoute une mediatheque unifiee avec assets visibles : portraits, manuscrits historiques, pages originales, schemas geometriques, figures interactives, fractales HD, graphiques animes, polyedres 3D, graphes, cartes historiques, chronologies illustrees, cartes geographiques, arbres de connaissances, infographies, animations de demonstration et simulations interactives.
+- Plusieurs entrees utilisent de vraies images ouvertes Wikimedia Commons avec URL de source et licence.
+- Section `Mediatheque visuelle` visible des l'accueil.
+- Onglet `Mediatheque` dans la bibliotheque filtrable avec acces direct depuis l'accueil.
 - Recherche et filtres par type, domaine et source.
 - Cartes visuelles coherentes avec vignettes generatives locales et metadonnees de source/licence.
 - Integration dans la recherche globale, les favoris et le panneau de detail.
