@@ -39,6 +39,7 @@ const store = {
 let activeReference = "Théorèmes";
 let activeLibrary = "Citations";
 let activeMode = "Enseignant";
+let homeMediaOffset = 0;
 let teacherDomain = "Géométrie";
 let teacherLevel = "Lycée";
 let teacherDuration = "45";
@@ -456,17 +457,19 @@ function renderDaily() {
 }
 
 function renderHomeMedia() {
-  const featured = media.slice(0, 8);
+  const featured = Array.from({ length: Math.min(8, media.length) }, (_, index) => media[(homeMediaOffset + index) % media.length]);
   $("#homeMediaGrid").innerHTML = featured.map((item) => `
-    <article class="home-media-card">
+    <article class="home-media-card" tabindex="0" role="button" data-open="media:${item.id}" aria-label="Ouvrir ${item.title}">
       ${mediaVisual(item)}
       <div>
         <span>${item.type}</span>
         <h3>${item.title}</h3>
         <p>${item.source} · ${item.license}</p>
+        <small>${item.domain} · ${item.period}</small>
       </div>
     </article>
   `).join("");
+  bindDetailButtons();
 }
 
 function renderSearch() {
@@ -602,7 +605,15 @@ function toggleFavorite(id) {
 
 function bindDetailButtons() {
   document.querySelectorAll("[data-open]").forEach((button) => {
-    button.addEventListener("click", () => openDetail(button.dataset.open));
+    button.addEventListener("click", (event) => {
+      if (event.target.closest("[data-favorite]")) return;
+      openDetail(button.dataset.open);
+    });
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openDetail(button.dataset.open);
+    });
   });
 }
 
@@ -645,6 +656,25 @@ function detailList(label, items) {
 function detailDefinition(label, value) {
   if (!value) return "";
   return `<section><h3>${label}</h3><p>${value}</p></section>`;
+}
+
+function mediaActivities(item) {
+  const generated = item.license === "Création Mathemator";
+  const base = [
+    `Situer ${item.title} dans le domaine ${item.domain}.`,
+    `Relier cette ressource aux notions : ${(item.links || []).join(", ")}.`,
+    generated ? `Utiliser cette visualisation comme support d'exploration ou de démonstration en classe.` : `Comparer l'image ouverte avec une version générée dans le style Mathemator.`,
+  ];
+  if (item.type.includes("interactive") || item.type.includes("Simulation")) {
+    base.push("Modifier les paramètres de la figure dans le laboratoire associé.");
+  }
+  if (item.type.includes("Carte")) {
+    base.push("Repérer les lieux liés dans la carte du monde de l'application.");
+  }
+  if (item.type.includes("Portrait") || item.type.includes("Manuscrit") || item.type.includes("Page")) {
+    base.push("Associer la source historique aux mathématiciens et ouvrages correspondants.");
+  }
+  return base;
 }
 
 function detailFor(entry) {
@@ -768,6 +798,7 @@ function detailFor(entry) {
     return `
       <div class="media-detail-visual">${mediaVisual(item, true)}</div>
       ${detailDefinition("Description", item.description)}
+      ${detailList("À explorer", mediaActivities(item))}
       <section>
         <h3>Attribution</h3>
         <dl class="detail-kv">
@@ -779,7 +810,7 @@ function detailFor(entry) {
           <dt>Format</dt><dd>${item.format}</dd>
         </dl>
       </section>
-      ${item.sourceUrl ? detailDefinition("Page source", `<a href="${item.sourceUrl}" target="_blank" rel="noreferrer">${item.sourceUrl}</a>`) : ""}
+      ${item.sourceUrl ? detailDefinition("Page source", `<a href="${item.sourceUrl}" target="_blank" rel="noreferrer">Ouvrir la page source</a>`) : ""}
       ${detailList("Liens conceptuels", item.links)}
     `;
   }
@@ -1984,7 +2015,7 @@ function renderMedia() {
 
 function mediaCard(item) {
   return `
-    <article class="media-card">
+    <article class="media-card" tabindex="0" role="button" data-open="media:${item.id}" aria-label="Ouvrir ${item.title}">
       ${mediaVisual(item)}
       <div class="media-card-body">
         <div class="media-card-header">
@@ -3209,6 +3240,18 @@ $("#openMediaLibraryButton").addEventListener("click", () => {
   renderLibrary();
   setScreen("cards");
   $("#ressources").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+$("#mediaPrevButton").addEventListener("click", () => {
+  homeMediaOffset = (homeMediaOffset - 8 + media.length) % media.length;
+  renderHomeMedia();
+});
+$("#mediaNextButton").addEventListener("click", () => {
+  homeMediaOffset = (homeMediaOffset + 8) % media.length;
+  renderHomeMedia();
+});
+$("#mediaShuffleButton").addEventListener("click", () => {
+  homeMediaOffset = Math.floor(Math.random() * media.length);
+  renderHomeMedia();
 });
 $("#mediaSearch").addEventListener("input", renderMedia);
 $("#mediaTypeFilter").addEventListener("change", (event) => {

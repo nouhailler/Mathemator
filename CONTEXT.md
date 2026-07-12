@@ -291,6 +291,9 @@ Livrables :
 - `data/media.json` ajoute une mediatheque unifiee avec assets visibles : portraits, manuscrits historiques, pages originales, schemas geometriques, figures interactives, fractales HD, graphiques animes, polyedres 3D, graphes, cartes historiques, chronologies illustrees, cartes geographiques, arbres de connaissances, infographies, animations de demonstration et simulations interactives.
 - Plusieurs entrees utilisent de vraies images ouvertes Wikimedia Commons avec URL de source et licence.
 - Section `Mediatheque visuelle` visible des l'accueil.
+- Cartes d'accueil dynamiques avec navigation precedent/suivant/melange.
+- Les 17 entrees sont cliquables depuis l'accueil, l'onglet `Mediatheque`, la recherche et les favoris.
+- Chaque entree ouvre un detail avec image ou visualisation, description, pistes d'exploration, attribution, licence, source et liens conceptuels.
 - Onglet `Mediatheque` dans la bibliotheque filtrable avec acces direct depuis l'accueil.
 - Recherche et filtres par type, domaine et source.
 - Cartes visuelles coherentes avec vignettes generatives locales et metadonnees de source/licence.
