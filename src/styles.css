@@ -5,6 +5,7 @@
   --line: #d7dde5;
   --paper: #f6f7f9;
   --panel: #ffffff;
+  --card: #ffffff;
   --teal: #0f766e;
   --rust: #9a3412;
   --gold: #b7791f;
@@ -40,7 +41,7 @@ select {
 .app-shell {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,6 +50,112 @@ select {
   border-bottom: 1px solid rgba(20, 33, 61, 0.12);
   background: rgba(246, 247, 249, 0.88);
   backdrop-filter: blur(16px);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 12px;
+}
+
+.hamburger-button {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 10px 24px rgba(20, 33, 61, 0.08);
+}
+
+.hamburger-button span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(20, 33, 61, 0.34);
+}
+
+.main-menu {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 40;
+  width: min(390px, calc(100vw - 28px));
+  overflow-y: auto;
+  border-right: 1px solid var(--line);
+  padding: 18px;
+  background: var(--panel);
+  box-shadow: 18px 0 44px rgba(20, 33, 61, 0.18);
+  transform: translateX(-105%);
+  transition: transform 0.2s ease;
+}
+
+body.menu-open .main-menu {
+  transform: translateX(0);
+}
+
+.main-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.main-menu-header h2 {
+  margin: 0;
+}
+
+.menu-groups {
+  display: grid;
+  gap: 14px;
+}
+
+.menu-groups section {
+  display: grid;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--card);
+}
+
+.menu-groups h3 {
+  margin: 0 0 4px;
+  color: var(--rust);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.menu-groups button {
+  min-height: 38px;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 780;
+  text-align: left;
+}
+
+.menu-groups button:hover,
+.menu-groups button:focus {
+  background: #ecfdf5;
+  color: var(--teal);
+  outline: none;
 }
 
 .brand-block {

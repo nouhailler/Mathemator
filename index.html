@@ -19,15 +19,67 @@
   <body>
     <div id="app">
       <header class="app-shell">
-        <div class="brand-block">
-          <div class="brand-mark" aria-hidden="true">∑</div>
-          <div>
-            <p class="eyebrow">Encyclopédie interactive</p>
-            <h1>Mathemator</h1>
+        <div class="header-left">
+          <button class="hamburger-button" id="menuButton" type="button" aria-label="Ouvrir le menu" aria-controls="mainMenu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="brand-block">
+            <div class="brand-mark" aria-hidden="true">∑</div>
+            <div>
+              <p class="eyebrow">Encyclopédie interactive</p>
+              <h1>Mathemator</h1>
+            </div>
           </div>
         </div>
         <button class="install-button" id="installButton" type="button" hidden>Installer</button>
       </header>
+
+      <div class="menu-overlay" id="menuOverlay" hidden></div>
+      <aside class="main-menu" id="mainMenu" aria-label="Menu principal" aria-hidden="true">
+        <div class="main-menu-header">
+          <div>
+            <p class="eyebrow">Navigation</p>
+            <h2>Sections</h2>
+          </div>
+          <button class="icon-button" id="menuCloseButton" type="button" aria-label="Fermer le menu">×</button>
+        </div>
+        <nav class="menu-groups">
+          <section>
+            <h3>Accueil</h3>
+            <button type="button" data-menu-screen="home" data-menu-target="">Vue générale</button>
+            <button type="button" data-menu-screen="home" data-menu-target="daily">Tableau du jour</button>
+            <button type="button" data-menu-screen="home" data-menu-target="mediaShowcase">Médiathèque visuelle</button>
+            <button type="button" data-menu-screen="home" data-menu-target="chronologie">Chronologie</button>
+            <button type="button" data-menu-screen="home" data-menu-target="carte">Carte du monde</button>
+            <button type="button" data-menu-screen="home" data-menu-target="modules">Modules réalisés</button>
+          </section>
+          <section>
+            <h3>Explorer</h3>
+            <button type="button" data-menu-screen="search" data-menu-target="encyclopedie">Recherche avancée</button>
+            <button type="button" data-menu-screen="favorites" data-menu-target="favoris">Favoris</button>
+          </section>
+          <section>
+            <h3>Fiches</h3>
+            <button type="button" data-menu-screen="cards" data-menu-target="mathematiciens">Mathématiciens</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="domaines">Domaines</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="theoremes">Théorèmes et formules</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="objets">Objets</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="ressources">Bibliothèque</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="problemes">Problèmes célèbres</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="reseau">Réseau</button>
+            <button type="button" data-menu-screen="cards" data-menu-target="modes">Modes</button>
+          </section>
+          <section>
+            <h3>Pratiquer</h3>
+            <button type="button" data-menu-screen="lab" data-menu-target="visualisations">Visualisations</button>
+            <button type="button" data-menu-screen="lab" data-menu-target="laboratoire">Laboratoire</button>
+            <button type="button" data-menu-screen="lab" data-menu-target="outils-laboratoire">Outils</button>
+            <button type="button" data-menu-screen="learn" data-menu-target="apprendre">Apprendre</button>
+          </section>
+        </nav>
+      </aside>
 
       <main>
         <section class="hero screen-section" data-screen="home">
@@ -749,7 +801,7 @@
           <div class="mode-panel" id="modePanel"></div>
         </section>
 
-        <section class="section screen-section feature-matrix" data-screen="home">
+        <section class="section screen-section feature-matrix" data-screen="home" id="modules">
           <div class="section-heading">
             <p class="eyebrow">Couverture fonctionnelle</p>
             <h2>Modules réalisés</h2>

@@ -131,6 +131,26 @@ function setScreen(screen, options = {}) {
   }
 }
 
+function setMenuOpen(open) {
+  document.body.classList.toggle("menu-open", open);
+  $("#menuButton").setAttribute("aria-expanded", String(open));
+  $("#mainMenu").setAttribute("aria-hidden", String(!open));
+  $("#menuOverlay").hidden = !open;
+}
+
+function closeMenu() {
+  setMenuOpen(false);
+}
+
+function navigateFromMenu(screen, target = "") {
+  setScreen(screen);
+  closeMenu();
+  if (!target) return;
+  requestAnimationFrame(() => {
+    document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 function card(title, body, meta = "", action = "") {
   return `
     <article class="result-card">
@@ -3315,11 +3335,22 @@ $("#detailCloseButton").addEventListener("click", () => {
 document.querySelectorAll("[data-nav]").forEach((button) => {
   button.addEventListener("click", () => setScreen(button.dataset.nav));
 });
+$("#menuButton").addEventListener("click", () => {
+  setMenuOpen(!document.body.classList.contains("menu-open"));
+});
+$("#menuCloseButton").addEventListener("click", closeMenu);
+$("#menuOverlay").addEventListener("click", closeMenu);
+document.querySelectorAll("[data-menu-screen]").forEach((button) => {
+  button.addEventListener("click", () => navigateFromMenu(button.dataset.menuScreen, button.dataset.menuTarget));
+});
 document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-favorite]");
   if (!button) return;
   event.preventDefault();
   toggleFavorite(button.dataset.favorite);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu();
 });
 addEventListener("hashchange", () => {
   setScreen(location.hash.replace("#", "") || "home", { silent: true });
