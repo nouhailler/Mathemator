@@ -1,6 +1,6 @@
 # Contexte Mathemator
 
-Dernier point d'arret : priorite 2 etendue a 500 fiches.
+Dernier point d'arret : priorite 2 etendue a 500 fiches avec visuels.
 
 Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 24 ont ete implementees dans le code et les donnees.
 
@@ -22,7 +22,8 @@ Statut : implemente.
 Livrables :
 
 - `scripts/build-content.mjs` cree/enrichit les bases JSON.
-- `data/mathematicians.json` : 500 mathematiciens, sans doublon, avec tous les champs de fiche renseignes et liens externes.
+- `data/mathematicians.json` : 500 mathematiciens, sans doublon, avec tous les champs de fiche renseignes, liens externes et source visuelle.
+- `src/app.js` genere un visuel SVG mathematique pour chaque fiche sans image distante.
 - `data/theorems.json` : plusieurs centaines de theorematiques.
 - `data/formulas.json` : catalogue de formules par categories.
 - `data/glossary.json` : glossaire large.

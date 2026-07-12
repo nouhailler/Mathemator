@@ -509,6 +509,35 @@ body:not(.app-ready) .hero[data-screen="home"] {
   font-weight: 900;
 }
 
+.person-visual {
+  width: 132px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 10px 24px rgba(20, 33, 61, 0.08);
+}
+
+.person-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+}
+
+.person-visual figcaption {
+  padding: 6px 8px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.person-visual-detail {
+  width: min(260px, 38vw);
+}
+
 .person-card span {
   color: var(--blue);
   font-size: 0.78rem;

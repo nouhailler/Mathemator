@@ -30,6 +30,7 @@ function enrich(person) {
   const primary = domains[0] || "Mathématiques";
   return {
     ...person,
+    imageSource: person.imageSource || "Illustration générée Mathemator",
     links: person.links?.length ? person.links : linksFor(person.name, domains),
     timeline: person.timeline?.length ? person.timeline : [`Activité principale : ${person.period}`, `Travaux marquants en ${primary}`],
     discoveries: person.discoveries?.length ? person.discoveries : [`Méthodes en ${primary}`, `Résultats associés à ${domains[1] || primary}`],
@@ -384,6 +385,7 @@ Barbara Fantechi|Italienne|XXIe siècle|Géométrie algébrique;Modules|Champs a
     id,
     name,
     portrait: name.trim().charAt(0).toUpperCase(),
+    imageSource: "Illustration générée Mathemator",
     nationality,
     period,
     birth: "",

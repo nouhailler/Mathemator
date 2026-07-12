@@ -781,6 +781,84 @@ function detailDefinition(label, value) {
   return `<section><h3>${label}</h3><p>${value}</p></section>`;
 }
 
+function hashText(value) {
+  return [...value].reduce((hash, char) => ((hash << 5) - hash + char.charCodeAt(0)) | 0, 0);
+}
+
+function escapeSvg(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function generatedPersonImage(person) {
+  const palettes = [
+    ["#0f766e", "#f97316", "#f8fafc"],
+    ["#1d4ed8", "#be123c", "#f1f5f9"],
+    ["#7c3aed", "#0891b2", "#fff7ed"],
+    ["#166534", "#b45309", "#f7fee7"],
+    ["#334155", "#d97706", "#eff6ff"],
+    ["#9f1239", "#2563eb", "#fff1f2"],
+  ];
+  const formulas = [
+    "e^{i\\pi}+1=0",
+    "\\int_a^b f(x)dx",
+    "a^2+b^2=c^2",
+    "\\sum_{n=1}^{\\infty}",
+    "\\nabla \\cdot F=0",
+    "P(A|B)",
+    "x_{n+1}=F(x_n)",
+    "\\det(A-\\lambda I)",
+  ];
+  const hash = Math.abs(hashText(`${person.name}-${person.period}-${person.domains?.join("|")}`));
+  const [primary, accent, paper] = palettes[hash % palettes.length];
+  const formula = formulas[hash % formulas.length];
+  const domain = escapeSvg(person.domains?.[0] || "Mathématiques");
+  const initials = escapeSvg((person.name.match(/\p{L}/gu) || ["M"]).slice(0, 2).join("").toUpperCase());
+  const name = escapeSvg(person.name);
+  const lineSeed = hash % 70;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="${name}">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="${primary}"/>
+        <stop offset="1" stop-color="${accent}"/>
+      </linearGradient>
+      <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+        <path d="M32 0H0V32" fill="none" stroke="${primary}" stroke-opacity=".12" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="480" height="300" rx="24" fill="${paper}"/>
+    <rect width="480" height="300" rx="24" fill="url(#grid)"/>
+    <circle cx="${88 + lineSeed}" cy="82" r="54" fill="url(#g)" opacity=".94"/>
+    <text x="${88 + lineSeed}" y="98" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="800" fill="#fff">${initials}</text>
+    <path d="M210 ${72 + (hash % 24)} C270 22 330 132 420 58" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round" opacity=".82"/>
+    <path d="M210 202 C270 132 332 246 422 166" fill="none" stroke="${primary}" stroke-width="7" stroke-linecap="round" opacity=".78"/>
+    <g fill="none" stroke="${primary}" stroke-opacity=".5" stroke-width="3">
+      <circle cx="330" cy="150" r="58"/>
+      <path d="M272 150H388M330 92V208M289 109l82 82M371 109l-82 82"/>
+    </g>
+    <text x="40" y="230" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="#0f172a">${domain}</text>
+    <text x="40" y="266" font-family="Georgia,serif" font-size="30" fill="#334155">${escapeSvg(formula)}</text>
+  </svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function personVisual(person, variant = "card") {
+  const src = person.image || generatedPersonImage(person);
+  const alt = person.image
+    ? `Portrait ou image de ${person.name}`
+    : `Illustration mathématique générée pour ${person.name}`;
+  const source = person.imageSource || (person.image ? "Source ouverte" : "Illustration générée Mathemator");
+  return `
+    <figure class="person-visual person-visual-${variant}">
+      <img src="${src}" alt="${alt}" loading="lazy">
+      <figcaption>${source}</figcaption>
+    </figure>
+  `;
+}
+
 function mediaActivities(item) {
   const generated = item.license === "Création Mathemator";
   const base = [
@@ -805,7 +883,7 @@ function detailFor(entry) {
   if (entry.type === "Mathématicien") {
     return `
       <div class="detail-lead">
-        <div class="portrait" aria-hidden="true">${item.portrait}</div>
+        ${personVisual(item, "detail")}
         <p>${item.biography}</p>
       </div>
       ${detailList("Chronologie", item.timeline)}
@@ -1035,7 +1113,7 @@ function timelineCard({ period, range, text, people, discoveries, publications, 
 function renderMathematicians() {
   $("#personGrid").innerHTML = mathematicians.map((person) => `
     <article class="person-card">
-      <div class="portrait" aria-hidden="true">${person.portrait}</div>
+      ${personVisual(person)}
       <div>
         <span>${person.nationality} · ${person.period} · ${person.birth}-${person.death}</span>
         <h3>${person.name}</h3>
