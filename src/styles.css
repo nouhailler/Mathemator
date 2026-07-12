@@ -441,7 +441,7 @@ body:not(.app-ready) .hero[data-screen="home"] {
   padding: 12px;
 }
 
-.home-media-card span {
+.home-media-card .home-media-meta {
   color: var(--rust);
   font-size: 0.78rem;
   font-weight: 900;

@@ -8,44 +8,284 @@
     "source": "Wikimedia Commons",
     "license": "Domaine public",
     "format": "Image ouverte",
-    "description": "Portrait peint de Leonhard Euler pour illustrer calcul infinitésimal, théorie des graphes et diffusion européenne des mathématiques.",
+    "description": "Portrait peint de Leonhard Euler, à relier au calcul infinitésimal, aux graphes et à la notation moderne.",
     "visual": "portrait",
     "accent": "teal",
+    "links": [
+      "Euler",
+      "Analyse",
+      "Graphes"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonhard_Euler.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leonhard_Euler.jpg",
-    "links": ["Leonhard Euler", "Analyse", "Graphes"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leonhard_Euler.jpg"
   },
   {
     "id": "portrait-euclid",
-    "title": "Portrait ancien d'Euclide",
+    "title": "Portrait ancien d Euclide",
     "type": "Portrait",
     "domain": "Géométrie",
     "period": "Renaissance",
     "source": "Wikimedia Commons",
     "license": "Domaine public",
     "format": "Image ouverte",
-    "description": "Représentation ancienne d'Euclide, utile pour relier géométrie grecque, tradition manuscrite et éditions imprimées.",
+    "description": "Représentation ancienne d Euclide pour contextualiser la réception médiévale et renaissante des Éléments.",
     "visual": "portrait",
     "accent": "rust",
+    "links": [
+      "Euclide",
+      "Éléments",
+      "Géométrie"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Euklid2.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Euklid2.jpg",
-    "links": ["Euclide", "Éléments", "Géométrie"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Euklid2.jpg"
+  },
+  {
+    "id": "portrait-gauss",
+    "title": "Portrait de Carl Friedrich Gauss",
+    "type": "Portrait",
+    "domain": "Théorie des nombres",
+    "period": "XIXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Image ouverte",
+    "description": "Portrait de Gauss pour introduire arithmétique, géométrie différentielle, probabilités et astronomie mathématique.",
+    "visual": "portrait",
+    "accent": "blue",
+    "links": [
+      "Gauss",
+      "Congruences",
+      "Disquisitiones Arithmeticae"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Carl_Friedrich_Gauss"
+  },
+  {
+    "id": "portrait-ramanujan",
+    "title": "Portrait de Srinivasa Ramanujan",
+    "type": "Portrait",
+    "domain": "Théorie des nombres",
+    "period": "XXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Photographie ouverte",
+    "description": "Photographie de Ramanujan pour relier partitions, séries, formes modulaires et collaboration avec Hardy.",
+    "visual": "portrait",
+    "accent": "teal",
+    "links": [
+      "Ramanujan",
+      "Partitions",
+      "Séries"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Srinivasa_Ramanujan"
+  },
+  {
+    "id": "portrait-noether",
+    "title": "Portrait d Emmy Noether",
+    "type": "Portrait",
+    "domain": "Algèbre",
+    "period": "XXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Licence ouverte",
+    "format": "Photographie ouverte",
+    "description": "Portrait d Emmy Noether pour présenter algèbre abstraite, invariants, symétries et théorème de Noether.",
+    "visual": "portrait",
+    "accent": "rust",
+    "links": [
+      "Noether",
+      "Algèbre",
+      "Symétries"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Emmy_Noether"
+  },
+  {
+    "id": "portrait-hilbert",
+    "title": "Portrait de David Hilbert",
+    "type": "Portrait",
+    "domain": "Logique",
+    "period": "XXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Photographie ouverte",
+    "description": "Portrait de Hilbert pour introduire fondements, espaces de Hilbert, problèmes de 1900 et axiomatique.",
+    "visual": "portrait",
+    "accent": "blue",
+    "links": [
+      "Hilbert",
+      "Fondements",
+      "Espaces de Hilbert"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:David_Hilbert"
+  },
+  {
+    "id": "portrait-cantor",
+    "title": "Portrait de Georg Cantor",
+    "type": "Portrait",
+    "domain": "Théorie des ensembles",
+    "period": "XIXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Image ouverte",
+    "description": "Portrait de Cantor pour aborder infini, cardinaux, ordinaux et théorie des ensembles.",
+    "visual": "portrait",
+    "accent": "teal",
+    "links": [
+      "Cantor",
+      "Infini",
+      "Ensembles"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Georg_Cantor"
+  },
+  {
+    "id": "portrait-galois",
+    "title": "Portrait d Évariste Galois",
+    "type": "Portrait",
+    "domain": "Algèbre",
+    "period": "XIXe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Image ouverte",
+    "description": "Portrait de Galois pour introduire groupes, équations polynomiales et histoire de l algèbre moderne.",
+    "visual": "portrait",
+    "accent": "rust",
+    "links": [
+      "Galois",
+      "Groupes",
+      "Équations"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:%C3%89variste_Galois"
+  },
+  {
+    "id": "portrait-hypatia",
+    "title": "Portrait d Hypatie",
+    "type": "Portrait",
+    "domain": "Histoire",
+    "period": "Antiquité",
+    "source": "Europeana / Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Image historique",
+    "description": "Iconographie d Hypatie pour relier Alexandrie, commentaires antiques, astronomie et transmission savante.",
+    "visual": "portrait",
+    "accent": "blue",
+    "links": [
+      "Hypatie",
+      "Alexandrie",
+      "Antiquité"
+    ],
+    "sourceUrl": "https://www.europeana.eu/fr/search?query=Hypatia"
+  },
+  {
+    "id": "portrait-newton",
+    "title": "Portrait d Isaac Newton",
+    "type": "Portrait",
+    "domain": "Analyse",
+    "period": "XVIIe siècle",
+    "source": "Wikimedia Commons",
+    "license": "Domaine public",
+    "format": "Image ouverte",
+    "description": "Portrait de Newton pour contextualiser calcul, mécanique, optique et Principia Mathematica.",
+    "visual": "portrait",
+    "accent": "teal",
+    "links": [
+      "Newton",
+      "Calcul",
+      "Principia"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Isaac_Newton_portraits"
   },
   {
     "id": "manuscript-euclid-lueneburg",
-    "title": "Manuscrit des Éléments d'Euclide",
+    "title": "Manuscrit des Éléments d Euclide",
     "type": "Manuscrit historique",
     "domain": "Géométrie",
     "period": "Moyen Âge",
     "source": "Wikimedia Commons",
     "license": "Domaine public",
     "format": "Image ouverte",
-    "description": "Page manuscrite des Éléments, exploitable pour montrer constructions, texte mathématique et transmission médiévale.",
+    "description": "Page manuscrite des Éléments, utile pour montrer constructions, texte mathématique et transmission médiévale.",
     "visual": "manuscript",
     "accent": "ink",
+    "links": [
+      "Euclide",
+      "Éléments",
+      "Manuscrit"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Euclid_Lueneburg_ms_13r.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Euclid_Lueneburg_ms_13r.jpg",
-    "links": ["Euclide", "Éléments", "Manuscrit"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Euclid_Lueneburg_ms_13r.jpg"
+  },
+  {
+    "id": "manuscript-newton",
+    "title": "Manuscrits de Newton",
+    "type": "Manuscrit historique",
+    "domain": "Analyse",
+    "period": "XVIIe siècle",
+    "source": "Oxford Digital Collections",
+    "license": "Collection ouverte",
+    "format": "Manuscrit numérisé",
+    "description": "Manuscrits scientifiques de Newton pour illustrer calcul, fluxions, optique et mécanique.",
+    "visual": "manuscript",
+    "accent": "teal",
+    "links": [
+      "Newton",
+      "Fluxions",
+      "Oxford"
+    ],
+    "sourceUrl": "https://digital.bodleian.ox.ac.uk/search/?q=Newton%20mathematics"
+  },
+  {
+    "id": "manuscript-leibniz",
+    "title": "Manuscrits de Leibniz",
+    "type": "Manuscrit historique",
+    "domain": "Analyse",
+    "period": "XVIIe siècle",
+    "source": "Europeana / bibliothèques européennes",
+    "license": "Collection ouverte",
+    "format": "Manuscrit numérisé",
+    "description": "Documents manuscrits autour de Leibniz pour comparer notation différentielle, correspondances et calcul symbolique.",
+    "visual": "manuscript",
+    "accent": "rust",
+    "links": [
+      "Leibniz",
+      "Calcul différentiel",
+      "Notation"
+    ],
+    "sourceUrl": "https://www.europeana.eu/fr/search?query=Leibniz%20mathematics%20manuscript"
+  },
+  {
+    "id": "manuscript-poincare",
+    "title": "Manuscrits de Poincaré",
+    "type": "Manuscrit historique",
+    "domain": "Topologie",
+    "period": "XXe siècle",
+    "source": "Gallica",
+    "license": "Domaine public",
+    "format": "Manuscrit numérisé",
+    "description": "Manuscrits et documents de Poincaré pour relier systèmes dynamiques, topologie et physique mathématique.",
+    "visual": "manuscript",
+    "accent": "blue",
+    "links": [
+      "Poincaré",
+      "Topologie",
+      "Gallica"
+    ],
+    "sourceUrl": "https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&query=(dc.creator%20all%20%22Poincar%C3%A9%22)"
+  },
+  {
+    "id": "manuscript-arabic-algebra",
+    "title": "Manuscrit arabe d algèbre",
+    "type": "Manuscrit historique",
+    "domain": "Algèbre",
+    "period": "Moyen Âge",
+    "source": "Qatar Digital Library / Gallica",
+    "license": "Collection ouverte",
+    "format": "Manuscrit numérisé",
+    "description": "Manuscrit de tradition algébrique arabe pour étudier équations, calculs et transmission vers l Europe.",
+    "visual": "manuscript",
+    "accent": "teal",
+    "links": [
+      "Algèbre",
+      "Al-Khwarizmi",
+      "Transmission"
+    ],
+    "sourceUrl": "https://www.qdl.qa/en/search/site/algebra%20manuscript"
   },
   {
     "id": "original-page-liber-abaci",
@@ -56,12 +296,92 @@
     "source": "Wikimedia Commons",
     "license": "Domaine public",
     "format": "Image ouverte",
-    "description": "Page du Liber Abaci de Fibonacci pour contextualiser numération indo-arabe, calcul marchand et problèmes médiévaux.",
+    "description": "Page du Liber Abaci de Fibonacci pour contextualiser numération indo-arabe et problèmes marchands.",
     "visual": "book",
     "accent": "blue",
+    "links": [
+      "Fibonacci",
+      "Liber Abaci",
+      "Numération"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Liber_abbaci_magliab_f124r.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liber_abbaci_magliab_f124r.jpg",
-    "links": ["Fibonacci", "Liber Abaci", "Numération"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liber_abbaci_magliab_f124r.jpg"
+  },
+  {
+    "id": "original-page-principia",
+    "title": "Page des Principia Mathematica",
+    "type": "Page originale",
+    "domain": "Analyse",
+    "period": "XVIIe siècle",
+    "source": "Internet Archive",
+    "license": "Domaine public",
+    "format": "Livre numérisé",
+    "description": "Page de l œuvre de Newton pour relier géométrie, mécanique céleste et calcul limite.",
+    "visual": "book",
+    "accent": "teal",
+    "links": [
+      "Newton",
+      "Principia",
+      "Mécanique"
+    ],
+    "sourceUrl": "https://archive.org/search?query=Newton%20Principia%20Mathematica"
+  },
+  {
+    "id": "original-page-disquisitiones",
+    "title": "Page des Disquisitiones Arithmeticae",
+    "type": "Page originale",
+    "domain": "Théorie des nombres",
+    "period": "XIXe siècle",
+    "source": "Internet Archive / Google Books",
+    "license": "Domaine public",
+    "format": "Livre numérisé",
+    "description": "Page de Gauss pour introduire congruences, formes quadratiques et arithmétique moderne.",
+    "visual": "book",
+    "accent": "rust",
+    "links": [
+      "Gauss",
+      "Congruences",
+      "Arithmétique"
+    ],
+    "sourceUrl": "https://archive.org/search?query=Disquisitiones%20Arithmeticae"
+  },
+  {
+    "id": "original-page-euclid-byrne",
+    "title": "Page des Éléments de Byrne",
+    "type": "Page originale",
+    "domain": "Géométrie",
+    "period": "XIXe siècle",
+    "source": "Internet Archive",
+    "license": "Domaine public",
+    "format": "Livre illustré",
+    "description": "Page colorée de l édition de Byrne, remarquable pour sa pédagogie visuelle de la géométrie euclidienne.",
+    "visual": "book",
+    "accent": "blue",
+    "links": [
+      "Byrne",
+      "Euclide",
+      "Géométrie visuelle"
+    ],
+    "sourceUrl": "https://archive.org/search?query=Byrne%20Euclid%20Elements"
+  },
+  {
+    "id": "original-page-cauchy",
+    "title": "Page du Cours d analyse de Cauchy",
+    "type": "Page originale",
+    "domain": "Analyse",
+    "period": "XIXe siècle",
+    "source": "Gallica",
+    "license": "Domaine public",
+    "format": "Livre numérisé",
+    "description": "Page d un cours de Cauchy pour introduire limite, continuité, rigueur et analyse moderne.",
+    "visual": "book",
+    "accent": "teal",
+    "links": [
+      "Cauchy",
+      "Limite",
+      "Analyse"
+    ],
+    "sourceUrl": "https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&query=(dc.creator%20all%20%22Cauchy%22%20and%20dc.title%20all%20%22analyse%22)"
   },
   {
     "id": "scheme-pythagoras",
@@ -72,12 +392,108 @@
     "source": "Wikimedia Commons",
     "license": "Licence ouverte",
     "format": "SVG ouvert",
-    "description": "Schéma géométrique pour comparer les carrés construits sur les côtés d'un triangle rectangle.",
+    "description": "Schéma pour comparer les carrés construits sur les côtés d un triangle rectangle.",
     "visual": "scheme",
     "accent": "teal",
+    "links": [
+      "Pythagore",
+      "Triangle rectangle",
+      "Démonstration"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Pythagorean.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pythagorean.svg",
-    "links": ["Pythagore", "Triangle rectangle", "Démonstration"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pythagorean.svg"
+  },
+  {
+    "id": "scheme-euclid-golden",
+    "title": "Construction du nombre d or",
+    "type": "Schéma géométrique",
+    "domain": "Géométrie",
+    "period": "Antiquité",
+    "source": "Wikimedia Commons",
+    "license": "Licence ouverte",
+    "format": "SVG ouvert",
+    "description": "Construction géométrique du partage en extrême et moyenne raison dans la tradition euclidienne.",
+    "visual": "scheme",
+    "accent": "rust",
+    "links": [
+      "Euclide",
+      "Nombre d or",
+      "Construction"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Elements_of_Euclid"
+  },
+  {
+    "id": "scheme-thales",
+    "title": "Configuration du théorème de Thalès",
+    "type": "Schéma géométrique",
+    "domain": "Géométrie",
+    "period": "Antiquité",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Schéma de droites parallèles et triangles semblables pour travailler les rapports de longueurs.",
+    "visual": "scheme",
+    "accent": "blue",
+    "links": [
+      "Thalès",
+      "Triangles semblables",
+      "Rapports"
+    ]
+  },
+  {
+    "id": "scheme-circle-tangent",
+    "title": "Tangentes et cercle",
+    "type": "Schéma géométrique",
+    "domain": "Géométrie",
+    "period": "Antiquité",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Figure de tangente, rayon et angle droit pour introduire les propriétés élémentaires du cercle.",
+    "visual": "scheme",
+    "accent": "teal",
+    "links": [
+      "Cercle",
+      "Tangente",
+      "Angle droit"
+    ]
+  },
+  {
+    "id": "scheme-projective-plane",
+    "title": "Perspective projective",
+    "type": "Schéma géométrique",
+    "domain": "Géométrie projective",
+    "period": "Renaissance",
+    "source": "Europeana / Mathemator",
+    "license": "Collection ouverte + SVG",
+    "format": "Schéma généré",
+    "description": "Schéma de lignes de fuite et projection pour relier art, perspective et géométrie projective.",
+    "visual": "scheme",
+    "accent": "rust",
+    "links": [
+      "Perspective",
+      "Projection",
+      "Géométrie projective"
+    ],
+    "sourceUrl": "https://www.europeana.eu/fr/search?query=perspective%20geometry"
+  },
+  {
+    "id": "scheme-voronoi",
+    "title": "Diagramme de Voronoï",
+    "type": "Schéma géométrique",
+    "domain": "Géométrie discrète",
+    "period": "XXe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Schéma de cellules de Voronoï pour introduire distance, partition du plan et applications algorithmiques.",
+    "visual": "scheme",
+    "accent": "blue",
+    "links": [
+      "Voronoï",
+      "Distance",
+      "Géométrie discrète"
+    ]
   },
   {
     "id": "interactive-conics",
@@ -85,13 +501,93 @@
     "type": "Figure interactive",
     "domain": "Géométrie",
     "period": "Contemporain",
+    "source": "GeoGebra Resources",
+    "license": "Ressource ouverte",
+    "format": "Construction interactive",
+    "description": "Figure pour explorer ellipse, parabole et hyperbole par foyers, directrices et sections planes.",
+    "visual": "conics",
+    "accent": "rust",
+    "links": [
+      "Coniques",
+      "Géométrie analytique",
+      "Foyers"
+    ],
+    "sourceUrl": "https://www.geogebra.org/search/conics"
+  },
+  {
+    "id": "interactive-sine-transform",
+    "title": "Transformations de sinusoïdes",
+    "type": "Figure interactive",
+    "domain": "Analyse",
+    "period": "Contemporain",
+    "source": "Desmos",
+    "license": "Ressource ouverte",
+    "format": "Graphique interactif",
+    "description": "Graphique paramétrique pour varier amplitude, phase et période d une sinusoïde.",
+    "visual": "wave",
+    "accent": "blue",
+    "links": [
+      "Sinus",
+      "Amplitude",
+      "Phase"
+    ],
+    "sourceUrl": "https://www.desmos.com/calculator?lang=fr"
+  },
+  {
+    "id": "interactive-derivative",
+    "title": "Tangente et dérivée",
+    "type": "Figure interactive",
+    "domain": "Analyse",
+    "period": "Contemporain",
+    "source": "GeoGebra Resources",
+    "license": "Ressource ouverte",
+    "format": "Construction interactive",
+    "description": "Figure interactive pour déplacer un point sur une courbe et observer la pente de la tangente.",
+    "visual": "wave",
+    "accent": "teal",
+    "links": [
+      "Dérivée",
+      "Tangente",
+      "Taux de variation"
+    ],
+    "sourceUrl": "https://www.geogebra.org/search/derivative"
+  },
+  {
+    "id": "interactive-matrix-transform",
+    "title": "Transformation linéaire 2D",
+    "type": "Figure interactive",
+    "domain": "Algèbre linéaire",
+    "period": "Contemporain",
+    "source": "Desmos / Mathemator",
+    "license": "Ressource ouverte + local",
+    "format": "Graphique interactif",
+    "description": "Manipulation d une matrice 2x2 pour visualiser rotation, cisaillement, étirement et déterminant.",
+    "visual": "graph",
+    "accent": "rust",
+    "links": [
+      "Matrices",
+      "Transformation linéaire",
+      "Déterminant"
+    ],
+    "sourceUrl": "https://www.desmos.com/search?q=linear%20transformation"
+  },
+  {
+    "id": "interactive-probability-tree",
+    "title": "Arbre de probabilités interactif",
+    "type": "Figure interactive",
+    "domain": "Probabilités",
+    "period": "Contemporain",
     "source": "Généré dans Mathemator",
     "license": "Création Mathemator",
     "format": "SVG interactif",
-    "description": "Figure locale pour explorer ellipse, parabole et hyperbole par foyers, directrices et sections planes.",
-    "visual": "conics",
-    "accent": "rust",
-    "links": ["Coniques", "Géométrie analytique", "Foyers"]
+    "description": "Arbre interactif pour comparer probabilités conditionnelles, branches et événements composés.",
+    "visual": "tree",
+    "accent": "blue",
+    "links": [
+      "Probabilités",
+      "Arbre",
+      "Conditionnement"
+    ]
   },
   {
     "id": "fractal-mandelbrot-hd",
@@ -105,7 +601,83 @@
     "description": "Aperçu fractal généré localement, cohérent avec le laboratoire et destiné aux variantes de zoom et coloration.",
     "visual": "fractal",
     "accent": "teal",
-    "links": ["Mandelbrot", "Julia", "Dynamique complexe"]
+    "links": [
+      "Mandelbrot",
+      "Julia",
+      "Dynamique complexe"
+    ]
+  },
+  {
+    "id": "fractal-julia",
+    "title": "Ensemble de Julia",
+    "type": "Fractale haute définition",
+    "domain": "Analyse complexe",
+    "period": "XXe siècle",
+    "source": "Généré procéduralement",
+    "license": "Création Mathemator",
+    "format": "Canvas HD",
+    "description": "Fractale de Julia pour comparer paramètres complexes, bassins d attraction et frontières chaotiques.",
+    "visual": "fractal",
+    "accent": "rust",
+    "links": [
+      "Julia",
+      "Dynamique complexe",
+      "Itération"
+    ]
+  },
+  {
+    "id": "fractal-newton",
+    "title": "Fractale de Newton",
+    "type": "Fractale haute définition",
+    "domain": "Analyse numérique",
+    "period": "XXe siècle",
+    "source": "Généré procéduralement",
+    "license": "Création Mathemator",
+    "format": "Canvas HD",
+    "description": "Fractale de Newton pour visualiser convergence vers les racines et sensibilité aux conditions initiales.",
+    "visual": "fractal",
+    "accent": "blue",
+    "links": [
+      "Newton",
+      "Racines",
+      "Méthode itérative"
+    ]
+  },
+  {
+    "id": "fractal-sierpinski",
+    "title": "Triangle de Sierpiński",
+    "type": "Fractale haute définition",
+    "domain": "Géométrie fractale",
+    "period": "XXe siècle",
+    "source": "Généré procéduralement",
+    "license": "Création Mathemator",
+    "format": "SVG récursif",
+    "description": "Fractale autosimilaire pour relier récursion, dimension fractale et triangle de Pascal modulo 2.",
+    "visual": "fractal",
+    "accent": "teal",
+    "links": [
+      "Sierpiński",
+      "Autosimilarité",
+      "Récursion"
+    ]
+  },
+  {
+    "id": "fractal-koch",
+    "title": "Courbe de Koch",
+    "type": "Fractale haute définition",
+    "domain": "Géométrie fractale",
+    "period": "XXe siècle",
+    "source": "Généré procéduralement",
+    "license": "Création Mathemator",
+    "format": "SVG récursif",
+    "description": "Courbe de Koch pour étudier longueur infinie, autosimilarité et construction récursive.",
+    "visual": "fractal",
+    "accent": "rust",
+    "links": [
+      "Koch",
+      "Dimension fractale",
+      "Récursion"
+    ]
   },
   {
     "id": "animated-fourier",
@@ -119,7 +691,67 @@
     "description": "Animation de synthèse de signal par harmoniques successives pour introduire les séries de Fourier.",
     "visual": "wave",
     "accent": "blue",
-    "links": ["Fourier", "Analyse harmonique", "Signal"]
+    "links": [
+      "Fourier",
+      "Analyse harmonique",
+      "Signal"
+    ]
+  },
+  {
+    "id": "animated-taylor",
+    "title": "Approximation de Taylor animée",
+    "type": "Graphique animé",
+    "domain": "Analyse",
+    "period": "XVIIIe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG animé",
+    "description": "Animation montrant l amélioration progressive d une approximation polynomiale autour d un point.",
+    "visual": "wave",
+    "accent": "teal",
+    "links": [
+      "Taylor",
+      "Approximation",
+      "Polynôme"
+    ]
+  },
+  {
+    "id": "animated-logistic",
+    "title": "Itération logistique animée",
+    "type": "Graphique animé",
+    "domain": "Systèmes dynamiques",
+    "period": "XXe siècle",
+    "source": "Observable / Mathemator",
+    "license": "Ressource ouverte + local",
+    "format": "Animation D3/SVG",
+    "description": "Graphique animé de l application logistique pour visualiser bifurcations et chaos déterministe.",
+    "visual": "wave",
+    "accent": "rust",
+    "links": [
+      "Chaos",
+      "Itération",
+      "Bifurcation"
+    ],
+    "sourceUrl": "https://observablehq.com/search?query=logistic%20map"
+  },
+  {
+    "id": "animated-central-limit",
+    "title": "Théorème central limite animé",
+    "type": "Graphique animé",
+    "domain": "Probabilités",
+    "period": "XXe siècle",
+    "source": "Observable / Mathemator",
+    "license": "Ressource ouverte + local",
+    "format": "Animation D3/SVG",
+    "description": "Animation de sommes aléatoires pour faire émerger la forme gaussienne.",
+    "visual": "infographic",
+    "accent": "blue",
+    "links": [
+      "Probabilités",
+      "Gaussienne",
+      "Simulation"
+    ],
+    "sourceUrl": "https://observablehq.com/search?query=central%20limit%20theorem"
   },
   {
     "id": "polyhedron-icosahedron-3d",
@@ -127,19 +759,78 @@
     "type": "Polyèdre 3D",
     "domain": "Géométrie",
     "period": "Antiquité",
-    "source": "Wikimedia Commons / modèle généré",
+    "source": "Wikimedia Commons / Polyhedra Collection",
     "license": "Licence ouverte",
     "format": "SVG + modèle 3D préparé",
-    "description": "Polyèdre régulier présenté comme asset ouvert et comme base pour une future manipulation Three.js.",
+    "description": "Polyèdre régulier présenté comme asset ouvert et base pour une manipulation Three.js.",
     "visual": "polyhedron",
     "accent": "rust",
+    "links": [
+      "Solides platoniciens",
+      "Icosaèdre",
+      "Dualité"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Icosahedron.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icosahedron.svg",
-    "links": ["Solides platoniciens", "Icosaèdre", "Dualité"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icosahedron.svg"
+  },
+  {
+    "id": "polyhedron-dodecahedron",
+    "title": "Dodécaèdre 3D",
+    "type": "Polyèdre 3D",
+    "domain": "Géométrie",
+    "period": "Antiquité",
+    "source": "Polyhedra Collection",
+    "license": "Ressource ouverte",
+    "format": "Modèle 3D",
+    "description": "Dodécaèdre régulier pour comparer faces pentagonales, dualité et symétrie icosaédrique.",
+    "visual": "polyhedron",
+    "accent": "teal",
+    "links": [
+      "Dodécaèdre",
+      "Pentagones",
+      "Dualité"
+    ],
+    "sourceUrl": "https://polyhedra.tessera.li/"
+  },
+  {
+    "id": "polyhedron-cube",
+    "title": "Cube manipulable",
+    "type": "Polyèdre 3D",
+    "domain": "Géométrie",
+    "period": "Antiquité",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "Modèle 3D local",
+    "description": "Cube comme premier solide pour travailler faces, arêtes, sommets, patrons et rotations.",
+    "visual": "polyhedron",
+    "accent": "blue",
+    "links": [
+      "Cube",
+      "Patron",
+      "Rotation"
+    ]
+  },
+  {
+    "id": "polyhedron-menger",
+    "title": "Éponge de Menger",
+    "type": "Polyèdre 3D",
+    "domain": "Fractales",
+    "period": "XXe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "Modèle procédural",
+    "description": "Structure 3D récursive pour relier polyèdres, fractales, volume nul et surface croissante.",
+    "visual": "polyhedron",
+    "accent": "rust",
+    "links": [
+      "Menger",
+      "Fractale 3D",
+      "Récursion"
+    ]
   },
   {
     "id": "network-graph",
-    "title": "Réseau et graphe",
+    "title": "Réseau générique",
     "type": "Réseau et graphe",
     "domain": "Graphes",
     "period": "Contemporain",
@@ -149,9 +840,68 @@
     "description": "Visualisation de réseau pour introduire sommets, arêtes, centralité et voisinages.",
     "visual": "graph",
     "accent": "blue",
+    "links": [
+      "Graphes",
+      "Réseau",
+      "Centralité"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Network-graph.png",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Network-graph.png",
-    "links": ["Graphes", "Réseau", "Centralité"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Network-graph.png"
+  },
+  {
+    "id": "network-konigsberg",
+    "title": "Ponts de Königsberg",
+    "type": "Réseau et graphe",
+    "domain": "Graphes",
+    "period": "XVIIIe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Graphe historique pour expliquer parcours eulériens et abstraction topologique.",
+    "visual": "graph",
+    "accent": "teal",
+    "links": [
+      "Euler",
+      "Königsberg",
+      "Parcours eulérien"
+    ]
+  },
+  {
+    "id": "network-collaboration",
+    "title": "Réseau de collaborations mathématiques",
+    "type": "Réseau et graphe",
+    "domain": "Histoire",
+    "period": "XXe siècle",
+    "source": "Données Mathemator / Observable",
+    "license": "Création Mathemator",
+    "format": "Graphe D3",
+    "description": "Réseau reliant écoles, collaborateurs et domaines pour explorer les communautés mathématiques.",
+    "visual": "graph",
+    "accent": "rust",
+    "links": [
+      "Collaborations",
+      "Écoles",
+      "D3"
+    ],
+    "sourceUrl": "https://observablehq.com/search?query=network%20graph%20d3"
+  },
+  {
+    "id": "network-prerequisites",
+    "title": "Graphe de prérequis",
+    "type": "Réseau et graphe",
+    "domain": "Pédagogie",
+    "period": "Contemporain",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Graphe reliant notions préalables, domaines, théorèmes et exercices.",
+    "visual": "graph",
+    "accent": "blue",
+    "links": [
+      "Prérequis",
+      "Apprentissage",
+      "Domaines"
+    ]
   },
   {
     "id": "historical-map-ptolemy",
@@ -165,9 +915,89 @@
     "description": "Carte du monde issue de la tradition ptoléméenne, utile pour relier géométrie, projection et histoire des sciences.",
     "visual": "map",
     "accent": "rust",
+    "links": [
+      "Ptolémée",
+      "Projection",
+      "Cartographie"
+    ],
     "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/PtolemyWorldMap.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:PtolemyWorldMap.jpg",
-    "links": ["Ptolémée", "Projection", "Cartographie"]
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:PtolemyWorldMap.jpg"
+  },
+  {
+    "id": "historical-map-alexandria",
+    "title": "Carte ancienne d Alexandrie",
+    "type": "Carte historique",
+    "domain": "Histoire",
+    "period": "Antiquité",
+    "source": "Wikimedia Commons / David Rumsey",
+    "license": "Licence ouverte",
+    "format": "Carte ouverte",
+    "description": "Carte historique pour situer bibliothèque, écoles savantes et transmission antique.",
+    "visual": "map",
+    "accent": "blue",
+    "links": [
+      "Alexandrie",
+      "Bibliothèque",
+      "Carte historique"
+    ],
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antikes_Alexandria_Karte.JPG"
+  },
+  {
+    "id": "historical-map-rumsey-navigation",
+    "title": "Carte mathématique de navigation",
+    "type": "Carte historique",
+    "domain": "Cartographie",
+    "period": "Renaissance",
+    "source": "David Rumsey Map Collection",
+    "license": "Collection ouverte",
+    "format": "Carte numérisée",
+    "description": "Carte ancienne pour relier projections, navigation, trigonométrie sphérique et mesure.",
+    "visual": "map",
+    "accent": "teal",
+    "links": [
+      "Navigation",
+      "Projection",
+      "Trigonométrie"
+    ],
+    "sourceUrl": "https://www.davidrumsey.com/luna/servlet/view/search?q=mathematical%20map"
+  },
+  {
+    "id": "geographic-map-alexandria",
+    "title": "Carte géographique d Alexandrie antique",
+    "type": "Carte géographique",
+    "domain": "Histoire",
+    "period": "Antiquité",
+    "source": "Wikimedia Commons",
+    "license": "Licence ouverte",
+    "format": "SVG ouvert",
+    "description": "Carte d Alexandrie en contexte antique pour situer Euclide, Apollonios, Diophante et Hypatie.",
+    "visual": "map",
+    "accent": "blue",
+    "links": [
+      "Alexandrie",
+      "Bibliothèque",
+      "Antiquité"
+    ],
+    "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ptolemaic_Alexandria_Map_-_en.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ptolemaic_Alexandria_Map_-_en.svg"
+  },
+  {
+    "id": "geographic-map-math-centers",
+    "title": "Carte des centres mathématiques",
+    "type": "Carte géographique",
+    "domain": "Histoire",
+    "period": "Contemporain",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Carte générée depuis les lieux Mathemator pour explorer universités, bibliothèques et écoles mathématiques.",
+    "visual": "map",
+    "accent": "rust",
+    "links": [
+      "Göttingen",
+      "Paris",
+      "Princeton"
+    ]
   },
   {
     "id": "illustrated-timeline-calculus",
@@ -181,27 +1011,70 @@
     "description": "Chronologie visuelle reliant Newton, Leibniz, Bernoulli, Euler et Cauchy à partir des données internes.",
     "visual": "timeline",
     "accent": "teal",
-    "links": ["Calcul", "Newton", "Leibniz"]
+    "links": [
+      "Calcul",
+      "Newton",
+      "Leibniz"
+    ]
   },
   {
-    "id": "geographic-map-alexandria",
-    "title": "Carte géographique d'Alexandrie antique",
-    "type": "Carte géographique",
-    "domain": "Histoire",
-    "period": "Antiquité",
-    "source": "Wikimedia Commons",
-    "license": "Licence ouverte",
-    "format": "SVG ouvert",
-    "description": "Carte d'Alexandrie en contexte antique pour situer Euclide, Apollonios, Diophante et Hypatie.",
-    "visual": "map",
+    "id": "timeline-set-theory",
+    "title": "Chronologie de la théorie des ensembles",
+    "type": "Chronologie illustrée",
+    "domain": "Théorie des ensembles",
+    "period": "XIXe siècle",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "Infographie générée",
+    "description": "Frise reliant Cantor, Zermelo, Fraenkel, Gödel et Cohen autour de l infini et des axiomes.",
+    "visual": "timeline",
     "accent": "blue",
-    "assetUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ptolemaic_Alexandria_Map_-_en.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ptolemaic_Alexandria_Map_-_en.svg",
-    "links": ["Alexandrie", "Bibliothèque", "Antiquité"]
+    "links": [
+      "Cantor",
+      "Gödel",
+      "Cohen"
+    ]
+  },
+  {
+    "id": "timeline-women-math",
+    "title": "Chronologie des mathématiciennes",
+    "type": "Chronologie illustrée",
+    "domain": "Histoire",
+    "period": "Contemporain",
+    "source": "Données Mathemator / Smithsonian Open Access",
+    "license": "Création Mathemator",
+    "format": "Infographie générée",
+    "description": "Frise mettant en relation Hypatie, Noether, Lovelace, Mirzakhani et Viazovska.",
+    "visual": "timeline",
+    "accent": "rust",
+    "links": [
+      "Noether",
+      "Mirzakhani",
+      "Viazovska"
+    ],
+    "sourceUrl": "https://www.si.edu/openaccess"
+  },
+  {
+    "id": "timeline-fractals",
+    "title": "Chronologie des fractales",
+    "type": "Chronologie illustrée",
+    "domain": "Fractales",
+    "period": "XXe siècle",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "Infographie générée",
+    "description": "Frise de Cantor à Mandelbrot, Julia, Fatou, Sierpiński et visualisations numériques.",
+    "visual": "timeline",
+    "accent": "teal",
+    "links": [
+      "Mandelbrot",
+      "Julia",
+      "Sierpiński"
+    ]
   },
   {
     "id": "knowledge-tree-algebra",
-    "title": "Arbre de connaissances de l'algèbre",
+    "title": "Arbre de connaissances de l algèbre",
     "type": "Arbre de connaissances",
     "domain": "Algèbre",
     "period": "Contemporain",
@@ -211,7 +1084,65 @@
     "description": "Arbre conceptuel reliant structures, groupes, anneaux, corps, équations et transformations.",
     "visual": "tree",
     "accent": "blue",
-    "links": ["Algèbre", "Groupes", "Structures"]
+    "links": [
+      "Algèbre",
+      "Groupes",
+      "Structures"
+    ]
+  },
+  {
+    "id": "knowledge-tree-analysis",
+    "title": "Arbre de connaissances de l analyse",
+    "type": "Arbre de connaissances",
+    "domain": "Analyse",
+    "period": "Contemporain",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Arbre reliant analyse réelle, complexe, fonctionnelle, harmonique, équations différentielles et mesure.",
+    "visual": "tree",
+    "accent": "teal",
+    "links": [
+      "Analyse réelle",
+      "Analyse complexe",
+      "Mesure"
+    ]
+  },
+  {
+    "id": "knowledge-tree-geometry",
+    "title": "Arbre de connaissances de la géométrie",
+    "type": "Arbre de connaissances",
+    "domain": "Géométrie",
+    "period": "Contemporain",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Arbre reliant euclidienne, différentielle, projective, algébrique, discrète et topologique.",
+    "visual": "tree",
+    "accent": "rust",
+    "links": [
+      "Géométrie euclidienne",
+      "Projective",
+      "Différentielle"
+    ]
+  },
+  {
+    "id": "knowledge-tree-topology",
+    "title": "Arbre de connaissances de la topologie",
+    "type": "Arbre de connaissances",
+    "domain": "Topologie",
+    "period": "Contemporain",
+    "source": "Données Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Arbre reliant espaces topologiques, variétés, homotopie, homologie et nœuds.",
+    "visual": "tree",
+    "accent": "blue",
+    "links": [
+      "Topologie",
+      "Variétés",
+      "Homologie"
+    ]
   },
   {
     "id": "infographic-prime-numbers",
@@ -225,7 +1156,67 @@
     "description": "Infographie compacte sur crible, factorisation, nombres premiers jumeaux et cryptographie.",
     "visual": "infographic",
     "accent": "teal",
-    "links": ["Nombres premiers", "Crible", "Cryptographie"]
+    "links": [
+      "Nombres premiers",
+      "Crible",
+      "Cryptographie"
+    ]
+  },
+  {
+    "id": "infographic-proof-methods",
+    "title": "Infographie des méthodes de preuve",
+    "type": "Infographie",
+    "domain": "Logique",
+    "period": "Contemporain",
+    "source": "Design system Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Carte synthétique des preuves directes, par contraposée, contradiction, induction et construction.",
+    "visual": "infographic",
+    "accent": "rust",
+    "links": [
+      "Preuve",
+      "Induction",
+      "Contradiction"
+    ]
+  },
+  {
+    "id": "infographic-functions",
+    "title": "Infographie des familles de fonctions",
+    "type": "Infographie",
+    "domain": "Analyse",
+    "period": "Contemporain",
+    "source": "DLMF / Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Panorama des fonctions polynomiales, trigonométriques, exponentielles, logarithmiques et spéciales.",
+    "visual": "infographic",
+    "accent": "blue",
+    "links": [
+      "Fonctions",
+      "DLMF",
+      "Graphiques"
+    ],
+    "sourceUrl": "https://dlmf.nist.gov/"
+  },
+  {
+    "id": "infographic-oeis-sequences",
+    "title": "Infographie des suites célèbres",
+    "type": "Infographie",
+    "domain": "Combinatoire",
+    "period": "Contemporain",
+    "source": "OEIS / Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG généré",
+    "description": "Infographie reliant Fibonacci, Catalan, partitions, Bell et suites figurées.",
+    "visual": "infographic",
+    "accent": "teal",
+    "links": [
+      "OEIS",
+      "Suites",
+      "Combinatoire"
+    ],
+    "sourceUrl": "https://oeis.org/"
   },
   {
     "id": "proof-animation-pythagoras",
@@ -236,10 +1227,68 @@
     "source": "Généré dans Mathemator",
     "license": "Création Mathemator",
     "format": "SVG animé",
-    "description": "Animation locale de réarrangement d'aires pour rendre visible l'égalité a² + b² = c².",
+    "description": "Animation locale de réarrangement d aires pour rendre visible l égalité a² + b² = c².",
     "visual": "proof",
     "accent": "rust",
-    "links": ["Pythagore", "Aires", "Démonstration visuelle"]
+    "links": [
+      "Pythagore",
+      "Aires",
+      "Démonstration visuelle"
+    ]
+  },
+  {
+    "id": "proof-animation-derivative",
+    "title": "Animation de la dérivée",
+    "type": "Animation de démonstration",
+    "domain": "Analyse",
+    "period": "XVIIe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG animé",
+    "description": "Animation de sécantes devenant tangente pour donner un sens visuel au taux de variation instantané.",
+    "visual": "wave",
+    "accent": "blue",
+    "links": [
+      "Dérivée",
+      "Tangente",
+      "Limite"
+    ]
+  },
+  {
+    "id": "proof-animation-integral",
+    "title": "Animation de sommes de Riemann",
+    "type": "Animation de démonstration",
+    "domain": "Analyse",
+    "period": "XIXe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "Canvas animé",
+    "description": "Animation de rectangles qui raffinent l approximation d une aire sous une courbe.",
+    "visual": "infographic",
+    "accent": "teal",
+    "links": [
+      "Intégrale",
+      "Riemann",
+      "Aire"
+    ]
+  },
+  {
+    "id": "proof-animation-euler-formula",
+    "title": "Animation de la formule d Euler",
+    "type": "Animation de démonstration",
+    "domain": "Analyse complexe",
+    "period": "XVIIIe siècle",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "SVG animé",
+    "description": "Animation sur le cercle unité reliant exponentielle complexe, sinus, cosinus et rotation.",
+    "visual": "wave",
+    "accent": "rust",
+    "links": [
+      "Euler",
+      "Exponentielle complexe",
+      "Rotation"
+    ]
   },
   {
     "id": "simulation-random-walk",
@@ -250,9 +1299,69 @@
     "source": "Généré dans Mathemator",
     "license": "Création Mathemator",
     "format": "Canvas interactif",
-    "description": "Simulation locale prévue pour faire varier pas, dispersion et retour à l'origine dans une marche aléatoire.",
+    "description": "Simulation locale prévue pour faire varier pas, dispersion et retour à l origine dans une marche aléatoire.",
     "visual": "simulation",
     "accent": "teal",
-    "links": ["Probabilités", "Marche aléatoire", "Diffusion"]
+    "links": [
+      "Probabilités",
+      "Marche aléatoire",
+      "Diffusion"
+    ]
+  },
+  {
+    "id": "simulation-monte-carlo-pi",
+    "title": "Simulation Monte-Carlo de π",
+    "type": "Simulation interactive",
+    "domain": "Probabilités",
+    "period": "Contemporain",
+    "source": "Généré dans Mathemator",
+    "license": "Création Mathemator",
+    "format": "Canvas interactif",
+    "description": "Simulation de points aléatoires dans un carré pour approximer π par aire relative.",
+    "visual": "simulation",
+    "accent": "blue",
+    "links": [
+      "Monte-Carlo",
+      "Pi",
+      "Probabilités"
+    ]
+  },
+  {
+    "id": "simulation-orbits",
+    "title": "Simulation d orbites",
+    "type": "Simulation interactive",
+    "domain": "Mathématiques appliquées",
+    "period": "Contemporain",
+    "source": "NASA / Mathemator",
+    "license": "Ressource ouverte + local",
+    "format": "Canvas interactif",
+    "description": "Simulation inspirée des données orbitales pour relier coniques, gravitation et équations différentielles.",
+    "visual": "simulation",
+    "accent": "rust",
+    "links": [
+      "NASA",
+      "Orbites",
+      "Coniques"
+    ],
+    "sourceUrl": "https://www.nasa.gov/open-data/"
+  },
+  {
+    "id": "simulation-cern-statistics",
+    "title": "Simulation de bruit statistique",
+    "type": "Simulation interactive",
+    "domain": "Statistiques",
+    "period": "Contemporain",
+    "source": "CERN Open Data / Mathemator",
+    "license": "Ressource ouverte + local",
+    "format": "Canvas interactif",
+    "description": "Simulation de distribution de mesures pour introduire histogrammes, incertitude et ajustement statistique.",
+    "visual": "simulation",
+    "accent": "teal",
+    "links": [
+      "CERN",
+      "Statistiques",
+      "Histogrammes"
+    ],
+    "sourceUrl": "https://opendata.cern.ch/"
   }
 ]

@@ -288,10 +288,11 @@ Statut : implemente.
 
 Livrables :
 
-- `data/media.json` ajoute une mediatheque unifiee avec assets visibles : portraits, manuscrits historiques, pages originales, schemas geometriques, figures interactives, fractales HD, graphiques animes, polyedres 3D, graphes, cartes historiques, chronologies illustrees, cartes geographiques, arbres de connaissances, infographies, animations de demonstration et simulations interactives.
+- `data/media.json` ajoute une mediatheque unifiee avec 73 entrees visibles : portraits, manuscrits historiques, pages originales, schemas geometriques, figures interactives, fractales HD, graphiques animes, polyedres 3D, graphes, cartes historiques, chronologies illustrees, cartes geographiques, arbres de connaissances, infographies, animations de demonstration et simulations interactives.
+- Chaque famille contient plusieurs occurrences : portraits, schemas, manuscrits, pages, fractales, graphes, cartes et simulations ne sont plus des exemples uniques.
 - Plusieurs entrees utilisent de vraies images ouvertes Wikimedia Commons avec URL de source et licence.
 - Section `Mediatheque visuelle` visible des l'accueil.
-- Cartes d'accueil dynamiques avec navigation precedent/suivant/melange.
+- Cartes d'accueil dynamiques par famille de medias, avec compteur d'occurrences, exemples et navigation precedent/suivant/melange.
 - Les 17 entrees sont cliquables depuis l'accueil, l'onglet `Mediatheque`, la recherche et les favoris.
 - Chaque entree ouvre un detail avec image ou visualisation, description, pistes d'exploration, attribution, licence, source et liens conceptuels.
 - Onglet `Mediatheque` dans la bibliotheque filtrable avec acces direct depuis l'accueil.

@@ -151,6 +151,16 @@ function navigateFromMenu(screen, target = "") {
   });
 }
 
+function openMediaType(type) {
+  activeLibrary = "Médiathèque";
+  activeMediaType = type;
+  renderLibrary();
+  setScreen("cards");
+  requestAnimationFrame(() => {
+    $("#ressources").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 function card(title, body, meta = "", action = "") {
   return `
     <article class="result-card">
@@ -477,19 +487,36 @@ function renderDaily() {
 }
 
 function renderHomeMedia() {
-  const featured = Array.from({ length: Math.min(8, media.length) }, (_, index) => media[(homeMediaOffset + index) % media.length]);
-  $("#homeMediaGrid").innerHTML = featured.map((item) => `
-    <article class="home-media-card" tabindex="0" role="button" data-open="media:${item.id}" aria-label="Ouvrir ${item.title}">
-      ${mediaVisual(item)}
+  const groups = Object.entries(media.reduce((acc, item) => {
+    acc[item.type] = acc[item.type] || [];
+    acc[item.type].push(item);
+    return acc;
+  }, {})).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0], "fr"));
+  const featured = Array.from({ length: Math.min(8, groups.length) }, (_, index) => groups[(homeMediaOffset + index) % groups.length]);
+  $("#homeMediaGrid").innerHTML = featured.map(([type, items]) => {
+    const sample = items[0];
+    const examples = items.slice(0, 3).map((item) => item.title).join(" · ");
+    const sourceCount = new Set(items.map((item) => item.source)).size;
+    return `
+    <article class="home-media-card" tabindex="0" role="button" data-media-type="${type}" aria-label="Explorer ${type}">
+      ${mediaVisual(sample)}
       <div>
-        <span>${item.type}</span>
-        <h3>${item.title}</h3>
-        <p>${item.source} · ${item.license}</p>
-        <small>${item.domain} · ${item.period}</small>
+        <span class="home-media-meta">${items.length} ressources · ${sourceCount} sources</span>
+        <h3>${type}</h3>
+        <p>${examples}</p>
+        <small>Explorer la collection ${type.toLowerCase()}</small>
       </div>
     </article>
-  `).join("");
-  bindDetailButtons();
+    `;
+  }).join("");
+  $("#homeMediaGrid").querySelectorAll("[data-media-type]").forEach((card) => {
+    card.addEventListener("click", () => openMediaType(card.dataset.mediaType));
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openMediaType(card.dataset.mediaType);
+    });
+  });
 }
 
 function renderSearch() {
@@ -2024,7 +2051,9 @@ function renderMedia() {
   sourceFilter.value = activeMediaSource;
   $("#mediaStats").innerHTML = `
     <strong>${visible.length}</strong><span>médias</span>
-    <strong>${new Set(visible.map((item) => item.type)).size}</strong><span>types</span>
+    <strong>${media.length}</strong><span>collection</span>
+    <strong>${new Set(visible.map((item) => item.type)).size}</strong><span>types visibles</span>
+    <strong>${new Set(visible.map((item) => item.source)).size}</strong><span>sources</span>
     <strong>${visible.filter((item) => item.license === "Création Mathemator").length}</strong><span>générés</span>
     <strong>${visible.filter((item) => item.license !== "Création Mathemator").length}</strong><span>sources ouvertes</span>
   `;
@@ -3257,6 +3286,7 @@ $("#glossaryLinkFilter").addEventListener("change", (event) => {
 });
 $("#openMediaLibraryButton").addEventListener("click", () => {
   activeLibrary = "Médiathèque";
+  activeMediaType = "Tous";
   renderLibrary();
   setScreen("cards");
   $("#ressources").scrollIntoView({ behavior: "smooth", block: "start" });
