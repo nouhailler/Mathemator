@@ -288,12 +288,12 @@ Statut : implemente.
 
 Livrables :
 
-- `data/media.json` ajoute une mediatheque unifiee avec 73 entrees visibles : portraits, manuscrits historiques, pages originales, schemas geometriques, figures interactives, fractales HD, graphiques animes, polyedres 3D, graphes, cartes historiques, chronologies illustrees, cartes geographiques, arbres de connaissances, infographies, animations de demonstration et simulations interactives.
-- Chaque famille contient plusieurs occurrences : portraits, schemas, manuscrits, pages, fractales, graphes, cartes et simulations ne sont plus des exemples uniques.
-- Plusieurs entrees utilisent de vraies images ouvertes Wikimedia Commons avec URL de source et licence.
+- `data/media.json` ajoute une mediatheque unifiee avec 300 entrees visibles et decrites.
+- Quotas implementes : 50 portraits Wikimedia Commons, 50 manuscrits Gallica/Internet Archive, 50 livres historiques Internet Archive/Google Books, 50 gravures Europeana/Wikimedia, 50 figures interactives GeoGebra/Desmos, 10 animations SVG/D3/Canvas, 10 fractales procedurales, 10 polyedres 3D Polyhedra Collection/Three.js, 10 reseaux Observable/D3 et 10 cartes David Rumsey/Library of Congress.
+- Chaque entree possede une description precise, une source, une licence, un format, des liens conceptuels et une URL source.
 - Section `Mediatheque visuelle` visible des l'accueil.
 - Cartes d'accueil dynamiques par famille de medias, avec compteur d'occurrences, exemples et navigation precedent/suivant/melange.
-- Les 17 entrees sont cliquables depuis l'accueil, l'onglet `Mediatheque`, la recherche et les favoris.
+- Les entrees sont cliquables depuis l'accueil, l'onglet `Mediatheque`, la recherche et les favoris.
 - Chaque entree ouvre un detail avec image ou visualisation, description, pistes d'exploration, attribution, licence, source et liens conceptuels.
 - Onglet `Mediatheque` dans la bibliotheque filtrable avec acces direct depuis l'accueil.
 - Recherche et filtres par type, domaine et source.
