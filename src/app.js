@@ -10,6 +10,7 @@ const {
   formulas,
   glossary,
   mathematicians,
+  media,
   modeContent,
   modules,
   objects,
@@ -38,6 +39,13 @@ const store = {
 let activeReference = "Théorèmes";
 let activeLibrary = "Citations";
 let activeMode = "Enseignant";
+let teacherDomain = "Géométrie";
+let teacherLevel = "Lycée";
+let teacherDuration = "45";
+let studentDomain = "Géométrie";
+let studentGoal = "Revoir 5 cartes";
+let studentFlashcard = 0;
+let studentFlashcardRevealed = false;
 let currentExercise = 0;
 let currentQuiz = 0;
 let activeQuizMode = "Libre";
@@ -51,7 +59,12 @@ let activeTypeFilter = "Tous";
 let activePeriodFilter = "Tous";
 let activeNationalityFilter = "Tous";
 let activeDifficultyFilter = "Tous";
+let activeSearchDomainFilter = "Tous";
+let activeSearchLevelFilter = "Tous";
+let activeSearchTheoremFilter = "Tous";
+let activeSearchKeywordFilter = "Tous";
 let activeChipFilter = "Tous";
+let activeFavoriteType = "Tous";
 let activeScreen = "home";
 let activeTimelinePeriod = "Toutes";
 let activeMapKind = "Tous";
@@ -72,6 +85,19 @@ let activeExerciseId = exercises[0]?.id || "";
 let activeProblemCategory = "Tous";
 let activeProblemStatus = "Tous";
 let activeProblemDomain = "Tous";
+let activeQuoteAuthor = "Tous";
+let activeQuoteTheme = "Tous";
+let activeQuotePeriod = "Tous";
+let activeBookAuthor = "Tous";
+let activeBookCategory = "Tous";
+let activeBookLevel = "Tous";
+let activeGlossaryInitial = "Tous";
+let activeGlossaryLink = "Tous";
+let activeMediaType = "Tous";
+let activeMediaDomain = "Tous";
+let activeMediaSource = "Tous";
+let activeNetworkType = "Tous";
+let activeNetworkNode = "";
 
 const screenLabels = {
   home: "Accueil",
@@ -136,20 +162,59 @@ function fieldList(items) {
   return items.filter(Boolean).map((item) => `<li>${item}</li>`).join("");
 }
 
+const domainNames = domains.map((domain) => domain.name);
+
+function uniqueValues(values) {
+  return [...new Set(values.flat().filter(Boolean))];
+}
+
+function inferPeriodFromText(...values) {
+  const text = values.filter(Boolean).join(" ");
+  return text.match(/Antiquité|Moyen Âge|Renaissance|[XVI]+e siècle/i)?.[0] || "";
+}
+
+function inferDomains(...values) {
+  const text = normalize(values.filter(Boolean).join(" "));
+  return domainNames.filter((domain) => text.includes(normalize(domain)));
+}
+
+function inferTheorems(...values) {
+  const text = normalize(values.filter(Boolean).join(" "));
+  return theorems
+    .filter((theorem) => text.includes(normalize(theorem.name)))
+    .map((theorem) => theorem.name)
+    .slice(0, 8);
+}
+
+function searchEntry(fields) {
+  return {
+    ...fields,
+    domains: uniqueValues(fields.domains || []),
+    theorems: uniqueValues(fields.theorems || []),
+    keywords: uniqueValues(fields.keywords || fields.tags || []),
+    level: fields.level || "",
+    period: fields.period || "",
+    nationality: fields.nationality || "",
+    difficulty: fields.difficulty || "",
+  };
+}
+
 const searchIndex = [
-  ...entries.map((item) => ({
+  ...entries.map((item) => searchEntry({
     id: `entry:${item.title}`,
     type: item.type,
     title: item.title,
     meta: item.meta,
     text: item.text,
     tags: item.tags,
-    period: "",
-    nationality: "",
+    period: inferPeriodFromText(item.meta),
+    domains: inferDomains(item.title, item.meta, item.text, item.tags?.join(" ")),
+    theorems: inferTheorems(item.title, item.meta, item.text),
+    keywords: item.tags,
     difficulty: "",
     payload: item,
   })),
-  ...mathematicians.map((item) => ({
+  ...mathematicians.map((item) => searchEntry({
     id: `person:${item.id}`,
     type: "Mathématicien",
     title: item.name,
@@ -158,101 +223,158 @@ const searchIndex = [
     tags: [...item.domains, item.nationality, item.period],
     period: item.period,
     nationality: item.nationality,
+    domains: item.domains,
+    theorems: item.theorems,
+    keywords: [...item.domains, ...(item.discoveries || []), ...(item.namedObjects || [])],
     difficulty: "",
     payload: item,
   })),
-  ...theorems.map((item) => ({
+  ...theorems.map((item) => searchEntry({
     id: `theorem:${item.name}`,
     type: "Théorème",
     title: item.name,
     meta: `${item.discoverer} · ${item.applications}`,
     text: item.intuition,
     tags: [item.discoverer, item.history, ...item.variants],
+    domains: inferDomains(item.name, item.applications, item.history, item.variants?.join(" ")),
+    theorems: [item.name],
+    keywords: [item.discoverer, item.history, item.generalization, ...item.variants, ...(item.references || [])],
     period: "",
     nationality: "",
     difficulty: "",
     payload: item,
   })),
-  ...formulas.map((item) => ({
+  ...formulas.map((item) => searchEntry({
     id: `formula:${item.name}`,
     type: "Formule",
     title: item.name,
     meta: item.category,
     text: item.explanation,
     tags: [item.category, ...item.uses],
+    domains: uniqueValues([item.category, ...item.uses]).filter((value) => domainNames.includes(value)),
+    theorems: inferTheorems(item.name, item.category, item.explanation),
+    keywords: [item.category, ...item.uses, ...(item.examples || [])],
     period: "",
     nationality: "",
     difficulty: "",
     payload: item,
   })),
-  ...domains.map((item) => ({
+  ...domains.map((item) => searchEntry({
     id: `domain:${item.name}`,
     type: "Domaine",
     title: item.name,
     meta: `${item.family} · ${item.people}`,
     text: item.intro,
     tags: [item.family, ...item.concepts, ...item.theorems, ...(item.methods || []), ...(item.subdomains || []), ...(item.related || []), item.applications],
+    domains: [item.name, ...(item.related || []).filter((value) => domainNames.includes(value))],
+    theorems: item.theorems,
+    keywords: [item.family, ...item.concepts, ...(item.methods || []), ...(item.subdomains || []), item.applications],
     period: "",
     nationality: "",
     difficulty: "",
     payload: item,
   })),
-  ...objects.map((item) => ({
+  ...objects.map((item) => searchEntry({
     id: `object:${item.name}`,
     type: "Objet",
     title: item.name,
     meta: `${item.category || "Objet"} · ${item.dimension || ""} · ${item.applications}`,
     text: item.description,
     tags: [item.category, item.dimension, ...item.properties, ...(item.related || []), item.history, item.interactive, item.formula],
+    domains: uniqueValues([item.category, ...(item.related || [])]).filter((value) => domainNames.includes(value)),
+    theorems: inferTheorems(item.name, item.description, item.history, item.related?.join(" ")),
+    keywords: [item.category, item.dimension, ...item.properties, ...(item.related || []), item.interactive],
     period: "",
     nationality: "",
     difficulty: "",
     payload: item,
   })),
-  ...exercises.map((item, index) => ({
+  ...exercises.map((item, index) => searchEntry({
     id: `exercise:${index}`,
     type: "Exercice",
     title: item.prompt,
     meta: `${item.domain} · ${item.level} · ${item.difficulty} · ${item.time}`,
     text: item.solution,
     tags: [item.domain, item.level, item.difficulty],
+    domains: [item.domain],
+    theorems: inferTheorems(item.prompt, item.solution, item.references?.join(" ")),
+    keywords: [item.domain, item.level, item.difficulty, item.time, item.method, ...(item.references || [])],
+    level: item.level,
     period: "",
     nationality: "",
     difficulty: item.difficulty,
     payload: item,
   })),
-  ...problems.map((item) => ({
+  ...quiz.map((item) => searchEntry({
+    id: `quiz:${item.id}`,
+    type: "Quiz",
+    title: item.question,
+    meta: `${item.domain} · ${item.mode} · ${item.difficulty} · ${item.points} points`,
+    text: item.explanation,
+    tags: [item.domain, item.mode, item.difficulty],
+    domains: [item.domain],
+    theorems: inferTheorems(item.question, item.explanation),
+    keywords: [item.domain, item.mode, item.difficulty, `${item.points} points`],
+    difficulty: item.difficulty,
+    payload: item,
+  })),
+  ...problems.map((item) => searchEntry({
     id: `problem:${item.name}`,
     type: "Problème",
     title: item.name,
     meta: item.status,
     text: item.text,
     tags: [item.history, item.current, item.advances, item.impact],
-    period: "",
+    domains: [item.domain],
+    theorems: inferTheorems(item.name, item.text, item.history),
+    keywords: [item.status, item.category, item.difficulty, item.current, item.impact, ...(item.references || [])],
+    period: item.period || "",
     nationality: "",
-    difficulty: "",
+    difficulty: item.difficulty || "",
     payload: item,
   })),
-  ...books.map((item) => ({
+  ...books.map((item) => searchEntry({
     id: `book:${item.title}`,
     type: "Livre",
     title: item.title,
     meta: `${item.author} · ${item.category} · ${item.level}`,
     text: item.description,
     tags: [item.author, item.category, item.level],
+    domains: inferDomains(item.title, item.category, item.description),
+    theorems: inferTheorems(item.title, item.description),
+    keywords: [item.author, item.category, item.level],
+    level: item.level,
     period: "",
     nationality: "",
     difficulty: item.level,
     payload: item,
   })),
-  ...glossary.map((item) => ({
+  ...glossary.map((item) => searchEntry({
     id: `glossary:${item.term}`,
     type: "Glossaire",
     title: item.term,
     meta: item.links.join(", "),
     text: item.definition,
     tags: item.links,
+    domains: inferDomains(item.term, item.definition, item.links.join(" ")),
+    theorems: inferTheorems(item.term, item.definition, item.links.join(" ")),
+    keywords: item.links,
     period: "",
+    nationality: "",
+    difficulty: "",
+    payload: item,
+  })),
+  ...media.map((item) => searchEntry({
+    id: `media:${item.id}`,
+    type: "Média",
+    title: item.title,
+    meta: `${item.type} · ${item.source} · ${item.license}`,
+    text: item.description,
+    tags: [item.type, item.source, item.license, item.format, item.period, ...(item.links || [])],
+    domains: inferDomains(item.domain, item.description, item.links?.join(" ")),
+    theorems: inferTheorems(item.title, item.description, item.links?.join(" ")),
+    keywords: [item.type, item.source, item.license, item.format, item.period, ...(item.links || [])],
+    period: item.period,
     nationality: "",
     difficulty: "",
     payload: item,
@@ -271,19 +393,52 @@ function renderMath() {
 }
 
 function scoreEntry(entry, query) {
-  if (!query) return 1;
+  let score = 1;
+  if (!query) return score;
   const terms = normalize(query).split(/\s+/).filter(Boolean);
   if (!terms.length) return 1;
-  let score = 0;
+  score = 0;
   const title = normalize(entry.title);
   const meta = normalize(entry.meta);
+  const tags = normalize((entry.tags || []).join(" "));
+  const domainsText = normalize((entry.domains || []).join(" "));
+  const theoremsText = normalize((entry.theorems || []).join(" "));
+  const keywordsText = normalize((entry.keywords || []).join(" "));
   for (const term of terms) {
-    if (title === term) score += 12;
-    if (title.includes(term)) score += 7;
+    if (title === term) score += 18;
+    if (title.startsWith(term)) score += 12;
+    if (title.includes(term)) score += 8;
+    if (domainsText.includes(term)) score += 7;
+    if (theoremsText.includes(term)) score += 7;
+    if (keywordsText.includes(term)) score += 5;
+    if (tags.includes(term)) score += 5;
     if (meta.includes(term)) score += 4;
     if (entry.searchText.includes(term)) score += 2;
   }
   return score;
+}
+
+function matchesSearchValue(values, selected) {
+  return selected === "Tous" || uniqueValues(values).includes(selected);
+}
+
+function activeFilterScore(entry) {
+  let score = 0;
+  if (activeTypeFilter !== "Tous" && entry.type === activeTypeFilter) score += 3;
+  if (activePeriodFilter !== "Tous" && entry.period === activePeriodFilter) score += 3;
+  if (activeNationalityFilter !== "Tous" && entry.nationality === activeNationalityFilter) score += 3;
+  if (activeDifficultyFilter !== "Tous" && entry.difficulty === activeDifficultyFilter) score += 3;
+  if (activeSearchDomainFilter !== "Tous" && entry.domains.includes(activeSearchDomainFilter)) score += 5;
+  if (activeSearchLevelFilter !== "Tous" && entry.level === activeSearchLevelFilter) score += 4;
+  if (activeSearchTheoremFilter !== "Tous" && entry.theorems.includes(activeSearchTheoremFilter)) score += 5;
+  if (activeSearchKeywordFilter !== "Tous" && entry.keywords.includes(activeSearchKeywordFilter)) score += 4;
+  return score;
+}
+
+function searchOptionValues(field, limit = Infinity) {
+  return uniqueValues(searchIndex.map((entry) => entry[field] || []))
+    .sort((a, b) => a.localeCompare(b, "fr"))
+    .slice(0, limit);
 }
 
 function renderDaily() {
@@ -309,33 +464,55 @@ function renderSearch() {
   const periodFilter = $("#periodFilter");
   const nationalityFilter = $("#nationalityFilter");
   const difficultyFilter = $("#difficultyFilter");
+  const domainFilter = $("#searchDomainFilter");
+  const levelFilter = $("#searchLevelFilter");
+  const theoremFilter = $("#searchTheoremFilter");
+  const keywordFilter = $("#searchKeywordFilter");
   typeFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.type))].sort());
-  periodFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.period).filter((value) => /siècle|Antiquité|Moyen|Renaissance/i.test(value)))].sort());
+  periodFilter.innerHTML = optionList(searchOptionValues("period"));
   nationalityFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.nationality).filter(Boolean))].sort(), "Toutes");
   difficultyFilter.innerHTML = optionList([...new Set(searchIndex.map((entry) => entry.difficulty).filter(Boolean))].sort(), "Toutes");
+  domainFilter.innerHTML = optionList(searchOptionValues("domains"));
+  levelFilter.innerHTML = optionList(searchOptionValues("level"));
+  theoremFilter.innerHTML = optionList(searchOptionValues("theorems"));
+  keywordFilter.innerHTML = optionList(searchOptionValues("keywords"));
   typeFilter.value = activeTypeFilter;
   periodFilter.value = activePeriodFilter;
   nationalityFilter.value = activeNationalityFilter;
   difficultyFilter.value = activeDifficultyFilter;
+  domainFilter.value = activeSearchDomainFilter;
+  levelFilter.value = activeSearchLevelFilter;
+  theoremFilter.value = activeSearchTheoremFilter;
+  keywordFilter.value = activeSearchKeywordFilter;
   const draw = () => {
     const query = input.value.trim();
     const chip = normalize(activeChipFilter);
     const visible = searchIndex
-      .map((entry) => ({ ...entry, score: scoreEntry(entry, query) }))
+      .map((entry) => ({ ...entry, score: scoreEntry(entry, query) + activeFilterScore(entry) }))
       .filter((entry) => entry.score > 0)
       .filter((entry) => activeChipFilter === "Tous" || entry.searchText.includes(chip) || normalize(entry.type).includes(chip))
       .filter((entry) => activeTypeFilter === "Tous" || entry.type === activeTypeFilter)
       .filter((entry) => activePeriodFilter === "Tous" || entry.period === activePeriodFilter)
       .filter((entry) => activeNationalityFilter === "Tous" || entry.nationality === activeNationalityFilter)
       .filter((entry) => activeDifficultyFilter === "Tous" || entry.difficulty === activeDifficultyFilter)
+      .filter((entry) => matchesSearchValue(entry.domains, activeSearchDomainFilter))
+      .filter((entry) => activeSearchLevelFilter === "Tous" || entry.level === activeSearchLevelFilter)
+      .filter((entry) => matchesSearchValue(entry.theorems, activeSearchTheoremFilter))
+      .filter((entry) => matchesSearchValue(entry.keywords, activeSearchKeywordFilter))
       .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, "fr"))
       .slice(0, 40);
+    $("#searchStats").innerHTML = `
+      <strong>${visible.length}</strong><span>résultats</span>
+      <strong>${new Set(visible.map((entry) => entry.type)).size}</strong><span>types</span>
+      <strong>${new Set(visible.flatMap((entry) => entry.domains)).size}</strong><span>domaines</span>
+      <strong>${Math.max(0, ...visible.map((entry) => entry.score))}</strong><span>score max</span>
+    `;
     chips.innerHTML = filters.map((filter) => `<button class="${filter === activeChipFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
-    list.innerHTML = visible.map(({ id, type, title, meta, text }) => card(
+    list.innerHTML = visible.map(({ id, type, title, meta, text, score }) => card(
       title,
       text,
       `${type} · ${meta}`,
-      `<div class="card-actions"><button class="mini-button" type="button" data-open="${id}">Ouvrir</button>${favoriteButton(id, title)}</div>`
+      `<div class="card-actions"><span class="search-score">Score ${score}</span><button class="mini-button" type="button" data-open="${id}">Ouvrir</button>${favoriteButton(id, title)}</div>`
     )).join("");
     chips.querySelectorAll("button").forEach((button) => {
       button.addEventListener("click", () => {
@@ -349,19 +526,35 @@ function renderSearch() {
   };
   input.addEventListener("input", draw);
   typeFilter.addEventListener("change", () => {
-    activeTypeFilter = typeFilter.value;
+    activeTypeFilter = typeFilter.value || "Tous";
     draw();
   });
   periodFilter.addEventListener("change", () => {
-    activePeriodFilter = periodFilter.value;
+    activePeriodFilter = periodFilter.value || "Tous";
     draw();
   });
   nationalityFilter.addEventListener("change", () => {
-    activeNationalityFilter = nationalityFilter.value;
+    activeNationalityFilter = nationalityFilter.value || "Tous";
     draw();
   });
   difficultyFilter.addEventListener("change", () => {
-    activeDifficultyFilter = difficultyFilter.value;
+    activeDifficultyFilter = difficultyFilter.value || "Tous";
+    draw();
+  });
+  domainFilter.addEventListener("change", () => {
+    activeSearchDomainFilter = domainFilter.value || "Tous";
+    draw();
+  });
+  levelFilter.addEventListener("change", () => {
+    activeSearchLevelFilter = levelFilter.value || "Tous";
+    draw();
+  });
+  theoremFilter.addEventListener("change", () => {
+    activeSearchTheoremFilter = theoremFilter.value || "Tous";
+    draw();
+  });
+  keywordFilter.addEventListener("change", () => {
+    activeSearchKeywordFilter = keywordFilter.value || "Tous";
     draw();
   });
   draw();
@@ -375,16 +568,22 @@ function favoriteButton(id, label = id) {
 
 function bindFavorites() {
   document.querySelectorAll("[data-favorite]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const id = button.dataset.favorite;
-      const favorites = store.get("mathemator:favorites", []);
-      const next = favorites.includes(id) ? favorites.filter((item) => item !== id) : [...favorites, id];
-      store.set("mathemator:favorites", next);
-      renderSearch();
-      renderProgress();
-      renderFavorites();
-    });
+    const favorites = store.get("mathemator:favorites", []);
+    const active = favorites.includes(button.dataset.favorite);
+    button.classList.toggle("active", active);
+    button.textContent = active ? "Favori" : "Ajouter aux favoris";
   });
+}
+
+function toggleFavorite(id) {
+  const favorites = store.get("mathemator:favorites", []);
+  const active = favorites.includes(id);
+  const next = active ? favorites.filter((item) => item !== id) : [...favorites, id];
+  store.set("mathemator:favorites", next);
+  bindFavorites();
+  if (activeScreen === "search") renderSearch();
+  renderProgress();
+  renderFavorites();
 }
 
 function bindDetailButtons() {
@@ -395,16 +594,31 @@ function bindDetailButtons() {
 
 function renderFavorites() {
   const favorites = store.get("mathemator:favorites", []);
+  const typeFilter = $("#favoriteTypeFilter");
   const list = $("#favoritesList");
   const items = favorites.map((id) => searchIndex.find((entry) => entry.id === id) || { id, type: "Favori", title: id, meta: "", text: "Élément enregistré." });
-  list.innerHTML = items.length
-    ? items.map(({ id, type, title, meta, text }) => card(
+  const types = [...new Set(items.map((item) => item.type))].sort((a, b) => a.localeCompare(b, "fr"));
+  typeFilter.innerHTML = optionList(types);
+  if (activeFavoriteType !== "Tous" && !types.includes(activeFavoriteType)) activeFavoriteType = "Tous";
+  typeFilter.value = activeFavoriteType;
+  const visible = items.filter((item) => activeFavoriteType === "Tous" || item.type === activeFavoriteType);
+  $("#favoriteStats").innerHTML = `
+    <strong>${items.length}</strong><span>favoris</span>
+    <strong>${visible.length}</strong><span>affichés</span>
+    <strong>${types.length}</strong><span>types</span>
+  `;
+  list.innerHTML = visible.length
+    ? visible.map(({ id, type, title, meta, text }) => card(
       title,
       text,
       `${type}${meta ? ` · ${meta}` : ""}`,
       `<div class="card-actions"><button class="mini-button" type="button" data-open="${id}">Ouvrir</button>${favoriteButton(id, title)}</div>`
     )).join("")
     : card("Aucun favori", "Ajoute des mathématiciens, théorèmes, formules, exercices ou objets depuis les fiches et les résultats.", "Collection");
+  typeFilter.onchange = () => {
+    activeFavoriteType = typeFilter.value;
+    renderFavorites();
+  };
   bindFavorites();
   bindDetailButtons();
 }
@@ -513,6 +727,15 @@ function detailFor(entry) {
       ${detailDefinition("Impact", item.impact)}
     `;
   }
+  if (entry.type === "Quiz") {
+    return `
+      ${detailDefinition("Question", item.question)}
+      ${detailList("Réponses proposées", item.options)}
+      ${detailDefinition("Réponse attendue", item.options[item.correct])}
+      ${detailDefinition("Explication", item.explanation)}
+      ${detailDefinition("Classement", `${item.domain} · ${item.mode} · ${item.difficulty} · ${item.points} points`)}
+    `;
+  }
   if (entry.type === "Livre") {
     return `
       ${detailDefinition("Auteur", item.author)}
@@ -525,6 +748,24 @@ function detailFor(entry) {
     return `
       ${detailDefinition("Définition", item.definition)}
       ${detailList("Renvois automatiques", item.links)}
+    `;
+  }
+  if (entry.type === "Média") {
+    return `
+      <div class="media-detail-visual">${mediaVisual(item, true)}</div>
+      ${detailDefinition("Description", item.description)}
+      <section>
+        <h3>Attribution</h3>
+        <dl class="detail-kv">
+          <dt>Type</dt><dd>${item.type}</dd>
+          <dt>Domaine</dt><dd>${item.domain}</dd>
+          <dt>Période</dt><dd>${item.period}</dd>
+          <dt>Source</dt><dd>${item.source}</dd>
+          <dt>Licence</dt><dd>${item.license}</dd>
+          <dt>Format</dt><dd>${item.format}</dd>
+        </dl>
+      </section>
+      ${detailList("Liens conceptuels", item.links)}
     `;
   }
   return detailDefinition("Résumé", entry.text);
@@ -1120,6 +1361,7 @@ function renderExercise() {
           <div class="card-actions">
             <button class="mini-button" id="completeExerciseButton" type="button">Marquer réalisé</button>
             <button class="mini-button" id="nextExerciseButton" type="button">Exercice suivant</button>
+            ${favoriteButton(`exercise:${exercises.indexOf(selected)}`, selected.prompt)}
           </div>
         </article>
       </div>
@@ -1132,7 +1374,7 @@ function renderExercise() {
       });
     });
     $("#completeExerciseButton")?.addEventListener("click", () => {
-      bumpProgress("exercises");
+      bumpProgress("exercises", { domain: selected.domain, minutes: selected.estimatedMinutes || 3 });
       renderProgress();
     });
     $("#nextExerciseButton")?.addEventListener("click", () => {
@@ -1142,6 +1384,7 @@ function renderExercise() {
       hintVisible = false;
       draw();
     });
+    bindFavorites();
   };
   search.oninput = draw;
   levelFilter.onchange = () => {
@@ -1211,6 +1454,7 @@ function renderQuiz() {
     $("#quizBox").querySelectorAll("[data-answer]").forEach((button) => {
       button.addEventListener("click", () => answerQuiz(current, Number(button.dataset.answer)));
     });
+    bindFavorites();
     if (activeQuizMode === "Chronométré") startQuizTimer(current);
   }
 }
@@ -1224,6 +1468,7 @@ function quizQuestionMarkup(current) {
       <div class="answer-grid">
         ${current.options.map((option, index) => `<button type="button" data-answer="${index}">${option}</button>`).join("")}
       </div>
+      <div class="card-actions">${favoriteButton(`quiz:${current.id}`, current.question)}</div>
       <p id="quizFeedback" class="muted">${quizModePrompt()}</p>
     </article>
   `;
@@ -1253,7 +1498,7 @@ function answerQuiz(current, answer) {
     quizStreak += 1;
     const bonus = activeQuizMode === "Championnat" ? Math.min(quizStreak * 2, 20) : 0;
     quizScore += current.points + bonus;
-    bumpProgress("quiz");
+    bumpProgress("quiz", { domain: current.domain, minutes: 2, streak: quizStreak });
   } else {
     quizStreak = 0;
   }
@@ -1315,17 +1560,79 @@ function clearQuizTimer() {
   quizTimer = null;
 }
 
-function bumpProgress(key) {
-  const progress = store.get("mathemator:progress", { exercises: 0, quiz: 0, minutes: 12 });
+function defaultProgress() {
+  return { exercises: 0, quiz: 0, minutes: 12, domains: {}, days: [], bestStreak: 0 };
+}
+
+function getProgress() {
+  const progress = store.get("mathemator:progress", defaultProgress());
+  return {
+    ...defaultProgress(),
+    ...progress,
+    domains: progress.domains || {},
+    days: progress.days || [],
+  };
+}
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function bumpProgress(key, details = {}) {
+  const progress = getProgress();
   progress[key] = (progress[key] || 0) + 1;
-  progress.minutes = (progress.minutes || 0) + 3;
+  progress.minutes = (progress.minutes || 0) + (details.minutes || 3);
+  progress.days = [...new Set([...(progress.days || []), todayKey()])];
+  if (details.streak) progress.bestStreak = Math.max(progress.bestStreak || 0, details.streak);
+  if (details.domain) {
+    progress.domains[details.domain] ||= { exercises: 0, quiz: 0, minutes: 0 };
+    if (key === "exercises") progress.domains[details.domain].exercises += 1;
+    if (key === "quiz") progress.domains[details.domain].quiz += 1;
+    progress.domains[details.domain].minutes += details.minutes || 3;
+  }
   store.set("mathemator:progress", progress);
 }
 
+function favoriteDomains(favorites) {
+  return favorites
+    .map((id) => searchIndex.find((entry) => entry.id === id))
+    .filter(Boolean)
+    .flatMap((entry) => entry.domains || []);
+}
+
+function domainProgressRows(progress, favorites) {
+  const favoriteCounts = favoriteDomains(favorites).reduce((acc, domain) => {
+    acc[domain] = (acc[domain] || 0) + 1;
+    return acc;
+  }, {});
+  return uniqueValues([Object.keys(progress.domains), Object.keys(favoriteCounts)])
+    .map((domain) => {
+      const stats = progress.domains[domain] || { exercises: 0, quiz: 0, minutes: 0 };
+      const score = stats.exercises * 8 + stats.quiz * 10 + (favoriteCounts[domain] || 0) * 3;
+      return { domain, ...stats, favorites: favoriteCounts[domain] || 0, score: Math.min(100, score) };
+    })
+    .sort((a, b) => b.score - a.score || a.domain.localeCompare(b.domain, "fr"));
+}
+
+function progressBadges(progress, favorites, domainRows) {
+  return [
+    { name: "Premier pas", text: "1 exercice réalisé", active: progress.exercises >= 1 },
+    { name: "Série vive", text: "3 bonnes réponses de suite", active: progress.bestStreak >= 3 },
+    { name: "Explorateur", text: "5 favoris enregistrés", active: favorites.length >= 5 },
+    { name: "Régulier", text: "3 jours actifs", active: progress.days.length >= 3 },
+    { name: "Polyvalent", text: "3 domaines travaillés", active: domainRows.length >= 3 },
+    { name: "Maîtrise", text: "1 domaine à 60%", active: domainRows.some((row) => row.score >= 60) },
+  ];
+}
+
 function renderProgress() {
-  const progress = store.get("mathemator:progress", { exercises: 0, quiz: 0, minutes: 12 });
+  const progress = getProgress();
   const favorites = store.get("mathemator:favorites", []);
-  const mastery = Math.min(100, 18 + progress.exercises * 7 + progress.quiz * 5 + favorites.length * 4);
+  const domainRows = domainProgressRows(progress, favorites);
+  const badges = progressBadges(progress, favorites, domainRows);
+  const unlocked = badges.filter((badge) => badge.active).length;
+  const mastery = Math.round(Math.min(100, 12 + progress.exercises * 5 + progress.quiz * 4 + favorites.length * 3 + unlocked * 6 + domainRows.reduce((sum, row) => sum + row.score, 0) / 12));
+  const topDomains = domainRows.slice(0, 5);
   $("#progressBox").innerHTML = `
     <div class="meter"><span style="width:${mastery}%"></span></div>
     <div class="stats-row">
@@ -1335,24 +1642,347 @@ function renderProgress() {
       <strong>${favorites.length}</strong><span>favoris</span>
     </div>
     <p class="muted">Maîtrise estimée : ${mastery}%</p>
+    <div class="progress-detail-grid">
+      <article>
+        <strong>${progress.bestStreak || 0}</strong>
+        <span>meilleure série</span>
+      </article>
+      <article>
+        <strong>${progress.days.length}</strong>
+        <span>jours actifs</span>
+      </article>
+      <article>
+        <strong>${domainRows.length}</strong>
+        <span>domaines suivis</span>
+      </article>
+      <article>
+        <strong>${unlocked}/${badges.length}</strong>
+        <span>succès</span>
+      </article>
+    </div>
+    <section class="progress-section">
+      <h3>Domaines maîtrisés</h3>
+      ${topDomains.length ? topDomains.map((row) => `
+        <div class="domain-progress">
+          <div><strong>${row.domain}</strong><span>${row.exercises} ex. · ${row.quiz} quiz · ${row.favorites} fav.</span></div>
+          <div class="meter small"><span style="width:${row.score}%"></span></div>
+        </div>
+      `).join("") : `<p class="muted">Réalise un exercice, réussis un quiz ou ajoute un favori pour démarrer le suivi par domaine.</p>`}
+    </section>
+    <section class="progress-section">
+      <h3>Badges</h3>
+      <div class="achievement-grid">
+        ${badges.map((badge) => `
+          <article class="${badge.active ? "unlocked" : ""}">
+            <strong>${badge.name}</strong>
+            <span>${badge.text}</span>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function mediaVisual(item, large = false) {
+  const label = item.title.split(/\s+/).slice(0, 2).map((word) => word[0]).join("").toUpperCase();
+  const sizeClass = large ? "large" : "";
+  const visual = item.visual || "infographic";
+  if (visual === "portrait") {
+    return `<div class="media-visual ${sizeClass} accent-${item.accent} media-portrait"><span>${label.slice(0, 2)}</span></div>`;
+  }
+  if (visual === "manuscript" || visual === "book") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-manuscript">
+        <i></i><i></i><i></i><b></b>
+      </div>
+    `;
+  }
+  if (visual === "fractal") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-fractal">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    `;
+  }
+  if (visual === "polyhedron") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-polyhedron">
+        <svg viewBox="0 0 120 90" aria-hidden="true">
+          <path d="M60 8 108 36 92 78 28 78 12 36Z"></path>
+          <path d="M60 8 60 50 12 36M60 50 108 36M60 50 92 78M60 50 28 78"></path>
+        </svg>
+      </div>
+    `;
+  }
+  if (visual === "graph" || visual === "tree") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-graph">
+        <svg viewBox="0 0 120 90" aria-hidden="true">
+          <path d="M22 62 48 28 78 52 100 20M48 28 58 72M78 52 58 72"></path>
+          <circle cx="22" cy="62" r="7"></circle><circle cx="48" cy="28" r="7"></circle><circle cx="78" cy="52" r="7"></circle><circle cx="100" cy="20" r="7"></circle><circle cx="58" cy="72" r="7"></circle>
+        </svg>
+      </div>
+    `;
+  }
+  if (visual === "map") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-map">
+        <svg viewBox="0 0 120 90" aria-hidden="true">
+          <path d="M16 20c16-10 26 8 42-1 19-10 26 3 46 0v52c-20 5-30-9-47 0-18 9-28-8-41 1Z"></path>
+          <path d="M36 23v45M72 20v45M18 45h84"></path>
+          <circle cx="58" cy="45" r="5"></circle>
+        </svg>
+      </div>
+    `;
+  }
+  if (visual === "wave" || visual === "conics") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-wave">
+        <svg viewBox="0 0 120 90" aria-hidden="true">
+          <path d="M8 48c14-36 28 36 42 0s28 36 42 0 16-24 20-10"></path>
+          <path d="M18 70c20-12 62-12 84 0"></path>
+        </svg>
+      </div>
+    `;
+  }
+  if (visual === "timeline") {
+    return `
+      <div class="media-visual ${sizeClass} accent-${item.accent} media-timeline">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    `;
+  }
+  return `
+    <div class="media-visual ${sizeClass} accent-${item.accent} media-infographic">
+      <span></span><span></span><span></span><b></b>
+    </div>
   `;
 }
 
 function renderLibrary() {
-  const tabs = ["Citations", "Livres", "Glossaire"];
+  const tabs = ["Citations", "Livres", "Glossaire", "Médiathèque"];
   $("#libraryTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeLibrary ? "active" : ""}" type="button">${tab}</button>`).join("");
-  const data = activeLibrary === "Citations" ? quotes : activeLibrary === "Livres" ? books : glossary;
-  $("#libraryPanel").innerHTML = data.map((item) => {
-    if (activeLibrary === "Citations") return card(`« ${item.text} »`, `${item.theme} · ${item.period}`, item.author);
-    if (activeLibrary === "Livres") return card(item.title, `${item.description}<br><strong>${item.category}</strong> · ${item.level}`, item.author);
-    return card(item.term, `${item.definition}<br><strong>Renvois :</strong> ${item.links.join(", ")}`, "Définition");
-  }).join("");
+  const quoteTools = $("#quoteTools");
+  const bookTools = $("#bookTools");
+  const glossaryTools = $("#glossaryTools");
+  const mediaTools = $("#mediaTools");
+  quoteTools.hidden = activeLibrary !== "Citations";
+  bookTools.hidden = activeLibrary !== "Livres";
+  glossaryTools.hidden = activeLibrary !== "Glossaire";
+  mediaTools.hidden = activeLibrary !== "Médiathèque";
+  if (activeLibrary === "Citations") {
+    renderQuotes();
+  } else if (activeLibrary === "Livres") {
+    renderBooks();
+  } else if (activeLibrary === "Glossaire") {
+    renderGlossary();
+  } else {
+    renderMedia();
+  }
   $("#libraryTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeLibrary = button.textContent;
       renderLibrary();
     });
   });
+}
+
+function renderQuotes() {
+  const search = $("#quoteSearch");
+  const authorFilter = $("#quoteAuthorFilter");
+  const themeFilter = $("#quoteThemeFilter");
+  const periodFilter = $("#quotePeriodFilter");
+  authorFilter.innerHTML = optionList([...new Set(quotes.map((item) => item.author).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  themeFilter.innerHTML = optionList([...new Set(quotes.map((item) => item.theme).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  periodFilter.innerHTML = optionList([...new Set(quotes.map((item) => item.period).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")), "Toutes");
+  const query = normalize(search.value.trim());
+  const visible = quotes
+    .filter((item) => activeQuoteAuthor === "Tous" || item.author === activeQuoteAuthor)
+    .filter((item) => activeQuoteTheme === "Tous" || item.theme === activeQuoteTheme)
+    .filter((item) => activeQuotePeriod === "Tous" || item.period === activeQuotePeriod)
+    .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+  authorFilter.value = activeQuoteAuthor;
+  themeFilter.value = activeQuoteTheme;
+  periodFilter.value = activeQuotePeriod;
+  $("#quoteStats").innerHTML = `
+    <strong>${visible.length}</strong><span>citations</span>
+    <strong>${new Set(visible.map((item) => item.author)).size}</strong><span>auteurs</span>
+    <strong>${new Set(visible.map((item) => item.theme)).size}</strong><span>thèmes</span>
+    <strong>${new Set(visible.map((item) => item.period)).size}</strong><span>époques</span>
+  `;
+  $("#libraryPanel").innerHTML = visible.map(quoteCard).join("") || card("Aucune citation", "Aucune citation ne correspond aux filtres actifs.", "Bibliothèque");
+}
+
+function quoteCard({ author, text, theme, period }) {
+  return `
+    <article class="quote-card">
+      <blockquote>« ${text} »</blockquote>
+      <div>
+        <strong>${author}</strong>
+        <span>${theme} · ${period}</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderBooks() {
+  const search = $("#bookSearch");
+  const authorFilter = $("#bookAuthorFilter");
+  const categoryFilter = $("#bookCategoryFilter");
+  const levelFilter = $("#bookLevelFilter");
+  authorFilter.innerHTML = optionList([...new Set(books.map((item) => item.author).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  categoryFilter.innerHTML = optionList([...new Set(books.map((item) => item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")), "Toutes");
+  levelFilter.innerHTML = optionList([...new Set(books.map((item) => item.level).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr")));
+  const query = normalize(search.value.trim());
+  const visible = books
+    .filter((item) => activeBookAuthor === "Tous" || item.author === activeBookAuthor)
+    .filter((item) => activeBookCategory === "Tous" || item.category === activeBookCategory)
+    .filter((item) => activeBookLevel === "Tous" || item.level === activeBookLevel)
+    .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+  authorFilter.value = activeBookAuthor;
+  categoryFilter.value = activeBookCategory;
+  levelFilter.value = activeBookLevel;
+  $("#bookStats").innerHTML = `
+    <strong>${visible.length}</strong><span>livres</span>
+    <strong>${new Set(visible.map((item) => item.author)).size}</strong><span>auteurs</span>
+    <strong>${new Set(visible.map((item) => item.category)).size}</strong><span>catégories</span>
+    <strong>${new Set(visible.map((item) => item.level)).size}</strong><span>niveaux</span>
+  `;
+  $("#libraryPanel").innerHTML = visible.map(bookCard).join("") || card("Aucun livre", "Aucun livre ne correspond aux filtres actifs.", "Bibliothèque");
+}
+
+function bookCard({ title, author, category, level, description }) {
+  return `
+    <article class="book-card">
+      <div class="book-card-header">
+        <span>${category}</span>
+        <small>${level}</small>
+      </div>
+      <h3>${title}</h3>
+      <p>${description}</p>
+      <strong>${author}</strong>
+    </article>
+  `;
+}
+
+function glossaryInitial(term = "") {
+  return normalize(term).charAt(0).toUpperCase();
+}
+
+function renderGlossary() {
+  const search = $("#glossarySearch");
+  const initialFilter = $("#glossaryInitialFilter");
+  const linkFilter = $("#glossaryLinkFilter");
+  const initials = [...new Set(glossary.map((item) => glossaryInitial(item.term)).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  const links = [...new Set(glossary.flatMap((item) => item.links || []).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  initialFilter.innerHTML = optionList(initials, "Toutes");
+  linkFilter.innerHTML = optionList(links);
+  if (activeGlossaryInitial !== "Tous" && !initials.includes(activeGlossaryInitial)) activeGlossaryInitial = "Tous";
+  if (activeGlossaryLink !== "Tous" && !links.includes(activeGlossaryLink)) activeGlossaryLink = "Tous";
+  const query = normalize(search.value.trim());
+  const visible = glossary
+    .filter((item) => activeGlossaryInitial === "Tous" || glossaryInitial(item.term) === activeGlossaryInitial)
+    .filter((item) => activeGlossaryLink === "Tous" || item.links?.includes(activeGlossaryLink))
+    .filter((item) => !query || normalize(asSearchText(item)).includes(query))
+    .sort((a, b) => a.term.localeCompare(b.term, "fr"));
+  const displayed = visible.slice(0, 180);
+  initialFilter.value = activeGlossaryInitial;
+  linkFilter.value = activeGlossaryLink;
+  $("#glossaryStats").innerHTML = `
+    <strong>${glossary.length}</strong><span>définitions</span>
+    <strong>${visible.length}</strong><span>résultats</span>
+    <strong>${displayed.length}</strong><span>affichées</span>
+    <strong>${new Set(visible.flatMap((item) => item.links || [])).size}</strong><span>renvois</span>
+  `;
+  $("#libraryPanel").innerHTML = displayed.map(glossaryCard).join("") || card("Aucune définition", "Aucune définition ne correspond aux filtres actifs.", "Glossaire");
+  $("#libraryPanel").querySelectorAll("[data-glossary-link]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeGlossaryLink = button.dataset.glossaryLink;
+      activeLibrary = "Glossaire";
+      renderLibrary();
+    });
+  });
+  bindFavorites();
+  bindDetailButtons();
+}
+
+function glossaryCard({ term, definition, links = [] }) {
+  return `
+    <article class="glossary-card">
+      <div class="glossary-card-header">
+        <span>${glossaryInitial(term)}</span>
+        <h3>${term}</h3>
+      </div>
+      <p>${definition}</p>
+      <div class="glossary-links">
+        ${links.map((link) => `<button type="button" data-glossary-link="${link}">${link}</button>`).join("")}
+      </div>
+      <div class="card-actions">
+        <button class="mini-button" type="button" data-open="glossary:${term}">Ouvrir</button>
+        ${favoriteButton(`glossary:${term}`, term)}
+      </div>
+    </article>
+  `;
+}
+
+function renderMedia() {
+  const search = $("#mediaSearch");
+  const typeFilter = $("#mediaTypeFilter");
+  const domainFilter = $("#mediaDomainFilter");
+  const sourceFilter = $("#mediaSourceFilter");
+  const types = [...new Set(media.map((item) => item.type).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  const mediaDomains = [...new Set(media.map((item) => item.domain).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  const sources = [...new Set(media.map((item) => item.source).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"));
+  typeFilter.innerHTML = optionList(types);
+  domainFilter.innerHTML = optionList(mediaDomains);
+  sourceFilter.innerHTML = optionList(sources, "Toutes");
+  if (activeMediaType !== "Tous" && !types.includes(activeMediaType)) activeMediaType = "Tous";
+  if (activeMediaDomain !== "Tous" && !mediaDomains.includes(activeMediaDomain)) activeMediaDomain = "Tous";
+  if (activeMediaSource !== "Tous" && !sources.includes(activeMediaSource)) activeMediaSource = "Tous";
+  const query = normalize(search.value.trim());
+  const visible = media
+    .filter((item) => activeMediaType === "Tous" || item.type === activeMediaType)
+    .filter((item) => activeMediaDomain === "Tous" || item.domain === activeMediaDomain)
+    .filter((item) => activeMediaSource === "Tous" || item.source === activeMediaSource)
+    .filter((item) => !query || normalize(asSearchText(item)).includes(query));
+  typeFilter.value = activeMediaType;
+  domainFilter.value = activeMediaDomain;
+  sourceFilter.value = activeMediaSource;
+  $("#mediaStats").innerHTML = `
+    <strong>${visible.length}</strong><span>médias</span>
+    <strong>${new Set(visible.map((item) => item.type)).size}</strong><span>types</span>
+    <strong>${visible.filter((item) => item.license === "Création Mathemator").length}</strong><span>générés</span>
+    <strong>${visible.filter((item) => item.license !== "Création Mathemator").length}</strong><span>sources ouvertes</span>
+  `;
+  $("#libraryPanel").innerHTML = visible.map(mediaCard).join("") || card("Aucun média", "Aucun média ne correspond aux filtres actifs.", "Médiathèque");
+  bindFavorites();
+  bindDetailButtons();
+}
+
+function mediaCard(item) {
+  return `
+    <article class="media-card">
+      ${mediaVisual(item)}
+      <div class="media-card-body">
+        <div class="media-card-header">
+          <span>${item.type}</span>
+          <small>${item.format}</small>
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <dl>
+          <dt>Source</dt><dd>${item.source}</dd>
+          <dt>Licence</dt><dd>${item.license}</dd>
+          <dt>Domaine</dt><dd>${item.domain} · ${item.period}</dd>
+        </dl>
+        <div class="media-tags">${(item.links || []).slice(0, 4).map((link) => `<span>${link}</span>`).join("")}</div>
+        <div class="card-actions">
+          <button class="mini-button" type="button" data-open="media:${item.id}">Ouvrir</button>
+          ${favoriteButton(`media:${item.id}`, item.title)}
+        </div>
+      </div>
+    </article>
+  `;
 }
 
 function renderProblems() {
@@ -1380,6 +2010,7 @@ function renderProblems() {
       <strong>${new Set(visible.map((item) => item.domain)).size}</strong><span>domaines</span>
     `;
     $("#problemList").innerHTML = visible.map(problemCard).join("") || card("Aucun problème", "Aucun problème ne correspond aux filtres actifs.", "Problèmes célèbres");
+    bindFavorites();
   };
   search.addEventListener("input", draw);
   categoryFilter.addEventListener("change", () => {
@@ -1417,18 +2048,304 @@ function problemCard({ name, status, category, domain, difficulty, period, text,
         <strong>Références</strong>
         <ul>${fieldList(references)}</ul>
       </section>
+      <div class="card-actions">${favoriteButton(`problem:${name}`, name)}</div>
     </article>
   `;
+}
+
+function teacherPlan() {
+  const domain = teacherDomain;
+  const level = teacherLevel;
+  const domainTheorems = theorems.filter((item) => normalize(asSearchText(item)).includes(normalize(domain))).slice(0, 3);
+  const domainFormulas = formulas.filter((item) => item.category === domain || item.uses?.includes(domain) || normalize(item.category).includes(normalize(domain))).slice(0, 3);
+  const domainExercises = exercises.filter((item) => item.domain === domain && (level === "Tous" || item.level === level)).slice(0, 5);
+  const fallbackExercises = domainExercises.length ? domainExercises : exercises.filter((item) => item.domain === domain).slice(0, 5);
+  const domainQuiz = quiz.filter((item) => item.domain === domain).slice(0, 6);
+  const concepts = domains.find((item) => item.name === domain)?.concepts?.slice(0, 6) || [];
+  return {
+    domain,
+    level,
+    duration: Number(teacherDuration) || 45,
+    concepts,
+    theorems: domainTheorems,
+    formulas: domainFormulas,
+    exercises: fallbackExercises,
+    quiz: domainQuiz,
+  };
+}
+
+function teacherExportText(plan = teacherPlan()) {
+  return [
+    `Parcours enseignant - ${plan.domain}`,
+    `Niveau : ${plan.level}`,
+    `Durée : ${plan.duration} min`,
+    "",
+    "Objectifs",
+    ...plan.concepts.map((item) => `- ${item}`),
+    "",
+    "Théorèmes",
+    ...plan.theorems.map((item) => `- ${item.name} : ${item.statement}`),
+    "",
+    "Formules",
+    ...plan.formulas.map((item) => `- ${item.name} : ${item.expression}`),
+    "",
+    "Exercices",
+    ...plan.exercises.map((item) => `- ${item.prompt} (${item.difficulty}, ${item.time})`),
+    "",
+    "Quiz",
+    ...plan.quiz.map((item) => `- ${item.question} Réponse : ${item.options[item.correct]}`),
+  ].join("\n");
+}
+
+function renderTeacherMode() {
+  const domainOptions = [...new Set([...domains.map((item) => item.name), ...exercises.map((item) => item.domain)])].sort((a, b) => a.localeCompare(b, "fr"));
+  const levelOptions = ["Tous", ...new Set(exercises.map((item) => item.level))];
+  const plan = teacherPlan();
+  return `
+    <div class="teacher-workbench" id="teacherWorkbench">
+      <div class="teacher-controls">
+        <label>
+          Domaine
+          <select id="teacherDomainSelect">${domainOptions.map((domain) => `<option value="${domain}" ${domain === teacherDomain ? "selected" : ""}>${domain}</option>`).join("")}</select>
+        </label>
+        <label>
+          Niveau
+          <select id="teacherLevelSelect">${levelOptions.map((level) => `<option value="${level}" ${level === teacherLevel ? "selected" : ""}>${level}</option>`).join("")}</select>
+        </label>
+        <label>
+          Durée
+          <select id="teacherDurationSelect">${["30", "45", "60", "90"].map((duration) => `<option value="${duration}" ${duration === teacherDuration ? "selected" : ""}>${duration} min</option>`).join("")}</select>
+        </label>
+      </div>
+      <div class="stats-row">
+        <strong>${plan.concepts.length}</strong><span>objectifs</span>
+        <strong>${plan.theorems.length}</strong><span>théorèmes</span>
+        <strong>${plan.exercises.length}</strong><span>exercices</span>
+        <strong>${plan.quiz.length}</strong><span>quiz</span>
+      </div>
+      <div class="teacher-actions">
+        <button class="mini-button" id="teacherPrintButton" type="button">Exporter PDF</button>
+        <button class="mini-button" id="teacherCopyButton" type="button">Copier fiche</button>
+        <button class="mini-button" id="teacherFullscreenButton" type="button">Présentation</button>
+      </div>
+      <article class="teacher-sheet" id="teacherSheet">
+        <header>
+          <span class="badge">${plan.level} · ${plan.duration} min</span>
+          <h3>Parcours ${plan.domain}</h3>
+        </header>
+        <section>
+          <h4>Objectifs</h4>
+          <ul>${fieldList(plan.concepts)}</ul>
+        </section>
+        <section>
+          <h4>Ressources</h4>
+          <ul>
+            ${plan.theorems.map((item) => `<li><strong>${item.name}</strong> — ${item.statement}</li>`).join("")}
+            ${plan.formulas.map((item) => `<li><strong>${item.name}</strong> — ${item.expression}</li>`).join("")}
+          </ul>
+        </section>
+        <section>
+          <h4>Exercices</h4>
+          <ol>${plan.exercises.map((item) => `<li>${item.prompt}<br><span>${item.difficulty} · ${item.time}</span></li>`).join("")}</ol>
+        </section>
+        <section>
+          <h4>Quiz généré</h4>
+          <ol>${plan.quiz.map((item) => `<li>${item.question}<br><span>Réponse : ${item.options[item.correct]}</span></li>`).join("")}</ol>
+        </section>
+      </article>
+    </div>
+  `;
+}
+
+function bindTeacherMode() {
+  $("#teacherDomainSelect")?.addEventListener("change", (event) => {
+    teacherDomain = event.target.value;
+    renderModes();
+  });
+  $("#teacherLevelSelect")?.addEventListener("change", (event) => {
+    teacherLevel = event.target.value;
+    renderModes();
+  });
+  $("#teacherDurationSelect")?.addEventListener("change", (event) => {
+    teacherDuration = event.target.value;
+    renderModes();
+  });
+  $("#teacherPrintButton")?.addEventListener("click", () => {
+    document.body.classList.add("printing-teacher");
+    print();
+    setTimeout(() => document.body.classList.remove("printing-teacher"), 500);
+  });
+  $("#teacherCopyButton")?.addEventListener("click", async () => {
+    const text = teacherExportText();
+    try {
+      await navigator.clipboard.writeText(text);
+      $("#teacherCopyButton").textContent = "Fiche copiée";
+    } catch {
+      $("#teacherCopyButton").textContent = "Copie indisponible";
+    }
+  });
+  $("#teacherFullscreenButton")?.addEventListener("click", async () => {
+    const sheet = $("#teacherSheet");
+    if (sheet?.requestFullscreen) await sheet.requestFullscreen();
+  });
+}
+
+function studentHistory() {
+  return store.get("mathemator:student-history", []);
+}
+
+function recordStudentEvent(kind, label, domain = studentDomain) {
+  const history = studentHistory();
+  store.set("mathemator:student-history", [
+    { date: todayKey(), kind, label, domain },
+    ...history,
+  ].slice(0, 30));
+}
+
+function studentDeck(domain = studentDomain) {
+  const domainInfo = domains.find((item) => item.name === domain);
+  const conceptCards = (domainInfo?.concepts || []).slice(0, 6).map((concept) => ({
+    front: concept,
+    back: `Concept central en ${domain}. Relis sa définition, puis cherche un exemple et un contre-exemple.`,
+    meta: "Concept",
+  }));
+  const theoremCards = theorems
+    .filter((item) => normalize(asSearchText(item)).includes(normalize(domain)))
+    .slice(0, 5)
+    .map((item) => ({ front: item.name, back: item.intuition || item.statement, meta: "Théorème" }));
+  const formulaCards = formulas
+    .filter((item) => item.category === domain || item.uses?.includes(domain) || normalize(item.category).includes(normalize(domain)))
+    .slice(0, 4)
+    .map((item) => ({ front: item.name, back: `${item.expression} — ${item.explanation}`, meta: "Formule" }));
+  const glossaryCards = glossary
+    .filter((item) => item.links?.includes(domain))
+    .slice(0, 5)
+    .map((item) => ({ front: item.term, back: item.definition, meta: "Glossaire" }));
+  return [...conceptCards, ...theoremCards, ...formulaCards, ...glossaryCards];
+}
+
+function studentSummary(domain = studentDomain) {
+  const domainInfo = domains.find((item) => item.name === domain);
+  if (!domainInfo) return null;
+  return {
+    intro: domainInfo.intro,
+    concepts: domainInfo.concepts?.slice(0, 6) || [],
+    theorems: domainInfo.theorems?.slice(0, 5) || [],
+    methods: domainInfo.methods?.slice(0, 5) || [],
+  };
+}
+
+function renderStudentMode() {
+  const domainOptions = [...new Set([...domains.map((item) => item.name), ...exercises.map((item) => item.domain)])].sort((a, b) => a.localeCompare(b, "fr"));
+  const goals = ["Revoir 5 cartes", "Réussir 3 quiz", "Terminer 2 exercices", "Renforcer un domaine faible"];
+  const deck = studentDeck();
+  const card = deck[studentFlashcard % Math.max(deck.length, 1)];
+  const summary = studentSummary();
+  const progress = getProgress();
+  const domainStats = progress.domains[studentDomain] || { exercises: 0, quiz: 0, minutes: 0 };
+  const history = studentHistory().filter((item) => studentDomain === "Tous" || item.domain === studentDomain).slice(0, 8);
+  return `
+    <div class="student-workbench" id="studentWorkbench">
+      <div class="student-controls">
+        <label>
+          Domaine
+          <select id="studentDomainSelect">${domainOptions.map((domain) => `<option value="${domain}" ${domain === studentDomain ? "selected" : ""}>${domain}</option>`).join("")}</select>
+        </label>
+        <label>
+          Objectif
+          <select id="studentGoalSelect">${goals.map((goal) => `<option value="${goal}" ${goal === studentGoal ? "selected" : ""}>${goal}</option>`).join("")}</select>
+        </label>
+        <button class="mini-button" id="studentSaveGoalButton" type="button">Enregistrer objectif</button>
+      </div>
+      <div class="stats-row">
+        <strong>${domainStats.minutes}</strong><span>min</span>
+        <strong>${domainStats.exercises}</strong><span>exercices</span>
+        <strong>${domainStats.quiz}</strong><span>quiz</span>
+        <strong>${deck.length}</strong><span>cartes</span>
+      </div>
+      <div class="student-grid">
+        <article class="student-summary">
+          <span class="badge">Fiche de synthèse</span>
+          <h3>${studentDomain}</h3>
+          <p>${summary?.intro || "Sélectionne un domaine pour afficher une synthèse."}</p>
+          <dl>
+            <dt>Concepts</dt><dd>${summary?.concepts.join(", ") || "Aucun concept"}</dd>
+            <dt>Théorèmes</dt><dd>${summary?.theorems.join(", ") || "Aucun théorème"}</dd>
+            <dt>Méthodes</dt><dd>${summary?.methods.join(", ") || "Aucune méthode"}</dd>
+          </dl>
+        </article>
+        <article class="flashcard">
+          <div class="flashcard-header">
+            <span>${card?.meta || "Carte"}</span>
+            <small>${deck.length ? studentFlashcard + 1 : 0}/${deck.length}</small>
+          </div>
+          <h3>${card?.front || "Aucune carte"}</h3>
+          <p>${studentFlashcardRevealed ? card?.back || "" : "Réfléchis, puis révèle la réponse."}</p>
+          <div class="card-actions">
+            <button class="mini-button" id="studentPrevCardButton" type="button">Précédente</button>
+            <button class="mini-button" id="studentRevealCardButton" type="button">${studentFlashcardRevealed ? "Masquer" : "Révéler"}</button>
+            <button class="mini-button" id="studentNextCardButton" type="button">Suivante</button>
+            <button class="mini-button" id="studentKnownCardButton" type="button">Acquise</button>
+          </div>
+        </article>
+      </div>
+      <article class="student-history">
+        <h3>Historique</h3>
+        ${history.length ? `<ul>${history.map((item) => `<li><strong>${item.date}</strong> · ${item.kind} · ${item.label}</li>`).join("")}</ul>` : `<p class="muted">Aucune révision enregistrée pour ce domaine.</p>`}
+      </article>
+    </div>
+  `;
+}
+
+function bindStudentMode() {
+  $("#studentDomainSelect")?.addEventListener("change", (event) => {
+    studentDomain = event.target.value;
+    studentFlashcard = 0;
+    studentFlashcardRevealed = false;
+    renderModes();
+  });
+  $("#studentGoalSelect")?.addEventListener("change", (event) => {
+    studentGoal = event.target.value;
+  });
+  $("#studentSaveGoalButton")?.addEventListener("click", () => {
+    store.set("mathemator:student-goal", { domain: studentDomain, goal: studentGoal, date: todayKey() });
+    recordStudentEvent("objectif", studentGoal);
+    renderModes();
+  });
+  $("#studentPrevCardButton")?.addEventListener("click", () => {
+    const length = studentDeck().length || 1;
+    studentFlashcard = (studentFlashcard - 1 + length) % length;
+    studentFlashcardRevealed = false;
+    renderModes();
+  });
+  $("#studentRevealCardButton")?.addEventListener("click", () => {
+    studentFlashcardRevealed = !studentFlashcardRevealed;
+    renderModes();
+  });
+  $("#studentNextCardButton")?.addEventListener("click", () => {
+    const length = studentDeck().length || 1;
+    studentFlashcard = (studentFlashcard + 1) % length;
+    studentFlashcardRevealed = false;
+    recordStudentEvent("carte revue", studentDeck()[studentFlashcard]?.front || "Carte");
+    renderModes();
+  });
+  $("#studentKnownCardButton")?.addEventListener("click", () => {
+    const card = studentDeck()[studentFlashcard];
+    recordStudentEvent("carte acquise", card?.front || "Carte");
+    renderModes();
+  });
 }
 
 function renderModes() {
   const tabs = Object.keys(modeContent);
   $("#modeTabs").innerHTML = tabs.map((tab) => `<button class="${tab === activeMode ? "active" : ""}" type="button">${tab}</button>`).join("");
-  $("#modePanel").innerHTML = `
-    <div class="workflow">
-      ${modeContent[activeMode].map((item, index) => `<article><strong>${index + 1}</strong><span>${item}</span></article>`).join("")}
-    </div>
-  `;
+  $("#modePanel").innerHTML = activeMode === "Enseignant" ? renderTeacherMode() : activeMode === "Étudiant" ? renderStudentMode() : `
+      <div class="workflow">
+        ${modeContent[activeMode].map((item, index) => `<article><strong>${index + 1}</strong><span>${item}</span></article>`).join("")}
+      </div>
+    `;
+  if (activeMode === "Enseignant") bindTeacherMode();
+  if (activeMode === "Étudiant") bindStudentMode();
   $("#modeTabs").querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeMode = button.textContent;
@@ -1446,11 +2363,65 @@ function renderModules() {
   `).join("");
 }
 
-const graphNodes = [
-  ["Euler", 120, 120], ["Graphes", 300, 90], ["Analyse", 340, 230], ["Noether", 560, 130], ["Algèbre", 720, 110],
-  ["Riemann", 570, 340], ["Zêta", 740, 350], ["Fractales", 230, 390], ["Mandelbrot", 105, 330], ["Catégories", 430, 420],
-];
-const graphEdges = [[0, 1], [0, 2], [3, 4], [4, 9], [5, 6], [2, 5], [7, 8], [2, 7], [4, 2], [9, 3]];
+const networkTypeLabels = {
+  domain: "Domaines",
+  concept: "Concepts",
+  person: "Mathématiciens",
+  theorem: "Théorèmes",
+  formula: "Formules",
+  object: "Objets",
+};
+const networkTypes = ["Tous", ...Object.values(networkTypeLabels)];
+
+function networkId(type, label) {
+  return `${type}:${normalize(label).replace(/[^a-z0-9]+/g, "-")}`;
+}
+
+function buildKnowledgeNetwork() {
+  const nodes = new Map();
+  const edges = [];
+  const addNode = (type, label, meta, summary, x, y, payload = {}) => {
+    const id = networkId(type, label);
+    if (!nodes.has(id)) nodes.set(id, { id, type, label, meta, summary, x, y, payload, neighbors: new Set() });
+    return id;
+  };
+  const addEdge = (source, target) => {
+    if (!source || !target || source === target) return;
+    edges.push({ source, target });
+    nodes.get(source)?.neighbors.add(target);
+    nodes.get(target)?.neighbors.add(source);
+  };
+  const selectedDomains = domains.slice(0, 10);
+  const centerX = 450;
+  const centerY = 260;
+  selectedDomains.forEach((domain, index) => {
+    const angle = (index / selectedDomains.length) * Math.PI * 2 - Math.PI / 2;
+    const x = centerX + Math.cos(angle) * 230;
+    const y = centerY + Math.sin(angle) * 165;
+    const domainId = addNode("domain", domain.name, domain.family, domain.intro, x, y, domain);
+    const relatedPeople = mathematicians.filter((person) => person.domains?.includes(domain.name) || domain.people?.includes(person.name)).slice(0, 2);
+    const relatedTheorems = theorems.filter((theorem) => domain.theorems?.includes(theorem.name) || normalize(asSearchText(theorem)).includes(normalize(domain.name))).slice(0, 1);
+    const relatedFormulas = formulas.filter((formula) => formula.category === domain.name || formula.uses?.includes(domain.name) || normalize(formula.category).includes(normalize(domain.name))).slice(0, 1);
+    const relatedObjects = objects.filter((object) => object.category === domain.name || object.related?.includes(domain.name) || normalize(asSearchText(object)).includes(normalize(domain.name))).slice(0, 1);
+    const spokes = [
+      ...domain.concepts.slice(0, 2).map((item) => ["concept", item, "Concept", `Concept central en ${domain.name}.`, item]),
+      ...relatedPeople.map((item) => ["person", item.name, item.period, item.biography, item]),
+      ...relatedTheorems.map((item) => ["theorem", item.name, item.discoverer, item.statement, item]),
+      ...relatedFormulas.map((item) => ["formula", item.name, item.category, item.explanation, item]),
+      ...relatedObjects.map((item) => ["object", item.name, item.category, item.description, item]),
+    ];
+    spokes.forEach(([type, label, meta, summary, payload], spokeIndex) => {
+      const spokeAngle = angle + (spokeIndex - (spokes.length - 1) / 2) * 0.22;
+      const spokeRadius = type === "concept" ? 80 : 118;
+      const nodeId = addNode(type, label, meta, summary, x + Math.cos(spokeAngle) * spokeRadius, y + Math.sin(spokeAngle) * spokeRadius, payload);
+      addEdge(domainId, nodeId);
+    });
+  });
+  if (!activeNetworkNode || !nodes.has(activeNetworkNode)) activeNetworkNode = selectedDomains[0] ? networkId("domain", selectedDomains[0].name) : "";
+  return { nodes: [...nodes.values()].map((node) => ({ ...node, neighbors: [...node.neighbors] })), edges };
+}
+
+const knowledgeNetwork = buildKnowledgeNetwork();
 
 function drawHero() {
   const canvas = $("#heroCanvas");
@@ -2053,18 +3024,79 @@ function renderLabTools() {
 
 function renderGraph() {
   const svg = $("#knowledgeGraph");
-  const edgeMarkup = graphEdges.map(([a, b]) => {
-    const [, x1, y1] = graphNodes[a];
-    const [, x2, y2] = graphNodes[b];
-    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`;
+  const activeTypeKey = Object.entries(networkTypeLabels).find(([, label]) => label === activeNetworkType)?.[0] || "Tous";
+  const visibleNodes = knowledgeNetwork.nodes.filter((node) => activeTypeKey === "Tous" || node.type === "domain" || node.type === activeTypeKey);
+  const visibleIds = new Set(visibleNodes.map((node) => node.id));
+  const visibleEdges = knowledgeNetwork.edges.filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target));
+  $("#networkTypeTabs").innerHTML = networkTypes.map((type) => `<button class="${type === activeNetworkType ? "active" : ""}" type="button">${type}</button>`).join("");
+  $("#networkStats").innerHTML = `
+    <strong>${visibleNodes.length}</strong><span>nœuds</span>
+    <strong>${visibleEdges.length}</strong><span>liens</span>
+    <strong>${visibleNodes.filter((node) => node.type === "domain").length}</strong><span>domaines</span>
+    <strong>${new Set(visibleNodes.map((node) => node.type)).size}</strong><span>types</span>
+  `;
+  const nodeById = new Map(knowledgeNetwork.nodes.map((node) => [node.id, node]));
+  const edgeMarkup = visibleEdges.map((edge) => {
+    const source = nodeById.get(edge.source);
+    const target = nodeById.get(edge.target);
+    return `<line x1="${source.x}" y1="${source.y}" x2="${target.x}" y2="${target.y}" />`;
   }).join("");
-  const nodeMarkup = graphNodes.map(([label, x, y]) => `
-    <g class="node" tabindex="0" transform="translate(${x} ${y})">
-      <circle r="${label.length > 8 ? 48 : 40}"></circle>
-      <text text-anchor="middle" dominant-baseline="middle">${label}</text>
+  const nodeMarkup = visibleNodes.map((node) => `
+    <g class="node node-${node.type} ${node.id === activeNetworkNode ? "active" : ""}" tabindex="0" data-node-id="${node.id}" transform="translate(${node.x} ${node.y})">
+      <circle r="${node.type === "domain" ? 43 : 31}"></circle>
+      <text text-anchor="middle" dominant-baseline="middle">${node.label.length > 16 ? `${node.label.slice(0, 14)}…` : node.label}</text>
+      <title>${node.label} · ${networkTypeLabels[node.type]}</title>
     </g>
   `).join("");
   svg.innerHTML = `<g class="edges">${edgeMarkup}</g><g>${nodeMarkup}</g>`;
+  svg.querySelectorAll(".node").forEach((node) => {
+    node.addEventListener("click", () => {
+      activeNetworkNode = node.dataset.nodeId;
+      renderGraph();
+    });
+    node.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      activeNetworkNode = node.dataset.nodeId;
+      renderGraph();
+    });
+  });
+  $("#networkTypeTabs").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeNetworkType = button.textContent;
+      renderGraph();
+    });
+  });
+  renderNetworkDetail();
+}
+
+function renderNetworkDetail() {
+  const node = knowledgeNetwork.nodes.find((item) => item.id === activeNetworkNode) || knowledgeNetwork.nodes[0];
+  if (!node) {
+    $("#networkDetail").innerHTML = card("Réseau vide", "Aucune donnée exploitable pour construire le réseau.", "Réseau");
+    return;
+  }
+  const neighbors = node.neighbors
+    .map((id) => knowledgeNetwork.nodes.find((item) => item.id === id))
+    .filter(Boolean)
+    .slice(0, 10);
+  $("#networkDetail").innerHTML = `
+    <div class="network-detail-header">
+      <span>${networkTypeLabels[node.type]}</span>
+      <small>${node.meta || "Réseau de connaissances"}</small>
+    </div>
+    <h3>${node.label}</h3>
+    <p>${node.summary || "Nœud relié aux contenus documentaires de Mathemator."}</p>
+    <div class="network-neighbors">
+      ${neighbors.map((neighbor) => `<button type="button" data-node-id="${neighbor.id}">${neighbor.label}</button>`).join("")}
+    </div>
+  `;
+  $("#networkDetail").querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeNetworkNode = button.dataset.nodeId;
+      renderGraph();
+    });
+  });
 }
 
 function registerPwa() {
@@ -2112,6 +3144,54 @@ drawPlot();
 renderLabTools();
 registerPwa();
 
+$("#quoteSearch").addEventListener("input", renderQuotes);
+$("#quoteAuthorFilter").addEventListener("change", (event) => {
+  activeQuoteAuthor = event.target.value;
+  renderQuotes();
+});
+$("#quoteThemeFilter").addEventListener("change", (event) => {
+  activeQuoteTheme = event.target.value;
+  renderQuotes();
+});
+$("#quotePeriodFilter").addEventListener("change", (event) => {
+  activeQuotePeriod = event.target.value;
+  renderQuotes();
+});
+$("#bookSearch").addEventListener("input", renderBooks);
+$("#bookAuthorFilter").addEventListener("change", (event) => {
+  activeBookAuthor = event.target.value;
+  renderBooks();
+});
+$("#bookCategoryFilter").addEventListener("change", (event) => {
+  activeBookCategory = event.target.value;
+  renderBooks();
+});
+$("#bookLevelFilter").addEventListener("change", (event) => {
+  activeBookLevel = event.target.value;
+  renderBooks();
+});
+$("#glossarySearch").addEventListener("input", renderGlossary);
+$("#glossaryInitialFilter").addEventListener("change", (event) => {
+  activeGlossaryInitial = event.target.value;
+  renderGlossary();
+});
+$("#glossaryLinkFilter").addEventListener("change", (event) => {
+  activeGlossaryLink = event.target.value;
+  renderGlossary();
+});
+$("#mediaSearch").addEventListener("input", renderMedia);
+$("#mediaTypeFilter").addEventListener("change", (event) => {
+  activeMediaType = event.target.value;
+  renderMedia();
+});
+$("#mediaDomainFilter").addEventListener("change", (event) => {
+  activeMediaDomain = event.target.value;
+  renderMedia();
+});
+$("#mediaSourceFilter").addEventListener("change", (event) => {
+  activeMediaSource = event.target.value;
+  renderMedia();
+});
 $("#mandelbrotButton").addEventListener("click", drawMandelbrot);
 $("#surfaceSlider").addEventListener("input", (event) => drawSurface(Number(event.target.value)));
 $("#curveMode").addEventListener("change", (event) => drawCurveVisualization(event.target.value));
@@ -2142,17 +3222,30 @@ $("#nextQuestionButton").addEventListener("click", () => {
   renderQuiz();
 });
 $("#resetProgressButton").addEventListener("click", () => {
-  store.set("mathemator:progress", { exercises: 0, quiz: 0, minutes: 0 });
+  store.set("mathemator:progress", { ...defaultProgress(), minutes: 0 });
   store.set("mathemator:favorites", []);
   renderProgress();
   renderSearch();
   renderFavorites();
+});
+$("#clearFavoritesButton").addEventListener("click", () => {
+  store.set("mathemator:favorites", []);
+  activeFavoriteType = "Tous";
+  renderFavorites();
+  renderProgress();
+  renderSearch();
 });
 $("#detailCloseButton").addEventListener("click", () => {
   $("#detailPanel").hidden = true;
 });
 document.querySelectorAll("[data-nav]").forEach((button) => {
   button.addEventListener("click", () => setScreen(button.dataset.nav));
+});
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-favorite]");
+  if (!button) return;
+  event.preventDefault();
+  toggleFavorite(button.dataset.favorite);
 });
 addEventListener("hashchange", () => {
   setScreen(location.hash.replace("#", "") || "home", { silent: true });

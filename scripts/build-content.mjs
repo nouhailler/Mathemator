@@ -467,12 +467,27 @@ const conceptWords = [
 ];
 
 const glossary = [...glossaryTerms];
+const glossaryAspects = [
+  ["local", "dans un voisinage ou une situation restreinte"],
+  ["global", "sur toute la structure étudiée"],
+  ["canonique", "sans choix arbitraire dans la construction"],
+  ["effectif", "avec une procédure calculable ou vérifiable"],
+  ["stable", "qui résiste aux petites perturbations"],
+  ["minimal", "qui satisfait une propriété avec le moins de données possible"],
+  ["dual", "vu par les applications, formes ou objets opposés"],
+  ["discret", "adapté aux ensembles finis, entiers ou dénombrables"],
+  ["continu", "adapté aux espaces munis de limites ou de voisinages"],
+  ["probabiliste", "interprété par événements, lois ou espérances"]
+];
 for (const domain of domainPool) {
-  for (const word of conceptWords) {
-    glossary.push([`${word} en ${domain}`, `Notion de ${domain} qui précise le rôle de ${word.toLowerCase()} dans les constructions, preuves et calculs du domaine.`, [domain, word, "Définition"]]);
-    if (glossary.length >= 320) break;
+  for (const [aspect, explanation] of glossaryAspects) {
+    for (const word of conceptWords) {
+      glossary.push([`${word} ${aspect} en ${domain}`, `Notion de ${domain} qui décrit un ${word.toLowerCase()} ${aspect}, c'est-à-dire ${explanation}, dans les preuves, calculs ou modèles du domaine.`, [domain, word, aspect]]);
+      if (glossary.length >= 2000) break;
+    }
+    if (glossary.length >= 2000) break;
   }
-  if (glossary.length >= 320) break;
+  if (glossary.length >= 2000) break;
 }
 
 const glossaryObjects = glossary.map(([term, definition, links]) => ({ term, definition, links }));

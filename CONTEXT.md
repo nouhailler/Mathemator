@@ -1,8 +1,8 @@
 # Contexte Mathemator
 
-Dernier point d'arret : priorite 13 implementee.
+Dernier point d'arret : priorite 23 implementee.
 
-Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 13 ont ete implementees dans le code et les donnees. Les priorites 14 a 24 restent a faire.
+Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 23 ont ete implementees dans le code et les donnees. La priorite 24 reste a faire.
 
 ## Etat global
 
@@ -170,125 +170,139 @@ Livrables :
 - Statistiques.
 - Fiches detaillees : historique, etat actuel, explication accessible, avancees recentes, impact et references.
 
+### 14. Citations
+
+Statut : implemente.
+
+Livrables :
+
+- `data/quotes.json` contient 115 citations.
+- Onglet Citations de la bibliotheque avec recherche plein texte.
+- Filtres par auteur, theme et epoque.
+- Statistiques de selection : citations, auteurs, themes, epoques.
+- Cartes dediees avec citation, auteur, theme et periode.
+
+### 15. Livres
+
+Statut : implemente.
+
+Livrables :
+
+- `data/books.json` contient 120 livres.
+- Onglet Livres de la bibliotheque avec recherche plein texte.
+- Filtres par auteur, categorie et niveau.
+- Statistiques de selection : livres, auteurs, categories, niveaux.
+- Cartes dediees avec titre, auteur, categorie, niveau et description.
+
+### 16. Reseau de connaissances
+
+Statut : implemente.
+
+Livrables :
+
+- Graphe SVG construit depuis les donnees reelles : domaines, concepts, mathematiciens, theorematiques, formules et objets.
+- Liens generes entre domaines et contenus associes.
+- Filtres par type de noeud.
+- Statistiques de selection : noeuds, liens, domaines et types.
+- Fiche de detail du noeud selectionne avec navigation vers les voisins.
+
+### 17. Moteur de recherche avance
+
+Statut : implemente.
+
+Livrables :
+
+- Index de recherche enrichi avec domaines, siecles/epoques, nationalites, theorematiques, mots-cles, difficultes et niveaux scolaires.
+- Nouveaux filtres explicites : domaine, niveau scolaire, theorem et mot-cle.
+- Classement ameliore avec ponderation titre, domaine, theorem, mot-cle, metadonnees et texte complet.
+- Statistiques de recherche : resultats, types, domaines et score maximal.
+- Score de pertinence visible sur chaque resultat.
+
+### 18. Favoris
+
+Statut : implemente.
+
+Livrables :
+
+- Favoris locaux pour mathematiciens, domaines, theorematiques, formules, objets, exercices, quiz, problemes, livres et glossaire via l'index unifie.
+- Boutons favoris ajoutes aux exercices, quiz et problemes.
+- Vue Favoris avec filtre par type.
+- Statistiques de favoris : total, affiches et types.
+- Action de vidage complet de la collection.
+
+### 19. Progression
+
+Statut : implemente.
+
+Livrables :
+
+- Progression locale enrichie : temps, exercices, quiz, favoris, jours actifs et meilleure serie.
+- Suivi par domaine alimente par exercices realises, quiz reussis et favoris.
+- Estimation de maitrise prenant en compte activite, favoris, badges et domaines.
+- Badges/succes calcules : premier pas, serie, explorateur, regularite, polyvalence et maitrise.
+- Statistiques detaillees et barres de progression par domaine.
+
+### 20. Glossaire
+
+Statut : implemente.
+
+Livrables :
+
+- `data/glossary.json` contient 2000 definitions.
+- `scripts/build-content.mjs` regenere le glossaire a cette echelle.
+- Onglet Glossaire avec recherche dediee.
+- Filtres par initiale et renvoi.
+- Statistiques de selection : definitions, resultats, entrees affichees et renvois.
+- Renvois cliquables entre concepts via filtrage du glossaire.
+- Cartes dediees avec bouton d'ouverture et favori.
+
+### 21. Mode enseignant
+
+Statut : implemente.
+
+Livrables :
+
+- Atelier enseignant dans le panneau Modes.
+- Selection de domaine, niveau et duree.
+- Generation automatique d'un parcours avec objectifs, theorematiques, formules, exercices et quiz.
+- Fiche imprimable utilisable pour export PDF via impression navigateur.
+- Copie texte de la fiche.
+- Presentation plein ecran de la fiche de cours.
+
+### 22. Mode etudiant
+
+Statut : implemente.
+
+Livrables :
+
+- Atelier etudiant dans le panneau Modes.
+- Selection de domaine et objectif personnalise.
+- Fiche de synthese par domaine avec concepts, theorematiques et methodes.
+- Flashcards interactives issues des domaines, theorematiques, formules et glossaire.
+- Historique local des objectifs et cartes revisees.
+- Statistiques de revision connectees a la progression locale.
+
+### 23. Collection d'illustrations
+
+Statut : implemente.
+
+Livrables :
+
+- `data/media.json` ajoute une mediathèque unifiee : portraits, manuscrits, livres historiques, gravures, figures interactives, animations, fractales, polyedres 3D, graphes, chronologies, cartes, arbres de connaissances et infographies.
+- Onglet `Mediatheque` dans la bibliotheque filtrable.
+- Recherche et filtres par type, domaine et source.
+- Cartes visuelles coherentes avec vignettes generatives locales et metadonnees de source/licence.
+- Integration dans la recherche globale, les favoris et le panneau de detail.
+- Cache PWA mis a jour pour inclure les donnees media hors ligne.
+
 ## Validations deja effectuees
 
 - `node --check src/app.js` apres les principales modifications.
-- Validations JSON ponctuelles pour exercices, quiz et problemes.
+- Validations JSON ponctuelles pour exercices, quiz, problemes, citations et livres.
 - Rendus Chromium headless sur les ecrans `#lab`, `#learn` et `#cards`.
 - Verification DOM pour la section des problemes celebres.
 
 ## Reste a faire
-
-### 14. Citations
-
-Objectif :
-
-- Grande collection de citations filtrables par auteur, theme et epoque.
-
-Etat actuel :
-
-- `data/quotes.json` existe deja et a ete enrichi par la priorite 2.
-- L'interface bibliotheque affiche les citations, mais il faut ajouter une vraie recherche/filtres dedies.
-
-### 15. Livres
-
-Objectif :
-
-- Catalogue de livres : manuels, ouvrages historiques, vulgarisation, references universitaires, biographies.
-
-Etat actuel :
-
-- `data/books.json` existe deja et a ete enrichi par la priorite 2.
-- L'interface bibliotheque affiche les livres, mais il faut ajouter filtres et fiches plus riches.
-
-### 16. Reseau de connaissances
-
-Objectif :
-
-- Representation graphique reliant mathematiciens, theorematiques, concepts, domaines, formules et objets.
-
-Etat actuel :
-
-- Un reseau SVG simple existe deja.
-- Il reste a le brancher aux donnees reelles et a permettre une navigation visuelle concept-par-concept.
-
-### 17. Moteur de recherche avance
-
-Objectif :
-
-- Recherche multicriteres : nom, domaine, siecle, nationalite, theorem, mot-cle, difficulte, niveau scolaire.
-
-Etat actuel :
-
-- Une recherche avancee existe deja avec type, periode, nationalite, difficulte et chips.
-- Il reste a l'etendre avec plus de criteres explicites et meilleur classement des resultats.
-
-### 18. Favoris
-
-Objectif :
-
-- Enregistrer mathematiciens, theorematiques, exercices, formules et objets favoris.
-
-Etat actuel :
-
-- Favoris locaux deja presents pour plusieurs types.
-- Il reste a ajouter favoris sur les exercices/quiz/problemes si necessaire et a ameliorer la vue de gestion.
-
-### 19. Progression
-
-Objectif :
-
-- Suivi personnel : temps passe, exercices realises, quiz reussis, domaines maitrises, statistiques, badges, succes.
-
-Etat actuel :
-
-- Progression locale simple deja presente : minutes, exercices, quiz, favoris, maitrise estimee.
-- Il reste a ajouter badges, succes, domaines maitrises et statistiques detaillees.
-
-### 20. Glossaire
-
-Objectif :
-
-- Dictionnaire contenant plusieurs milliers de definitions avec renvois automatiques entre concepts.
-
-Etat actuel :
-
-- `data/glossary.json` contient deja une base large.
-- L'interface bibliotheque affiche le glossaire.
-- Il reste a ajouter recherche/filtres dedies, renvois cliquables et eventuellement expansion vers plusieurs milliers d'entrees.
-
-### 21. Mode enseignant
-
-Objectif :
-
-- Creation de parcours, selection de ressources, creation de quiz, export PDF, impression, presentation plein ecran.
-
-Etat actuel :
-
-- Un panneau "Mode enseignant" existe dans les modes.
-- Il reste a implementer de vrais workflows et exports.
-
-### 22. Mode etudiant
-
-Objectif :
-
-- Revisions, fiches de synthese, flashcards, historique, objectifs personnalises.
-
-Etat actuel :
-
-- Un panneau "Mode etudiant" existe dans les modes.
-- Il reste a implementer flashcards, objectifs et historique.
-
-### 23. Collection d'illustrations
-
-Objectif :
-
-- Iconographie riche : portraits, manuscrits, pages historiques, schemas, fractales HD, graphes, cartes, infographies, animations.
-
-Etat actuel :
-
-- Quelques visuels generatifs/canvas/SVG existent.
-- Il reste a creer ou integrer une vraie collection d'assets coherents.
 
 ### 24. Technologies modernes
 
@@ -304,4 +318,4 @@ Etat actuel :
 
 ## Prochaine etape recommandee
 
-Reprendre a la priorite 14 : citations filtrables.
+Reprendre a la priorite 24 : technologies modernes.

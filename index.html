@@ -79,8 +79,14 @@
                   </select>
                 </label>
                 <label>
-                  Siècle
+                  Siècle / époque
                   <select id="periodFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Domaine
+                  <select id="searchDomainFilter">
                     <option value="Tous">Tous</option>
                   </select>
                 </label>
@@ -96,7 +102,26 @@
                     <option value="Tous">Toutes</option>
                   </select>
                 </label>
+                <label>
+                  Niveau scolaire
+                  <select id="searchLevelFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Théorème
+                  <select id="searchTheoremFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Mot-clé
+                  <select id="searchKeywordFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
               </div>
+              <div class="stats-row" id="searchStats"></div>
               <div class="chips" id="filterChips"></div>
             </div>
           </div>
@@ -118,6 +143,16 @@
           <div class="section-heading">
             <p class="eyebrow">Favoris</p>
             <h2>Collection personnelle</h2>
+          </div>
+          <div class="favorites-tools">
+            <label>
+              Type
+              <select id="favoriteTypeFilter">
+                <option value="Tous">Tous</option>
+              </select>
+            </label>
+            <button class="mini-button" id="clearFavoritesButton" type="button">Vider les favoris</button>
+            <div class="stats-row" id="favoriteStats"></div>
           </div>
           <div class="result-list favorites-list" id="favoritesList"></div>
         </section>
@@ -536,10 +571,104 @@
         <section class="section screen-section split" data-screen="cards" id="ressources">
           <div>
             <div class="section-heading">
-              <p class="eyebrow">Citations, livres, glossaire</p>
+              <p class="eyebrow">Citations, livres, glossaire, médias</p>
               <h2>Bibliothèque filtrable</h2>
             </div>
             <div class="segmented" id="libraryTabs"></div>
+            <div class="quote-tools" id="quoteTools">
+              <label for="quoteSearch">Explorer les citations</label>
+              <input id="quoteSearch" type="search" placeholder="Auteur, thème, époque, citation..." />
+              <div class="quote-tool-row">
+                <label>
+                  Auteur
+                  <select id="quoteAuthorFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Thème
+                  <select id="quoteThemeFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Époque
+                  <select id="quotePeriodFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="quoteStats"></div>
+            </div>
+            <div class="book-tools" id="bookTools" hidden>
+              <label for="bookSearch">Explorer les livres</label>
+              <input id="bookSearch" type="search" placeholder="Titre, auteur, catégorie, niveau..." />
+              <div class="book-tool-row">
+                <label>
+                  Auteur
+                  <select id="bookAuthorFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Catégorie
+                  <select id="bookCategoryFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+                <label>
+                  Niveau
+                  <select id="bookLevelFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="bookStats"></div>
+            </div>
+            <div class="glossary-tools" id="glossaryTools" hidden>
+              <label for="glossarySearch">Explorer le glossaire</label>
+              <input id="glossarySearch" type="search" placeholder="Terme, définition, renvoi..." />
+              <div class="glossary-tool-row">
+                <label>
+                  Initiale
+                  <select id="glossaryInitialFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+                <label>
+                  Renvoi
+                  <select id="glossaryLinkFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="glossaryStats"></div>
+            </div>
+            <div class="media-tools" id="mediaTools" hidden>
+              <label for="mediaSearch">Explorer la médiathèque</label>
+              <input id="mediaSearch" type="search" placeholder="Portrait, manuscrit, fractale, source, domaine..." />
+              <div class="media-tool-row">
+                <label>
+                  Type
+                  <select id="mediaTypeFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Domaine
+                  <select id="mediaDomainFilter">
+                    <option value="Tous">Tous</option>
+                  </select>
+                </label>
+                <label>
+                  Source
+                  <select id="mediaSourceFilter">
+                    <option value="Tous">Toutes</option>
+                  </select>
+                </label>
+              </div>
+              <div class="stats-row" id="mediaStats"></div>
+            </div>
           </div>
           <div class="library-panel" id="libraryPanel"></div>
         </section>
@@ -585,9 +714,14 @@
             <p class="eyebrow">Réseau de connaissances</p>
             <h2>Navigation conceptuelle</h2>
           </div>
+          <div class="network-tools">
+            <div class="segmented" id="networkTypeTabs"></div>
+            <div class="stats-row" id="networkStats"></div>
+          </div>
           <div class="network-wrap">
             <svg id="knowledgeGraph" viewBox="0 0 900 520" role="img" aria-label="Réseau de concepts mathématiques"></svg>
           </div>
+          <article class="network-detail" id="networkDetail"></article>
         </section>
 
         <section class="section screen-section split" data-screen="cards" id="modes">

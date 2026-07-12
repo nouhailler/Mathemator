@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathemator-v5";
+const CACHE_NAME = "mathemator-v6";
 const ASSETS = [
   "/",
   "/index.html",
@@ -16,6 +16,7 @@ const ASSETS = [
   "/data/formulas.json",
   "/data/glossary.json",
   "/data/mathematicians.json",
+  "/data/media.json",
   "/data/modes.json",
   "/data/modules.json",
   "/data/objects.json",

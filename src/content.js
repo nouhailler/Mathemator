@@ -7,6 +7,7 @@ const DATA_FILES = {
   formulas: "/data/formulas.json",
   glossary: "/data/glossary.json",
   mathematicians: "/data/mathematicians.json",
+  media: "/data/media.json",
   modeContent: "/data/modes.json",
   modules: "/data/modules.json",
   objects: "/data/objects.json",
