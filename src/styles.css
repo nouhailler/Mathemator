@@ -2571,7 +2571,8 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .module-grid article {
   min-height: 76px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 12px;
   padding: 14px;
@@ -2584,6 +2585,17 @@ body:not(.app-ready) .hero[data-screen="home"] {
 
 .module-grid span {
   font-weight: 780;
+}
+
+.module-grid small {
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #ecfdf5;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 @media (max-width: 780px) {

@@ -2359,6 +2359,7 @@ function renderModules() {
     <article>
       <strong>${String(index + 1).padStart(2, "0")}</strong>
       <span>${module}</span>
+      <small>Réalisé</small>
     </article>
   `).join("");
 }
