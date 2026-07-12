@@ -288,11 +288,13 @@ Statut : implemente.
 
 Livrables :
 
-- `data/media.json` ajoute une mediatheque unifiee avec 300 entrees visibles et decrites.
+- `data/media.json` ajoute une mediatheque unifiee avec 500 entrees visibles et decrites.
 - Quotas implementes : 50 portraits Wikimedia Commons, 50 manuscrits Gallica/Internet Archive, 50 livres historiques Internet Archive/Google Books, 50 gravures Europeana/Wikimedia, 50 figures interactives GeoGebra/Desmos, 10 animations SVG/D3/Canvas, 10 fractales procedurales, 10 polyedres 3D Polyhedra Collection/Three.js, 10 reseaux Observable/D3 et 10 cartes David Rumsey/Library of Congress.
+- Familles explicites ajoutees : 20 pages originales, 20 schemas geometriques, 20 graphiques animes, 20 cartes historiques, 20 chronologies illustrees, 20 cartes geographiques, 20 arbres de connaissances, 20 infographies, 20 animations de demonstration et 20 simulations interactives.
 - Chaque entree possede une description precise, une source, une licence, un format, des liens conceptuels et une URL source.
 - Section `Mediatheque visuelle` visible des l'accueil.
 - Cartes d'accueil dynamiques par famille de medias, avec compteur d'occurrences, exemples et navigation precedent/suivant/melange.
+- Ordre d'affichage des familles aligne sur la specification de la priorite 23.
 - Les entrees sont cliquables depuis l'accueil, l'onglet `Mediatheque`, la recherche et les favoris.
 - Chaque entree ouvre un detail avec image ou visualisation, description, pistes d'exploration, attribution, licence, source et liens conceptuels.
 - Onglet `Mediatheque` dans la bibliotheque filtrable avec acces direct depuis l'accueil.

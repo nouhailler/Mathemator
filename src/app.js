@@ -487,11 +487,38 @@ function renderDaily() {
 }
 
 function renderHomeMedia() {
+  const mediaTypeOrder = [
+    "Portrait",
+    "Manuscrit",
+    "Page originale",
+    "Livre historique",
+    "Gravure",
+    "Schéma géométrique",
+    "Figure interactive",
+    "Fractale",
+    "Graphique animé",
+    "Polyèdre 3D",
+    "Réseau et graphe",
+    "Carte historique",
+    "Chronologie illustrée",
+    "Carte géographique",
+    "Arbre de connaissances",
+    "Infographie",
+    "Animation",
+    "Animation de démonstration",
+    "Simulation interactive",
+    "Carte",
+  ];
   const groups = Object.entries(media.reduce((acc, item) => {
     acc[item.type] = acc[item.type] || [];
     acc[item.type].push(item);
     return acc;
-  }, {})).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0], "fr"));
+  }, {})).sort((a, b) => {
+    const ai = mediaTypeOrder.indexOf(a[0]);
+    const bi = mediaTypeOrder.indexOf(b[0]);
+    if (ai !== -1 || bi !== -1) return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    return a[0].localeCompare(b[0], "fr");
+  });
   const featured = Array.from({ length: Math.min(8, groups.length) }, (_, index) => groups[(homeMediaOffset + index) % groups.length]);
   $("#homeMediaGrid").innerHTML = featured.map(([type, items]) => {
     const sample = items[0];
