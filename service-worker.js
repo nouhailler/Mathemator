@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathemator-v10";
+const CACHE_NAME = "mathemator-v11";
 const ASSETS = [
   "/",
   "/index.html",

@@ -1,8 +1,8 @@
 # Contexte Mathemator
 
-Dernier point d'arret : priorite 23 implementee.
+Dernier point d'arret : priorite 24 implementee.
 
-Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 23 ont ete implementees dans le code et les donnees. La priorite 24 reste a faire.
+Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 24 ont ete implementees dans le code et les donnees.
 
 ## Etat global
 
@@ -303,6 +303,20 @@ Livrables :
 - Integration dans la recherche globale, les favoris et le panneau de detail.
 - Cache PWA mis a jour pour inclure les donnees media hors ligne.
 
+### 24. Technologies modernes
+
+Statut : implemente.
+
+Livrables :
+
+- KaTeX conserve pour le rendu des formules et ajoute d'un editeur LaTeX avec previsualisation.
+- Plotly.js integre pour le grapheur interactif du laboratoire.
+- Module de geometrie dynamique inspire GeoGebra avec points deplacables et mesures.
+- Three.js integre pour une scene de polyedres 3D manipulables/rotatifs.
+- D3.js integre pour un reseau de connaissances force-directed.
+- MiniSearch integre comme moteur plein texte avec fallback local.
+- Menu laboratoire mis a jour avec section Technologies modernes.
+
 ## Validations deja effectuees
 
 - `node --check src/app.js` apres les principales modifications.
@@ -312,18 +326,4 @@ Livrables :
 
 ## Reste a faire
 
-### 24. Technologies modernes
-
-Objectif :
-
-- KaTeX ou MathJax, Plotly.js, GeoGebra ou equivalent, Three.js, Cytoscape.js/D3.js, editeur LaTeX, moteur plein texte.
-
-Etat actuel :
-
-- KaTeX est deja integre.
-- Les visualisations sont actuellement en canvas natif/SVG.
-- Il reste a evaluer et integrer les bibliotheques modernes utiles sans alourdir inutilement l'application.
-
-## Prochaine etape recommandee
-
-Reprendre a la priorite 24 : technologies modernes.
+- Stabiliser les performances et enrichir les donnees selon les retours d'usage.

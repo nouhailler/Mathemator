@@ -992,8 +992,7 @@ body:not(.app-ready) .hero[data-screen="home"] {
   font: inherit;
 }
 
-.visual-stage canvas,
-#plotCanvas {
+.visual-stage canvas {
   display: block;
   width: 100%;
   height: auto;
@@ -1003,6 +1002,12 @@ body:not(.app-ready) .hero[data-screen="home"] {
 .lab-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+  gap: 14px;
+}
+
+.modern-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
   gap: 14px;
 }
 
@@ -1054,6 +1059,74 @@ body:not(.app-ready) .hero[data-screen="home"] {
   background: #ffffff;
   color: var(--ink);
   line-height: 1.45;
+}
+
+.plotly-stage,
+.three-stage,
+.latex-preview,
+.geometry-stage,
+.d3-stage {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);
+}
+
+.plotly-stage {
+  min-height: 460px;
+}
+
+.latex-preview {
+  min-height: 86px;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.geometry-stage,
+.d3-stage {
+  display: block;
+  width: calc(100% - 28px);
+  height: auto;
+  margin: 0 14px 12px;
+}
+
+.geometry-point {
+  cursor: grab;
+}
+
+.geometry-point:active {
+  cursor: grabbing;
+}
+
+.geometry-point text {
+  fill: var(--ink);
+  font-size: 14px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.three-stage {
+  height: 320px;
+  margin: 0 14px 14px;
+  overflow: hidden;
+}
+
+.three-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.three-fallback {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  padding: 18px;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
 }
 
 .three-cols {
@@ -2667,7 +2740,7 @@ body:not(.app-ready) .hero[data-screen="home"] {
   grid-column: 1 / -1;
 }
 
-#plotCanvas {
+.plotly-stage {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 12px 34px rgba(20, 33, 61, 0.07);

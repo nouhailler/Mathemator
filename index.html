@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
     <link rel="stylesheet" href="/src/styles.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/minisearch@7.1.2/dist/umd/index.min.js"></script>
+    <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   </head>
   <body>
     <div id="app">
@@ -75,6 +79,7 @@
             <h3>Pratiquer</h3>
             <button type="button" data-menu-screen="lab" data-menu-target="visualisations">Visualisations</button>
             <button type="button" data-menu-screen="lab" data-menu-target="laboratoire">Laboratoire</button>
+            <button type="button" data-menu-screen="lab" data-menu-target="technologies-modernes">Technologies modernes</button>
             <button type="button" data-menu-screen="lab" data-menu-target="outils-laboratoire">Outils</button>
             <button type="button" data-menu-screen="learn" data-menu-target="apprendre">Apprendre</button>
           </section>
@@ -424,7 +429,7 @@
           <div>
             <div class="section-heading">
               <p class="eyebrow">Laboratoire</p>
-              <h2>Grapheur rapide</h2>
+              <h2>Grapheur Plotly</h2>
             </div>
             <p class="muted">Fonctions prises en charge : sin, cos, tan, exp, log, sqrt, abs, pow. Variable : x.</p>
             <div class="formula-box">
@@ -433,7 +438,61 @@
               <button id="plotButton" type="button">Tracer</button>
             </div>
           </div>
-          <canvas id="plotCanvas" width="700" height="460" aria-label="Grapheur de fonction"></canvas>
+          <div class="plotly-stage" id="plotlyChart" role="img" aria-label="Grapheur interactif Plotly"></div>
+        </section>
+
+        <section class="section screen-section" data-screen="lab" id="technologies-modernes">
+          <div class="section-heading">
+            <p class="eyebrow">Priorité 24</p>
+            <h2>Technologies modernes</h2>
+          </div>
+          <div class="modern-tech-grid">
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Éditeur LaTeX</strong>
+                <button id="latexRenderButton" type="button">Rendre</button>
+              </div>
+              <div class="lab-body">
+                <label for="latexEditor">Formule</label>
+                <textarea id="latexEditor" rows="4">\\int_0^1 x^2\\,dx = \\frac{1}{3}</textarea>
+                <div class="latex-preview" id="latexPreview"></div>
+              </div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Géométrie dynamique</strong>
+                <select id="geometryPreset" aria-label="Configuration géométrique">
+                  <option value="triangle">Triangle</option>
+                  <option value="circle">Cercle</option>
+                  <option value="thales">Thalès</option>
+                </select>
+              </div>
+              <svg class="geometry-stage" id="geometryStage" viewBox="0 0 520 320" role="img" aria-label="Figure de géométrie dynamique"></svg>
+              <output id="geometryReadout">Déplace les points pour mesurer la figure.</output>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Polyèdre Three.js</strong>
+                <select id="threeShape" aria-label="Polyèdre 3D">
+                  <option value="icosahedron">Icosaèdre</option>
+                  <option value="dodecahedron">Dodécaèdre</option>
+                  <option value="box">Cube</option>
+                </select>
+              </div>
+              <div class="three-stage" id="threeStage" aria-label="Scène 3D Three.js"></div>
+            </article>
+            <article class="lab-card">
+              <div class="stage-toolbar">
+                <strong>Réseau D3.js</strong>
+                <select id="d3NetworkMode" aria-label="Réseau D3">
+                  <option value="domains">Domaines</option>
+                  <option value="people">Mathématiciens</option>
+                  <option value="media">Médiathèque</option>
+                </select>
+              </div>
+              <svg class="d3-stage" id="d3Network" viewBox="0 0 620 360" role="img" aria-label="Réseau de connaissances D3.js"></svg>
+            </article>
+          </div>
         </section>
 
         <section class="section screen-section" data-screen="lab" id="outils-laboratoire">

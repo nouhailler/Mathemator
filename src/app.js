@@ -412,6 +412,51 @@ const searchIndex = [
   })),
 ].map((item) => ({ ...item, searchText: normalize(asSearchText(item)) }));
 
+function createFullTextEngine() {
+  try {
+    if (!window.MiniSearch) return null;
+    const engine = new window.MiniSearch({
+      fields: ["title", "meta", "text", "searchText"],
+      storeFields: ["id"],
+      searchOptions: {
+        boost: { title: 5, meta: 2 },
+        fuzzy: 0.18,
+        prefix: true,
+      },
+    });
+    const seen = new Set();
+    engine.addAll(searchIndex
+      .filter((entry) => {
+        if (seen.has(entry.id)) return false;
+        seen.add(entry.id);
+        return true;
+      })
+      .map((entry) => ({
+        id: entry.id,
+        title: entry.title,
+        meta: entry.meta,
+        text: entry.text,
+        searchText: entry.searchText,
+      })));
+    return engine;
+  } catch {
+    return null;
+  }
+}
+
+let fullTextEngine = null;
+
+function fullTextScores(query) {
+  if (!query.trim()) return null;
+  fullTextEngine = fullTextEngine || createFullTextEngine();
+  if (!fullTextEngine) return null;
+  const scores = new Map();
+  fullTextEngine.search(query).forEach((result) => {
+    scores.set(result.id, Math.max(scores.get(result.id) || 0, Math.round(result.score * 10)));
+  });
+  return scores;
+}
+
 function latex(value) {
   return `<span class="latex" data-latex="${value.replaceAll('"', "&quot;")}">${value}</span>`;
 }
@@ -578,9 +623,13 @@ function renderSearch() {
   const draw = () => {
     const query = input.value.trim();
     const chip = normalize(activeChipFilter);
+    const textScores = fullTextScores(query);
     const visible = searchIndex
-      .map((entry) => ({ ...entry, score: scoreEntry(entry, query) + activeFilterScore(entry) }))
-      .filter((entry) => entry.score > 0)
+      .map((entry) => ({
+        ...entry,
+        score: (textScores ? textScores.get(entry.id) || 0 : scoreEntry(entry, query)) + activeFilterScore(entry),
+      }))
+      .filter((entry) => entry.score > 0 || (!query && !textScores))
       .filter((entry) => activeChipFilter === "Tous" || entry.searchText.includes(chip) || normalize(entry.type).includes(chip))
       .filter((entry) => activeTypeFilter === "Tous" || entry.type === activeTypeFilter)
       .filter((entry) => activePeriodFilter === "Tous" || entry.period === activePeriodFilter)
@@ -596,7 +645,7 @@ function renderSearch() {
       <strong>${visible.length}</strong><span>résultats</span>
       <strong>${new Set(visible.map((entry) => entry.type)).size}</strong><span>types</span>
       <strong>${new Set(visible.flatMap((entry) => entry.domains)).size}</strong><span>domaines</span>
-      <strong>${Math.max(0, ...visible.map((entry) => entry.score))}</strong><span>score max</span>
+      <strong>${textScores ? "MiniSearch" : "local"}</strong><span>moteur</span>
     `;
     chips.innerHTML = filters.map((filter) => `<button class="${filter === activeChipFilter ? "active" : ""}" type="button">${filter}</button>`).join("");
     list.innerHTML = visible.map(({ id, type, title, meta, text, score }) => card(
@@ -2881,46 +2930,227 @@ function animateNetworkStage() {
 }
 
 function drawPlot() {
-  const canvas = $("#plotCanvas");
-  const ctx = canvas.getContext("2d");
+  const target = $("#plotlyChart");
   const expr = $("#functionInput").value;
   let fn;
   try {
     fn = createMathFunction(expr, ["x"]);
     fn(1);
   } catch {
+    target.textContent = "Expression invalide.";
     return;
   }
-  const { width: w, height: h } = canvas;
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, w, h);
-  ctx.strokeStyle = "#d8dee6";
-  for (let i = 0; i <= 10; i += 1) {
-    const x = (i / 10) * w;
-    const y = (i / 10) * h;
-    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  const xs = Array.from({ length: 801 }, (_, index) => -10 + index * 0.025);
+  const ys = xs.map((x) => {
+    const y = Number(fn(x));
+    return Number.isFinite(y) && Math.abs(y) < 1e6 ? y : null;
+  });
+  if (!window.Plotly) {
+    target.textContent = "Plotly.js n'est pas chargé.";
+    return;
   }
-  ctx.strokeStyle = "#1f2937";
-  ctx.beginPath(); ctx.moveTo(0, h / 2); ctx.lineTo(w, h / 2); ctx.moveTo(w / 2, 0); ctx.lineTo(w / 2, h); ctx.stroke();
-  ctx.strokeStyle = "#0f766e";
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  let started = false;
-  for (let px = 0; px < w; px += 1) {
-    const x = (px / w) * 16 - 8;
-    const yv = Number(fn(x));
-    const py = h / 2 - yv * 34;
-    if (Number.isFinite(yv) && py > -h && py < h * 2) {
-      started ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
-      started = true;
-    } else {
-      started = false;
-    }
+  window.Plotly.react(target, [{
+    x: xs,
+    y: ys,
+    mode: "lines",
+    line: { color: "#0f766e", width: 3 },
+    name: `f(x) = ${expr}`,
+  }], {
+    margin: { t: 28, r: 18, b: 42, l: 48 },
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+    xaxis: { title: "x", zeroline: true, gridcolor: "#e5e7eb" },
+    yaxis: { title: "f(x)", zeroline: true, gridcolor: "#e5e7eb" },
+    showlegend: true,
+  }, { responsive: true, displaylogo: false });
+}
+
+function renderLatexEditor() {
+  const preview = $("#latexPreview");
+  const value = $("#latexEditor").value.trim();
+  if (!window.katex) {
+    preview.textContent = value;
+    return;
   }
-  ctx.stroke();
-  ctx.lineWidth = 1;
+  try {
+    window.katex.render(value, preview, { throwOnError: false, displayMode: true });
+  } catch {
+    preview.textContent = "Formule LaTeX invalide.";
+  }
+}
+
+let geometryPoints = {
+  A: { x: 90, y: 245 },
+  B: { x: 430, y: 245 },
+  C: { x: 250, y: 72 },
+};
+
+function geometryDistance(a, b) {
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+function renderGeometry() {
+  const svg = $("#geometryStage");
+  const preset = $("#geometryPreset").value;
+  const { A, B, C } = geometryPoints;
+  const ab = geometryDistance(A, B);
+  const bc = geometryDistance(B, C);
+  const ca = geometryDistance(C, A);
+  const midAB = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+  const radius = geometryDistance(midAB, C);
+  const thalesPoint = { x: A.x + (B.x - A.x) * 0.68, y: A.y + (B.y - A.y) * 0.68 };
+  const thalesTop = { x: thalesPoint.x + (C.x - A.x) * 0.68, y: thalesPoint.y + (C.y - A.y) * 0.68 };
+  const triangle = `
+    <polygon points="${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}" fill="rgba(15,118,110,.12)" stroke="#0f766e" stroke-width="3"></polygon>
+  `;
+  const extras = preset === "circle" ? `
+    <circle cx="${midAB.x}" cy="${midAB.y}" r="${radius}" fill="none" stroke="#1d4ed8" stroke-width="3"></circle>
+    <line x1="${midAB.x}" y1="${midAB.y}" x2="${C.x}" y2="${C.y}" stroke="#1d4ed8" stroke-width="2"></line>
+  ` : preset === "thales" ? `
+    <line x1="${A.x}" y1="${C.y}" x2="${B.x}" y2="${C.y}" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 6"></line>
+    <line x1="${thalesPoint.x}" y1="${thalesPoint.y}" x2="${thalesTop.x}" y2="${thalesTop.y}" stroke="#9a3412" stroke-width="3"></line>
+    <circle cx="${thalesPoint.x}" cy="${thalesPoint.y}" r="5" fill="#9a3412"></circle>
+    <circle cx="${thalesTop.x}" cy="${thalesTop.y}" r="5" fill="#9a3412"></circle>
+  ` : `
+    <line x1="${C.x}" y1="${C.y}" x2="${midAB.x}" y2="${midAB.y}" stroke="#9a3412" stroke-width="3" stroke-dasharray="6 5"></line>
+  `;
+  svg.innerHTML = `
+    <rect x="0" y="0" width="520" height="320" rx="8" fill="#f8fafc"></rect>
+    ${triangle}
+    ${extras}
+    ${Object.entries(geometryPoints).map(([label, point]) => `
+      <g class="geometry-point" data-point="${label}" tabindex="0">
+        <circle cx="${point.x}" cy="${point.y}" r="12" fill="#ffffff" stroke="#0f766e" stroke-width="4"></circle>
+        <text x="${point.x}" y="${point.y - 18}" text-anchor="middle">${label}</text>
+      </g>
+    `).join("")}
+  `;
+  $("#geometryReadout").textContent = `AB=${formatNumber(ab)} · BC=${formatNumber(bc)} · CA=${formatNumber(ca)} · aire≈${formatNumber(Math.abs((A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2))}`;
+  svg.querySelectorAll("[data-point]").forEach((node) => {
+    node.addEventListener("pointerdown", (event) => {
+      node.setPointerCapture(event.pointerId);
+      const move = (moveEvent) => {
+        const rect = svg.getBoundingClientRect();
+        const x = ((moveEvent.clientX - rect.left) / rect.width) * 520;
+        const y = ((moveEvent.clientY - rect.top) / rect.height) * 320;
+        geometryPoints[node.dataset.point] = {
+          x: Math.max(24, Math.min(496, x)),
+          y: Math.max(24, Math.min(296, y)),
+        };
+        renderGeometry();
+      };
+      const up = () => {
+        node.removeEventListener("pointermove", move);
+        node.removeEventListener("pointerup", up);
+      };
+      node.addEventListener("pointermove", move);
+      node.addEventListener("pointerup", up);
+    });
+  });
+}
+
+let threeSceneState = null;
+
+function renderThreeScene() {
+  const stage = $("#threeStage");
+  if (!window.THREE) {
+    stage.textContent = "Three.js n'est pas chargé.";
+    return;
+  }
+  const probe = document.createElement("canvas");
+  if (!probe.getContext("webgl") && !probe.getContext("experimental-webgl")) {
+    stage.innerHTML = `<div class="three-fallback">Three.js est chargé, mais WebGL n'est pas disponible dans ce navigateur.</div>`;
+    return;
+  }
+  const width = stage.clientWidth || 520;
+  const height = 320;
+  stage.innerHTML = "";
+  try {
+    const scene = new window.THREE.Scene();
+    scene.background = new window.THREE.Color(0xf8fafc);
+    const camera = new window.THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 0.4, 4.6);
+    const renderer = new window.THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    stage.appendChild(renderer.domElement);
+    scene.add(new window.THREE.HemisphereLight(0xffffff, 0x94a3b8, 2.4));
+    const material = new window.THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.38, metalness: 0.08 });
+    const shape = $("#threeShape").value;
+    const geometry = shape === "dodecahedron"
+      ? new window.THREE.DodecahedronGeometry(1.35)
+      : shape === "box"
+        ? new window.THREE.BoxGeometry(1.85, 1.85, 1.85)
+        : new window.THREE.IcosahedronGeometry(1.45);
+    const mesh = new window.THREE.Mesh(geometry, material);
+    const wire = new window.THREE.LineSegments(new window.THREE.WireframeGeometry(geometry), new window.THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.55 }));
+    mesh.add(wire);
+    scene.add(mesh);
+    threeSceneState = { renderer, scene, camera, mesh };
+    const animate = () => {
+      if (threeSceneState?.mesh !== mesh) return;
+      mesh.rotation.x += 0.008;
+      mesh.rotation.y += 0.012;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    };
+    animate();
+  } catch {
+    stage.innerHTML = `<div class="three-fallback">Three.js est chargé, mais la scène WebGL n'a pas pu être créée.</div>`;
+  }
+}
+
+function renderD3Network() {
+  const svg = $("#d3Network");
+  if (!window.d3) {
+    svg.innerHTML = `<text x="24" y="40">D3.js n'est pas chargé.</text>`;
+    return;
+  }
+  const mode = $("#d3NetworkMode").value;
+  const nodes = mode === "media"
+    ? media.slice(0, 16).map((item) => ({ id: item.title, group: item.type, size: 5 + item.links.length }))
+    : mode === "people"
+      ? mathematicians.slice(0, 18).map((item) => ({ id: item.name, group: item.domains[0], size: 8 }))
+      : domains.slice(0, 14).map((item) => ({ id: item.name, group: item.family, size: 10 }));
+  const links = nodes.flatMap((node, index) => [
+    index > 0 ? { source: nodes[index - 1].id, target: node.id } : null,
+    index > 2 && index % 3 === 0 ? { source: nodes[index - 3].id, target: node.id } : null,
+  ]).filter(Boolean);
+  const root = window.d3.select(svg);
+  root.selectAll("*").remove();
+  const width = 620;
+  const height = 360;
+  const color = window.d3.scaleOrdinal(["#0f766e", "#9a3412", "#1d4ed8", "#b7791f", "#334155"]);
+  const simulation = window.d3.forceSimulation(nodes)
+    .force("link", window.d3.forceLink(links).id((d) => d.id).distance(86))
+    .force("charge", window.d3.forceManyBody().strength(-210))
+    .force("center", window.d3.forceCenter(width / 2, height / 2));
+  const link = root.append("g").attr("stroke", "#cbd5e1").attr("stroke-width", 2)
+    .selectAll("line").data(links).join("line");
+  const node = root.append("g").selectAll("g").data(nodes).join("g").call(
+    window.d3.drag()
+      .on("start", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+      .on("drag", (event, d) => {
+        d.fx = event.x;
+        d.fy = event.y;
+      })
+      .on("end", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      })
+  );
+  node.append("circle").attr("r", (d) => d.size).attr("fill", (d) => color(d.group)).attr("stroke", "#ffffff").attr("stroke-width", 2);
+  node.append("title").text((d) => `${d.id} · ${d.group}`);
+  node.append("text").text((d) => d.id.length > 18 ? `${d.id.slice(0, 16)}…` : d.id).attr("x", 12).attr("y", 4).attr("font-size", 11).attr("font-weight", 800);
+  simulation.on("tick", () => {
+    link.attr("x1", (d) => d.source.x).attr("y1", (d) => d.source.y).attr("x2", (d) => d.target.x).attr("y2", (d) => d.target.y);
+    node.attr("transform", (d) => `translate(${Math.max(18, Math.min(width - 18, d.x))},${Math.max(18, Math.min(height - 18, d.y))})`);
+  });
 }
 
 function normalizeMathExpression(expr) {
@@ -3273,6 +3503,10 @@ drawVectorVisualization();
 drawNetworkVisualization();
 animateNetworkStage();
 drawPlot();
+renderLatexEditor();
+renderGeometry();
+renderThreeScene();
+renderD3Network();
 renderLabTools();
 registerPwa();
 
@@ -3349,6 +3583,11 @@ $("#curveMode").addEventListener("change", (event) => drawCurveVisualization(eve
 $("#matrixSlider").addEventListener("input", (event) => drawVectorVisualization(Number(event.target.value)));
 $("#networkMode").addEventListener("change", (event) => drawNetworkVisualization(event.target.value));
 $("#plotButton").addEventListener("click", drawPlot);
+$("#latexRenderButton").addEventListener("click", renderLatexEditor);
+$("#latexEditor").addEventListener("input", renderLatexEditor);
+$("#geometryPreset").addEventListener("change", renderGeometry);
+$("#threeShape").addEventListener("change", renderThreeScene);
+$("#d3NetworkMode").addEventListener("change", renderD3Network);
 $("#scientificButton").addEventListener("click", calculateScientific);
 $("#matrixButton").addEventListener("click", calculateMatrix);
 $("#calculusButton").addEventListener("click", calculateCalculus);
