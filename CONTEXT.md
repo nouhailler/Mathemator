@@ -1,5 +1,43 @@
 # Contexte Mathemator
 
+## Refonte 2026 (etat courant)
+
+L'interface a ete entierement refondue selon `design_handoff_mathemator_redesign/`
+(5 chapitres, barre inferieure fixe, identite « encyclopedie imprimee »).
+Le code de la refonte vit dans `index.html`, `src/app.js` (~1000 lignes),
+`src/content.js` et `src/styles.css`. Les priorites 2-24 ci-dessous decrivent
+l'ANCIENNE application massive et servent d'inventaire du contenu (`data/*.json`),
+pas de l'UI actuelle.
+
+Ecrans implementes et verifies (captures Chromium 400x860) : Accueil, Sommaire,
+Explorer (+ Bibliotheque), Fiche detail, Pratiquer (Exercices/Quiz/Progression),
+Labo (resolveur second degre fonctionnel), Histoire (Chronologie/Carte).
+
+Ameliorations recentes :
+- Correction du debordement de la grille de coefficients du resolveur (`.coef-grid` : `min-width:0`).
+- Fiche detail : le champ « Associe a » utilise desormais les vrais theoremes de
+  `theorems.json` (via `theoremsByMath`, appariement par decouvreur) au lieu des
+  libelles generiques auto-generes de `mathematicians.json`. 66 fiches obtiennent
+  des liens reels, les autres affichent « — ».
+
+Labo interactif : les 4 vignettes ouvrent de vrais outils canvas (sous-vue
+`state.labTool` + `mountLabTool`/`labCleanup`) :
+- Grapheur : parseur d'expression sûr (`compileExpr`, shunting-yard), zoom molette, glisser.
+- Geometrie dynamique : triangle a sommets deplacables, longueurs et angles recalcules.
+- Polyedres 3D : tetraedre/cube/octaedre en fil de fer, rotation auto + glisser, mise a l'echelle auto.
+- Fractale : Mandelbrot (rendu pleine resolution via `putImageData` en pixels reels), clic pour zoomer.
+
+Portraits reels : la fiche detail affiche l'image reelle du mathematicien quand
+`media.json` (type « Portrait ») le référence (46-50 fiches). URL resolue via l'API
+REST de Wikipedia (`fr.wikipedia.org/.../page/summary/`), mise en cache localStorage
+(`mathemator:portraits`), repli sur le glyphe hors ligne, attribution Wikimedia Commons.
+Service worker : cache runtime `upload.wikimedia.org` (v15) pour l'hors ligne.
+
+Reste possible : enrichir la couverture des portraits (au-dela des 50 curates) ;
+ajouter d'autres solides / outils de calcul reellement branches.
+
+---
+
 Dernier point d'arret : priorite 2 etendue a 500 fiches avec visuels.
 
 Ce fichier sert de suivi de projet pour reprendre les priorites sans perdre le contexte. Les priorites 2 a 24 ont ete implementees dans le code et les donnees.
