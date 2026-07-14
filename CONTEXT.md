@@ -64,15 +64,19 @@ Qualite du contenu (juillet 2026) — approche A+B, sans cle API :
   (theoremes, exercices, problemes, formules, objets). Une fiche sans prose specifique
   montre une note honnete au lieu de remplissage.
 
-- A2. Theoremes : `resolveTheoremWiki` interroge la recherche Wikipedia
-  (« théorème <nom> » via `action=opensearch`, CORS `origin=*`), recupere le resume
-  de l'article et l'affiche en rubrique « Presentation » — avec un garde-fou
-  (mots-cles theoreme/conjecture/formule/lemme… + `type==="standard"`) qui rejette la
-  fiche de la personne. Repli sur la note honnete si aucun article ne correspond.
+- A2. Presentations Wikipedia (theoremes, problemes, objets, formules) :
+  `resolveWikiConcept(type, name)` interroge la recherche Wikipedia
+  (`action=opensearch`, CORS `origin=*`) avec une requete adaptee par type
+  (config `WIKI_TYPES` — ex. prefixe « théorème » pour un theoreme, « formule » pour
+  une formule d'un seul mot), recupere le resume de l'article et l'affiche en rubrique
+  « Presentation » (`wikiSection`/`wikiMarker`, hydratation `hydrateConceptWiki`).
+  Deux garde-fous : mots-cles par type (`kw`) + `looksLikePerson` (base sur la
+  description Wikidata courte, pas le resume) pour rejeter la fiche de la personne.
+  Repli sur la note honnete si aucun article pertinent ne correspond.
 
 Reste possible : favoris pour la bibliotheque (livres/citations/glossaire/media) ;
-fiches detail pour les domaines ; presentations Wikipedia pour problemes/objets/formules ;
-enrichissement IA complet via `scripts/` quand une cle API est disponible.
+fiches detail pour les domaines ; enrichissement IA complet via `scripts/` quand une
+cle API est disponible (cet environnement n'en a pas ; `ant` y est Apache Ant).
 
 ---
 
