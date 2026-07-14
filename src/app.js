@@ -397,6 +397,51 @@ async function resolveWiki(id) {
   return false;
 }
 
+// Présentation réelle d'un théorème. Les noms courts (« Pythagore », « Bezout »)
+// ne correspondent pas au titre de l'article ; on interroge donc la recherche
+// Wikipédia (« théorème <nom> »), puis on ne retient le résumé que si l'article
+// est bien de nature « théorème » (garde-fou contre la fiche de la personne).
+const THEO_KEYWORDS = ["theoreme", "conjecture", "formule", "identite", "lemme", "principe", "inegalite", "relation", "hypothese", "axiome"];
+async function resolveTheoremWiki(name) {
+  const key = "theo:" + name;
+  if (wikiCache.has(key)) return wikiCache.get(key);
+  if (wikiTried.has(key)) return false;
+  wikiTried.add(key);
+  try {
+    const query = /th[ée]or[èe]me/i.test(name) ? name : "théorème " + name;
+    const searchUrl = `https://fr.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(
+      query
+    )}&limit=1&namespace=0&format=json&origin=*`;
+    const sr = await fetch(searchUrl);
+    if (!sr.ok) return false;
+    const sj = await sr.json();
+    const title = sj[1] && sj[1][0];
+    if (!title) {
+      wikiCache.set(key, false);
+      persistWiki();
+      return false;
+    }
+    const r = await fetch(
+      `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}`,
+      { headers: { accept: "application/json" } }
+    );
+    if (!r.ok) return false;
+    const j = await r.json();
+    const hay = deaccent((title || "") + " " + (j.description || "") + " " + (j.extract || ""));
+    const isTheorem = j.type === "standard" && THEO_KEYWORDS.some((k) => hay.includes(k));
+    const val =
+      isTheorem && j.extract
+        ? { extract: j.extract.trim(), url: (j.content_urls && j.content_urls.desktop && j.content_urls.desktop.page) || "" }
+        : false;
+    wikiCache.set(key, val); // réponse définitive (article de théorème trouvé ou non)
+    persistWiki();
+    return val;
+  } catch {
+    /* réseau indisponible : on réessaiera plus tard */
+  }
+  return false;
+}
+
 /* ------------------------- helpers d'affichage ------------------------- */
 const matchQ = (txt) => {
   const q = state.q.trim().toLowerCase();
@@ -930,6 +975,15 @@ function hydratePortraits() {
   });
 }
 
+function hydrateTheoremWiki() {
+  const el = screenEl.querySelector(".wiki-hydrate[data-theo]");
+  if (!el) return;
+  const name = el.dataset.theo;
+  resolveTheoremWiki(name).then((data) => {
+    if (data && state.screen === "explorer" && state.open && state.open.type === "theo" && state.open.id === name) render();
+  });
+}
+
 /* ------------------------- fiches détail : helpers ------------------------- */
 function detailBack(label = "← Explorer") {
   return `<button class="back-link" data-act="close-detail">${esc(label)}</button>`;
@@ -996,7 +1050,18 @@ function renderMathDetail(id) {
 function renderTheoremDetail(id) {
   const t = theoByName.get(id);
   if (!t) return renderExplorerList();
+  const wiki = wikiCache.get("theo:" + t.name); // { extract, url } | false | undefined
+  const presentation =
+    wiki && wiki.extract
+      ? section(
+          "Présentation",
+          `<p>${esc(wiki.extract)}${
+            wiki.url ? ` <a class="bio-src" href="${escAttr(wiki.url)}" target="_blank" rel="noopener">Source : Wikipédia</a>` : ""
+          }</p>`
+        )
+      : "";
   const sections =
+    presentation +
     section("Énoncé", t.latex && t.statement && t.statement !== t.latex ? paras(scrub(t.statement)) : "") +
     section("Intuition", paras(scrub(t.intuition))) +
     section("Démonstration", textOrList(scrub(t.proof))) +
@@ -1006,12 +1071,15 @@ function renderTheoremDetail(id) {
     section("Histoire", paras(scrub(t.history))) +
     section("Exercices liés", bullets(scrub(t.exercises))) +
     section("Références", bullets(scrub(t.references)));
+  // Marqueur d'hydratation tant que la présentation Wikipédia n'est pas résolue.
+  const hydrate = wiki === undefined ? `<span class="wiki-hydrate" data-theo="${escAttr(t.name)}" hidden></span>` : "";
   return `
     ${detailBack()}
     <p class="detail-role">Théorème${t.discoverer ? " · " + esc(t.discoverer) : ""}</p>
     <h2 class="detail-name">${esc(t.name)}</h2>
     <div class="formula-hero">${texSpan(t.latex || t.statement, t.statement)}</div>
     ${sections || emptyDetailNote}
+    ${hydrate}
     ${detailFav("theo", t.name)}`;
 }
 
@@ -2262,6 +2330,7 @@ function render() {
   renderNav();
   renderMath();
   hydratePortraits();
+  hydrateTheoremWiki();
   mountLabTool();
   mountCalcTool();
   syncHash();
