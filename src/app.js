@@ -243,6 +243,64 @@ const objByName = firstBy(objects, (o) => o.name);
 const formByName = firstBy(formulas, (f) => f.name);
 const exById = firstBy(exercises, (e) => e.id);
 
+// Détection du texte « creux ». Le contenu auto-généré réutilise le même
+// gabarit de phrase sur des dizaines de fiches, en n'y changeant que le nom du
+// domaine (« … en Géométrie … » / « … en Algèbre … »). On neutralise donc le
+// vocabulaire de domaine, puis on compte les « squelettes » de phrase : un
+// squelette vu ≥ 4 fois est un remplissage et n'est pas affiché.
+const deaccent = (s) =>
+  String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const domainVocab = (() => {
+  const set = new Set();
+  const addWords = (s) => deaccent(s).split(/[^a-z]+/).forEach((w) => w.length >= 4 && set.add(w));
+  domains.forEach((d) => {
+    addWords(d.name);
+    addWords(d.family);
+  });
+  theorems.forEach((t) => addWords(t.discoverer));
+  problems.forEach((p) => (addWords(p.domain), addWords(p.category)));
+  exercises.forEach((e) => addWords(e.domain));
+  formulas.forEach((f) => addWords(f.category));
+  objects.forEach((o) => (addWords(o.category), addWords(o.dimension)));
+  mathematicians.forEach((m) => (m.domains || []).forEach(addWords));
+  return set;
+})();
+const skeleton = (s) =>
+  deaccent(s)
+    .split(/[^a-z]+/)
+    .filter((w) => w && !domainVocab.has(w))
+    .join(" ");
+const genericSkeletons = (() => {
+  const count = new Map();
+  const add = (v) => {
+    if (Array.isArray(v)) return v.forEach(add);
+    if (typeof v !== "string" || v.trim().length < 10) return;
+    const sk = skeleton(v);
+    if (sk.split(" ").length >= 2) count.set(sk, (count.get(sk) || 0) + 1);
+  };
+  const scan = (arr, fields) => arr.forEach((o) => fields.forEach((f) => add(o[f])));
+  scan(theorems, ["intuition", "proof", "variants", "generalization", "applications", "history", "exercises", "references"]);
+  scan(exercises, ["hint", "correction", "solution", "detailedSolution", "proof", "references"]);
+  scan(problems, ["accessible", "text", "history", "current", "impact", "advances", "recent", "references"]);
+  scan(formulas, ["explanation", "examples", "proof", "uses"]);
+  scan(objects, ["description", "history", "properties", "applications", "visualization"]);
+  const set = new Set();
+  for (const [sk, c] of count) if (c >= 5) set.add(sk);
+  return set;
+})();
+const isGeneric = (v) =>
+  typeof v === "string" && v.trim().length >= 10 && genericSkeletons.has(skeleton(v));
+// Renvoie la valeur si elle est réellement spécifique ; sinon "" (chaîne) ou
+// null (tableau) pour que `section(...)` masque la rubrique.
+function scrub(v) {
+  if (Array.isArray(v)) {
+    const a = v.filter((x) => typeof x === "string" && x.trim() && !isGeneric(x));
+    return a.length ? a : null;
+  }
+  if (typeof v === "string" && v.trim() && !isGeneric(v)) return v;
+  return "";
+}
+
 // Associations réelles : on relie chaque mathématicien aux théorèmes de
 // `theorems.json` dont il est le découvreur (les champs de mathematicians.json
 // ne contiennent que des libellés génériques auto-générés).
@@ -303,17 +361,19 @@ const portraitMediaByMath = (() => {
   return map;
 })();
 
-// Cache des URL de portrait : chaîne = image trouvée, false = aucune image.
-const PORTRAIT_KEY = "mathemator:portraits";
-const portraitCache = new Map(Object.entries(store.get(PORTRAIT_KEY, {})));
-const persistPortraits = () => store.set(PORTRAIT_KEY, Object.fromEntries(portraitCache));
-const portraitTried = new Set(); // évite de re-solliciter le réseau dans la session
-async function resolvePortrait(id) {
-  if (portraitCache.has(id)) return portraitCache.get(id);
+// Cache Wikipédia : { img, extract, url } (données réelles) ou false (aucune).
+// L'API REST « summary » renvoie en un seul appel la vignette ET le résumé,
+// qui sert de vraie biographie (attribuée) à la place du texte auto-généré.
+const WIKI_KEY = "mathemator:wiki";
+const wikiCache = new Map(Object.entries(store.get(WIKI_KEY, {})));
+const persistWiki = () => store.set(WIKI_KEY, Object.fromEntries(wikiCache));
+const wikiTried = new Set(); // évite de re-solliciter le réseau dans la session
+async function resolveWiki(id) {
+  if (wikiCache.has(id)) return wikiCache.get(id);
   const info = portraitMediaByMath.get(id);
-  if (!info) return false; // pas de portrait curatif : on garde le glyphe
-  if (portraitTried.has(id)) return false;
-  portraitTried.add(id);
+  if (!info) return false; // hors ensemble curaté : on garde glyphe + bio générée
+  if (wikiTried.has(id)) return false;
+  wikiTried.add(id);
   try {
     const title = encodeURIComponent(info.name.replace(/ /g, "_"));
     const r = await fetch(`https://fr.wikipedia.org/api/rest_v1/page/summary/${title}`, {
@@ -321,11 +381,15 @@ async function resolvePortrait(id) {
     });
     if (r.ok) {
       const j = await r.json();
-      const val = (j.thumbnail && j.thumbnail.source) || false;
-      // Réponse définitive : on mémorise (URL trouvée ou absence confirmée).
-      portraitCache.set(id, val);
-      persistPortraits();
-      return val;
+      const val = {
+        img: (j.thumbnail && j.thumbnail.source) || "",
+        extract: (j.extract || "").trim(),
+        url: (j.content_urls && j.content_urls.desktop && j.content_urls.desktop.page) || "",
+      };
+      const result = val.img || val.extract ? val : false;
+      wikiCache.set(id, result); // réponse définitive (données trouvées ou absence)
+      persistWiki();
+      return result;
     }
   } catch {
     /* réseau indisponible : on n'enregistre rien pour réessayer plus tard */
@@ -819,22 +883,23 @@ function renderBiblioCollection() {
 function renderPortraitFrame(m) {
   const glyph = esc(m.portrait || m.name.charAt(0));
   const info = portraitMediaByMath.get(m.id);
-  const cached = portraitCache.get(m.id); // string (url) | false | undefined
+  const cached = wikiCache.get(m.id); // { img, extract, url } | false | undefined
+  const img = cached && cached.img;
   const attribution = info
     ? `<a href="${escAttr(info.sourceUrl)}" target="_blank" rel="noopener">${esc(info.source || "Wikimedia Commons")}</a>`
     : esc(m.imageSource || "Illustration générée");
 
-  if (typeof cached === "string" && cached) {
+  if (img) {
     return `
     <figure class="portrait-frame has-img" data-mid="${escAttr(m.id)}">
-      <img class="portrait-img" src="${escAttr(cached)}" alt="Portrait de ${escAttr(m.name)}" />
+      <img class="portrait-img" src="${escAttr(img)}" alt="Portrait de ${escAttr(m.name)}" />
       <span class="glyph">${glyph}</span>
       <figcaption class="cap">portrait — ${attribution}</figcaption>
     </figure>`;
   }
 
   // Pas encore résolu : afficher le glyphe et marquer pour hydratation si un
-  // portrait média existe (et qu'on n'a pas déjà conclu à une absence d'image).
+  // portrait média existe (et qu'on n'a pas déjà conclu à une absence de données).
   const hydrate = info && cached === undefined ? ` data-hydrate="1"` : "";
   return `
     <figure class="portrait-frame" data-mid="${escAttr(m.id)}"${hydrate}>
@@ -843,13 +908,25 @@ function renderPortraitFrame(m) {
     </figure>`;
 }
 
+// Biographie réelle (résumé Wikipédia) quand disponible, avec attribution CC BY-SA.
+function renderMathBio(m) {
+  const cached = wikiCache.get(m.id);
+  if (cached && cached.extract) {
+    const link = cached.url
+      ? ` <a class="bio-src" href="${escAttr(cached.url)}" target="_blank" rel="noopener">Source : Wikipédia</a>`
+      : "";
+    return `<p class="detail-bio">${esc(cached.extract)}${link}</p>`;
+  }
+  return `<p class="detail-bio">${esc(m.biography || "")}</p>`;
+}
+
 function hydratePortraits() {
   const frame = screenEl.querySelector(".portrait-frame[data-hydrate]");
   if (!frame) return;
   const id = frame.dataset.mid;
-  resolvePortrait(id).then((url) => {
-    // Ne redessiner que si l'on regarde toujours la même fiche et qu'une image a été trouvée.
-    if (url && state.screen === "explorer" && state.open && state.open.type === "math" && state.open.id === id) render();
+  resolveWiki(id).then((data) => {
+    // Redessiner si l'on regarde toujours la même fiche et qu'une donnée a été trouvée.
+    if (data && state.screen === "explorer" && state.open && state.open.type === "math" && state.open.id === id) render();
   });
 }
 
@@ -872,6 +949,7 @@ const pills = (arr) =>
 function section(title, html) {
   return html ? `<div class="detail-section"><h4>${esc(title)}</h4>${html}</div>` : "";
 }
+const emptyDetailNote = `<p class="empty-note">Fiche de référence — description détaillée à enrichir.</p>`;
 
 function renderDetail() {
   const o = state.open;
@@ -906,7 +984,7 @@ function renderMathDetail(id) {
     <p class="detail-role">${esc(role(m))} · ${esc(dates)}</p>
     <h2 class="detail-name">${esc(m.name)}</h2>
     ${renderPortraitFrame(m)}
-    <p class="detail-bio">${esc(m.biography || "")}</p>
+    ${renderMathBio(m)}
     <dl class="detail-dl">
       <dt>Nationalité</dt><dd>${esc(m.nationality || "—")}</dd>
       <dt>Domaines</dt><dd>${esc((m.domains || []).join(", ") || "—")}</dd>
@@ -918,20 +996,22 @@ function renderMathDetail(id) {
 function renderTheoremDetail(id) {
   const t = theoByName.get(id);
   if (!t) return renderExplorerList();
+  const sections =
+    section("Énoncé", t.latex && t.statement && t.statement !== t.latex ? paras(scrub(t.statement)) : "") +
+    section("Intuition", paras(scrub(t.intuition))) +
+    section("Démonstration", textOrList(scrub(t.proof))) +
+    section("Variantes", textOrList(scrub(t.variants))) +
+    section("Généralisation", textOrList(scrub(t.generalization))) +
+    section("Applications", textOrList(scrub(t.applications))) +
+    section("Histoire", paras(scrub(t.history))) +
+    section("Exercices liés", bullets(scrub(t.exercises))) +
+    section("Références", bullets(scrub(t.references)));
   return `
     ${detailBack()}
     <p class="detail-role">Théorème${t.discoverer ? " · " + esc(t.discoverer) : ""}</p>
     <h2 class="detail-name">${esc(t.name)}</h2>
     <div class="formula-hero">${texSpan(t.latex || t.statement, t.statement)}</div>
-    ${section("Énoncé", t.latex && t.statement && t.statement !== t.latex ? paras(t.statement) : "")}
-    ${section("Intuition", paras(t.intuition))}
-    ${section("Démonstration", textOrList(t.proof))}
-    ${section("Variantes", textOrList(t.variants))}
-    ${section("Généralisation", textOrList(t.generalization))}
-    ${section("Applications", textOrList(t.applications))}
-    ${section("Histoire", paras(t.history))}
-    ${section("Exercices liés", bullets(t.exercises))}
-    ${section("Références", bullets(t.references))}
+    ${sections || emptyDetailNote}
     ${detailFav("theo", t.name)}`;
 }
 
@@ -939,6 +1019,15 @@ function renderProblemDetail(id) {
   const p = probByName.get(id);
   if (!p) return renderExplorerList();
   const tags = [p.difficulty, p.period].filter(Boolean);
+  const sections =
+    section("En bref", paras(scrub(p.accessible))) +
+    section("Énoncé", paras(scrub(p.text))) +
+    section("Histoire", paras(scrub(p.history))) +
+    section("État actuel", paras(scrub(p.current))) +
+    section("Avancées", textOrList(scrub(p.advances))) +
+    section("Avancées récentes", textOrList(scrub(p.recent))) +
+    section("Impact", paras(scrub(p.impact))) +
+    section("Références", bullets(scrub(p.references)));
   return `
     ${detailBack()}
     <p class="detail-role">Problème${p.category ? " · " + esc(p.category) : ""}${p.domain ? " · " + esc(p.domain) : ""}</p>
@@ -947,31 +1036,26 @@ function renderProblemDetail(id) {
       <span class="status-pill ${statusCls(p.status)}">${esc(p.status)}</span>
       ${tags.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}
     </div>
-    ${section("En bref", paras(p.accessible))}
-    ${section("Énoncé", paras(p.text))}
-    ${section("Histoire", paras(p.history))}
-    ${section("État actuel", paras(p.current))}
-    ${section("Avancées", textOrList(p.advances))}
-    ${section("Avancées récentes", textOrList(p.recent))}
-    ${section("Impact", paras(p.impact))}
-    ${section("Références", bullets(p.references))}
+    ${sections || emptyDetailNote}
     ${detailFav("prob", p.name)}`;
 }
 
 function renderObjectDetail(id) {
   const o = objByName.get(id);
   if (!o) return renderExplorerList();
+  const sections =
+    section("Description", paras(scrub(o.description))) +
+    section("Histoire", paras(scrub(o.history))) +
+    section("Propriétés", bullets(scrub(o.properties))) +
+    section("Applications", textOrList(scrub(o.applications))) +
+    section("Visualisation", paras(scrub(o.visualization))) +
+    section("Objets liés", pills(o.related));
   return `
     ${detailBack()}
     <p class="detail-role">Objet${[o.category, o.dimension].filter(Boolean).length ? " · " + esc([o.category, o.dimension].filter(Boolean).join(" · ")) : ""}</p>
     <h2 class="detail-name">${esc(o.name)}</h2>
     ${o.formula ? `<div class="formula-hero">${texSpan(o.formula, o.formula)}</div>` : ""}
-    ${section("Description", paras(o.description))}
-    ${section("Histoire", paras(o.history))}
-    ${section("Propriétés", bullets(o.properties))}
-    ${section("Applications", textOrList(o.applications))}
-    ${section("Visualisation", paras(o.visualization))}
-    ${section("Objets liés", pills(o.related))}
+    ${sections || emptyDetailNote}
     ${detailFav("obj", o.name)}`;
 }
 
@@ -983,10 +1067,10 @@ function renderFormulaDetail(id) {
     <p class="detail-role">Formule${f.category ? " · " + esc(f.category) : ""}</p>
     <h2 class="detail-name">${esc(f.name)}</h2>
     <div class="formula-hero">${texSpan(f.latex || f.expression, f.expression)}</div>
-    ${section("Explication", paras(f.explanation))}
-    ${section("Exemples", bullets(f.examples))}
-    ${section("Démonstration", textOrList(f.proof))}
-    ${section("Usages", bullets(f.uses))}
+    ${section("Explication", paras(scrub(f.explanation))) +
+    section("Exemples", bullets(scrub(f.examples))) +
+    section("Démonstration", textOrList(scrub(f.proof))) +
+    section("Usages", bullets(scrub(f.uses))) || emptyDetailNote}
     ${detailFav("form", f.name)}`;
 }
 
@@ -1005,11 +1089,11 @@ function renderExerciseDetail(id) {
       ${e.time ? `<span class="pill">${esc(e.time)}</span>` : ""}
       ${e.type ? `<span class="pill">${esc(e.type)}</span>` : ""}
     </div>
-    ${section("Indice", paras(e.hint))}
-    ${section("Correction", paras(e.correction))}
-    ${section("Solution détaillée", paras(e.detailedSolution || e.solution))}
-    ${section("Démonstration", paras(e.proof))}
-    ${section("Références", bullets(e.references))}
+    ${section("Indice", paras(scrub(e.hint)))}
+    ${section("Correction", paras(scrub(e.correction)))}
+    ${section("Solution détaillée", paras(scrub(e.detailedSolution || e.solution)))}
+    ${section("Démonstration", paras(scrub(e.proof)))}
+    ${section("Références", bullets(scrub(e.references)))}
     <button class="fav-button${done ? " on" : ""}" data-act="ex-done" data-id="${escAttr(e.id)}">${
     done ? "✓ Exercice réalisé" : "Marquer comme réalisé"
   }</button>`;
@@ -2332,7 +2416,7 @@ screenEl.addEventListener(
       // On revient au glyphe pour cette vue sans effacer l'URL en cache :
       // l'échec peut être passager (hors ligne) et l'image resservira ensuite.
       const id = frame.dataset.mid;
-      if (id) portraitTried.add(id);
+      if (id) wikiTried.add(id);
     }
     img.remove();
   },

@@ -55,9 +55,18 @@ Navigation & recherche (juillet 2026) :
 - Accessibilite : activation clavier (Entree/Espace) des cartes `role="button"`,
   `aria-live` sur les compteurs de resultats, `:focus-visible` sur les elements cliquables.
 
+Qualite du contenu (juillet 2026) — approche A+B, sans cle API :
+- A. Biographies reelles : l'appel Wikipedia des portraits (`resolveWiki`) recupere
+  aussi le resume (`extract`) et l'affiche comme vraie bio des mathematiciens curates
+  (cache localStorage `mathemator:wiki`, attribution « Source : Wikipedia », repli hors ligne).
+- B. Masquage du texte creux : `genericSkeletons`/`scrub` neutralisent le vocabulaire de
+  domaine puis reperent les gabarits de phrase repetes (≥ 5 fiches) et ne les affichent pas
+  (theoremes, exercices, problemes, formules, objets). Une fiche sans prose specifique
+  montre une note honnete au lieu de remplissage.
+
 Reste possible : favoris pour la bibliotheque (livres/citations/glossaire/media) ;
-fiches detail pour les domaines ; enrichir la couverture des portraits ; qualite du
-contenu genere (preuves de theoremes toutes identiques, corrections d'exercices repetitives).
+fiches detail pour les domaines ; enrichir aussi les theoremes (Wikipedia ou IA au build) ;
+enrichissement IA complet via `scripts/` quand une cle API est disponible.
 
 ---
 
