@@ -33,8 +33,19 @@ REST de Wikipedia (`fr.wikipedia.org/.../page/summary/`), mise en cache localSto
 (`mathemator:portraits`), repli sur le glyphe hors ligne, attribution Wikimedia Commons.
 Service worker : cache runtime `upload.wikimedia.org` (v15) pour l'hors ligne.
 
-Reste possible : enrichir la couverture des portraits (au-dela des 50 curates) ;
-ajouter d'autres solides / outils de calcul reellement branches.
+Fonctionnalites restaurees (juillet 2026, apres audit des pertes de la refonte) :
+- Favoris generalises en cles typees « type:id » (math, theo, prob, obj, form) avec
+  migration des anciennes cles nues + vue « ★ Collection » dans Explorer (regroupee par type).
+- Sections Explorer « Formules » (formulas.json) et « Objets » (objects.json) rebranchees.
+- Fiches detail generiques via `state.open = {type,id}` : theoremes, problemes, objets,
+  formules (enonce/demo/variantes/applications/histoire…) et exercices (indice/correction/
+  solution/demonstration + bouton « Marquer realise », suivi dans `progress.done`).
+- Calculatrices du Labo reellement fonctionnelles (sous-vue `state.calcTool` +
+  `mountCalcTool`) : scientifique (via `compileExpr`), matriciel 2×2 (det/inverse/produit),
+  suites u(n), stats + loi binomiale, convertisseurs (angles/longueurs/masses).
+
+Reste possible : favoris pour la bibliotheque (livres/citations/glossaire/media) ;
+fiches detail pour les domaines ; enrichir la couverture des portraits.
 
 ---
 

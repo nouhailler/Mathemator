@@ -16,6 +16,7 @@ const {
   glossary,
   mathematicians,
   media,
+  objects,
   places,
   problems,
   quiz,
@@ -62,12 +63,35 @@ const fmtDec = (n) => {
 };
 
 /* ------------------------- favoris ------------------------- */
+// Clés typées « type:id » (math, theo, prob, obj, form). Migration des
+// anciennes clés nues (identifiants de mathématiciens) vers « math:id ».
 const FAV_KEY = "mathemator:favs";
 let favs = store.get(FAV_KEY, {});
+(function migrateFavs() {
+  let changed = false;
+  for (const k of Object.keys(favs)) {
+    if (!k.includes(":")) {
+      favs["math:" + k] = favs[k];
+      delete favs[k];
+      changed = true;
+    }
+  }
+  if (changed) store.set(FAV_KEY, favs);
+})();
+const favKey = (type, id) => `${type}:${id}`;
+const isFav = (type, id) => !!favs[favKey(type, id)];
 const favCount = () => Object.values(favs).filter(Boolean).length;
-function toggleFav(id) {
-  favs = { ...favs, [id]: !favs[id] };
+function toggleFav(type, id) {
+  const k = favKey(type, id);
+  favs = { ...favs, [k]: !favs[k] };
   store.set(FAV_KEY, favs);
+}
+// Bouton étoile réutilisable.
+function favStar(type, id) {
+  return `<button class="fav-star" data-act="fav" data-type="${type}" data-id="${escAttr(id)}" aria-label="Favori" aria-pressed="${isFav(
+    type,
+    id
+  )}">${isFav(type, id) ? "★" : "☆"}</button>`;
 }
 
 /* ------------------------- progression ------------------------- */
@@ -81,6 +105,7 @@ let progress = store.get(PROG_KEY, {
 });
 progress.days = Array.isArray(progress.days) ? progress.days : [];
 progress.viewed = Array.isArray(progress.viewed) ? progress.viewed : [];
+progress.done = Array.isArray(progress.done) ? progress.done : [];
 progress.quizByDomain = progress.quizByDomain || {};
 (function recordVisit() {
   const t = todayISO();
@@ -111,9 +136,9 @@ function saveProgress() {
 const state = {
   screen: "home",
   menuOpen: false,
-  cat: "math", // math | dom | theo | prob | bib
+  cat: "math", // math | dom | theo | form | obj | prob | bib | fav
   bibCol: null, // quotes | books | glossary | media
-  personId: null,
+  open: null, // { type, id } — fiche détail ouverte
   q: "",
   pratTab: "ex", // ex | quiz | prog
   lvl: "Tous",
@@ -121,6 +146,7 @@ const state = {
   quizPick: null,
   histTab: "chrono", // chrono | carte
   labTool: null, // null | graph | geo | poly | fractal
+  calcTool: null, // null | sci | matrix | seq | stat | conv
   graphFn: "sin(x) * x / 3",
   polySolid: "cube",
   a: "1",
@@ -134,7 +160,10 @@ function setState(patch) {
 }
 function setScreen(screen) {
   state.q = "";
-  setState({ screen, personId: null, menuOpen: false, bibCol: null, labTool: null });
+  setState({ screen, open: null, menuOpen: false, bibCol: null, labTool: null, calcTool: null });
+}
+function openItem(type, id) {
+  setState({ open: { type, id } });
 }
 
 /* ------------------------- constantes de contenu ------------------------- */
@@ -156,8 +185,11 @@ const CATS = [
   ["math", "Mathématiciens"],
   ["dom", "Domaines"],
   ["theo", "Théorèmes"],
+  ["form", "Formules"],
+  ["obj", "Objets"],
   ["prob", "Problèmes"],
   ["bib", "Bibliothèque"],
+  ["fav", "★ Collection"],
 ];
 const LEVELS = ["Tous", "Collège", "Lycée", "Lycée avancé", "Licence", "Master"];
 const DIFF_DOTS = { Facile: 1, Moyen: 2, Difficile: 3, Avancé: 3 };
@@ -173,11 +205,11 @@ const VISU_TOOLS = [
   ["fractal", "ℳ", "Fractales", "Mandelbrot, plan complexe"],
 ];
 const CALC_TOOLS = [
-  ["Calculatrice scientifique", "Expressions, fonctions usuelles"],
-  ["Calcul matriciel", "Produit, déterminant, inverse"],
-  ["Suites", "Termes de u(n), convergence"],
-  ["Statistiques & probabilités", "Moyenne, variance, loi binomiale"],
-  ["Convertisseurs", "Angles, longueurs, masses"],
+  ["sci", "Calculatrice scientifique", "Expressions, fonctions usuelles"],
+  ["matrix", "Calcul matriciel", "Produit, déterminant, inverse (2×2)"],
+  ["seq", "Suites", "Termes de u(n), convergence"],
+  ["stat", "Statistiques & probabilités", "Moyenne, variance, loi binomiale"],
+  ["conv", "Convertisseurs", "Angles, longueurs, masses"],
 ];
 const BIBLIO = [
   ["quotes", "a.", "Citations", "Paroles de mathématiciens, par auteur et thème.", quotes.length],
@@ -195,6 +227,20 @@ const FEMININE = new Set([
 
 /* index rapides */
 const mathById = new Map(mathematicians.map((m) => [m.id, m]));
+// Index par nom pour le routage des fiches détail (théorèmes, problèmes, objets, formules).
+const firstBy = (arr, keyFn) => {
+  const map = new Map();
+  for (const it of arr) {
+    const k = keyFn(it);
+    if (k != null && !map.has(k)) map.set(k, it);
+  }
+  return map;
+};
+const theoByName = firstBy(theorems, (t) => t.name);
+const probByName = firstBy(problems, (p) => p.name);
+const objByName = firstBy(objects, (o) => o.name);
+const formByName = firstBy(formulas, (f) => f.name);
+const exById = firstBy(exercises, (e) => e.id);
 
 // Associations réelles : on relie chaque mathématicien aux théorèmes de
 // `theorems.json` dont il est le découvreur (les champs de mathematicians.json
@@ -400,6 +446,8 @@ function renderHome() {
     mathematicians.length +
     domains.length +
     theorems.length +
+    formulas.length +
+    objects.length +
     problems.length +
     books.length +
     quotes.length +
@@ -407,7 +455,7 @@ function renderHome() {
     media.length;
 
   const universes = [
-    ["I.", "Explorer", "Mathématiciens, domaines, théorèmes, problèmes, bibliothèque.", `${fmtNum(totalFiches)} fiches`, "explorer"],
+    ["I.", "Explorer", "Mathématiciens, domaines, théorèmes, formules, objets, problèmes, bibliothèque.", `${fmtNum(totalFiches)} fiches`, "explorer"],
     ["II.", "Pratiquer", "Exercices guidés, quiz, progression, ateliers.", `${exercises.length + quiz.length} activités`, "pratiquer"],
     ["III.", "Laboratoire", "Visualisations interactives et outils de calcul.", `${VISU_TOOLS.length + CALC_TOOLS.length + 1} outils`, "labo"],
     ["IV.", "Histoire", "Chronologie et carte du monde mathématique.", `${timelineItems.length + places.length} repères`, "histoire"],
@@ -460,7 +508,72 @@ function renderHome() {
       .join("")}`;
 }
 
+/* ------------------------- cartes de liste réutilisables ------------------------- */
+const statusCls = (s) => (s === "Résolu" ? "solved" : s === "Actif" ? "active" : "open");
+
+function personRow(m) {
+  return `
+    <div class="person-row">
+      <button class="portrait-glyph" data-act="open" data-type="math" data-id="${escAttr(m.id)}">${esc(
+    m.portrait || m.name.charAt(0)
+  )}</button>
+      <button class="info" data-act="open" data-type="math" data-id="${escAttr(m.id)}">
+        <span class="name">${esc(m.name)}</span>
+        <span class="meta">${esc(personMeta(m))}</span>
+      </button>
+      ${favStar("math", m.id)}
+    </div>`;
+}
+function listCard(type, id, inner) {
+  return `
+    <div class="list-card open-card" data-act="open" data-type="${type}" data-id="${escAttr(id)}" role="button" tabindex="0">
+      <div class="card-main">${inner}</div>
+      ${favStar(type, id)}
+    </div>`;
+}
+function theoremCard(t) {
+  return listCard(
+    "theo",
+    t.name,
+    `<h3>${esc(t.name)}</h3>
+     <p class="formula-box">${texSpan(t.latex || t.statement, t.statement)}</p>
+     <p class="desc">${t.discoverer ? "<strong>" + esc(t.discoverer) + "</strong> — " : ""}${esc(t.intuition || "")}</p>`
+  );
+}
+function problemCard(p) {
+  return listCard(
+    "prob",
+    p.name,
+    `<div class="row-head"><h3>${esc(p.name)}</h3><span class="status-pill ${statusCls(p.status)}">${esc(
+      p.status
+    )}</span></div>
+     <p>${esc(p.accessible || p.text || "")}</p>`
+  );
+}
+function objectCard(o) {
+  return listCard(
+    "obj",
+    o.name,
+    `<div class="row-head"><h3>${esc(o.name)}</h3><span class="fam">${esc(
+      [o.category, o.dimension].filter(Boolean).join(" · ")
+    )}</span></div>
+     <p>${esc(o.description || "")}</p>`
+  );
+}
+function formulaCard(f) {
+  return listCard(
+    "form",
+    f.name,
+    `<div class="row-head"><h3>${esc(f.name)}</h3><span class="fam">${esc(f.category || "")}</span></div>
+     <p class="formula-box">${texSpan(f.latex || f.expression, f.expression)}</p>
+     <p class="desc">${esc(f.explanation || "")}</p>`
+  );
+}
+
 function renderExplorerList() {
+  if (state.cat === "bib" && state.bibCol) return renderBiblioCollection();
+  if (state.cat === "fav") return renderCollection();
+
   const chips = CATS.map(
     ([k, label]) =>
       `<button class="chip${state.cat === k ? " active" : ""}" data-act="cat" data-cat="${k}">${label}</button>`
@@ -472,20 +585,7 @@ function renderExplorerList() {
   if (state.cat === "math") {
     const list = mathematicians.filter((m) => matchQ(m.name + " " + (m.domains || []).join(" ")));
     count = `${fmtNum(list.length)} fiche${list.length > 1 ? "s" : ""} sur ${fmtNum(mathematicians.length)}`;
-    body = list
-      .slice(0, 80)
-      .map(
-        (m) => `
-      <div class="person-row">
-        <button class="portrait-glyph" data-act="open" data-id="${escAttr(m.id)}">${esc(m.portrait || m.name.charAt(0))}</button>
-        <button class="info" data-act="open" data-id="${escAttr(m.id)}">
-          <span class="name">${esc(m.name)}</span>
-          <span class="meta">${esc(personMeta(m))}</span>
-        </button>
-        <button class="fav-star" data-act="fav" data-id="${escAttr(m.id)}" aria-label="Favori">${favs[m.id] ? "★" : "☆"}</button>
-      </div>`
-      )
-      .join("");
+    body = list.slice(0, 80).map(personRow).join("");
     if (list.length > 80) body += `<p class="count-label">Affiner la recherche pour voir les ${fmtNum(list.length - 80)} autres fiches.</p>`;
   } else if (state.cat === "dom") {
     const list = domains.filter((d) => matchQ(d.name + " " + (d.intro || "")));
@@ -505,39 +605,22 @@ function renderExplorerList() {
   } else if (state.cat === "theo") {
     const list = theorems.filter((t) => matchQ(t.name + " " + (t.intuition || "")));
     count = `${fmtNum(list.length)} théorème${list.length > 1 ? "s" : ""}`;
-    body = list
-      .slice(0, 60)
-      .map(
-        (t) => `
-      <div class="theorem-card">
-        <div class="row-head">
-          <h3>${esc(t.name)}</h3>
-          <span class="who">${esc(t.discoverer || "")}</span>
-        </div>
-        <p class="formula-box">${texSpan(t.latex || t.statement, t.statement)}</p>
-        <p class="desc">${esc(t.intuition || "")}</p>
-      </div>`
-      )
-      .join("");
+    body = list.slice(0, 60).map(theoremCard).join("");
     if (list.length > 60) body += `<p class="count-label">Affiner la recherche pour voir les ${fmtNum(list.length - 60)} autres théorèmes.</p>`;
+  } else if (state.cat === "form") {
+    const list = formulas.filter((f) => matchQ(f.name + " " + (f.category || "") + " " + (f.explanation || "")));
+    count = `${fmtNum(list.length)} formule${list.length > 1 ? "s" : ""}`;
+    body = list.slice(0, 60).map(formulaCard).join("");
+    if (list.length > 60) body += `<p class="count-label">Affiner la recherche pour voir les ${fmtNum(list.length - 60)} autres formules.</p>`;
+  } else if (state.cat === "obj") {
+    const list = objects.filter((o) => matchQ(o.name + " " + (o.category || "") + " " + (o.description || "")));
+    count = `${list.length} objet${list.length > 1 ? "s" : ""}`;
+    body = list.map(objectCard).join("");
   } else if (state.cat === "prob") {
     const list = problems.filter((p) => matchQ(p.name + " " + (p.text || "")));
     count = `${list.length} problème${list.length > 1 ? "s" : ""} célèbre${list.length > 1 ? "s" : ""}`;
-    const cls = (s) => (s === "Résolu" ? "solved" : s === "Actif" ? "active" : "open");
-    body = list
-      .map(
-        (p) => `
-      <div class="problem-row">
-        <div class="row-head">
-          <h3>${esc(p.name)}</h3>
-          <span class="status-pill ${cls(p.status)}">${esc(p.status)}</span>
-        </div>
-        <p>${esc(p.accessible || p.text || "")}</p>
-      </div>`
-      )
-      .join("");
+    body = list.map(problemCard).join("");
   } else if (state.cat === "bib") {
-    if (state.bibCol) return renderBiblioCollection();
     count = `${BIBLIO.length} collections`;
     body = BIBLIO.map(
       ([col, num, name, desc, n]) => `
@@ -556,8 +639,53 @@ function renderExplorerList() {
     <input class="search-input" id="search" type="search" placeholder="Rechercher dans l'encyclopédie…" value="${escAttr(
       state.q
     )}" />
-    <div class="chip-row">${chips}</div>
+    <div class="chip-row wrap">${chips}</div>
     <p class="count-label">${esc(count)}</p>
+    ${body}`;
+}
+
+function renderCollection() {
+  const chips = CATS.map(
+    ([k, label]) =>
+      `<button class="chip${state.cat === k ? " active" : ""}" data-act="cat" data-cat="${k}">${label}</button>`
+  ).join("");
+
+  const groups = [
+    ["math", "Mathématiciens", (id) => mathById.get(id), personRow],
+    ["theo", "Théorèmes", (id) => theoByName.get(id), theoremCard],
+    ["form", "Formules", (id) => formByName.get(id), formulaCard],
+    ["obj", "Objets", (id) => objByName.get(id), objectCard],
+    ["prob", "Problèmes", (id) => probByName.get(id), problemCard],
+  ];
+
+  let total = 0;
+  let sections = "";
+  for (const [type, label, resolve, render] of groups) {
+    const items = Object.keys(favs)
+      .filter((k) => favs[k] && k.startsWith(type + ":"))
+      .map((k) => resolve(k.slice(type.length + 1)))
+      .filter((it) => it && matchQ(it.name));
+    if (!items.length) continue;
+    total += items.length;
+    sections += `
+      <div class="section-rule">
+        <span class="eyebrow-brick">${esc(label)}</span>
+        <span class="fill"></span>
+        <span class="aside">${items.length}</span>
+      </div>
+      ${items.map(render).join("")}`;
+  }
+
+  const body = total
+    ? sections
+    : `<p class="empty-note">Votre collection est vide. Touchez l'étoile ☆ d'une fiche pour l'ajouter.</p>`;
+
+  return `
+    <input class="search-input" id="search" type="search" placeholder="Rechercher dans ma collection…" value="${escAttr(
+      state.q
+    )}" />
+    <div class="chip-row wrap">${chips}</div>
+    <p class="count-label">${favCount()} favori${favCount() > 1 ? "s" : ""}</p>
     ${body}`;
 }
 
@@ -676,41 +804,169 @@ function hydratePortraits() {
   const id = frame.dataset.mid;
   resolvePortrait(id).then((url) => {
     // Ne redessiner que si l'on regarde toujours la même fiche et qu'une image a été trouvée.
-    if (url && state.screen === "explorer" && state.personId === id) render();
+    if (url && state.screen === "explorer" && state.open && state.open.type === "math" && state.open.id === id) render();
   });
 }
 
-function renderDetail() {
-  const m = mathById.get(state.personId);
-  if (!m) return renderExplorerList();
+/* ------------------------- fiches détail : helpers ------------------------- */
+function detailBack(label = "← Explorer") {
+  return `<button class="back-link" data-act="close-detail">${esc(label)}</button>`;
+}
+function detailFav(type, id) {
+  const on = isFav(type, id);
+  return `<button class="fav-button${on ? " on" : ""}" data-act="detail-fav" data-type="${type}" data-id="${escAttr(
+    id
+  )}">${on ? "★ Dans ma collection" : "☆ Ajouter à ma collection"}</button>`;
+}
+const paras = (text) => (text ? `<p>${esc(text)}</p>` : "");
+const bullets = (arr) =>
+  Array.isArray(arr) && arr.length ? `<ul class="detail-list">${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+const textOrList = (v) => (Array.isArray(v) ? bullets(v) : paras(v));
+const pills = (arr) =>
+  Array.isArray(arr) && arr.length ? `<div class="pill-row">${arr.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>` : "";
+function section(title, html) {
+  return html ? `<div class="detail-section"><h4>${esc(title)}</h4>${html}</div>` : "";
+}
 
+function renderDetail() {
+  const o = state.open;
+  if (!o) return renderExplorerList();
+  switch (o.type) {
+    case "math":
+      return renderMathDetail(o.id);
+    case "theo":
+      return renderTheoremDetail(o.id);
+    case "prob":
+      return renderProblemDetail(o.id);
+    case "obj":
+      return renderObjectDetail(o.id);
+    case "form":
+      return renderFormulaDetail(o.id);
+    default:
+      return renderExplorerList();
+  }
+}
+
+function renderMathDetail(id) {
+  const m = mathById.get(id);
+  if (!m) return renderExplorerList();
   if (!progress.viewed.includes(m.id)) {
     progress.viewed.push(m.id);
     saveProgress();
   }
-
   const dates = [m.birth, m.death].filter(Boolean).join("–");
-  const on = !!favs[m.id];
-  // Associations réelles issues de theorems.json (voir theoremsByMath).
   const linked = (theoremsByMath.get(m.id) || []).join(", ");
-
   return `
-    <button class="back-link" data-act="close-detail">← Explorer</button>
+    ${detailBack()}
     <p class="detail-role">${esc(role(m))} · ${esc(dates)}</p>
     <h2 class="detail-name">${esc(m.name)}</h2>
-
     ${renderPortraitFrame(m)}
-
     <p class="detail-bio">${esc(m.biography || "")}</p>
-
     <dl class="detail-dl">
       <dt>Nationalité</dt><dd>${esc(m.nationality || "—")}</dd>
       <dt>Domaines</dt><dd>${esc((m.domains || []).join(", ") || "—")}</dd>
       <dt>Associé à</dt><dd>${esc(linked || "—")}</dd>
     </dl>
+    ${detailFav("math", m.id)}`;
+}
 
-    <button class="fav-button${on ? " on" : ""}" data-act="detail-fav" data-id="${escAttr(m.id)}">${
-    on ? "★ Dans ma collection" : "☆ Ajouter à ma collection"
+function renderTheoremDetail(id) {
+  const t = theoByName.get(id);
+  if (!t) return renderExplorerList();
+  return `
+    ${detailBack()}
+    <p class="detail-role">Théorème${t.discoverer ? " · " + esc(t.discoverer) : ""}</p>
+    <h2 class="detail-name">${esc(t.name)}</h2>
+    <div class="formula-hero">${texSpan(t.latex || t.statement, t.statement)}</div>
+    ${section("Énoncé", t.latex && t.statement && t.statement !== t.latex ? paras(t.statement) : "")}
+    ${section("Intuition", paras(t.intuition))}
+    ${section("Démonstration", textOrList(t.proof))}
+    ${section("Variantes", textOrList(t.variants))}
+    ${section("Généralisation", textOrList(t.generalization))}
+    ${section("Applications", textOrList(t.applications))}
+    ${section("Histoire", paras(t.history))}
+    ${section("Exercices liés", bullets(t.exercises))}
+    ${section("Références", bullets(t.references))}
+    ${detailFav("theo", t.name)}`;
+}
+
+function renderProblemDetail(id) {
+  const p = probByName.get(id);
+  if (!p) return renderExplorerList();
+  const tags = [p.difficulty, p.period].filter(Boolean);
+  return `
+    ${detailBack()}
+    <p class="detail-role">Problème${p.category ? " · " + esc(p.category) : ""}${p.domain ? " · " + esc(p.domain) : ""}</p>
+    <h2 class="detail-name">${esc(p.name)}</h2>
+    <div class="pill-row">
+      <span class="status-pill ${statusCls(p.status)}">${esc(p.status)}</span>
+      ${tags.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}
+    </div>
+    ${section("En bref", paras(p.accessible))}
+    ${section("Énoncé", paras(p.text))}
+    ${section("Histoire", paras(p.history))}
+    ${section("État actuel", paras(p.current))}
+    ${section("Avancées", textOrList(p.advances))}
+    ${section("Avancées récentes", textOrList(p.recent))}
+    ${section("Impact", paras(p.impact))}
+    ${section("Références", bullets(p.references))}
+    ${detailFav("prob", p.name)}`;
+}
+
+function renderObjectDetail(id) {
+  const o = objByName.get(id);
+  if (!o) return renderExplorerList();
+  return `
+    ${detailBack()}
+    <p class="detail-role">Objet${[o.category, o.dimension].filter(Boolean).length ? " · " + esc([o.category, o.dimension].filter(Boolean).join(" · ")) : ""}</p>
+    <h2 class="detail-name">${esc(o.name)}</h2>
+    ${o.formula ? `<div class="formula-hero">${texSpan(o.formula, o.formula)}</div>` : ""}
+    ${section("Description", paras(o.description))}
+    ${section("Histoire", paras(o.history))}
+    ${section("Propriétés", bullets(o.properties))}
+    ${section("Applications", textOrList(o.applications))}
+    ${section("Visualisation", paras(o.visualization))}
+    ${section("Objets liés", pills(o.related))}
+    ${detailFav("obj", o.name)}`;
+}
+
+function renderFormulaDetail(id) {
+  const f = formByName.get(id);
+  if (!f) return renderExplorerList();
+  return `
+    ${detailBack()}
+    <p class="detail-role">Formule${f.category ? " · " + esc(f.category) : ""}</p>
+    <h2 class="detail-name">${esc(f.name)}</h2>
+    <div class="formula-hero">${texSpan(f.latex || f.expression, f.expression)}</div>
+    ${section("Explication", paras(f.explanation))}
+    ${section("Exemples", bullets(f.examples))}
+    ${section("Démonstration", textOrList(f.proof))}
+    ${section("Usages", bullets(f.uses))}
+    ${detailFav("form", f.name)}`;
+}
+
+function renderExerciseDetail(id) {
+  const e = exById.get(id);
+  if (!e) return renderPratiquer();
+  const done = (progress.done || []).includes(e.id);
+  const d = DIFF_DOTS[e.difficulty] || 1;
+  const dots = "●".repeat(d) + "○".repeat(3 - d);
+  return `
+    ${detailBack("← Pratiquer")}
+    <p class="detail-role">Exercice · ${esc([e.domain, e.level].filter(Boolean).join(" · "))}</p>
+    <h2 class="detail-name">${esc(e.prompt || e.title || "Exercice")}</h2>
+    <div class="pill-row">
+      <span class="pill">${esc(e.difficulty || "")} <span class="dots">${dots}</span></span>
+      ${e.time ? `<span class="pill">${esc(e.time)}</span>` : ""}
+      ${e.type ? `<span class="pill">${esc(e.type)}</span>` : ""}
+    </div>
+    ${section("Indice", paras(e.hint))}
+    ${section("Correction", paras(e.correction))}
+    ${section("Solution détaillée", paras(e.detailedSolution || e.solution))}
+    ${section("Démonstration", paras(e.proof))}
+    ${section("Références", bullets(e.references))}
+    <button class="fav-button${done ? " on" : ""}" data-act="ex-done" data-id="${escAttr(e.id)}">${
+    done ? "✓ Exercice réalisé" : "Marquer comme réalisé"
   }</button>`;
 }
 
@@ -758,14 +1014,15 @@ function renderExercises() {
       const d = DIFF_DOTS[e.difficulty] || 1;
       const dots = "●".repeat(d) + "○".repeat(3 - d);
       const title = e.prompt || e.title || "Exercice";
+      const done = (progress.done || []).includes(e.id);
       return `
-      <div class="exercise-row">
+      <button class="exercise-row" data-act="open" data-type="ex" data-id="${escAttr(e.id)}">
         <span class="info">
-          <span class="title">${esc(title)}</span>
+          <span class="title">${done ? "✓ " : ""}${esc(title)}</span>
           <span class="meta">${esc([e.level, e.domain, e.time].filter(Boolean).join(" · "))}</span>
         </span>
         <span class="dots">${dots}</span>
-      </div>`;
+      </button>`;
     })
     .join("");
   return `<div class="chip-row scroll">${chips}</div>${rows}`;
@@ -808,11 +1065,11 @@ function renderProgression() {
     [currentStreak(), "série (jours)"],
   ];
 
-  // Signal par domaine : favoris (via domaines des fiches) + quiz réussis.
+  // Signal par domaine : favoris mathématiciens (via domaines des fiches) + quiz réussis.
   const score = {};
-  Object.entries(favs).forEach(([id, on]) => {
-    if (!on) return;
-    const m = mathById.get(id);
+  Object.entries(favs).forEach(([key, on]) => {
+    if (!on || !key.startsWith("math:")) return;
+    const m = mathById.get(key.slice(5));
     (m?.domains || []).forEach((d) => (score[d] = (score[d] || 0) + 2));
   });
   Object.entries(progress.quizByDomain).forEach(([d, n]) => (score[d] = (score[d] || 0) + n * 2));
@@ -862,6 +1119,7 @@ function renderProgression() {
 
 function renderLabo() {
   if (state.labTool) return renderLabTool();
+  if (state.calcTool) return renderCalcTool();
 
   const tools = VISU_TOOLS.map(
     ([key, glyph, name, desc]) => `
@@ -872,11 +1130,11 @@ function renderLabo() {
   ).join("");
 
   const calc = CALC_TOOLS.map(
-    ([name, desc]) => `
-    <div class="calc-row">
+    ([key, name, desc]) => `
+    <button class="calc-row" data-act="calc-tool" data-tool="${key}">
       <span class="info"><span class="name">${esc(name)}</span><span class="desc">${esc(desc)}</span></span>
       <span class="arrow">→</span>
-    </div>`
+    </button>`
   ).join("");
 
   return `
@@ -988,7 +1246,7 @@ function compileExpr(src) {
     const t = tokens[i];
     if (isNum(t)) out.push({ n: parseFloat(t) });
     else if (isName(t)) {
-      if (t === "x") out.push({ x: 1 });
+      if (t === "x" || t === "n") out.push({ x: 1 });
       else if (t in consts) out.push({ n: consts[t] });
       else if (t in fns) ops.push({ f: t });
       else throw new Error("Inconnu : " + t);
@@ -1449,6 +1707,221 @@ function mountLabTool() {
   if (fn) labCleanup = fn(host);
 }
 
+/* =========================================================
+   CALCULATRICES DU LABORATOIRE (DOM, calcul en direct)
+   ========================================================= */
+const CALC_META = {
+  sci: ["Calculatrice scientifique", "+ − × ÷ ^, sin, cos, tan, exp, log, ln, sqrt, abs, pi, e."],
+  matrix: ["Calcul matriciel 2×2", "Déterminant, inverse et produit de deux matrices 2×2."],
+  seq: ["Suites", "Terme général u(n) : premiers termes et tendance."],
+  stat: ["Statistiques & probabilités", "Série de valeurs et loi binomiale."],
+  conv: ["Convertisseurs", "Angles, longueurs et masses."],
+};
+const num = (s) => parseFloat(String(s).replace(",", "."));
+function fmtCalc(v) {
+  if (!Number.isFinite(v)) return "—";
+  if (Number.isInteger(v)) return v.toLocaleString("fr-FR");
+  const abs = Math.abs(v);
+  if (abs !== 0 && (abs < 1e-4 || abs >= 1e10)) return v.toExponential(6).replace(".", ",");
+  return String(Number(v.toPrecision(10))).replace(".", ",");
+}
+const mtxInput = (id, v) => `<input id="${id}" class="mtx-cell" inputmode="decimal" value="${escAttr(v)}" />`;
+
+function calcHtml(tool) {
+  if (tool === "sci") {
+    return `
+      <label class="lab-field">= <input id="sciInput" type="text" value="2*pi + sqrt(2)" spellcheck="false" /></label>
+      <p class="lab-readout" id="sciOut"></p>
+      <div class="lab-presets">
+        ${["sqrt(2)", "sin(pi/6)", "2^10", "ln(e^3)", "(1+sqrt(5))/2"]
+          .map((x) => `<button class="chip small" data-preset="${escAttr(x)}" data-target="#sciInput">${esc(x)}</button>`)
+          .join("")}
+      </div>`;
+  }
+  if (tool === "matrix") {
+    return `
+      <div class="mtx-pair">
+        <div><p class="mtx-label">A</p><div class="mtx-grid">${mtxInput("mA", "1")}${mtxInput("mB", "2")}${mtxInput(
+      "mC",
+      "3"
+    )}${mtxInput("mD", "4")}</div></div>
+        <div><p class="mtx-label">B</p><div class="mtx-grid">${mtxInput("mE", "0")}${mtxInput("mF", "1")}${mtxInput(
+      "mG",
+      "1"
+    )}${mtxInput("mH", "0")}</div></div>
+      </div>
+      <div class="lab-readout" id="mtxOut"></div>`;
+  }
+  if (tool === "seq") {
+    return `
+      <label class="lab-field">u(n) = <input id="seqExpr" type="text" value="1/n" spellcheck="false" /></label>
+      <div class="calc-inline">
+        <label>de n = <input id="seqFrom" class="mtx-cell" inputmode="numeric" value="1" /></label>
+        <label>sur <input id="seqN" class="mtx-cell" inputmode="numeric" value="8" /> termes</label>
+      </div>
+      <div class="lab-readout" id="seqOut"></div>`;
+  }
+  if (tool === "stat") {
+    return `
+      <label class="lab-field vert">Série de valeurs
+        <input id="statData" type="text" value="12, 15, 9, 20, 7, 15" spellcheck="false" />
+      </label>
+      <div class="lab-readout" id="statOut"></div>
+      <div class="section-rule"><span class="eyebrow-brick">Loi binomiale</span><span class="fill"></span></div>
+      <div class="calc-inline">
+        <label>n <input id="binN" class="mtx-cell" inputmode="numeric" value="10" /></label>
+        <label>p <input id="binP" class="mtx-cell" inputmode="decimal" value="0,5" /></label>
+        <label>k <input id="binK" class="mtx-cell" inputmode="numeric" value="4" /></label>
+      </div>
+      <div class="lab-readout" id="binOut"></div>`;
+  }
+  if (tool === "conv") {
+    return `
+      <div class="calc-inline"><label>Angle <input id="convAngle" class="mtx-cell" inputmode="decimal" value="90" /> °</label></div>
+      <p class="lab-readout" id="convAngleOut"></p>
+      <div class="calc-inline"><label>Longueur <input id="convLen" class="mtx-cell" inputmode="decimal" value="1" /> m</label></div>
+      <p class="lab-readout" id="convLenOut"></p>
+      <div class="calc-inline"><label>Masse <input id="convMass" class="mtx-cell" inputmode="decimal" value="1" /> kg</label></div>
+      <p class="lab-readout" id="convMassOut"></p>`;
+  }
+  return "";
+}
+
+function renderCalcTool() {
+  const [title, hint] = CALC_META[state.calcTool] || ["Outil", ""];
+  return `
+    <button class="back-link" data-act="lab-back">← Laboratoire</button>
+    <h2 class="lab-title">${esc(title)}</h2>
+    <p class="lab-hint">${esc(hint)}</p>
+    <div class="calc-panel" id="calcPanel">${calcHtml(state.calcTool)}</div>`;
+}
+
+function calcCompute(tool, panel) {
+  const $ = (id) => panel.querySelector(id);
+  const set = (id, html) => {
+    const el = $(id);
+    if (el) el.innerHTML = html;
+  };
+  if (tool === "sci") {
+    try {
+      const v = compileExpr($("#sciInput").value)(0);
+      set("#sciOut", Number.isFinite(v) ? "= <strong>" + fmtCalc(v) + "</strong>" : "Résultat non défini");
+    } catch (e) {
+      set("#sciOut", "Expression invalide");
+    }
+  } else if (tool === "matrix") {
+    const [a, b, c, d, e, f, g, h] = ["#mA", "#mB", "#mC", "#mD", "#mE", "#mF", "#mG", "#mH"].map((id) => num($(id).value));
+    if ([a, b, c, d, e, f, g, h].some(Number.isNaN)) return set("#mtxOut", "Compléter les huit coefficients.");
+    const det = a * d - b * c;
+    const prod = [a * e + b * g, a * f + b * h, c * e + d * g, c * f + d * h];
+    const inv =
+      det === 0
+        ? "<em>non inversible (det = 0)</em>"
+        : `¹⁄<sub>det</sub> · [ ${fmtCalc(d / det)}, ${fmtCalc(-b / det)} ; ${fmtCalc(-c / det)}, ${fmtCalc(a / det)} ]`;
+    set(
+      "#mtxOut",
+      `<p>det(A) = <strong>${fmtCalc(det)}</strong></p>
+       <p>A⁻¹ = ${inv}</p>
+       <p>A × B = [ ${prod.map(fmtCalc).join(", ")} ]</p>`
+    );
+  } else if (tool === "seq") {
+    const from = Math.round(num($("#seqFrom").value));
+    const count = Math.min(40, Math.max(1, Math.round(num($("#seqN").value))));
+    if (Number.isNaN(from) || Number.isNaN(count)) return set("#seqOut", "Indices invalides.");
+    let fn;
+    try {
+      fn = compileExpr($("#seqExpr").value);
+    } catch {
+      return set("#seqOut", "Expression u(n) invalide.");
+    }
+    const terms = [];
+    for (let i = 0; i < count; i++) terms.push(fn(from + i));
+    const last = terms[terms.length - 1];
+    const prev = terms[terms.length - 2];
+    let trend = "";
+    if (terms.length >= 2 && Number.isFinite(last) && Number.isFinite(prev)) {
+      trend =
+        Math.abs(last - prev) < 1e-6
+          ? `semble converger vers ≈ ${fmtCalc(last)}`
+          : last > prev
+          ? "croissante sur la plage"
+          : "décroissante sur la plage";
+    }
+    set(
+      "#seqOut",
+      `<p>${terms.map((t, i) => `u(${from + i}) = ${fmtCalc(t)}`).join("<br>")}</p>${trend ? `<p class="calc-note">${esc(trend)}</p>` : ""}`
+    );
+  } else if (tool === "stat") {
+    const xs = ($("#statData").value.match(/-?\d+[.,]?\d*/g) || []).map((s) => num(s)).filter((n) => !Number.isNaN(n));
+    if (!xs.length) set("#statOut", "Saisir des valeurs numériques.");
+    else {
+      const n = xs.length;
+      const sum = xs.reduce((a, b) => a + b, 0);
+      const mean = sum / n;
+      const variance = xs.reduce((a, b) => a + (b - mean) ** 2, 0) / n;
+      const sorted = [...xs].sort((a, b) => a - b);
+      const median = n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2;
+      set(
+        "#statOut",
+        `<p>n = <strong>${n}</strong> · somme = ${fmtCalc(sum)}</p>
+         <p>moyenne = <strong>${fmtCalc(mean)}</strong> · médiane = ${fmtCalc(median)}</p>
+         <p>variance = ${fmtCalc(variance)} · écart-type = ${fmtCalc(Math.sqrt(variance))}</p>
+         <p>min = ${fmtCalc(sorted[0])} · max = ${fmtCalc(sorted[n - 1])}</p>`
+      );
+    }
+    const bn = Math.round(num($("#binN").value));
+    const bp = num($("#binP").value);
+    const bk = Math.round(num($("#binK").value));
+    if (Number.isNaN(bn) || Number.isNaN(bp) || Number.isNaN(bk) || bp < 0 || bp > 1 || bk < 0 || bk > bn) {
+      set("#binOut", "Paramètres : 0 ≤ p ≤ 1 et 0 ≤ k ≤ n.");
+    } else {
+      let choose = 1;
+      for (let i = 0; i < bk; i++) choose = (choose * (bn - i)) / (i + 1);
+      const pk = choose * Math.pow(bp, bk) * Math.pow(1 - bp, bn - bk);
+      set(
+        "#binOut",
+        `<p>P(X = ${bk}) = <strong>${fmtCalc(pk)}</strong></p>
+         <p>espérance = ${fmtCalc(bn * bp)} · variance = ${fmtCalc(bn * bp * (1 - bp))}</p>`
+      );
+    }
+  } else if (tool === "conv") {
+    const deg = num($("#convAngle").value);
+    set(
+      "#convAngleOut",
+      Number.isNaN(deg) ? "—" : `${fmtCalc((deg * Math.PI) / 180)} rad · ${fmtCalc((deg / 9) * 10)} grades`
+    );
+    const m = num($("#convLen").value);
+    set(
+      "#convLenOut",
+      Number.isNaN(m) ? "—" : `${fmtCalc(m / 1000)} km · ${fmtCalc(m * 100)} cm · ${fmtCalc(m / 1609.344)} mi · ${fmtCalc(m / 0.3048)} ft`
+    );
+    const kg = num($("#convMass").value);
+    set(
+      "#convMassOut",
+      Number.isNaN(kg) ? "—" : `${fmtCalc(kg * 1000)} g · ${fmtCalc(kg / 0.45359237)} lb · ${fmtCalc(kg / 0.0283495)} oz`
+    );
+  }
+}
+
+function mountCalcTool() {
+  if (state.screen !== "labo" || !state.calcTool) return;
+  const panel = document.getElementById("calcPanel");
+  if (!panel) return;
+  const tool = state.calcTool;
+  const recompute = () => calcCompute(tool, panel);
+  panel.addEventListener("input", recompute);
+  panel.addEventListener("click", (e) => {
+    const chip = e.target.closest("[data-preset]");
+    if (!chip) return;
+    const input = panel.querySelector(chip.dataset.target || "input");
+    if (input) {
+      input.value = chip.dataset.preset;
+      recompute();
+    }
+  });
+  recompute();
+}
+
 function solveQuadratic() {
   const a = parseFloat(String(state.a).replace(",", "."));
   const b = parseFloat(String(state.b).replace(",", "."));
@@ -1539,9 +2012,9 @@ function screenBody() {
     case "home":
       return renderHome();
     case "explorer":
-      return state.personId ? renderDetail() : renderExplorerList();
+      return state.open ? renderDetail() : renderExplorerList();
     case "pratiquer":
-      return renderPratiquer();
+      return state.open && state.open.type === "ex" ? renderExerciseDetail(state.open.id) : renderPratiquer();
     case "labo":
       return renderLabo();
     case "histoire":
@@ -1587,6 +2060,7 @@ function render() {
   renderMath();
   hydratePortraits();
   mountLabTool();
+  mountCalcTool();
 
   if (focusId) {
     const el = document.getElementById(focusId);
@@ -1618,7 +2092,7 @@ document.getElementById("app").addEventListener("click", (e) => {
     case "menu-go": {
       const patch = d.patch ? JSON.parse(d.patch) : {};
       state.q = "";
-      setState({ screen: d.screen, menuOpen: false, personId: null, bibCol: null, ...patch });
+      setState({ screen: d.screen, menuOpen: false, open: null, bibCol: null, labTool: null, calcTool: null, ...patch });
       break;
     }
     case "nav":
@@ -1628,19 +2102,28 @@ document.getElementById("app").addEventListener("click", (e) => {
       setState({ cat: d.cat, bibCol: null, q: "" });
       break;
     case "open":
-      setState({ personId: d.id });
+      openItem(d.type || "math", d.id);
       break;
     case "close-detail":
-      setState({ personId: null });
+      setState({ open: null });
       break;
     case "fav":
-      toggleFav(d.id);
+      toggleFav(d.type || "math", d.id);
       render();
       break;
     case "detail-fav":
-      toggleFav(d.id);
+      toggleFav(d.type || "math", d.id);
       render();
       break;
+    case "ex-done": {
+      const set = new Set(progress.done || []);
+      if (set.has(d.id)) set.delete(d.id);
+      else set.add(d.id);
+      progress.done = [...set];
+      saveProgress();
+      render();
+      break;
+    }
     case "bib":
       setState({ bibCol: d.col, q: "" });
       break;
@@ -1675,8 +2158,11 @@ document.getElementById("app").addEventListener("click", (e) => {
     case "lab-tool":
       setState({ labTool: d.tool });
       break;
+    case "calc-tool":
+      setState({ calcTool: d.tool });
+      break;
     case "lab-back":
-      setState({ labTool: null });
+      setState({ labTool: null, calcTool: null });
       break;
     case "graph-preset":
       setState({ graphFn: d.fn });

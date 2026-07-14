@@ -461,6 +461,35 @@ input:focus, button:focus-visible, select:focus-visible {
 .domain-row .fam { flex: none; font-size: 11px; color: var(--mut); }
 .domain-row p { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: var(--ink-3); }
 
+/* Cartes de liste cliquables (théorèmes, formules, objets, problèmes) */
+.list-card {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 12px;
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  padding: 14px 10px 14px 16px;
+  width: 100%;
+}
+.list-card.open-card { cursor: pointer; }
+.list-card.open-card:hover { border-color: var(--line); }
+.list-card .card-main { flex: 1; min-width: 0; }
+.list-card .card-main h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 16.5px;
+}
+.list-card .card-main .fam { flex: none; font-size: 11px; color: var(--mut); }
+.list-card .card-main .who { flex: none; font-size: 11px; color: var(--mut); }
+.list-card .card-main p { margin: 6px 0 0; font-size: 13px; line-height: 1.55; color: var(--ink-3); }
+.list-card .card-main p.desc { font-size: 12.5px; }
+.list-card .card-main .formula-box { font-size: 16px; margin: 8px 0; }
+.list-card > .fav-star { flex: none; }
+
 /* Théorèmes */
 .theorem-card {
   margin-top: 14px;
@@ -672,6 +701,25 @@ input:focus, button:focus-visible, select:focus-visible {
   line-height: 1.6;
   color: var(--ink-2);
 }
+.detail-section p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.detail-list { margin: 0; padding-left: 18px; }
+/* Formule mise en avant en tête de fiche (théorème, formule, objet) */
+.formula-hero {
+  margin: 16px 0;
+  padding: 18px 14px;
+  background: var(--hatch), var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  text-align: center;
+  font-size: 17px;
+  overflow-x: auto;
+}
+.formula-hero .katex { font-style: normal; }
 
 /* ===================== SEGMENTED CONTROL ===================== */
 .segmented {
@@ -698,6 +746,15 @@ input:focus, button:focus-visible, select:focus-visible {
   align-items: center;
   padding: 13px 0;
   border-bottom: 1px solid var(--line-2);
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 .exercise-row .info { flex: 1; min-width: 0; }
 .exercise-row .title { display: block; font-size: 14.5px; font-weight: 600; }
@@ -1006,11 +1063,73 @@ input:focus, button:focus-visible, select:focus-visible {
   align-items: baseline;
   padding: 13px 4px;
   border-bottom: 1px solid var(--line-2);
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
+.calc-row:hover .name { color: var(--accent); }
 .calc-row .info { flex: 1; }
 .calc-row .name { display: block; font-size: 14px; font-weight: 600; }
 .calc-row .desc { display: block; margin-top: 2px; font-size: 12px; color: var(--ink-3); }
 .calc-row .arrow { flex: none; color: var(--mut-3); }
+
+/* Panneaux de calculatrices */
+.calc-panel { margin-top: 4px; }
+.lab-field.vert {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+.lab-field.vert input { flex: none; }
+.calc-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.calc-inline label { display: inline-flex; align-items: center; gap: 6px; }
+.mtx-cell {
+  width: 64px;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0 8px;
+  background: var(--app);
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.mtx-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 8px;
+}
+.mtx-label {
+  margin: 0 0 6px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent);
+}
+.mtx-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 6px;
+}
+.calc-note { color: var(--accent); font-weight: 600; }
+.lab-readout p { margin: 0 0 4px; }
+.lab-readout strong { color: var(--ink); }
 
 /* ===================== HISTOIRE ===================== */
 .timeline { margin-top: 20px; display: grid; gap: 0; }
