@@ -44,8 +44,20 @@ Fonctionnalites restaurees (juillet 2026, apres audit des pertes de la refonte) 
   `mountCalcTool`) : scientifique (via `compileExpr`), matriciel 2×2 (det/inverse/produit),
   suites u(n), stats + loi binomiale, convertisseurs (angles/longueurs/masses).
 
+Navigation & recherche (juillet 2026) :
+- Routage par hash (`stateToHash`/`applyHash`/`syncHash` + `popstate`/`hashchange`) :
+  liens profonds partageables (`#/explorer/math/gauss`, `#/labo/calc/matrix`…),
+  bouton Retour/Suivant du navigateur, etat restaure au chargement. `pushState` en
+  sortie, `applyHash` en entree ; la recherche `q` n'est pas dans l'URL (pas de spam d'historique).
+- Recherche globale : categorie « Tout » (`renderAllSearch`) cherchant math/theo/form/obj/prob,
+  resultats groupes avec « voir les N → » (bascule de categorie en gardant la requete via `data-keepq`).
+- Recherche debouncee (130 ms).
+- Accessibilite : activation clavier (Entree/Espace) des cartes `role="button"`,
+  `aria-live` sur les compteurs de resultats, `:focus-visible` sur les elements cliquables.
+
 Reste possible : favoris pour la bibliotheque (livres/citations/glossaire/media) ;
-fiches detail pour les domaines ; enrichir la couverture des portraits.
+fiches detail pour les domaines ; enrichir la couverture des portraits ; qualite du
+contenu genere (preuves de theoremes toutes identiques, corrections d'exercices repetitives).
 
 ---
 

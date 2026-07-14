@@ -182,6 +182,7 @@ const CHAPTER = {
   histoire: "Chap. IV — Histoire",
 };
 const CATS = [
+  ["all", "Tout"],
   ["math", "Mathématiciens"],
   ["dom", "Domaines"],
   ["theo", "Théorèmes"],
@@ -570,14 +571,61 @@ function formulaCard(f) {
   );
 }
 
-function renderExplorerList() {
-  if (state.cat === "bib" && state.bibCol) return renderBiblioCollection();
-  if (state.cat === "fav") return renderCollection();
-
-  const chips = CATS.map(
+const explorerChips = () =>
+  CATS.map(
     ([k, label]) =>
       `<button class="chip${state.cat === k ? " active" : ""}" data-act="cat" data-cat="${k}">${label}</button>`
   ).join("");
+
+// Recherche transversale à tous les types de contenu.
+function renderAllSearch() {
+  const q = state.q.trim();
+  let count = "";
+  let body = "";
+  if (!q) {
+    body = `<p class="empty-note">Rechercher dans toute l'encyclopédie : mathématiciens, théorèmes, formules, objets et problèmes. Saisissez un mot-clé ci-dessus.</p>`;
+  } else {
+    const groups = [
+      ["Mathématiciens", "math", mathematicians.filter((m) => matchQ(m.name + " " + (m.domains || []).join(" "))), personRow],
+      ["Théorèmes", "theo", theorems.filter((t) => matchQ(t.name + " " + (t.intuition || ""))), theoremCard],
+      ["Formules", "form", formulas.filter((f) => matchQ(f.name + " " + (f.category || "") + " " + (f.explanation || ""))), formulaCard],
+      ["Objets", "obj", objects.filter((o) => matchQ(o.name + " " + (o.category || "") + " " + (o.description || ""))), objectCard],
+      ["Problèmes", "prob", problems.filter((p) => matchQ(p.name + " " + (p.text || ""))), problemCard],
+    ];
+    let total = 0;
+    for (const [label, cat, list, render] of groups) {
+      total += list.length;
+      if (!list.length) continue;
+      const more =
+        list.length > 5
+          ? `<button class="see-all" data-act="cat" data-cat="${cat}" data-keepq="1">voir les ${fmtNum(list.length)} →</button>`
+          : "";
+      body += `
+        <div class="section-rule">
+          <span class="eyebrow-brick">${esc(label)}</span>
+          <span class="fill"></span>
+          ${more || `<span class="aside">${list.length}</span>`}
+        </div>
+        ${list.slice(0, 5).map(render).join("")}`;
+    }
+    count = `${fmtNum(total)} résultat${total > 1 ? "s" : ""} pour « ${esc(q)} »`;
+    if (!total) body = `<p class="empty-note">Aucun résultat pour « ${esc(q)} ».</p>`;
+  }
+  return `
+    <input class="search-input" id="search" type="search" aria-label="Recherche globale" placeholder="Rechercher dans l'encyclopédie…" value="${escAttr(
+      state.q
+    )}" />
+    <div class="chip-row wrap">${explorerChips()}</div>
+    <p class="count-label" aria-live="polite">${esc(count)}</p>
+    ${body}`;
+}
+
+function renderExplorerList() {
+  if (state.cat === "bib" && state.bibCol) return renderBiblioCollection();
+  if (state.cat === "fav") return renderCollection();
+  if (state.cat === "all") return renderAllSearch();
+
+  const chips = explorerChips();
 
   let count = "";
   let body = "";
@@ -636,19 +684,16 @@ function renderExplorerList() {
   }
 
   return `
-    <input class="search-input" id="search" type="search" placeholder="Rechercher dans l'encyclopédie…" value="${escAttr(
+    <input class="search-input" id="search" type="search" aria-label="Recherche" placeholder="Rechercher dans l'encyclopédie…" value="${escAttr(
       state.q
     )}" />
     <div class="chip-row wrap">${chips}</div>
-    <p class="count-label">${esc(count)}</p>
+    <p class="count-label" aria-live="polite">${esc(count)}</p>
     ${body}`;
 }
 
 function renderCollection() {
-  const chips = CATS.map(
-    ([k, label]) =>
-      `<button class="chip${state.cat === k ? " active" : ""}" data-act="cat" data-cat="${k}">${label}</button>`
-  ).join("");
+  const chips = explorerChips();
 
   const groups = [
     ["math", "Mathématiciens", (id) => mathById.get(id), personRow],
@@ -2046,6 +2091,80 @@ function renderMath() {
   });
 }
 
+/* ------------------------- routage par hash (deep links + Retour) ------------------------- */
+const DETAIL_CATS = ["math", "theo", "prob", "obj", "form"];
+const EXPLORER_CATS = ["all", "math", "dom", "theo", "form", "obj", "prob", "bib", "fav"];
+
+function stateToHash() {
+  const s = state;
+  switch (s.screen) {
+    case "explorer":
+      if (s.open && DETAIL_CATS.includes(s.open.type)) return `/explorer/${s.open.type}/${encodeURIComponent(s.open.id)}`;
+      if (s.cat === "bib" && s.bibCol) return `/explorer/bib/${s.bibCol}`;
+      return `/explorer/${s.cat}`;
+    case "pratiquer":
+      if (s.open && s.open.type === "ex") return `/pratiquer/ex/${encodeURIComponent(s.open.id)}`;
+      return `/pratiquer/${s.pratTab}`;
+    case "labo":
+      if (s.labTool) return `/labo/${s.labTool}`;
+      if (s.calcTool) return `/labo/calc/${s.calcTool}`;
+      return "/labo";
+    case "histoire":
+      return `/histoire/${s.histTab}`;
+    default:
+      return "/";
+  }
+}
+
+function applyHash(hash) {
+  const raw = String(hash || "").replace(/^#\/?/, "");
+  const seg = raw.split("/");
+  const screen = seg[0] || "home";
+  const a = seg[1] ? decodeURIComponent(seg[1]) : "";
+  const rest = seg.slice(2).join("/");
+  const b = rest ? decodeURIComponent(rest) : "";
+  const patch = { menuOpen: false, open: null, bibCol: null, labTool: null, calcTool: null };
+
+  if (screen === "explorer") {
+    patch.screen = "explorer";
+    patch.cat = EXPLORER_CATS.includes(a) ? a : "math";
+    if (patch.cat === "bib" && b) patch.bibCol = b;
+    else if (DETAIL_CATS.includes(patch.cat) && b) patch.open = { type: patch.cat, id: b };
+  } else if (screen === "pratiquer") {
+    patch.screen = "pratiquer";
+    patch.pratTab = ["ex", "quiz", "prog"].includes(a) ? a : "ex";
+    if (patch.pratTab === "ex" && b) patch.open = { type: "ex", id: b };
+  } else if (screen === "labo") {
+    patch.screen = "labo";
+    if (["graph", "geo", "poly", "fractal"].includes(a)) patch.labTool = a;
+    else if (a === "calc" && ["sci", "matrix", "seq", "stat", "conv"].includes(b)) patch.calcTool = b;
+  } else if (screen === "histoire") {
+    patch.screen = "histoire";
+    patch.histTab = a === "carte" ? "carte" : "chrono";
+  } else {
+    patch.screen = "home";
+  }
+  Object.assign(state, patch);
+}
+
+let routeReady = false;
+let lastAppliedHash = null;
+function syncHash() {
+  const target = "#" + stateToHash();
+  if ((location.hash || "#/") !== target) {
+    if (!routeReady) history.replaceState(null, "", target);
+    else history.pushState(null, "", target);
+  }
+  routeReady = true;
+  lastAppliedHash = location.hash;
+}
+function onRouteChange() {
+  if (location.hash === lastAppliedHash) return;
+  lastAppliedHash = location.hash;
+  applyHash(location.hash);
+  render();
+}
+
 function render() {
   const active = document.activeElement;
   const focusId = active && active.id;
@@ -2061,6 +2180,7 @@ function render() {
   hydratePortraits();
   mountLabTool();
   mountCalcTool();
+  syncHash();
 
   if (focusId) {
     const el = document.getElementById(focusId);
@@ -2099,7 +2219,7 @@ document.getElementById("app").addEventListener("click", (e) => {
       setScreen(d.screen);
       break;
     case "cat":
-      setState({ cat: d.cat, bibCol: null, q: "" });
+      setState({ cat: d.cat, bibCol: null, q: d.keepq ? state.q : "" });
       break;
     case "open":
       openItem(d.type || "math", d.id);
@@ -2175,16 +2295,29 @@ document.getElementById("app").addEventListener("click", (e) => {
   }
 });
 
+let searchTimer = null;
 screenEl.addEventListener("input", (e) => {
   const t = e.target;
   if (t.id === "search") {
     state.q = t.value;
-    render();
+    // Debounce : évite de re-rendre (et re-filtrer 2000 entrées) à chaque frappe.
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(render, 130);
   } else if (t.id === "eqA" || t.id === "eqB" || t.id === "eqC") {
     state[t.id === "eqA" ? "a" : t.id === "eqB" ? "b" : "c"] = t.value;
     const out = document.getElementById("eqResult");
     if (out) out.textContent = solveQuadratic();
   }
+});
+
+// Accessibilité : activer au clavier (Entrée/Espace) les cartes cliquables
+// qui ne sont pas des éléments interactifs natifs (role="button").
+document.getElementById("app").addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+  const el = e.target.closest("[data-act]");
+  if (!el || ["BUTTON", "A", "INPUT", "TEXTAREA", "SELECT"].includes(el.tagName)) return;
+  e.preventDefault();
+  el.click();
 });
 
 // Repli si l'image du portrait échoue à charger : on revient au glyphe.
@@ -2206,7 +2339,13 @@ screenEl.addEventListener(
   true
 );
 
+// Navigation Retour/Suivant du navigateur et édition manuelle du hash.
+window.addEventListener("popstate", onRouteChange);
+window.addEventListener("hashchange", onRouteChange);
+
 // KaTeX peut arriver après le premier rendu (script defer).
 window.addEventListener("load", renderMath);
 
+// Restaure l'état depuis l'URL (lien profond) avant le premier rendu.
+applyHash(location.hash);
 render();
