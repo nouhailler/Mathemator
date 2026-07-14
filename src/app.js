@@ -120,6 +120,9 @@ const state = {
   quizIdx: 0,
   quizPick: null,
   histTab: "chrono", // chrono | carte
+  labTool: null, // null | graph | geo | poly | fractal
+  graphFn: "sin(x) * x / 3",
+  polySolid: "cube",
   a: "1",
   b: "-3",
   c: "2",
@@ -131,7 +134,7 @@ function setState(patch) {
 }
 function setScreen(screen) {
   state.q = "";
-  setState({ screen, personId: null, menuOpen: false, bibCol: null });
+  setState({ screen, personId: null, menuOpen: false, bibCol: null, labTool: null });
 }
 
 /* ------------------------- constantes de contenu ------------------------- */
@@ -164,10 +167,10 @@ const PRAT_TABS = [
   ["prog", "Progression"],
 ];
 const VISU_TOOLS = [
-  ["ƒ(x)", "Grapheur", "Courbes 2D interactives"],
-  ["△", "Géométrie dynamique", "Points déplaçables, mesures"],
-  ["◇", "Polyèdres 3D", "Solides manipulables"],
-  ["ℳ", "Fractales", "Mandelbrot, Julia, Koch"],
+  ["graph", "ƒ(x)", "Grapheur", "Courbes 2D interactives"],
+  ["geo", "△", "Géométrie dynamique", "Points déplaçables, mesures"],
+  ["poly", "◇", "Polyèdres 3D", "Solides manipulables"],
+  ["fractal", "ℳ", "Fractales", "Mandelbrot, plan complexe"],
 ];
 const CALC_TOOLS = [
   ["Calculatrice scientifique", "Expressions, fonctions usuelles"],
@@ -192,6 +195,96 @@ const FEMININE = new Set([
 
 /* index rapides */
 const mathById = new Map(mathematicians.map((m) => [m.id, m]));
+
+// Associations réelles : on relie chaque mathématicien aux théorèmes de
+// `theorems.json` dont il est le découvreur (les champs de mathematicians.json
+// ne contiennent que des libellés génériques auto-générés).
+const theoremsByMath = (() => {
+  const nameTokens = (name) => {
+    const words = String(name).split(/[\s'’.\-]+/).filter(Boolean);
+    const keep = words.filter((w, i) => w.length >= 5 || (i === words.length - 1 && w.length >= 4));
+    return keep.map((w) => w.toLowerCase());
+  };
+  const map = new Map();
+  for (const m of mathematicians) {
+    const toks = nameTokens(m.name);
+    if (!toks.length) continue;
+    const hits = [];
+    for (const t of theorems) {
+      const hay = ((t.discoverer || "") + " " + (t.name || "")).toLowerCase();
+      if (toks.some((tok) => hay.includes(tok))) hits.push(t.name);
+      if (hits.length >= 3) break;
+    }
+    if (hits.length) map.set(m.id, hits);
+  }
+  return map;
+})();
+
+/* ------------------------- portraits réels ------------------------- */
+// media.json (type « Portrait ») recense les mathématiciens disposant d'un
+// portrait libre sur Wikimedia Commons. On relie chaque fiche à son entrée
+// média, puis on résout l'image réelle via l'API REST de Wikipédia.
+const normName = (s) =>
+  String(s)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z ]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+const portraitMediaByMath = (() => {
+  const byNorm = new Map();
+  const bySurname = new Map();
+  for (const m of mathematicians) {
+    byNorm.set(normName(m.name), m);
+    const toks = normName(m.name).split(" ");
+    const surname = toks[toks.length - 1];
+    if (surname && surname.length >= 4 && !bySurname.has(surname)) bySurname.set(surname, m);
+  }
+  const map = new Map();
+  for (const med of media) {
+    if (med.type !== "Portrait") continue;
+    const name = (med.links && med.links[0]) || med.title.replace(/^Portrait de\s+/i, "");
+    const key = normName(name);
+    let m = byNorm.get(key);
+    if (!m) {
+      const toks = key.split(" ");
+      m = bySurname.get(toks[toks.length - 1]);
+    }
+    if (m && !map.has(m.id)) map.set(m.id, { name, source: med.source, sourceUrl: med.sourceUrl });
+  }
+  return map;
+})();
+
+// Cache des URL de portrait : chaîne = image trouvée, false = aucune image.
+const PORTRAIT_KEY = "mathemator:portraits";
+const portraitCache = new Map(Object.entries(store.get(PORTRAIT_KEY, {})));
+const persistPortraits = () => store.set(PORTRAIT_KEY, Object.fromEntries(portraitCache));
+const portraitTried = new Set(); // évite de re-solliciter le réseau dans la session
+async function resolvePortrait(id) {
+  if (portraitCache.has(id)) return portraitCache.get(id);
+  const info = portraitMediaByMath.get(id);
+  if (!info) return false; // pas de portrait curatif : on garde le glyphe
+  if (portraitTried.has(id)) return false;
+  portraitTried.add(id);
+  try {
+    const title = encodeURIComponent(info.name.replace(/ /g, "_"));
+    const r = await fetch(`https://fr.wikipedia.org/api/rest_v1/page/summary/${title}`, {
+      headers: { accept: "application/json" },
+    });
+    if (r.ok) {
+      const j = await r.json();
+      const val = (j.thumbnail && j.thumbnail.source) || false;
+      // Réponse définitive : on mémorise (URL trouvée ou absence confirmée).
+      portraitCache.set(id, val);
+      persistPortraits();
+      return val;
+    }
+  } catch {
+    /* réseau indisponible : on n'enregistre rien pour réessayer plus tard */
+  }
+  return false;
+}
 
 /* ------------------------- helpers d'affichage ------------------------- */
 const matchQ = (txt) => {
@@ -550,6 +643,43 @@ function renderBiblioCollection() {
     ${rowHtml || `<p class="empty-note">Aucun résultat.</p>`}`;
 }
 
+function renderPortraitFrame(m) {
+  const glyph = esc(m.portrait || m.name.charAt(0));
+  const info = portraitMediaByMath.get(m.id);
+  const cached = portraitCache.get(m.id); // string (url) | false | undefined
+  const attribution = info
+    ? `<a href="${escAttr(info.sourceUrl)}" target="_blank" rel="noopener">${esc(info.source || "Wikimedia Commons")}</a>`
+    : esc(m.imageSource || "Illustration générée");
+
+  if (typeof cached === "string" && cached) {
+    return `
+    <figure class="portrait-frame has-img" data-mid="${escAttr(m.id)}">
+      <img class="portrait-img" src="${escAttr(cached)}" alt="Portrait de ${escAttr(m.name)}" />
+      <span class="glyph">${glyph}</span>
+      <figcaption class="cap">portrait — ${attribution}</figcaption>
+    </figure>`;
+  }
+
+  // Pas encore résolu : afficher le glyphe et marquer pour hydratation si un
+  // portrait média existe (et qu'on n'a pas déjà conclu à une absence d'image).
+  const hydrate = info && cached === undefined ? ` data-hydrate="1"` : "";
+  return `
+    <figure class="portrait-frame" data-mid="${escAttr(m.id)}"${hydrate}>
+      <span class="glyph">${glyph}</span>
+      <figcaption class="cap">portrait — ${attribution}</figcaption>
+    </figure>`;
+}
+
+function hydratePortraits() {
+  const frame = screenEl.querySelector(".portrait-frame[data-hydrate]");
+  if (!frame) return;
+  const id = frame.dataset.mid;
+  resolvePortrait(id).then((url) => {
+    // Ne redessiner que si l'on regarde toujours la même fiche et qu'une image a été trouvée.
+    if (url && state.screen === "explorer" && state.personId === id) render();
+  });
+}
+
 function renderDetail() {
   const m = mathById.get(state.personId);
   if (!m) return renderExplorerList();
@@ -561,20 +691,15 @@ function renderDetail() {
 
   const dates = [m.birth, m.death].filter(Boolean).join("–");
   const on = !!favs[m.id];
-  const associated = [...(m.namedObjects || []), ...(m.theorems || [])]
-    .filter((x) => x && !/^objet associé|^méthode de|^résultat de/i.test(x))
-    .slice(0, 3);
-  const linked = associated.length ? associated.join(", ") : (m.namedObjects || []).slice(0, 2).join(", ");
+  // Associations réelles issues de theorems.json (voir theoremsByMath).
+  const linked = (theoremsByMath.get(m.id) || []).join(", ");
 
   return `
     <button class="back-link" data-act="close-detail">← Explorer</button>
     <p class="detail-role">${esc(role(m))} · ${esc(dates)}</p>
     <h2 class="detail-name">${esc(m.name)}</h2>
 
-    <div class="portrait-frame">
-      <span class="glyph">${esc(m.portrait || m.name.charAt(0))}</span>
-      <span class="cap">portrait — ${esc(m.imageSource || "Illustration générée")}</span>
-    </div>
+    ${renderPortraitFrame(m)}
 
     <p class="detail-bio">${esc(m.biography || "")}</p>
 
@@ -736,12 +861,14 @@ function renderProgression() {
 }
 
 function renderLabo() {
+  if (state.labTool) return renderLabTool();
+
   const tools = VISU_TOOLS.map(
-    ([glyph, name, desc]) => `
-    <div class="tool-card">
+    ([key, glyph, name, desc]) => `
+    <button class="tool-card" data-act="lab-tool" data-tool="${key}">
       <div class="thumb">${esc(glyph)}</div>
       <div class="cap"><strong>${esc(name)}</strong><span>${esc(desc)}</span></div>
-    </div>`
+    </button>`
   ).join("");
 
   const calc = CALC_TOOLS.map(
@@ -776,6 +903,550 @@ function renderLabo() {
     </div>
 
     ${calc}`;
+}
+
+/* =========================================================
+   OUTILS INTERACTIFS DU LABORATOIRE (canvas, sans dépendance)
+   ========================================================= */
+const LAB_META = {
+  graph: ["Grapheur", "Tracer une fonction y = f(x). Molette pour zoomer, glisser pour déplacer."],
+  geo: ["Géométrie dynamique", "Déplacer les sommets du triangle ; longueurs et angles se recalculent."],
+  poly: ["Polyèdres 3D", "Solides en fil de fer ; glisser pour tourner, rotation automatique sinon."],
+  fractal: ["Ensemble de Mandelbrot", "Cliquer pour zoomer, clic droit pour reculer."],
+};
+
+function renderLabTool() {
+  const [title, hint] = LAB_META[state.labTool] || ["Outil", ""];
+  let controls = "";
+  if (state.labTool === "graph") {
+    controls = `
+      <div class="lab-controls">
+        <label class="lab-field">f(x) =
+          <input id="graphFn" type="text" value="${escAttr(state.graphFn || "sin(x) * x / 3")}" spellcheck="false" />
+        </label>
+        <div class="lab-presets">
+          ${["sin(x)", "x^2/4", "cos(x)+x/4", "1/x", "exp(-x*x)", "abs(x)-2"]
+            .map((f) => `<button class="chip small" data-act="graph-preset" data-fn="${escAttr(f)}">${esc(f)}</button>`)
+            .join("")}
+        </div>
+        <p class="lab-msg" id="graphMsg"></p>
+      </div>`;
+  } else if (state.labTool === "poly") {
+    controls = `
+      <div class="lab-presets">
+        ${[["tetra", "Tétraèdre"], ["cube", "Cube"], ["octa", "Octaèdre"]]
+          .map(
+            ([k, l]) =>
+              `<button class="chip small${(state.polySolid || "cube") === k ? " active" : ""}" data-act="poly-solid" data-solid="${k}">${l}</button>`
+          )
+          .join("")}
+      </div>`;
+  } else if (state.labTool === "geo") {
+    controls = `<p class="lab-readout" id="geoReadout"></p>`;
+  } else if (state.labTool === "fractal") {
+    controls = `<p class="lab-readout" id="fracReadout"></p>`;
+  }
+
+  return `
+    <button class="back-link" data-act="lab-back">← Laboratoire</button>
+    <h2 class="lab-title">${esc(title)}</h2>
+    <p class="lab-hint">${esc(hint)}</p>
+    <div class="lab-stage" id="labToolHost">
+      <canvas id="labCanvas"></canvas>
+    </div>
+    ${controls}`;
+}
+
+// Analyseur d'expression sûr (shunting-yard) : chiffres, x, opérateurs et
+// fonctions usuelles uniquement. Retourne une fonction (x) => nombre.
+function compileExpr(src) {
+  const fns = {
+    sin: Math.sin, cos: Math.cos, tan: Math.tan, asin: Math.asin, acos: Math.acos,
+    atan: Math.atan, sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh,
+    exp: Math.exp, log: Math.log, ln: Math.log, log10: Math.log10, sqrt: Math.sqrt,
+    abs: Math.abs, sign: Math.sign, floor: Math.floor, ceil: Math.ceil, round: Math.round,
+  };
+  const consts = { pi: Math.PI, e: Math.E };
+  const tokens = [];
+  const re = /\s*([A-Za-z_]\w*|\d+\.?\d*|\.\d+|\*\*|[-+*/^(),])/g;
+  let m;
+  let pos = 0;
+  while ((m = re.exec(src)) !== null) {
+    if (m.index !== pos) throw new Error("Caractère invalide");
+    pos = re.lastIndex;
+    tokens.push(m[1] === "**" ? "^" : m[1]);
+  }
+  if (src.slice(pos).trim() !== "") throw new Error("Expression incomplète");
+
+  const prec = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3, u: 4 };
+  const out = [];
+  const ops = [];
+  const isNum = (t) => /^(\d|\.)/.test(t);
+  const isName = (t) => /^[A-Za-z_]/.test(t);
+  let prev = null;
+  for (let i = 0; i < tokens.length; i++) {
+    const t = tokens[i];
+    if (isNum(t)) out.push({ n: parseFloat(t) });
+    else if (isName(t)) {
+      if (t === "x") out.push({ x: 1 });
+      else if (t in consts) out.push({ n: consts[t] });
+      else if (t in fns) ops.push({ f: t });
+      else throw new Error("Inconnu : " + t);
+    } else if (t === ",") {
+      while (ops.length && ops[ops.length - 1] !== "(") out.push(ops.pop());
+    } else if (t === "(") ops.push("(");
+    else if (t === ")") {
+      while (ops.length && ops[ops.length - 1] !== "(") out.push(ops.pop());
+      if (ops.pop() !== "(") throw new Error("Parenthèses");
+      if (ops.length && ops[ops.length - 1] && ops[ops.length - 1].f) out.push(ops.pop());
+    } else {
+      // opérateur
+      let op = t;
+      const unary = op === "-" && (prev === null || prev === "(" || prev === "," || prev in prec);
+      if (unary) op = "u";
+      while (
+        ops.length &&
+        ops[ops.length - 1] !== "(" &&
+        (ops[ops.length - 1].f ||
+          prec[ops[ops.length - 1]] > prec[op] ||
+          (prec[ops[ops.length - 1]] === prec[op] && op !== "^" && op !== "u"))
+      )
+        out.push(ops.pop());
+      ops.push(op);
+    }
+    prev = t;
+  }
+  while (ops.length) {
+    const o = ops.pop();
+    if (o === "(") throw new Error("Parenthèses");
+    out.push(o);
+  }
+
+  return (x) => {
+    const st = [];
+    for (const tok of out) {
+      if (typeof tok === "object" && "n" in tok) st.push(tok.n);
+      else if (typeof tok === "object" && "x" in tok) st.push(x);
+      else if (typeof tok === "object" && tok.f) st.push(fns[tok.f](st.pop()));
+      else if (tok === "u") st.push(-st.pop());
+      else {
+        const b = st.pop();
+        const a = st.pop();
+        st.push(tok === "+" ? a + b : tok === "-" ? a - b : tok === "*" ? a * b : tok === "/" ? a / b : Math.pow(a, b));
+      }
+    }
+    return st.pop();
+  };
+}
+
+function setupCanvas(host) {
+  const canvas = host.querySelector("#labCanvas");
+  const w = Math.max(240, host.clientWidth || 320);
+  const h = Math.round(Math.min(w, 420));
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  return { canvas, ctx, w, h };
+}
+
+function css(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#211f1a";
+}
+
+function mountGrapher(host) {
+  const { canvas, ctx, w, h } = setupCanvas(host);
+  const msg = document.getElementById("graphMsg");
+  const view = { cx: 0, cy: 0, scale: 40 }; // pixels par unité
+  let fn = null;
+
+  const ink = css("--ink");
+  const line = css("--line");
+  const faint = css("--line-2");
+  const accent = css("--accent");
+
+  function compile() {
+    try {
+      fn = compileExpr(state.graphFn || "sin(x) * x / 3");
+      if (msg) {
+        msg.textContent = "";
+        msg.classList.remove("err");
+      }
+    } catch (e) {
+      fn = null;
+      if (msg) {
+        msg.textContent = "Expression invalide : " + e.message;
+        msg.classList.add("err");
+      }
+    }
+  }
+
+  const toPx = (x, y) => [w / 2 + (x - view.cx) * view.scale, h / 2 - (y - view.cy) * view.scale];
+  const toX = (px) => view.cx + (px - w / 2) / view.scale;
+
+  function niceStep(unitPx) {
+    const raw = 60 / unitPx; // ~60px entre graduations
+    const pow = Math.pow(10, Math.floor(Math.log10(raw)));
+    const n = raw / pow;
+    const step = (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * pow;
+    return step;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = css("--card");
+    ctx.fillRect(0, 0, w, h);
+
+    const step = niceStep(view.scale);
+    // grille
+    ctx.lineWidth = 1;
+    ctx.font = "11px Public Sans, sans-serif";
+    ctx.fillStyle = css("--ink-3");
+    const x0 = Math.ceil(toX(0) / step) * step;
+    for (let x = x0; x <= toX(w); x += step) {
+      const [px] = toPx(x, 0);
+      ctx.strokeStyle = Math.abs(x) < 1e-9 ? line : faint;
+      ctx.beginPath();
+      ctx.moveTo(px, 0);
+      ctx.lineTo(px, h);
+      ctx.stroke();
+      if (Math.abs(x) > 1e-9) ctx.fillText(fmtDec(x), px + 2, h / 2 + 12);
+    }
+    const yTop = view.cy + (h / 2) / view.scale;
+    const y0 = Math.ceil((yTop - h / view.scale) / step) * step;
+    for (let y = y0; y <= yTop; y += step) {
+      const [, py] = toPx(0, y);
+      ctx.strokeStyle = Math.abs(y) < 1e-9 ? line : faint;
+      ctx.beginPath();
+      ctx.moveTo(0, py);
+      ctx.lineTo(w, py);
+      ctx.stroke();
+      if (Math.abs(y) > 1e-9) ctx.fillText(fmtDec(y), w / 2 + 3, py - 3);
+    }
+
+    if (!fn) return;
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    let pen = false;
+    for (let px = 0; px <= w; px++) {
+      const x = toX(px);
+      const y = fn(x);
+      if (!Number.isFinite(y)) {
+        pen = false;
+        continue;
+      }
+      const [, py] = toPx(x, y);
+      if (py < -1e4 || py > 1e4) {
+        pen = false;
+        continue;
+      }
+      if (pen) ctx.lineTo(px, py);
+      else {
+        ctx.moveTo(px, py);
+        pen = true;
+      }
+    }
+    ctx.stroke();
+  }
+
+  compile();
+  draw();
+
+  const onInput = (e) => {
+    if (e.target.id !== "graphFn") return;
+    state.graphFn = e.target.value;
+    compile();
+    draw();
+  };
+  host.ownerDocument.addEventListener("input", onInput);
+
+  let drag = null;
+  const onDown = (e) => {
+    drag = { x: e.clientX, y: e.clientY };
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drag) return;
+    view.cx -= (e.clientX - drag.x) / view.scale;
+    view.cy += (e.clientY - drag.y) / view.scale;
+    drag = { x: e.clientX, y: e.clientY };
+    draw();
+  };
+  const onUp = () => (drag = null);
+  const onWheel = (e) => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+    view.scale = Math.max(4, Math.min(4000, view.scale * factor));
+    draw();
+  };
+  canvas.addEventListener("pointerdown", onDown);
+  canvas.addEventListener("pointermove", onMove);
+  canvas.addEventListener("pointerup", onUp);
+  canvas.addEventListener("wheel", onWheel, { passive: false });
+
+  return () => {
+    host.ownerDocument.removeEventListener("input", onInput);
+  };
+}
+
+function mountGeometry(host) {
+  const { canvas, ctx, w, h } = setupCanvas(host);
+  const readout = document.getElementById("geoReadout");
+  const pts = [
+    { x: w * 0.25, y: h * 0.7 },
+    { x: w * 0.72, y: h * 0.68 },
+    { x: w * 0.52, y: h * 0.24 },
+  ];
+  const accent = css("--accent");
+  const ink = css("--ink");
+  const labels = ["A", "B", "C"];
+
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  const angleAt = (p, q, r) => {
+    const v1 = { x: q.x - p.x, y: q.y - p.y };
+    const v2 = { x: r.x - p.x, y: r.y - p.y };
+    const c = (v1.x * v2.x + v1.y * v2.y) / (Math.hypot(v1.x, v1.y) * Math.hypot(v2.x, v2.y));
+    return (Math.acos(Math.max(-1, Math.min(1, c))) * 180) / Math.PI;
+  };
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = css("--card");
+    ctx.fillRect(0, 0, w, h);
+    // triangle
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    ctx.lineTo(pts[1].x, pts[1].y);
+    ctx.lineTo(pts[2].x, pts[2].y);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(138,74,44,0.08)";
+    ctx.fill();
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    // longueurs des côtés
+    ctx.font = "12px Public Sans, sans-serif";
+    ctx.fillStyle = ink;
+    const sides = [
+      [pts[0], pts[1]],
+      [pts[1], pts[2]],
+      [pts[2], pts[0]],
+    ];
+    sides.forEach(([a, b]) => {
+      const mx = (a.x + b.x) / 2;
+      const my = (a.y + b.y) / 2;
+      ctx.fillText((dist(a, b) / 40).toFixed(2), mx + 4, my);
+    });
+    // sommets
+    pts.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 7, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.fill();
+      ctx.fillStyle = ink;
+      ctx.font = "600 13px Newsreader, serif";
+      ctx.fillText(labels[i], p.x + 10, p.y - 8);
+    });
+    if (readout) {
+      const aA = angleAt(pts[0], pts[1], pts[2]);
+      const aB = angleAt(pts[1], pts[0], pts[2]);
+      const aC = 180 - aA - aB;
+      readout.textContent = `Â ${aA.toFixed(1)}°  ·  B̂ ${aB.toFixed(1)}°  ·  Ĉ ${aC.toFixed(1)}°  (somme 180°)`;
+    }
+  }
+
+  let dragIdx = -1;
+  const at = (x, y) => pts.findIndex((p) => Math.hypot(p.x - x, p.y - y) < 18);
+  const local = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  };
+  const onDown = (e) => {
+    const [x, y] = local(e);
+    dragIdx = at(x, y);
+    if (dragIdx >= 0) canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (dragIdx < 0) return;
+    const [x, y] = local(e);
+    pts[dragIdx].x = Math.max(8, Math.min(w - 8, x));
+    pts[dragIdx].y = Math.max(8, Math.min(h - 8, y));
+    draw();
+  };
+  const onUp = () => (dragIdx = -1);
+  canvas.addEventListener("pointerdown", onDown);
+  canvas.addEventListener("pointermove", onMove);
+  canvas.addEventListener("pointerup", onUp);
+  draw();
+  return () => {};
+}
+
+function mountPolyhedron(host) {
+  const { canvas, ctx, w, h } = setupCanvas(host);
+  const accent = css("--accent");
+  const solids = {
+    tetra: {
+      v: [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]],
+      e: [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]],
+    },
+    cube: {
+      v: [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]],
+      e: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]],
+    },
+    octa: {
+      v: [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]],
+      e: [[0, 2], [0, 3], [0, 4], [0, 5], [1, 2], [1, 3], [1, 4], [1, 5], [2, 4], [4, 3], [3, 5], [5, 2]],
+    },
+  };
+  let ax = 0.6;
+  let ay = 0.4;
+  let auto = true;
+  let raf = 0;
+
+  function draw() {
+    const solid = solids[state.polySolid || "cube"];
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = css("--card");
+    ctx.fillRect(0, 0, w, h);
+    const cosX = Math.cos(ax), sinX = Math.sin(ax);
+    const cosY = Math.cos(ay), sinY = Math.sin(ay);
+    // Projection perspective, puis mise à l'échelle automatique pour tenir dans le cadre.
+    const raw = solid.v.map(([x, y, z]) => {
+      let y1 = y * cosX - z * sinX;
+      let z1 = y * sinX + z * cosX;
+      let x1 = x * cosY + z1 * sinY;
+      z1 = -x * sinY + z1 * cosY;
+      const p = 5 / (5 + z1);
+      return [x1 * p, y1 * p];
+    });
+    const maxR = Math.max(1e-6, ...raw.map(([x, y]) => Math.hypot(x, y)));
+    const fit = (Math.min(w, h) * 0.4) / maxR;
+    const proj = raw.map(([x, y]) => [w / 2 + x * fit, h / 2 + y * fit]);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    solid.e.forEach(([a, b]) => {
+      ctx.moveTo(proj[a][0], proj[a][1]);
+      ctx.lineTo(proj[b][0], proj[b][1]);
+    });
+    ctx.stroke();
+    ctx.fillStyle = accent;
+    proj.forEach(([x, y]) => {
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function loop() {
+    if (auto) {
+      ay += 0.008;
+      ax += 0.003;
+    }
+    draw();
+    raf = requestAnimationFrame(loop);
+  }
+
+  let drag = null;
+  const onDown = (e) => {
+    drag = { x: e.clientX, y: e.clientY };
+    auto = false;
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drag) return;
+    ay += (e.clientX - drag.x) * 0.01;
+    ax += (e.clientY - drag.y) * 0.01;
+    drag = { x: e.clientX, y: e.clientY };
+  };
+  const onUp = () => {
+    drag = null;
+    auto = true;
+  };
+  canvas.addEventListener("pointerdown", onDown);
+  canvas.addEventListener("pointermove", onMove);
+  canvas.addEventListener("pointerup", onUp);
+  loop();
+  return () => cancelAnimationFrame(raf);
+}
+
+function mountFractal(host) {
+  const { canvas, ctx, w, h } = setupCanvas(host);
+  const readout = document.getElementById("fracReadout");
+  const view = { cx: -0.5, cy: 0, span: 3 };
+  const maxIter = 140;
+  // putImageData ignore la mise à l'échelle du contexte : on travaille en pixels réels.
+  const dw = canvas.width;
+  const dh = canvas.height;
+
+  function draw() {
+    const img = ctx.createImageData(dw, dh);
+    const data = img.data;
+    const scale = view.span / dw;
+    const accent = [138, 74, 44];
+    for (let py = 0; py < dh; py++) {
+      const y0 = view.cy + (py - dh / 2) * scale;
+      for (let px = 0; px < dw; px++) {
+        const x0 = view.cx + (px - dw / 2) * scale;
+        let x = 0, y = 0, i = 0;
+        while (x * x + y * y <= 4 && i < maxIter) {
+          const xt = x * x - y * y + x0;
+          y = 2 * x * y + y0;
+          x = xt;
+          i++;
+        }
+        const idx = (py * dw + px) * 4;
+        if (i === maxIter) {
+          data[idx] = 33; data[idx + 1] = 31; data[idx + 2] = 26;
+        } else {
+          const s = Math.pow(i / maxIter, 0.5);
+          data[idx] = Math.round(247 - (247 - accent[0]) * s);
+          data[idx + 1] = Math.round(244 - (244 - accent[1]) * s);
+          data[idx + 2] = Math.round(237 - (237 - accent[2]) * s);
+        }
+        data[idx + 3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    if (readout) readout.textContent = `centre (${fmtDec(view.cx)}, ${fmtDec(view.cy)}) · largeur ${view.span.toPrecision(3)}`;
+  }
+
+  const zoom = (e, factor) => {
+    e.preventDefault();
+    const r = canvas.getBoundingClientRect();
+    // coordonnées écran → pixels réels du canvas
+    const px = (e.clientX - r.left) * (dw / r.width);
+    const py = (e.clientY - r.top) * (dh / r.height);
+    const scale = view.span / dw;
+    view.cx += (px - dw / 2) * scale;
+    view.cy += (py - dh / 2) * scale;
+    view.span *= factor;
+    draw();
+  };
+  const onClick = (e) => zoom(e, 0.5);
+  const onContext = (e) => zoom(e, 2);
+  canvas.addEventListener("click", onClick);
+  canvas.addEventListener("contextmenu", onContext);
+  draw();
+  return () => {};
+}
+
+let labCleanup = null;
+function mountLabTool() {
+  if (labCleanup) {
+    labCleanup();
+    labCleanup = null;
+  }
+  if (state.screen !== "labo" || !state.labTool) return;
+  const host = document.getElementById("labToolHost");
+  if (!host) return;
+  const mounts = { graph: mountGrapher, geo: mountGeometry, poly: mountPolyhedron, fractal: mountFractal };
+  const fn = mounts[state.labTool];
+  if (fn) labCleanup = fn(host);
 }
 
 function solveQuadratic() {
@@ -914,6 +1585,8 @@ function render() {
   screenEl.innerHTML = screenBody();
   renderNav();
   renderMath();
+  hydratePortraits();
+  mountLabTool();
 
   if (focusId) {
     const el = document.getElementById(focusId);
@@ -999,6 +1672,18 @@ document.getElementById("app").addEventListener("click", (e) => {
     case "hist":
       setState({ histTab: d.tab });
       break;
+    case "lab-tool":
+      setState({ labTool: d.tool });
+      break;
+    case "lab-back":
+      setState({ labTool: null });
+      break;
+    case "graph-preset":
+      setState({ graphFn: d.fn });
+      break;
+    case "poly-solid":
+      setState({ polySolid: d.solid });
+      break;
     default:
       break;
   }
@@ -1015,6 +1700,25 @@ screenEl.addEventListener("input", (e) => {
     if (out) out.textContent = solveQuadratic();
   }
 });
+
+// Repli si l'image du portrait échoue à charger : on revient au glyphe.
+screenEl.addEventListener(
+  "error",
+  (e) => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement) || !img.classList.contains("portrait-img")) return;
+    const frame = img.closest(".portrait-frame");
+    if (frame) {
+      frame.classList.remove("has-img");
+      // On revient au glyphe pour cette vue sans effacer l'URL en cache :
+      // l'échec peut être passager (hors ligne) et l'image resservira ensuite.
+      const id = frame.dataset.mid;
+      if (id) portraitTried.add(id);
+    }
+    img.remove();
+  },
+  true
+);
 
 // KaTeX peut arriver après le premier rendu (script defer).
 window.addEventListener("load", renderMath);
