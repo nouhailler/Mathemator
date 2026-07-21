@@ -3,6 +3,17 @@
 Toutes les évolutions notables de Mathemator. Le format s'inspire de
 [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## 2026-07-21
+
+### Ajouté
+- **Illustration pour chaque mathématicien.** Le résolveur de portrait interroge désormais
+  Wikipédia pour **toutes** les fiches (titre d'article tiré du lien `fr.wikipedia` déjà
+  présent), et plus seulement l'ensemble « Portrait » de `media.json`. Les biographies
+  réelles en profitent d'autant. À défaut de portrait libre, la fiche est illustrée par le
+  **drapeau de la nationalité** (émoji Unicode, libre et hors‑ligne ; table `NAT_ISO`
+  nationalité FR → ISO 3166, les nationalités historiques pointant vers le pays moderne le
+  plus proche). Repli ultime : glyphe + 🌍.
+
 ## 2026-07-14
 
 ### Ajouté

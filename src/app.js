@@ -361,6 +361,42 @@ const portraitMediaByMath = (() => {
   return map;
 })();
 
+// Titre d'article Wikipédia FR d'un mathématicien, extrait du lien fr.wikipedia
+// déjà présent (curaté) dans ses données. Donne un point d'entrée fiable vers un
+// portrait pour l'ensemble des fiches, et non le seul sous-ensemble « Portrait ».
+function frWikiTitle(m) {
+  if (!m || !Array.isArray(m.links)) return "";
+  const link = m.links.find((l) => /\/\/fr\.wikipedia\.org\/wiki\//.test(l));
+  if (!link) return "";
+  try {
+    return decodeURIComponent((link.split("/wiki/")[1] || "")).replace(/_/g, " ").trim();
+  } catch {
+    return "";
+  }
+}
+
+// Repli « pays » : à défaut de portrait libre, on illustre la fiche par le drapeau
+// de la nationalité (émoji Unicode, libre et hors-ligne). Table nationalité FR →
+// code ISO 3166-1 alpha-2 ; les nationalités historiques pointent vers le pays
+// moderne le plus proche (Perse → Iran, Grecque → Grèce, Arabe → Arabie, …).
+const NAT_ISO = {
+  Américaine: "US", Française: "FR", Allemande: "DE", Italienne: "IT", Russe: "RU",
+  Britannique: "GB", Anglaise: "GB", Écossaise: "GB", Galloise: "GB", Irlandaise: "IE",
+  Indienne: "IN", Hongroise: "HU", Japonaise: "JP", Grecque: "GR", Chinoise: "CN",
+  Israélienne: "IL", Polonaise: "PL", Suisse: "CH", Canadienne: "CA", Persane: "IR",
+  Iranienne: "IR", Autrichienne: "AT", Australienne: "AU", Norvégienne: "NO", Belge: "BE",
+  Suédoise: "SE", Brésilienne: "BR", Argentine: "AR", Néerlandaise: "NL", Ukrainienne: "UA",
+  Arabe: "SA", Finlandaise: "FI", Égyptienne: "EG", Vietnamienne: "VN", Coréenne: "KR",
+  Ouzbèke: "UZ", Portugaise: "PT", Tchèque: "CZ", "Sud-africaine": "ZA", Lettonne: "LV",
+  "Néo-zélandaise": "NZ", Roumaine: "RO", Danoise: "DK",
+};
+// Émoji drapeau à partir du code pays (deux indicateurs régionaux Unicode).
+const isoToFlag = (iso) =>
+  iso && /^[A-Z]{2}$/.test(iso)
+    ? String.fromCodePoint(...[...iso].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
+    : "🌍";
+const flagFor = (m) => isoToFlag(NAT_ISO[(m.nationality || "").trim()]);
+
 // Cache Wikipédia : { img, extract, url } (données réelles) ou false (aucune).
 // L'API REST « summary » renvoie en un seul appel la vignette ET le résumé,
 // qui sert de vraie biographie (attribuée) à la place du texte auto-généré.
@@ -370,12 +406,16 @@ const persistWiki = () => store.set(WIKI_KEY, Object.fromEntries(wikiCache));
 const wikiTried = new Set(); // évite de re-solliciter le réseau dans la session
 async function resolveWiki(id) {
   if (wikiCache.has(id)) return wikiCache.get(id);
-  const info = portraitMediaByMath.get(id);
-  if (!info) return false; // hors ensemble curaté : on garde glyphe + bio générée
   if (wikiTried.has(id)) return false;
+  // Titre : entrée curatée « Portrait » en priorité, sinon lien Wikipédia FR de la
+  // fiche. Chaque mathématicien ayant un lien fr.wikipedia, on tente un portrait
+  // réel pour tous, pas seulement l'ensemble « Portrait » de media.json.
+  const info = portraitMediaByMath.get(id);
+  const name = (info && info.name) || frWikiTitle(mathById.get(id));
+  if (!name) return false; // aucun lien exploitable : glyphe + drapeau de nationalité
   wikiTried.add(id);
   try {
-    const title = encodeURIComponent(info.name.replace(/ /g, "_"));
+    const title = encodeURIComponent(name.replace(/ /g, "_"));
     const r = await fetch(`https://fr.wikipedia.org/api/rest_v1/page/summary/${title}`, {
       headers: { accept: "application/json" },
     });
@@ -960,11 +1000,14 @@ function renderPortraitFrame(m) {
   const info = portraitMediaByMath.get(m.id);
   const cached = wikiCache.get(m.id); // { img, extract, url } | false | undefined
   const img = cached && cached.img;
-  const attribution = info
-    ? `<a href="${escAttr(info.sourceUrl)}" target="_blank" rel="noopener">${esc(info.source || "Wikimedia Commons")}</a>`
-    : esc(m.imageSource || "Illustration générée");
 
   if (img) {
+    // Portrait réel : attribution vers la source curatée si connue, sinon la page Wikipédia.
+    const href = (info && info.sourceUrl) || (cached && cached.url) || "";
+    const label = (info && info.source) || "Wikimedia Commons";
+    const attribution = href
+      ? `<a href="${escAttr(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
+      : esc(label);
     return `
     <figure class="portrait-frame has-img" data-mid="${escAttr(m.id)}">
       <img class="portrait-img" src="${escAttr(img)}" alt="Portrait de ${escAttr(m.name)}" />
@@ -973,13 +1016,16 @@ function renderPortraitFrame(m) {
     </figure>`;
   }
 
-  // Pas encore résolu : afficher le glyphe et marquer pour hydratation si un
-  // portrait média existe (et qu'on n'a pas déjà conclu à une absence de données).
-  const hydrate = info && cached === undefined ? ` data-hydrate="1"` : "";
+  // Aucun portrait : on illustre par le drapeau de la nationalité (émoji libre,
+  // hors-ligne). Tant que Wikipédia n'a pas répondu, on marque pour hydratation
+  // afin de tenter un portrait réel pour tout mathématicien.
+  const hydrate = cached === undefined ? ` data-hydrate="1"` : "";
+  const nat = esc(m.nationality || "Nationalité inconnue");
   return `
-    <figure class="portrait-frame" data-mid="${escAttr(m.id)}"${hydrate}>
+    <figure class="portrait-frame is-flag" data-mid="${escAttr(m.id)}"${hydrate}>
+      <span class="flag" role="img" aria-label="Drapeau — ${nat}">${flagFor(m)}</span>
       <span class="glyph">${glyph}</span>
-      <figcaption class="cap">portrait — ${attribution}</figcaption>
+      <figcaption class="cap">illustration d'après la nationalité — ${nat}</figcaption>
     </figure>`;
 }
 

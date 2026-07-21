@@ -645,6 +645,16 @@ input:focus, button:focus-visible, select:focus-visible {
   color: var(--accent);
   line-height: 1;
 }
+/* Repli « pays » : grand drapeau de nationalité surmontant le glyphe. */
+.portrait-frame.is-flag .flag {
+  font-size: 72px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+.portrait-frame.is-flag .glyph {
+  font-size: 30px;
+  opacity: 0.75;
+}
 .portrait-frame .cap {
   font-family: ui-monospace, Menlo, monospace;
   font-size: 11px;
