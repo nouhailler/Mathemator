@@ -433,6 +433,20 @@ input:focus, button:focus-visible, select:focus-visible {
   color: var(--accent);
   padding: 0;
 }
+.portrait-glyph.has-img {
+  overflow: hidden;
+}
+.portrait-glyph .vignette-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+.portrait-glyph .vignette-flag {
+  font-size: 26px;
+  line-height: 1;
+}
 .person-row .info {
   flex: 1;
   min-width: 0;

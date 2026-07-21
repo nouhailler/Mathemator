@@ -13,6 +13,9 @@ Toutes les évolutions notables de Mathemator. Le format s'inspire de
   **drapeau de la nationalité** (émoji Unicode, libre et hors‑ligne ; table `NAT_ISO`
   nationalité FR → ISO 3166, les nationalités historiques pointant vers le pays moderne le
   plus proche). Repli ultime : glyphe + 🌍.
+- **Vignettes de la liste Explorer/Mathématiciens** : chaque ligne affiche désormais le
+  portrait réel s'il est déjà en cache (fiche consultée), sinon le drapeau de la
+  nationalité — immédiat et hors‑ligne, sans requête réseau au chargement de la liste.
 
 ## 2026-07-14
 

@@ -691,12 +691,23 @@ function renderHome() {
 /* ------------------------- cartes de liste réutilisables ------------------------- */
 const statusCls = (s) => (s === "Résolu" ? "solved" : s === "Actif" ? "active" : "open");
 
+// Vignette de liste : portrait réel s'il est déjà en cache (fiche déjà consultée),
+// sinon le drapeau de la nationalité — immédiat et hors-ligne, sans requête réseau.
+function personVignette(m) {
+  const cached = wikiCache.get(m.id);
+  if (cached && cached.img)
+    return `<img class="vignette-img" src="${escAttr(cached.img)}" alt="" loading="lazy" />`;
+  return `<span class="vignette-flag" aria-hidden="true">${flagFor(m)}</span>`;
+}
+
 function personRow(m) {
+  const cached = wikiCache.get(m.id);
+  const hasImg = cached && cached.img;
   return `
     <div class="person-row">
-      <button class="portrait-glyph" data-act="open" data-type="math" data-id="${escAttr(m.id)}">${esc(
-    m.portrait || m.name.charAt(0)
-  )}</button>
+      <button class="portrait-glyph${hasImg ? " has-img" : ""}" data-act="open" data-type="math" data-id="${escAttr(
+    m.id
+  )}" title="${escAttr(m.name)}">${personVignette(m)}</button>
       <button class="info" data-act="open" data-type="math" data-id="${escAttr(m.id)}">
         <span class="name">${esc(m.name)}</span>
         <span class="meta">${esc(personMeta(m))}</span>
